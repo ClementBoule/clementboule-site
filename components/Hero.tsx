@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import { useLang } from './LanguageContext'
 
 export default function Hero() {
@@ -35,7 +36,7 @@ export default function Hero() {
               {t.hero.subtitle}
             </p>
 
-            {/* CTAs */}
+            {/* CTAs */|
             <div className="flex flex-wrap gap-4">
               <a
                 href="#contact"
@@ -58,46 +59,32 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right: DISC teaser card */}
-          <div className="relative">
-            <div className="bg-[#0F1A2E]/60 border border-white/8 rounded-2xl p-8 backdrop-blur-sm shadow-2xl">
-              <p className="text-xs font-semibold text-[#7C9CBF] uppercase tracking-widest mb-5">
-                {t.hero.discTeaser}
-              </p>
+          {/* Right: Photo */}
+          <div className="relative flex justify-center md:justify-end">
+            {/* Glow behind photo */}
+            <div className="absolute inset-0 bg-[#7C9CBF]/10 rounded-3xl blur-2xl scale-90" />
 
-              {/* DISC bars */}
-              <div className="space-y-4">
-                {[
-                  { label: 'D â Dominance', value: 85, color: '#E57373' },
-                  { label: 'I â Influence', value: 62, color: '#FFB74D' },
-                  { label: 'S â Steadiness', value: 45, color: '#81C784' },
-                  { label: 'C â Conscientiousness', value: 70, color: '#64B5F6' },
-                ].map(({ label, value, color }) => (
-                  <div key={label} className="space-y-1.5">
-                    <div className="flex justify-between items-center">
-                      <span className="text-xs text-white/60 font-medium">{label}</span>
-                      <span className="text-xs font-bold" style={{ color }}>{value}%</span>
-                    </div>
-                    <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
-                      <div
-                        className="h-full rounded-full"
-                        style={{ width: `${value}%`, backgroundColor: color, opacity: 0.8 }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <a
-                href="/test-disc"
-                className="mt-7 flex items-center justify-center gap-2 w-full border border-[#7C9CBF]/30 hover:border-[#7C9CBF]/60 text-[#7C9CBF] text-sm font-medium py-2.5 rounded-xl transition-all hover:bg-[#7C9CBF]/8"
-              >
-                {t.hero.discCta}
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </a>
+            {/* Photo frame */}
+            <div className="relative w-72 h-96 md:w-80 md:h-[440px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/40">
+              <Image
+                src="/clement.jpg"
+                alt="ClÃ©ment BoulÃ©"
+                fill
+                className="object-cover object-top"
+                priority
+              />
+              {/* Subtle gradient overlay at bottom */}
+              <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0B1120]/60 to-transparent" />
             </div>
+
+            {/* DISC pill floating badge */}
+            <a
+              href="/test-disc"
+              className="absolute -bottom-4 left-1/2 md:left-4 -translate-x-1/2 md:translate-x-0 flex items-center gap-2 bg-[#0F1A2E]/90 border border-[#7C9CBF]/30 backdrop-blur-sm text-[#7C9CBF] text-xs font-semibold px-4 py-2 rounded-full shadow-lg hover:border-[#7C9CBF]/60 transition-all whitespace-nowrap"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#7C9CBF] animate-pulse" />
+              {t.hero.discCta}
+            </a>
 
             {/* Decorative dot grid */}
             <div className="absolute -bottom-6 -right-6 w-32 h-32 opacity-20"
