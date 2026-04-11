@@ -5,10 +5,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --navy-900: #0B1120;
-  --navy-800: #0F1A2E;
-  --navy-700: #162236;
-  --accent: #7C9CBF;
+  --bg: #F5F7FB;
+  --bg-alt: #EBF0F8;
+  --navy: #1A2B4A;
+  --blue: #3D6DB8;
+  --blue-light: #6B9ED4;
+  --warm: #E8836A;
+  --warm-light: #F5A98C;
+  --text: #1A2B4A;
+  --text-muted: #6B7E95;
+  --border: rgba(61, 109, 184, 0.12);
 }
 
 * {
@@ -22,38 +28,34 @@ html {
 }
 
 body {
-  background-color: var(--navy-900);
-  color: #E8EDF5;
+  background-color: var(--bg);
+  color: var(--text);
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--navy-900);
+  background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: #2A4A6B;
+  background: #B0C4DA;
   border-radius: 3px;
 }
 
-/* Selection color */
 ::selection {
-  background: rgba(124, 156, 191, 0.3);
-  color: #E8EDF5;
+  background: rgba(61, 109, 184, 0.18);
+  color: var(--navy);
 }
 
-/* Smooth transitions globally */
 a, button {
   transition: all 0.2s ease;
 }
 
-/* Focus styles */
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--blue);
   outline-offset: 2px;
 }
