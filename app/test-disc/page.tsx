@@ -5,32 +5,32 @@ import Link from 'next/link'
 const questions = [
   {
     id: 1,
-    text: "Face Ã  un obstacle professionnel, votre rÃ©action spontanÃ©e est de :",
+    text: "Face à un obstacle professionnel, votre réaction spontanée est de :",
     options: [
-      { label: "Foncer et trouver une solution immÃ©diatement", profile: 'D' },
-      { label: "En parler Ã  votre Ã©quipe pour trouver ensemble", profile: 'I' },
+      { label: "Foncer et trouver une solution immédiatement", profile: 'D' },
+      { label: "En parler à votre équipe pour trouver ensemble", profile: 'I' },
       { label: "Analyser calmement avant d'agir", profile: 'S' },
-      { label: "Lister toutes les causes possibles avec mÃ©thode", profile: 'C' },
+      { label: "Lister toutes les causes possibles avec méthode", profile: 'C' },
     ],
   },
   {
     id: 2,
-    text: "En rÃ©union, vous avez tendance Ã  :",
+    text: "En réunion, vous avez tendance à :",
     options: [
-      { label: "Prendre les dÃ©cisions et orienter le groupe", profile: 'D' },
-      { label: "Animer et motiver l'Ã©nergie collective", profile: 'I' },
-      { label: "Ãcouter attentivement avant de donner votre avis", profile: 'S' },
-      { label: "Poser des questions prÃ©cises et analyser les donnÃ©es", profile: 'C' },
+      { label: "Prendre les décisions et orienter le groupe", profile: 'D' },
+      { label: "Animer et motiver l'énergie collective", profile: 'I' },
+      { label: "Écouter attentivement avant de donner votre avis", profile: 'S' },
+      { label: "Poser des questions précises et analyser les données", profile: 'C' },
     ],
   },
   {
     id: 3,
-    text: "Vos collÃ¨gues vous dÃ©crivent plutÃ´t comme :",
+    text: "Vos collègues vous décrivent plutôt comme :",
     options: [
-      { label: "DÃ©terminÃ©(e) et direct(e)", profile: 'D' },
+      { label: "Déterminé(e) et direct(e)", profile: 'D' },
       { label: "Enthousiaste et communicatif(ve)", profile: 'I' },
       { label: "Fiable et calme", profile: 'S' },
-      { label: "Rigoureux(se) et prÃ©cis(e)", profile: 'C' },
+      { label: "Rigoureux(se) et précis(e)", profile: 'C' },
     ],
   },
   {
@@ -38,69 +38,69 @@ const questions = [
     text: "Quand vous travaillez sur un projet, ce qui vous importe le plus c'est :",
     options: [
       { label: "Atteindre les objectifs rapidement", profile: 'D' },
-      { label: "CrÃ©er une bonne dynamique d'Ã©quipe", profile: 'I' },
-      { label: "Assurer la stabilitÃ© et la continuitÃ©", profile: 'S' },
-      { label: "Garantir la qualitÃ© et l'exactitude", profile: 'C' },
+      { label: "Créer une bonne dynamique d'équipe", profile: 'I' },
+      { label: "Assurer la stabilité et la continuité", profile: 'S' },
+      { label: "Garantir la qualité et l'exactitude", profile: 'C' },
     ],
   },
   {
     id: 5,
-    text: "Sous pression, vous avez tendance Ã  devenir :",
+    text: "Sous pression, vous avez tendance à devenir :",
     options: [
       { label: "Autoritaire et impatient(e)", profile: 'D' },
-      { label: "DispersÃ©(e) et Ã©motionnel(le)", profile: 'I' },
-      { label: "Passif(ve) et rÃ©sistant(e) au changement", profile: 'S' },
+      { label: "Dispersé(e) et émotionnel(le)", profile: 'I' },
+      { label: "Passif(ve) et résistant(e) au changement", profile: 'S' },
       { label: "Sur-analytique et perfectionniste", profile: 'C' },
     ],
   },
   {
     id: 6,
-    text: "Votre style de communication prÃ©fÃ©rÃ© est :",
+    text: "Votre style de communication préféré est :",
     options: [
-      { label: "Direct, concis, orientÃ© rÃ©sultats", profile: 'D' },
+      { label: "Direct, concis, orienté résultats", profile: 'D' },
       { label: "Chaleureux, expressif, narratif", profile: 'I' },
-      { label: "Patient, Ã  l'Ã©coute, posÃ©", profile: 'S' },
-      { label: "StructurÃ©, factuel, dÃ©taillÃ©", profile: 'C' },
+      { label: "Patient, à l'écoute, posé", profile: 'S' },
+      { label: "Structuré, factuel, détaillé", profile: 'C' },
     ],
   },
   {
     id: 7,
-    text: "Dans votre environnement de travail idÃ©al :",
+    text: "Dans votre environnement de travail idéal :",
     options: [
-      { label: "Je suis autonome et j'ai du pouvoir de dÃ©cision", profile: 'D' },
+      { label: "Je suis autonome et j'ai du pouvoir de décision", profile: 'D' },
       { label: "L'ambiance est positive et collaborative", profile: 'I' },
-      { label: "Les rÃ´les sont clairs et le rythme prÃ©visible", profile: 'S' },
-      { label: "Les processus sont dÃ©finis et la qualitÃ© prime", profile: 'C' },
+      { label: "Les rôles sont clairs et le rythme prévisible", profile: 'S' },
+      { label: "Les processus sont définis et la qualité prime", profile: 'C' },
     ],
   },
   {
     id: 8,
     text: "Ce qui vous motive le plus dans votre travail :",
     options: [
-      { label: "Relever des dÃ©fis et gagner", profile: 'D' },
+      { label: "Relever des défis et gagner", profile: 'D' },
       { label: "Inspirer et influencer les autres", profile: 'I' },
-      { label: "Contribuer Ã  un projet durable", profile: 'S' },
-      { label: "RÃ©soudre des problÃ¨mes complexes avec prÃ©cision", profile: 'C' },
+      { label: "Contribuer à un projet durable", profile: 'S' },
+      { label: "Résoudre des problèmes complexes avec précision", profile: 'C' },
     ],
   },
   {
     id: 9,
-    text: "Face Ã  un changement inattendu, vous :",
+    text: "Face à un changement inattendu, vous :",
     options: [
-      { label: "Vous adaptez vite et prenez le contrÃ´le", profile: 'D' },
-      { label: "Voyez l'opportunitÃ© et enthousiasmez les autres", profile: 'I' },
+      { label: "Vous adaptez vite et prenez le contrôle", profile: 'D' },
+      { label: "Voyez l'opportunité et enthousiasmez les autres", profile: 'I' },
       { label: "Prenez le temps de comprendre avant d'agir", profile: 'S' },
-      { label: "Ãvaluez les risques et impacts minutieusement", profile: 'C' },
+      { label: "Évaluez les risques et impacts minutieusement", profile: 'C' },
     ],
   },
   {
     id: 10,
-    text: "En matiÃ¨re de prise de risque :",
+    text: "En matière de prise de risque :",
     options: [
-      { label: "Vous aimez prendre des risques calculÃ©s", profile: 'D' },
+      { label: "Vous aimez prendre des risques calculés", profile: 'D' },
       { label: "Vous vous laissez guider par votre intuition", profile: 'I' },
-      { label: "Vous prÃ©fÃ©rez la prudence et la sÃ©curitÃ©", profile: 'S' },
-      { label: "Vous analysez en profondeur avant de dÃ©cider", profile: 'C' },
+      { label: "Vous préférez la prudence et la sécurité", profile: 'S' },
+      { label: "Vous analysez en profondeur avant de décider", profile: 'C' },
     ],
   },
   {
@@ -117,10 +117,10 @@ const questions = [
     id: 12,
     text: "Ce qui vous frustre le plus au travail :",
     options: [
-      { label: "L'inefficacitÃ© et la lenteur des dÃ©cisions", profile: 'D' },
-      { label: "L'atmosphÃ¨re froide et le manque de reconnaissance", profile: 'I' },
-      { label: "Le chaos et le manque de stabilitÃ©", profile: 'S' },
-      { label: "L'imprÃ©cision et les erreurs non corrigÃ©es", profile: 'C' },
+      { label: "L'inefficacité et la lenteur des décisions", profile: 'D' },
+      { label: "L'atmosphère froide et le manque de reconnaissance", profile: 'I' },
+      { label: "Le chaos et le manque de stabilité", profile: 'S' },
+      { label: "L'imprécision et les erreurs non corrigées", profile: 'C' },
     ],
   },
 ]
@@ -132,9 +132,9 @@ const profiles = {
     color: '#E57373',
     bg: '#E57373',
     tagline: 'Le Conducteur',
-    description: "Vous Ãªtes orientÃ© rÃ©sultats, direct et compÃ©titif. Naturellement Ã  l'aise dans les rÃ´les de leadership, vous aimez relever des dÃ©fis et prendre des dÃ©cisions rapides. Votre moteur : l'efficacitÃ© et la victoire.",
-    strengths: ['Prise de dÃ©cision rapide', 'Leadership naturel', 'Orientation rÃ©sultats', 'Gestion de crise'],
-    growth: ['Patience avec les autres', 'Ãcoute active', 'DÃ©lÃ©gation sans contrÃ´le'],
+    description: "Vous êtes orienté résultats, direct et compétitif. Naturellement à l'aise dans les rôles de leadership, vous aimez relever des défis et prendre des décisions rapides. Votre moteur : l'efficacité et la victoire.",
+    strengths: ['Prise de décision rapide', 'Leadership naturel', 'Orientation résultats', 'Gestion de crise'],
+    growth: ['Patience avec les autres', 'Écoute active', 'Délégation sans contrôle'],
     famous: ['Steve Jobs', 'Margaret Thatcher', 'Napoleon Bonaparte'],
   },
   I: {
@@ -142,10 +142,10 @@ const profiles = {
     letter: 'I',
     color: '#FFB74D',
     bg: '#FFB74D',
-    tagline: 'L\'Inspirateur',
-    description: "Enthousiaste et communicatif, vous excellez Ã  fÃ©dÃ©rer et motiver les Ã©quipes. Votre charisme naturel vous permet d'influencer et de convaincre. Vous Ãªtes Ã  l'aise dans les environnements sociaux et crÃ©atifs.",
-    strengths: ['Communication', 'CrÃ©ativitÃ©', 'Enthousiasme', 'RÃ©seau et relations'],
-    growth: ['Organisation', 'Suivi des dÃ©tails', 'Respect des dÃ©lais'],
+    tagline: "L'Inspirateur",
+    description: "Enthousiaste et communicatif, vous excellez à fédérer et motiver les équipes. Votre charisme naturel vous permet d'influencer et de convaincre. Vous êtes à l'aise dans les environnements sociaux et créatifs.",
+    strengths: ['Communication', 'Créativité', 'Enthousiasme', 'Réseau et relations'],
+    growth: ['Organisation', 'Suivi des détails', 'Respect des délais'],
     famous: ['Richard Branson', 'Oprah Winfrey', 'Bill Clinton'],
   },
   S: {
@@ -154,20 +154,20 @@ const profiles = {
     color: '#81C784',
     bg: '#81C784',
     tagline: 'Le Soutien',
-    description: "Calme, fiable et patient, vous Ãªtes le pilier de votre Ã©quipe. Vous construisez des relations solides sur le long terme et excellez dans les environnements stables. Votre loyautÃ© et votre constance sont vos forces majeures.",
-    strengths: ['FiabilitÃ©', 'Ãcoute', 'Travail d\'Ã©quipe', 'PersÃ©vÃ©rance'],
-    growth: ['AssertivitÃ©', 'Gestion du changement', 'Prise de dÃ©cision rapide'],
-    famous: ['MÃ¨re Teresa', 'Gandhi', 'Jimmy Carter'],
+    description: "Calme, fiable et patient, vous êtes le pilier de votre équipe. Vous construisez des relations solides sur le long terme et excellez dans les environnements stables. Votre loyauté et votre constance sont vos forces majeures.",
+    strengths: ['Fiabilité', 'Écoute', "Travail d'équipe", 'Persévérance'],
+    growth: ['Assertivité', 'Gestion du changement', 'Prise de décision rapide'],
+    famous: ['Mère Teresa', 'Gandhi', 'Jimmy Carter'],
   },
   C: {
     name: 'Consciencieux',
     letter: 'C',
     color: '#64B5F6',
     bg: '#64B5F6',
-    tagline: 'L\'Analyste',
-    description: "Rigoureux et mÃ©thodique, vous avez un talent pour analyser des situations complexes et produire un travail de haute qualitÃ©. Vous Ãªtes guidÃ© par les faits, les donnÃ©es et les standards d'excellence.",
-    strengths: ['PrÃ©cision', 'Analyse', 'QualitÃ©', 'Expertise technique'],
-    growth: ['FlexibilitÃ©', 'DÃ©lÃ©gation', 'Communication des Ã©motions'],
+    tagline: "L'Analyste",
+    description: "Rigoureux et méthodique, vous avez un talent pour analyser des situations complexes et produire un travail de haute qualité. Vous êtes guidé par les faits, les données et les standards d'excellence.",
+    strengths: ['Précision', 'Analyse', 'Qualité', 'Expertise technique'],
+    growth: ['Flexibilité', 'Délégation', 'Communication des émotions'],
     famous: ['Bill Gates', 'Albert Einstein', 'Marie Curie'],
   },
 }
@@ -210,7 +210,7 @@ export default function DiscTest() {
     setSelected(null)
   }
 
-  // âââ INTRO âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+  // ─── INTRO ────────────────────────────────────────────────────────────────
   if (step === 'intro') {
     return (
       <div className="min-h-screen bg-[#0B1120] flex flex-col">
@@ -221,7 +221,7 @@ export default function DiscTest() {
             </svg>
             Accueil
           </Link>
-          <span className="text-xs text-white/30">Test DISC â Gratuit & Confidentiel</span>
+          <span className="text-xs text-white/30">Test DISC – Gratuit &amp; Confidentiel</span>
         </nav>
 
         <div className="flex-1 flex items-center justify-center px-6 py-16">
@@ -229,7 +229,8 @@ export default function DiscTest() {
             {/* DISC badges */}
             <div className="flex items-center justify-center gap-3">
               {(['D', 'I', 'S', 'C'] as ProfileKey[]).map(l => (
-                <div key={l} className="w-12 h-12 rounded-full flex items-center justify-center font-bold text-[#0B1120] text-lg" style={{ backgroundColor: profiles[l].color }}>
+                <div key={l} className="w-12 h-12 rounded-full flex items-center justify-center font-bold text-[#0B1120] text-lg"
+                  style={{ backgroundColor: profiles[l].color }}>
                   {l}
                 </div>
               ))}
@@ -237,7 +238,7 @@ export default function DiscTest() {
 
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                DÃ©couvrez votre profil <span className="text-[#7C9CBF]">DISC</span>
+                Découvrez votre profil <span className="text-[#7C9CBF]">DISC</span>
               </h1>
               <p className="text-lg text-white/50 leading-relaxed">
                 12 questions pour identifier votre style comportemental dominant et mieux comprendre comment vous interagissez avec les autres.
@@ -247,9 +248,9 @@ export default function DiscTest() {
             {/* Info cards */}
             <div className="grid grid-cols-3 gap-4 text-sm">
               {[
-                { icon: 'â±', label: '5 minutes', sub: 'environ' },
-                { icon: 'ð', label: 'Confidentiel', sub: 'aucune donnÃ©e collectÃ©e' },
-                { icon: 'â', label: 'Gratuit', sub: 'sans inscription' },
+                { icon: '⏱', label: '5 minutes', sub: 'environ' },
+                { icon: '🔒', label: 'Confidentiel', sub: 'aucune donnée collectée' },
+                { icon: '✓', label: 'Gratuit', sub: 'sans inscription' },
               ].map(({ icon, label, sub }) => (
                 <div key={label} className="bg-[#0F1A2E]/60 border border-white/6 rounded-xl p-4">
                   <div className="text-2xl mb-1">{icon}</div>
@@ -270,7 +271,7 @@ export default function DiscTest() {
             </button>
 
             <p className="text-xs text-white/25">
-              Ce test est basÃ© sur le modÃ¨le DISC de William Moulton Marston. Il est fourni Ã  titre indicatif.
+              Ce test est basé sur le modèle DISC de William Moulton Marston. Il est fourni à titre indicatif.
             </p>
           </div>
         </div>
@@ -278,7 +279,7 @@ export default function DiscTest() {
     )
   }
 
-  // âââ TEST âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+  // ─── TEST ──────────────────────────────────────────────────────────────────
   if (step === 'test') {
     const q = shuffled[current]
     const progress = ((current) / questions.length) * 100
@@ -297,10 +298,7 @@ export default function DiscTest() {
 
         {/* Progress bar */}
         <div className="h-0.5 bg-white/5">
-          <div
-            className="h-full bg-[#7C9CBF] transition-all duration-500"
-            style={{ width: `${progress}%` }}
-          />
+          <div className="h-full bg-[#7C9CBF] transition-all duration-500" style={{ width: `${progress}%` }} />
         </div>
 
         <div className="flex-1 flex items-center justify-center px-6 py-12">
@@ -337,7 +335,7 @@ export default function DiscTest() {
     )
   }
 
-  // âââ RESULTS ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+  // ─── RESULTS ───────────────────────────────────────────────────────────────
   const profile = profiles[dominant]
 
   return (
@@ -376,7 +374,7 @@ export default function DiscTest() {
 
         {/* Score bars */}
         <div className="bg-[#0F1A2E]/50 border border-white/6 rounded-2xl p-7 space-y-5">
-          <h2 className="text-sm font-semibold text-white/40 uppercase tracking-wider">RÃ©partition de vos rÃ©sultats</h2>
+          <h2 className="text-sm font-semibold text-white/40 uppercase tracking-wider">Répartition de vos résultats</h2>
           {(Object.keys(profiles) as ProfileKey[]).map(k => {
             const pct = Math.round((scores[k] / total) * 100)
             const p = profiles[k]
@@ -384,19 +382,18 @@ export default function DiscTest() {
               <div key={k} className="space-y-1.5">
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
-                    <div className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-[#0B1120]" style={{ backgroundColor: p.color }}>
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-[#0B1120]"
+                      style={{ backgroundColor: p.color }}>
                       {k}
                     </div>
                     <span className="text-sm text-white/70 font-medium">{p.name}</span>
-                    <span className="text-xs text-white/30">â {p.tagline}</span>
+                    <span className="text-xs text-white/30">– {p.tagline}</span>
                   </div>
                   <span className="text-sm font-bold" style={{ color: p.color }}>{pct}%</span>
                 </div>
                 <div className="h-2 bg-white/5 rounded-full overflow-hidden">
-                  <div
-                    className="h-full rounded-full transition-all"
-                    style={{ width: `${pct}%`, backgroundColor: p.color, opacity: 0.85 }}
-                  />
+                  <div className="h-full rounded-full transition-all"
+                    style={{ width: `${pct}%`, backgroundColor: p.color, opacity: 0.85 }} />
                 </div>
               </div>
             )
@@ -407,7 +404,7 @@ export default function DiscTest() {
         <div className="grid sm:grid-cols-2 gap-6">
           <div className="bg-[#0F1A2E]/50 border border-white/6 rounded-2xl p-6 space-y-4">
             <h3 className="text-sm font-semibold text-white/40 uppercase tracking-wider flex items-center gap-2">
-              <span style={{ color: profile.color }}>â¦</span> Vos forces
+              <span style={{ color: profile.color }}>✦</span> Vos forces
             </h3>
             <ul className="space-y-2">
               {profile.strengths.map(s => (
@@ -418,10 +415,9 @@ export default function DiscTest() {
               ))}
             </ul>
           </div>
-
           <div className="bg-[#0F1A2E]/50 border border-white/6 rounded-2xl p-6 space-y-4">
             <h3 className="text-sm font-semibold text-white/40 uppercase tracking-wider flex items-center gap-2">
-              <span className="text-[#7C9CBF]">â</span> Axes de dÃ©veloppement
+              <span className="text-[#7C9CBF]">→</span> Axes de développement
             </h3>
             <ul className="space-y-2">
               {profile.growth.map(g => (
@@ -436,7 +432,7 @@ export default function DiscTest() {
 
         {/* Famous */}
         <div className="bg-[#0F1A2E]/40 border border-white/5 rounded-2xl p-6">
-          <p className="text-xs text-white/30 uppercase tracking-wider mb-3">Profils similaires cÃ©lÃ¨bres</p>
+          <p className="text-xs text-white/30 uppercase tracking-wider mb-3">Profils similaires célèbres</p>
           <div className="flex flex-wrap gap-2">
             {profile.famous.map(f => (
               <span key={f} className="text-sm font-medium text-white/60 border border-white/8 rounded-full px-3 py-1">
