@@ -39,7 +39,7 @@ export default function Navbar() {
         </a>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
             <a
               key={link.label}
@@ -53,6 +53,37 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
+
+          {/* Social icons */}
+          <div className="flex items-center gap-2">
+            {/* Malt */}
+            <a
+              href="https://www.malt.fr/profile/clementboule?origin=dashboard_profile_name"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Malt"
+              className="opacity-70 hover:opacity-100 hover:scale-110 transition-all"
+            >
+              <svg viewBox="0 0 32 32" className="w-6 h-6" fill="none">
+                <rect width="32" height="32" rx="6" fill="#FC4B60"/>
+                <path d="M16 5L27 16L16 27L5 16L16 5Z" fill="white"/>
+                <path d="M16 9L23 16L16 23L9 16L16 9Z" fill="#FC4B60"/>
+              </svg>
+            </a>
+            {/* LinkedIn */}
+            <a
+              href="https://www.linkedin.com/in/cl%C3%A9ment-boul%C3%A9/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="opacity-70 hover:opacity-100 hover:scale-110 transition-all"
+            >
+              <svg viewBox="0 0 32 32" className="w-6 h-6" fill="none">
+                <rect width="32" height="32" rx="6" fill="#0A66C2"/>
+                <path d="M8 12h4v12H8V12zm2-1.5a2.25 2.25 0 110-4.5 2.25 2.25 0 010 4.5zM14 12h3.8v1.6h.05c.53-.95 1.83-1.95 3.77-1.95C25.2 11.65 26 14.1 26 17.3V24h-4v-6.1c0-1.45-.03-3.32-2.15-3.32-2.16 0-2.49 1.58-2.49 3.21V24H14V12z" fill="white"/>
+              </svg>
+            </a>
+          </div>
 
           {/* Language toggle */}
           <button
@@ -104,6 +135,34 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
+          {/* Social links */}
+          <div className="flex items-center gap-4 pt-2 border-t border-[#3D6DB8]/10">
+            <a
+              href="https://www.malt.fr/profile/clementboule?origin=dashboard_profile_name"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm font-medium text-[#4A5B70] hover:text-[#FC4B60] transition-colors"
+            >
+              <svg viewBox="0 0 32 32" className="w-5 h-5" fill="none">
+                <rect width="32" height="32" rx="6" fill="#FC4B60"/>
+                <path d="M16 5L27 16L16 27L5 16L16 5Z" fill="white"/>
+                <path d="M16 9L23 16L16 23L9 16L16 9Z" fill="#FC4B60"/>
+              </svg>
+              Malt
+            </a>
+            <a
+              href="https://www.linkedin.com/in/cl%C3%A9ment-boul%C3%A9/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm font-medium text-[#4A5B70] hover:text-[#0A66C2] transition-colors"
+            >
+              <svg viewBox="0 0 32 32" className="w-5 h-5" fill="none">
+                <rect width="32" height="32" rx="6" fill="#0A66C2"/>
+                <path d="M8 12h4v12H8V12zm2-1.5a2.25 2.25 0 110-4.5 2.25 2.25 0 010 4.5zM14 12h3.8v1.6h.05c.53-.95 1.83-1.95 3.77-1.95C25.2 11.65 26 14.1 26 17.3V24h-4v-6.1c0-1.45-.03-3.32-2.15-3.32-2.16 0-2.49 1.58-2.49 3.21V24H14V12z" fill="white"/>
+              </svg>
+              LinkedIn
+            </a>
+          </div>
         </div>
       )}
     </nav>
