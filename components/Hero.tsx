@@ -36,7 +36,7 @@ export default function Hero() {
               {t.hero.subtitle}
             </p>
 
-            {/* CTAs */|
+            {/* CTAs */}
             <div className="flex flex-wrap gap-4">
               <a
                 href="#contact"
@@ -74,7 +74,7 @@ export default function Hero() {
                 priority
               />
               {/* Subtle gradient overlay at bottom */}
-              <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0B1120]/60 to-transparent" />
+              <div className="absolute insex-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0B1120]/60 to-transparent" />
             </div>
 
             {/* DISC pill floating badge */}
