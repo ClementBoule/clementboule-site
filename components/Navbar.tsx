@@ -25,7 +25,7 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#0B1120]/95 backdrop-blur-md border-b border-white/5 shadow-lg'
+          ? 'bg-white/95 backdrop-blur-md border-b border-[#3D6DB8]/10 shadow-sm shadow-[#3D6DB8]/5'
           : 'bg-transparent'
       }`}
     >
@@ -33,9 +33,9 @@ export default function Navbar() {
         {/* Logo */}
         <a
           href="#hero"
-          className="text-white font-semibold text-lg tracking-tight hover:text-[#7C9CBF] transition-colors"
+          className="font-bold text-lg tracking-tight bg-gradient-to-r from-[#1A2B4A] to-[#3D6DB8] bg-clip-text text-transparent hover:from-[#3D6DB8] hover:to-[#6B9ED4] transition-all"
         >
-          ClÃ©ment BoulÃ©
+          Clément Boulé
         </a>
 
         {/* Desktop nav */}
@@ -46,8 +46,8 @@ export default function Navbar() {
               href={link.href}
               className={`text-sm font-medium transition-colors ${
                 link.label === 'DISC'
-                  ? 'text-[#7C9CBF] border border-[#7C9CBF]/40 px-3 py-1.5 rounded-full hover:bg-[#7C9CBF]/10'
-                  : 'text-white/70 hover:text-white'
+                  ? 'text-white bg-gradient-to-r from-[#E8836A] to-[#F5B08C] px-4 py-1.5 rounded-full hover:shadow-md hover:shadow-[#E8836A]/25 hover:-translate-y-0.5'
+                  : 'text-[#4A5B70] hover:text-[#1A2B4A]'
               }`}
             >
               {link.label}
@@ -57,11 +57,11 @@ export default function Navbar() {
           {/* Language toggle */}
           <button
             onClick={() => setLang(lang === 'en' ? 'fr' : 'en')}
-            className="flex items-center gap-1.5 text-xs font-semibold text-white/50 hover:text-white/80 transition-colors border border-white/10 rounded-full px-3 py-1.5"
+            className="flex items-center gap-1.5 text-xs font-semibold text-[#6B7E95] hover:text-[#1A2B4A] transition-colors border border-[#3D6DB8]/20 rounded-full px-3 py-1.5 hover:border-[#3D6DB8]/40 hover:bg-[#3D6DB8]/5"
           >
-            <span className={lang === 'en' ? 'text-white' : 'text-white/40'}>EN</span>
-            <span className="text-white/20">|</span>
-            <span className={lang === 'fr' ? 'text-white' : 'text-white/40'}>FR</span>
+            <span className={lang === 'en' ? 'text-[#1A2B4A]' : 'text-[#9AAABB]'}>EN</span>
+            <span className="text-[#C8D4E0]">|</span>
+            <span className={lang === 'fr' ? 'text-[#1A2B4A]' : 'text-[#9AAABB]'}>FR</span>
           </button>
         </div>
 
@@ -69,13 +69,13 @@ export default function Navbar() {
         <div className="flex md:hidden items-center gap-4">
           <button
             onClick={() => setLang(lang === 'en' ? 'fr' : 'en')}
-            className="text-xs font-semibold text-white/60 border border-white/10 rounded-full px-2.5 py-1"
+            className="text-xs font-semibold text-[#4A5B70] border border-[#3D6DB8]/20 rounded-full px-2.5 py-1"
           >
             {lang === 'en' ? 'FR' : 'EN'}
           </button>
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="text-white/70 hover:text-white p-1"
+            className="text-[#4A5B70] hover:text-[#1A2B4A] p-1"
             aria-label="Toggle menu"
           >
             {menuOpen ? (
@@ -93,13 +93,13 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-[#0F1A2E]/98 backdrop-blur-md border-t border-white/5 px-6 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-white/98 backdrop-blur-md border-t border-[#3D6DB8]/10 px-6 py-4 flex flex-col gap-4">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="text-sm font-medium text-white/70 hover:text-white transition-colors"
+              className="text-sm font-medium text-[#4A5B70] hover:text-[#1A2B4A] transition-colors"
             >
               {link.label}
             </a>
