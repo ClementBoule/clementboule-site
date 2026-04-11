@@ -14,7 +14,8 @@ const translations = {
     hero: {
       badge: 'Trainer & Consultant',
       headline: 'Transform your business by acting on what matters',
-      subtitle: 'From strategic diagnosis to concrete HR transformations — I help companies navigate their challenges by building lasting, engaging company cultures.',
+      subtitle:
+        'From strategic diagnosis to concrete HR transformations — I help companies navigate their challenges by building lasting, engaging company cultures.',
       cta: 'Get in touch',
       disc: 'Take the DISC Test',
       discTeaser: 'Discover your DISC profile',
@@ -23,27 +24,33 @@ const translations = {
     formations: {
       label: 'Training Programs',
       title: 'Tailored programs for your teams',
-      subtitle: 'Operational, bilingual, and adapted to your context. Each module is customizable.',
+      subtitle:
+        'Operational, bilingual, and adapted to your context. Each module is customizable.',
       items: [
         {
           title: 'HR & Employer Brand',
-          description: 'Align internal culture and external image to attract and retain talent. Your employees become your first ambassadors.',
+          description:
+            'Align internal culture and external image to attract and retain talent. Your employees become your first ambassadors.',
         },
         {
           title: 'Professional Posture',
-          description: 'Gestures, eye contact, public speaking. The keys to immediate impact in meetings, interviews, or with demanding clients.',
+          description:
+            'Gestures, eye contact, public speaking. The keys to immediate impact in meetings, interviews, or with demanding clients.',
         },
         {
           title: 'Psychosocial Risk Prevention',
-          description: 'Identify weak signals and act before crisis hits. An operational format for frontline managers.',
+          description:
+            'Identify weak signals and act before crisis hits. An operational format for frontline managers.',
         },
         {
           title: 'Business Strategy',
-          description: 'From diagnosis to concrete action plan. Prioritize, align teams, and drive your growth with clarity.',
+          description:
+            'From diagnosis to concrete action plan. Prioritize, align teams, and drive your growth with clarity.',
         },
         {
           title: 'Soft Skills',
-          description: 'Active listening, non-violent communication, conflict management. The human skills that truly make the difference.',
+          description:
+            'Active listening, non-violent communication, conflict management. The human skills that truly make the difference.',
         },
       ],
     },
@@ -57,24 +64,27 @@ const translations = {
           role: 'Independent Trainer',
           company: 'Freelance',
           period: '2022 – present',
-          description: 'Design and delivery of tailored training programs in leadership, HR, and soft skills for companies and public institutions.',
+          description:
+            'Design and delivery of tailored training programs in leadership, HR, and soft skills for companies and public institutions.',
         },
         {
           role: 'Co-Founder',
           company: 'Mantractif',
           period: '2023 – present',
-          description: 'Co-creation of a coaching and training company based in Île-de-France, focused on professional transformation.',
+          description:
+            'Co-creation of a coaching and training company based in Île-de-France, focused on professional transformation.',
         },
         {
           role: 'Sports & Performance Coach',
           company: 'Independent — Innsbruck',
           period: '2018 – 2021',
-          description: 'Individual and group coaching combining performance methods with mental development techniques.',
+          description:
+            'Individual and group coaching combining performance methods with mental development techniques.',
         },
       ],
       education: [
         { degree: 'Change Management Certification', school: 'ESSEC', year: '2026' },
-        { degree: 'Change Management Certification', school: 'Excellence Formation', year: '2024' },
+        { degree: 'Agile Method for Change Management', school: 'Excellence Formation', year: '2024' },
         { degree: 'BPJEPS AF', school: 'VAE', year: '2021' },
         { degree: 'M2 Intercultural Behavior Management', school: 'MCI Innsbruck', year: '2018' },
         { degree: 'M1 International Business (PGE)', school: 'Rennes School of Business', year: '2017' },
@@ -83,7 +93,8 @@ const translations = {
     contact: {
       label: 'Contact',
       title: "Let's work together",
-      subtitle: 'A project, a question, a partnership idea? Send me a message and I will get back to you within 48 hours.',
+      subtitle:
+        'A project, a question, a partnership idea? Send me a message and I will get back to you within 48 hours.',
       name: 'Name',
       namePlaceholder: 'Your full name',
       email: 'Email',
@@ -101,7 +112,6 @@ const translations = {
       privacy: 'Privacy Policy',
     },
   },
-
   fr: {
     nav: {
       home: 'Accueil',
@@ -112,7 +122,8 @@ const translations = {
     hero: {
       badge: 'Formateur & Consultant',
       headline: 'Transformez votre entreprise en agissant sur ce qui compte',
-      subtitle: 'Du diagnostic stratégique aux transformations RH concrètes — j\'accompagne les entreprises à traverser leurs défis en construisant des cultures d\'entreprise durables et engageantes.',
+      subtitle:
+        "Du diagnostic stratégique aux transformations RH concrètes — j'accompagne les entreprises à traverser leurs défis en construisant des cultures d'entreprise durables et engageantes.",
       cta: 'Me contacter',
       disc: 'Faire le test DISC',
       discTeaser: 'Découvrez votre profil DISC',
@@ -121,27 +132,33 @@ const translations = {
     formations: {
       label: 'Formations',
       title: 'Des programmes adaptés à vos équipes',
-      subtitle: 'Opérationnels, bilingues et adaptés à votre contexte. Chaque module est personnalisable.',
+      subtitle:
+        'Opérationnels, bilingues et adaptés à votre contexte. Chaque module est personnalisable.',
       items: [
         {
           title: 'RH & Marque Employeur',
-          description: 'Aligner culture interne et image externe pour attirer et fidéliser les talents. Vos collaborateurs deviennent vos premiers ambassadeurs.',
+          description:
+            "Aligner culture interne et image externe pour attirer et fidéliser les talents. Vos collaborateurs deviennent vos premiers ambassadeurs.",
         },
         {
           title: 'Posture Professionnelle',
-          description: 'Gestes, regard, prise de parole. Les clés d\'un impact immédiat en réunion, en entretien ou face à un client exigeant.',
+          description:
+            "Gestes, regard, prise de parole. Les clés d'un impact immédiat en réunion, en entretien ou face à un client exigeant.",
         },
         {
           title: 'Prévention des RPS',
-          description: 'Identifier les signaux faibles et agir avant la crise. Un format opérationnel pour les managers en première ligne.',
+          description:
+            'Identifier les signaux faibles et agir avant la crise. Un format opérationnel pour les managers en première ligne.',
         },
         {
-          title: 'Stratégie d\'Entreprise',
-          description: 'Du diagnostic au plan d\'action concret. Prioriser, aligner les équipes et piloter votre croissance avec clarté.',
+          title: "Stratégie d'Entreprise",
+          description:
+            "Du diagnostic au plan d'action concret. Prioriser, aligner les équipes et piloter votre croissance avec clarté.",
         },
         {
           title: 'Soft Skills',
-          description: 'Écoute active, communication non violente, gestion des conflits. Les compétences humaines qui font vraiment la différence.',
+          description:
+            'Écoute active, communication non violente, gestion des conflits. Les compétences humaines qui font vraiment la différence.',
         },
       ],
     },
@@ -155,24 +172,27 @@ const translations = {
           role: 'Formateur Indépendant',
           company: 'Freelance',
           period: '2022 – présent',
-          description: 'Conception et animation de formations sur-mesure en leadership, RH et soft skills pour entreprises et collectivités.',
+          description:
+            'Conception et animation de formations sur-mesure en leadership, RH et soft skills pour entreprises et collectivités.',
         },
         {
           role: 'Co-Fondateur',
           company: 'Mantractif',
           period: '2023 – présent',
-          description: 'Co-création d\'une société de coaching et formation basée en Île-de-France, centrée sur la transformation professionnelle.',
+          description:
+            "Co-création d'une société de coaching et formation basée en Île-de-France, centrée sur la transformation professionnelle.",
         },
         {
           role: 'Coach Sportif & Performance',
           company: 'Indépendant — Innsbruck',
           period: '2018 – 2021',
-          description: 'Coaching individuel et collectif alliant méthodes de performance et techniques de développement mental.',
+          description:
+            'Coaching individuel et collectif alliant méthodes de performance et techniques de développement mental.',
         },
       ],
       education: [
         { degree: 'Certification Management du Changement', school: 'ESSEC', year: '2026' },
-        { degree: 'Certification Management du Changement', school: 'Excellence Formation', year: '2024' },
+        { degree: 'La méthode Agile pour accompagner le changement', school: 'Excellence Formation', year: '2024' },
         { degree: 'BPJEPS AF', school: 'VAE', year: '2021' },
         { degree: 'Master 2 Intercultural Behavior Management', school: 'MCI Innsbruck', year: '2018' },
         { degree: 'Master 1 PGE International Business', school: 'Rennes School of Business', year: '2017' },
@@ -181,7 +201,8 @@ const translations = {
     contact: {
       label: 'Contact',
       title: 'Travaillons ensemble',
-      subtitle: 'Un projet, une question, une idée de partenariat ? Envoyez-moi un message, je reviens vers vous sous 48h.',
+      subtitle:
+        'Un projet, une question, une idée de partenariat ? Envoyez-moi un message, je reviens vers vous sous 48h.',
       name: 'Nom',
       namePlaceholder: 'Votre nom complet',
       email: 'Email',
