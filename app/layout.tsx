@@ -3,14 +3,14 @@ import './globals.css'
 import { LanguageProvider } from '@/components/LanguageContext'
 
 export const metadata: Metadata = {
-  title: 'ClÃ©ment BoulÃ© | Consultant & Coach',
-  description: 'Consultant, coach et formateur spÃ©cialisÃ© en dÃ©veloppement des compÃ©tences et transformation organisationnelle.',
+  title: 'Clément Boulé | Consultant & Coach',
+  description: 'Consultant, coach et formateur spécialisé en développement des compétences et transformation organisationnelle.',
   metadataBase: new URL('https://clementboule.com'),
   openGraph: {
-    title: 'ClÃ©ment BoulÃ© | Consultant & Coach',
-    description: 'Consultant, coach et formateur spÃ©cialisÃ© en dÃ©veloppement des compÃ©tences.',
+    title: 'Clément Boulé | Consultant & Coach',
+    description: 'Consultant, coach et formateur spécialisé en développement des compétences.',
     url: 'https://clementboule.com',
-    siteName: 'ClÃ©ment BoulÃ©',
+    siteName: 'Clément Boulé',
     locale: 'fr_FR',
     type: 'website',
   },
