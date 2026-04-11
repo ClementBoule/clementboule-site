@@ -4,6 +4,7 @@ import { useLang } from './LanguageContext'
 
 export default function Hero() {
   const { t } = useLang()
+
   return (
     <section
       id="hero"
@@ -18,36 +19,31 @@ export default function Hero() {
 
       <div className="relative max-w-6xl mx-auto px-6 pt-28 pb-20">
         <div className="grid md:grid-cols-2 gap-16 items-center">
-
           {/* Left: text */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#3D6DB8] border border-[#3D6DB8]/20 bg-[#3D6DB8]/8 rounded-full px-4 py-1.5 tracking-wide uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-[#3D6DB8]" />
               {t.hero.badge}
             </div>
 
-            {/* Main headline */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-[#1A2B4A]">
-              {t.hero.headline}
+            {/* Name */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-none tracking-tight text-[#1A2B4A]">
+              Clément Boulé
             </h1>
+
+            {/* Main headline / role */}
+            <p className="text-2xl md:text-3xl font-semibold text-[#3D6DB8] leading-snug">
+              {t.hero.headline}
+            </p>
 
             {/* Subtitle */}
             <p className="text-lg text-[#6B7E95] leading-relaxed max-w-md">
               {t.hero.subtitle}
             </p>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-[#3D6DB8] to-[#5B8FD6] hover:from-[#2E5FA8] hover:to-[#4A7EC5] text-white font-semibold px-6 py-3 rounded-full transition-all shadow-lg shadow-[#3D6DB8]/25 hover:shadow-[#3D6DB8]/35 hover:-translate-y-0.5"
-              >
-                {t.hero.cta}
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
+            {/* CTA — only DISC test */}
+            <div className="flex flex-wrap gap-4 pt-2">
               <a
                 href="/test-disc"
                 className="inline-flex items-center gap-2 border border-[#E8836A]/30 hover:border-[#E8836A]/60 text-[#E8836A] hover:text-[#D4703A] font-medium px-6 py-3 rounded-full transition-all hover:bg-[#E8836A]/5"
