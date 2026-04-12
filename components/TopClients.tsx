@@ -1,4 +1,5 @@
 'use client'
+
 import { useLang } from './LanguageContext'
 import ScrollReveal from './ScrollReveal'
 
@@ -15,15 +16,18 @@ const clients: { name: string; logo: string | null }[] = [
 
 function ClientLogo({ name, logo }: { name: string; logo: string | null }) {
   return (
-    <div className="flex items-center justify-center h-24 px-6 rounded-2xl bg-white/70 border border-[#1A2B4A]/6 shadow-sm hover:shadow-md hover:bg-white hover:border-[#3D6DB8]/15 transition-all duration-300 group">
+    <div className="flex items-center justify-center h-32 px-6 rounded-2xl bg-white border border-[#1A2B4A]/8 shadow-md hover:shadow-xl hover:border-[#3D6DB8]/20 hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden">
+      {/* Glossy shine overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/20 to-white/50 pointer-events-none rounded-2xl" />
       {logo ? (
         <img
           src={logo}
           alt={name}
-          className="max-h-14 max-w-[160px] object-contain opacity-90 group-hover:opacity-100 transition-opacity"
+          className="max-h-20 max-w-[200px] object-contain relative z-10 drop-shadow-sm"
         />
       ) : (
-        <span className="text-sm font-semibold text-[#4A5B70]/55 group-hover:text-[#1A2B4A] transition-colors tracking-wide">
+        <span className="text-sm font-semibold text-[#4A5B70]/55 group-hover:text-[#1A2B4A] transition-colors tracking-wide relative z-10">
           {name}
         </span>
       )}
@@ -36,7 +40,7 @@ export default function TopClients() {
 
   return (
     <section className="py-20 bg-[#F5F7FB]">
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
         <ScrollReveal className="text-center mb-12">
           <p className="text-xs font-semibold text-[#3D6DB8] uppercase tracking-widest mb-3">
             {t.topClients.label}
@@ -47,7 +51,7 @@ export default function TopClients() {
         </ScrollReveal>
 
         <ScrollReveal delay={120}>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
             {clients.map((client) => (
               <ClientLogo key={client.name} name={client.name} logo={client.logo} />
             ))}
