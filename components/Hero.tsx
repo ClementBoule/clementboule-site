@@ -150,8 +150,8 @@ export default function Hero() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm text-[#FC5656] hover:text-[#E03E3E] font-medium transition-colors"
                 >
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.568 14.318c-.794 1.376-3.06 5.3-3.06 5.3s-.247.45-.63.45c-.382 0-.618-.437-.618-.437l-1.636-2.835-1.636 2.835s-.236.437-.618.437c-.383 0-.63-.45-.63-.45s-2.266-3.924-3.06-5.3c-.794-1.376-.075-3.054 1.3-3.848 1.376-.794 3.054-.075 3.848 1.3l.796 1.38.796-1.38c.794-1.375 2.472-2.094 3.848-1.3 1.375.794 2.094 2.472 1.3 3.848z"/>
+                  <svg className="w-5 h-5" viewBox="0 0 20 16" fill="currentColor">
+                    <path d="M0 16L5 0h3L3 16zM3 16L8 0l2 5.5L12 0l5 16h-3l-2-6.5-2 6.5zm9-16h3l5 16h-3z" />
                   </svg>
                   Malt
                 </a>
