@@ -84,12 +84,12 @@ export default function CV() {
 
                       <div className="flex items-start gap-4 mb-2">
                         {logo && (
-                          <div className="w-14 h-14 rounded-xl bg-white/10 backdrop-blur-sm p-1.5 flex-shrink-0 mt-0.5 shadow-md border border-white/10 relative overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none rounded-xl" />
+                          <div className="w-14 h-14 rounded-xl bg-white p-2 flex-shrink-0 mt-0.5 shadow-md border border-white/20 relative overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent pointer-events-none rounded-xl" />
                             <img
                               src={logo}
                               alt=""
-                              className="w-full h-full object-contain relative z-10 drop-shadow-sm"
+                              className="w-full h-full object-contain relative z-10"
                             />
                           </div>
                         )}
@@ -138,12 +138,12 @@ export default function CV() {
                       }}
                     >
                       <div
-                        className="mt-0.5 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden relative shadow-sm border border-white/5"
-                        style={{ backgroundColor: `${color.accent}15`, width: '3.25rem', height: '3.25rem' }}
+                        className="mt-0.5 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden relative shadow-sm border border-white/10"
+                        style={{ backgroundColor: logo ? '#ffffff' : `${color.accent}15`, width: '3.25rem', height: '3.25rem' }}
                       >
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent pointer-events-none rounded-xl" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent pointer-events-none rounded-xl" />
                         {logo ? (
-                          <img src={logo} alt="" className="w-10 h-10 object-contain relative z-10 drop-shadow-sm" />
+                          <img src={logo} alt="" className="w-10 h-10 object-contain relative z-10 p-0.5" />
                         ) : (
                           <svg className="w-4 h-4" style={{ color: color.accent }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l9-5-9-5-9 5 9 5z" />
