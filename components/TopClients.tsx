@@ -5,10 +5,10 @@ import ScrollReveal from './ScrollReveal'
 
 const clients: { name: string; logo: string | null }[] = [
   { name: 'IHEDREA', logo: '/logos/LOGO_IHEDREA_and_RVB_1_512411908e_4b74efb9ec.png' },
-  { name: 'ISCOM Paris', logo: '/logos/iscom.png' },
-  { name: 'Ecole de Management Applique', logo: '/logos/ema.png' },
-  { name: 'Albert School', logo: '/logos/albert-school.png' },
-  { name: 'EDA RH', logo: '/logos/eda-rh.png' },
+  { name: 'ISCOM Paris', logo: '/logos/51cfd3_04e2e917e9e44bb184aa2868ab053929~mv2.png' },
+  { name: 'Ecole de Management Applique', logo: '/logos/ema_logo_344x117-1-1.png' },
+  { name: 'Albert School', logo: null },
+  { name: 'EDA RH', logo: '/logos/69739ea11aa829bf4434d8f3_EDA RH.png' },
   { name: "Les Apprentis d'Auteuil", logo: '/logos/Logo-fondation-auteuil.jpg' },
   { name: 'Daan Tech', logo: '/logos/daan-tech-logo.png' },
   { name: 'Sauvegarde Val d\'Oise', logo: '/logos/Logo-sauvegarde-95_v3.png' },
