@@ -2,35 +2,36 @@
 import { useLang } from './LanguageContext'
 import ScrollReveal from './ScrollReveal'
 
-/* Color accents per experience */
+/* ── Color accents per experience (matched to brand logos) ── */
 const expColors = [
-  { accent: '#3D6DB8', bg: 'rgba(61,109,184,0.12)' },
-  { accent: '#2D9B7B', bg: 'rgba(45,155,123,0.12)' },
-  { accent: '#E8836A', bg: 'rgba(232,131,106,0.12)' },
+  { accent: '#3D6DB8', bg: 'rgba(61,109,184,0.12)' },    /* Freelance — blue */
+  { accent: '#2D9B7B', bg: 'rgba(45,155,123,0.12)' },    /* Mantractif — teal */
+  { accent: '#E8836A', bg: 'rgba(232,131,106,0.12)' },    /* Coach Innsbruck — coral */
 ]
 
 const expLogos = [
-  null,
-  '/logos/mantractif.png',
-  '/logos/crossfit-innsbruck.png',
+  null,                           /* Freelance — no logo */
+  '/logos/mantractif.png',        /* Mantractif */
+  '/logos/crossfit-innsbruck.png', /* CrossFit Innsbruck */
 ]
 
-/* Education cards: color + logo */
+/* ── Education cards: color + logo ── */
 const eduColors = [
-  { accent: '#1A1A1A', bg: 'rgba(26,26,26,0.25)' },
-  { accent: '#2E7DBF', bg: 'rgba(46,125,191,0.15)' },
-  { accent: '#7C9CBF', bg: 'rgba(124,156,191,0.10)' },
-  { accent: '#003F6C', bg: 'rgba(0,63,108,0.20)' },
-  { accent: '#1E3A5F', bg: 'rgba(30,58,95,0.18)' },
+  { accent: '#1A1A1A', bg: 'rgba(26,26,26,0.25)' },      /* ESSEC — black */
+  { accent: '#2E7DBF', bg: 'rgba(46,125,191,0.15)' },     /* Excellens — blue */
+  { accent: '#7C9CBF', bg: 'rgba(124,156,191,0.10)' },    /* VAE — neutral */
+  { accent: '#003F6C', bg: 'rgba(0,63,108,0.20)' },       /* MCI — navy */
+  { accent: '#1E3A5F', bg: 'rgba(30,58,95,0.18)' },       /* Rennes SB — dark blue */
 ]
 
 const eduLogos = [
   '/logos/essec.png',
   '/logos/excellens.png',
-  null,
+  null,                          /* VAE — no logo */
   '/logos/mci.png',
   '/logos/rennes-sb.png',
 ]
+
 export default function CV() {
   const { t } = useLang()
 
@@ -66,6 +67,10 @@ export default function CV() {
                   <ScrollReveal key={i} delay={100 + i * 70}>
                     <div
                       className="relative pl-6 before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:rounded-full before:ring-4 group cursor-default"
+                      style={{
+                        '--dot-color': color.accent,
+                        '--ring-color': color.bg,
+                      } as React.CSSProperties & Record<string, string>}
                     >
                       <div
                         className="absolute left-0 top-2 w-2 h-2 rounded-full"
@@ -79,7 +84,7 @@ export default function CV() {
                           <img
                             src={logo}
                             alt=""
-                            className="w-8 h-8 rounded-lg object-contain bg-white/10 p-1 flex-shrink-0 mt-0.5"
+                            className="w-12 h-12 rounded-lg object-contain bg-white/10 p-1.5 flex-shrink-0 mt-0.5"
                           />
                         )}
                         <div className="space-y-1">
@@ -95,6 +100,7 @@ export default function CV() {
               })}
             </div>
           </div>
+
           {/* Education */}
           <div>
             <ScrollReveal delay={120}>
@@ -125,11 +131,11 @@ export default function CV() {
                       }}
                     >
                       <div
-                        className="mt-0.5 w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden"
+                        className="mt-0.5 w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden"
                         style={{ backgroundColor: `${color.accent}15` }}
                       >
                         {logo ? (
-                          <img src={logo} alt="" className="w-7 h-7 object-contain" />
+                          <img src={logo} alt="" className="w-9 h-9 object-contain" />
                         ) : (
                           <svg className="w-4 h-4" style={{ color: color.accent }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l9-5-9-5-9 5 9 5z" />
