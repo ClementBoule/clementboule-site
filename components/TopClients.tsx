@@ -3,14 +3,14 @@ import { useLang } from './LanguageContext'
 import ScrollReveal from './ScrollReveal'
 
 const clients: { name: string; logo: string | null }[] = [
-  { name: 'IHEDREA', logo: '/logos/ihedrea.png' },
+  { name: 'IHEDREA', logo: '/logos/LOGO_IHEDREA_and_RVB_1_512411908e_4b74efb9ec.png' },
   { name: 'ISCOM Paris', logo: '/logos/iscom.png' },
   { name: 'Ecole de Management Applique', logo: '/logos/ema.png' },
   { name: 'Albert School', logo: '/logos/albert-school.png' },
   { name: 'EDA RH', logo: '/logos/eda-rh.png' },
-  { name: "Les Apprentis d'Auteuil", logo: '/logos/apprentis-auteuil.png' },
-  { name: 'Daan Tech', logo: '/logos/daan-tech.png' },
-  { name: 'Sauvegarde Val d\'Oise', logo: '/logos/sauvegarde-vo.png' },
+  { name: "Les Apprentis d'Auteuil", logo: '/logos/Logo-fondation-auteuil.jpg' },
+  { name: 'Daan Tech', logo: '/logos/daan-tech-logo.png' },
+  { name: 'Sauvegarde Val d\'Oise', logo: '/logos/Logo-sauvegarde-95_v3.png' },
 ]
 
 function ClientLogo({ name, logo }: { name: string; logo: string | null }) {
