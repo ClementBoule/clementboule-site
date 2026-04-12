@@ -83,12 +83,20 @@ export default function Hero() {
               <div className="flex flex-wrap gap-4 pt-3">
                 <a
                   href="/test-disc"
-                  className="inline-flex items-center gap-2 border border-[#E8836A]/30 hover:border-[#E8836A]/60 text-[#E8836A] hover:text-[#D4703A] font-medium px-6 py-3 rounded-full transition-all hover:bg-[#E8836A]/5 hover:-translate-y-0.5 hover:shadow-md hover:shadow-[#E8836A]/15"
+                  className="inline-flex items-center gap-3 border border-[#1A2B4A]/15 hover:border-[#3D6DB8]/30 bg-white/60 hover:bg-white font-medium px-5 py-3 rounded-full transition-all hover:-translate-y-0.5 hover:shadow-lg group"
                 >
-                  {t.hero.disc}
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  {/* DISC 4-square logo */}
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+                    <rect x="1" y="1" width="12" height="12" rx="3" fill="#DC2626" />
+                    <rect x="15" y="1" width="12" height="12" rx="3" fill="#EAB308" />
+                    <rect x="1" y="15" width="12" height="12" rx="3" fill="#16A34A" />
+                    <rect x="15" y="15" width="12" height="12" rx="3" fill="#2563EB" />
+                    <text x="7" y="10" textAnchor="middle" fill="white" fontSize="7" fontWeight="bold" fontFamily="sans-serif">D</text>
+                    <text x="21" y="10" textAnchor="middle" fill="white" fontSize="7" fontWeight="bold" fontFamily="sans-serif">I</text>
+                    <text x="7" y="24" textAnchor="middle" fill="white" fontSize="7" fontWeight="bold" fontFamily="sans-serif">S</text>
+                    <text x="21" y="24" textAnchor="middle" fill="white" fontSize="7" fontWeight="bold" fontFamily="sans-serif">C</text>
                   </svg>
+                  <span className="text-[#1A2B4A]/70 group-hover:text-[#1A2B4A] transition-colors">{t.hero.disc}</span>
                 </a>
               </div>
             </FadeIn>
@@ -113,11 +121,16 @@ export default function Hero() {
             </div>
 
             {/* DISC pill floating badge */}
-            <a
+                        <a
               href="/test-disc"
-              className="absolute -bottom-4 left-1/2 md:left-4 -translate-x-1/2 md:translate-x-0 flex items-center gap-2 bg-white border border-[#E8836A]/30 shadow-lg shadow-[#E8836A]/15 backdrop-blur-sm text-[#E8836A] text-xs font-semibold px-4 py-2 rounded-full hover:border-[#E8836A]/60 hover:shadow-[#E8836A]/25 hover:-translate-y-0.5 transition-all whitespace-nowrap"
+              className="absolute -bottom-4 left-1/2 md:left-4 -translate-x-1/2 md:translate-x-0 flex items-center gap-2 bg-white border border-[#3D6DB8]/20 shadow-lg shadow-[#1A2B4A]/10 backdrop-blur-sm text-[#1A2B4A]/70 text-xs font-semibold px-4 py-2 rounded-full hover:border-[#3D6DB8]/40 hover:shadow-[#3D6DB8]/15 hover:-translate-y-0.5 transition-all whitespace-nowrap"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-[#E8836A] animate-pulse" />
+              <svg width="16" height="16" viewBox="0 0 28 28" fill="none" className="flex-shrink-0">
+                <rect x="1" y="1" width="12" height="12" rx="3" fill="#DC2626" />
+                <rect x="15" y="1" width="12" height="12" rx="3" fill="#EAB308" />
+                <rect x="1" y="15" width="12" height="12" rx="3" fill="#16A34A" />
+                <rect x="15" y="15" width="12" height="12" rx="3" fill="#2563EB" />
+              </svg>
               {t.hero.discCta}
             </a>
 
