@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef, ReactNode } from 'react'
+import { useEffect, useRef, useState, ReactNode } from 'react'
 
 interface ScrollRevealProps {
   children: ReactNode
@@ -15,40 +15,45 @@ export default function ScrollReveal({
   className = '',
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
     const el = ref.current
     if (!el) return
 
-    const cls =
-      direction === 'left'
-        ? 'reveal-left'
-        : direction === 'right'
-        ? 'reveal-right'
-        : direction === 'scale'
-        ? 'reveal-scale'
-        : 'reveal'
-
-    el.classList.add(cls)
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
-            el.classList.add('visible')
-          }, delay)
-          observer.unobserve(el)
+          setTimeout(() => setVisible(true), delay)
+          observer.disconnect()
         }
       },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.12, rootMargin: '0px 0px -50px 0px' }
     )
 
     observer.observe(el)
     return () => observer.disconnect()
-  }, [delay, direction])
+  }, [delay])
+
+  const transition = 'opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1)'
+
+  const hiddenStyle: React.CSSProperties =
+    direction === 'left'
+      ? { opacity: 0, transform: 'translateX(-32px)', transition }
+      : direction === 'right'
+      ? { opacity: 0, transform: 'translateX(32px)', transition }
+      : direction === 'scale'
+      ? { opacity: 0, transform: 'scale(0.93)', transition }
+      : { opacity: 0, transform: 'translateY(32px)', transition }
+
+  const visibleStyle: React.CSSProperties = {
+    opacity: 1,
+    transform: 'translateY(0) translateX(0) scale(1)',
+    transition,
+  }
 
   return (
-    <div ref={ref} className={className}>
+    <div ref={ref} className={className} style={visible ? visibleStyle : hiddenStyle}>
       {children}
     </div>
   )
