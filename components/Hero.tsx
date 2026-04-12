@@ -20,30 +20,24 @@ export default function Hero() {
       <div className="relative max-w-6xl mx-auto px-6 pt-28 pb-20">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Left: text */}
-          <div className="space-y-6">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#3D6DB8] border border-[#3D6DB8]/20 bg-[#3D6DB8]/8 rounded-full px-4 py-1.5 tracking-wide uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#3D6DB8]" />
-              {t.hero.badge}
-            </div>
-
+          <div className="space-y-5">
             {/* Name */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-none tracking-tight text-[#1A2B4A]">
               Clément Boulé
             </h1>
 
-            {/* Main headline / role */}
-            <p className="text-2xl md:text-3xl font-semibold text-[#3D6DB8] leading-snug">
-              {t.hero.headline}
+            {/* Role subtitle — no badge, no puce */}
+            <p className="text-xl md:text-2xl font-semibold text-[#3D6DB8]">
+              {t.hero.badge}
             </p>
 
-            {/* Subtitle */}
-            <p className="text-lg text-[#6B7E95] leading-relaxed max-w-md">
+            {/* Main tagline */}
+            <p className="text-base text-[#6B7E95] leading-relaxed max-w-md pt-1">
               {t.hero.subtitle}
             </p>
 
-            {/* CTA — only DISC test */}
-            <div className="flex flex-wrap gap-4 pt-2">
+            {/* CTAs */}
+            <div className="flex flex-wrap gap-4 pt-3">
               <a
                 href="/test-disc"
                 className="inline-flex items-center gap-2 border border-[#E8836A]/30 hover:border-[#E8836A]/60 text-[#E8836A] hover:text-[#D4703A] font-medium px-6 py-3 rounded-full transition-all hover:bg-[#E8836A]/5"
@@ -62,7 +56,7 @@ export default function Hero() {
             <div className="absolute inset-0 bg-gradient-to-br from-[#6B9ED4]/25 to-[#F5A98C]/20 rounded-3xl blur-2xl scale-90" />
 
             {/* Photo frame */}
-            <div className="relative w-72 h-96 md:w-80 md:h-[440px] rounded-2xl overflow-hidden border border-[#3D6DB8]/15 shadow-2xl shadow-[#1A2B4A]/15">
+            <div className="relative w-72 h-96 md:w-80 md:h-[460px] rounded-2xl overflow-hidden border border-[#3D6DB8]/15 shadow-2xl shadow-[#1A2B4A]/15">
               <Image
                 src="/clement.jpg"
                 alt="Clément Boulé"
@@ -71,7 +65,7 @@ export default function Hero() {
                 priority
               />
               {/* Subtle gradient overlay at bottom */}
-              <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#1A2B4A]/30 to-transparent" />
+              <div className="absolute insex-x-0 bottom-0 h-24 bg-gradient-to-t from-[#1A2B4A]/30 to-transparent" />
             </div>
 
             {/* DISC pill floating badge */}
