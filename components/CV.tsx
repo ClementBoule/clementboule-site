@@ -2,6 +2,35 @@
 import { useLang } from './LanguageContext'
 import ScrollReveal from './ScrollReveal'
 
+/* Color accents per experience */
+const expColors = [
+  { accent: '#3D6DB8', bg: 'rgba(61,109,184,0.12)' },
+  { accent: '#2D9B7B', bg: 'rgba(45,155,123,0.12)' },
+  { accent: '#E8836A', bg: 'rgba(232,131,106,0.12)' },
+]
+
+const expLogos = [
+  null,
+  '/logos/mantractif.png',
+  '/logos/crossfit-innsbruck.png',
+]
+
+/* Education cards: color + logo */
+const eduColors = [
+  { accent: '#1A1A1A', bg: 'rgba(26,26,26,0.25)' },
+  { accent: '#2E7DBF', bg: 'rgba(46,125,191,0.15)' },
+  { accent: '#7C9CBF', bg: 'rgba(124,156,191,0.10)' },
+  { accent: '#003F6C', bg: 'rgba(0,63,108,0.20)' },
+  { accent: '#1E3A5F', bg: 'rgba(30,58,95,0.18)' },
+]
+
+const eduLogos = [
+  '/logos/essec.png',
+  '/logos/excellens.png',
+  null,
+  '/logos/mci.png',
+  '/logos/rennes-sb.png',
+]
 export default function CV() {
   const { t } = useLang()
 
@@ -30,25 +59,42 @@ export default function CV() {
               </h3>
             </ScrollReveal>
             <div className="space-y-8">
-              {t.cv.experiences.map((exp: { role: string; company: string; period: string; description: string }, i: number) => (
-                <ScrollReveal key={i} delay={100 + i * 70}>
-                  <div className="relative pl-6 before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:rounded-full before:bg-[#7C9CBF] before:ring-4 before:ring-[#7C9CBF]/10 group cursor-default">
-                    {/* Timeline line */}
-                    {i < t.cv.experiences.length - 1 && (
-                      <div className="absolute left-[3px] top-4 bottom-0 w-px bg-white/6" />
-                    )}
-                    <div className="space-y-1 mb-2">
-                      <p className="text-xs font-medium text-[#7C9CBF]">{exp.period}</p>
-                      <h4 className="text-base font-semibold text-white group-hover:text-[#A8C4E0] transition-colors duration-200">{exp.role}</h4>
-                      <p className="text-sm text-white/50 font-medium">{exp.company}</p>
+              {t.cv.experiences.map((exp: { role: string; company: string; period: string; description: string }, i: number) => {
+                const color = expColors[i] ?? expColors[0]
+                const logo = expLogos[i]
+                return (
+                  <ScrollReveal key={i} delay={100 + i * 70}>
+                    <div
+                      className="relative pl-6 before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:rounded-full before:ring-4 group cursor-default"
+                    >
+                      <div
+                        className="absolute left-0 top-2 w-2 h-2 rounded-full"
+                        style={{ backgroundColor: color.accent, boxShadow: `0 0 0 4px ${color.bg}` }}
+                      />
+                      {i < t.cv.experiences.length - 1 && (
+                        <div className="absolute left-[3px] top-4 bottom-0 w-px bg-white/6" />
+                      )}
+                      <div className="flex items-start gap-3 mb-2">
+                        {logo && (
+                          <img
+                            src={logo}
+                            alt=""
+                            className="w-8 h-8 rounded-lg object-contain bg-white/10 p-1 flex-shrink-0 mt-0.5"
+                          />
+                        )}
+                        <div className="space-y-1">
+                          <p className="text-xs font-medium" style={{ color: color.accent }}>{exp.period}</p>
+                          <h4 className="text-base font-semibold text-white group-hover:text-[#A8C4E0] transition-colors duration-200">{exp.role}</h4>
+                          <p className="text-sm text-white/50 font-medium">{exp.company}</p>
+                        </div>
+                      </div>
+                      <p className="text-sm text-white/40 leading-relaxed group-hover:text-white/60 transition-colors duration-200">{exp.description}</p>
                     </div>
-                    <p className="text-sm text-white/40 leading-relaxed group-hover:text-white/60 transition-colors duration-200">{exp.description}</p>
-                  </div>
-                </ScrollReveal>
-              ))}
+                  </ScrollReveal>
+                )
+              })}
             </div>
           </div>
-
           {/* Education */}
           <div>
             <ScrollReveal delay={120}>
@@ -58,23 +104,48 @@ export default function CV() {
               </h3>
             </ScrollReveal>
             <div className="space-y-5">
-              {t.cv.education.map((edu: { degree: string; school: string; year: string }, i: number) => (
-                <ScrollReveal key={i} delay={140 + i * 60}>
-                  <div className="bg-[#0B1120]/40 border border-white/6 rounded-xl px-5 py-4 flex items-start gap-4 hover:border-[#7C9CBF]/25 hover:bg-[#0B1120]/60 hover:shadow-lg hover:shadow-[#7C9CBF]/5 hover:-translate-y-0.5 transition-all duration-200 cursor-default">
-                    <div className="mt-0.5 w-8 h-8 rounded-lg bg-[#7C9CBF]/10 flex items-center justify-center flex-shrink-0 group-hover:bg-[#7C9CBF]/20 transition-colors">
-                      <svg className="w-4 h-4 text-[#7C9CBF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l9-5-9-5-9 5 9 5z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                      </svg>
+              {t.cv.education.map((edu: { degree: string; school: string; year: string }, i: number) => {
+                const color = eduColors[i] ?? eduColors[2]
+                const logo = eduLogos[i]
+                return (
+                  <ScrollReveal key={i} delay={140 + i * 60}>
+                    <div
+                      className="border rounded-xl px-5 py-4 flex items-start gap-4 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200 cursor-default"
+                      style={{
+                        backgroundColor: color.bg,
+                        borderColor: `${color.accent}20`,
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = `${color.accent}40`
+                        e.currentTarget.style.boxShadow = `0 8px 24px ${color.accent}15`
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = `${color.accent}20`
+                        e.currentTarget.style.boxShadow = 'none'
+                      }}
+                    >
+                      <div
+                        className="mt-0.5 w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden"
+                        style={{ backgroundColor: `${color.accent}15` }}
+                      >
+                        {logo ? (
+                          <img src={logo} alt="" className="w-7 h-7 object-contain" />
+                        ) : (
+                          <svg className="w-4 h-4" style={{ color: color.accent }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l9-5-9-5-9 5 9 5z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                          </svg>
+                        )}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-semibold text-white leading-snug">{edu.degree}</p>
+                        <p className="text-xs text-white/45 mt-0.5">{edu.school}</p>
+                      </div>
+                      <span className="text-xs font-medium flex-shrink-0" style={{ color: `${color.accent}90` }}>{edu.year}</span>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-white leading-snug">{edu.degree}</p>
-                      <p className="text-xs text-white/45 mt-0.5">{edu.school}</p>
-                    </div>
-                    <span className="text-xs text-[#7C9CBF]/70 font-medium flex-shrink-0">{edu.year}</span>
-                  </div>
-                </ScrollReveal>
-              ))}
+                  </ScrollReveal>
+                )
+              })}
             </div>
           </div>
         </div>
