@@ -29,15 +29,6 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 py-3.5 flex items-center gap-8">
-        {/* Logo mark — CB monogram */}
-        <a
-          href="#hero"
-          className="flex-shrink-0 w-9 h-9 rounded-xl bg-gradient-to-br from-[#1A2B4A] to-[#3D6DB8] flex items-center justify-center shadow-md shadow-[#3D6DB8]/20 hover:shadow-[#3D6DB8]/35 hover:scale-105 transition-all"
-          aria-label="Retour accueil"
-        >
-          <span className="text-white font-bold text-sm tracking-tight">CB</span>
-        </a>
-
         {/* Desktop nav — left aligned */}
         <div className="hidden md:flex items-center gap-5 flex-1">
           {navLinks.map((link) => (
@@ -63,25 +54,33 @@ export default function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Malt"
-            className="opacity-60 hover:opacity-100 hover:scale-110 transition-all"
+            className="opacity-80 hover:opacity-100 hover:scale-110 transition-all"
           >
-            <svg viewBox="0 0 32 32" className="w-6 h-6" fill="none">
-              <rect width="32" height="32" rx="7" fill="#FF3F3F"/>
-              {/* Malt star/asterisk shape */}
-              <path d="M16 7 L18 14.5 L25.5 12.5 L21 19 L27 23 L19.5 22 L19.5 30 L16 24 L12.5 30 L12.5 22 L5 23 L11 19 L6.5 12.5 L14 14.5 Z" fill="white"/>
+            <svg viewBox="0 0 44 44" className="w-6 h-6" fill="none">
+              <rect x="19" y="4" width="6" height="36" rx="3" fill="#F5595A" transform="rotate(0 22 22)"/>
+              <rect x="19" y="4" width="6" height="36" rx="3" fill="#F5595A" transform="rotate(60 22 22)"/>
+              <rect x="19" y="4" width="6" height="36" rx="3" fill="#F5595A" transform="rotate(120 22 22)"/>
+              <circle cx="22" cy="5" r="3.5" fill="#F5595A"/>
+              <circle cx="22" cy="39" r="3.5" fill="#F5595A"/>
+              <circle cx="9" cy="12.5" r="3.5" fill="#F5595A" transform="rotate(60 22 22)"/>
+              <circle cx="35" cy="12.5" r="3.5" fill="#F5595A" transform="rotate(60 22 22)"/>
             </svg>
           </a>
+
           {/* LinkedIn */}
           <a
             href="https://www.linkedin.com/in/cl%C3%A9ment-boul%C3%A9/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            className="opacity-60 hover:opacity-100 hover:scale-110 transition-all"
+            className="opacity-80 hover:opacity-100 hover:scale-110 transition-all"
           >
-            <svg viewBox="0 0 32 32" className="w-6 h-6" fill="none">
-              <rect width="32" height="32" rx="6" fill="#0A66C2"/>
-              <path d="M8 12h4v12H8V12zm2-1.5a2.25 2.25 0 110-4.5 2.25 2.25 0 010 4.5zM14 12h3.8v1.6h.05c.53-.95 1.83-1.95 3.77-1.95C25.2 11.65 26 14.1 26 17.3V24h-4v-6.1c0-1.45-.03-3.32-2.15-3.32-2.16 0-2.49 1.58-2.49 3.21V24H14V12z" fill="white"/>
+            <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
+              <rect width="24" height="24" rx="4" fill="#0A66C2"/>
+              <path
+                d="M6.94 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91l.04-1.68z"
+                fill="white"
+              />
             </svg>
           </a>
 
@@ -151,27 +150,18 @@ export default function Navbar() {
             {t.hero.cta}
           </a>
           <div className="flex items-center gap-4 pt-1 border-t border-[#3D6DB8]/10">
-            <a
-              href="https://www.malt.fr/profile/clementboule?origin=dashboard_profile_name"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm font-medium text-[#4A5B70] hover:text-[#FF3F3F] transition-colors"
-            >
-              <svg viewBox="0 0 32 32" className="w-5 h-5" fill="none">
-                <rect width="32" height="32" rx="7" fill="#FF3F3F"/>
-                <path d="M16 7 L18 14.5 L25.5 12.5 L21 19 L27 23 L19.5 22 L19.5 30 L16 24 L12.5 30 L12.5 22 L5 23 L11 19 L6.5 12.5 L14 14.5 Z" fill="white"/>
+            <a href="https://www.malt.fr/profile/clementboule" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-[#4A5B70] hover:text-[#F5595A] transition-colors">
+              <svg viewBox="0 0 44 44" className="w-5 h-5" fill="none">
+                <rect x="19" y="4" width="6" height="36" rx="3" fill="#F5595A" transform="rotate(0 22 22)"/>
+                <rect x="19" y="4" width="6" height="36" rx="3" fill="#F5595A" transform="rotate(60 22 22)"/>
+                <rect x="19" y="4" width="6" height="36" rx="3" fill="#F5595A" transform="rotate(120 22 22)"/>
               </svg>
               Malt
             </a>
-            <a
-              href="https://www.linkedin.com/in/cl%C3%A9ment-boul%C3%A9/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm font-medium text-[#4A5B70] hover:text-[#0A66C2] transition-colors"
-            >
-              <svg viewBox="0 0 32 32" className="w-5 h-5" fill="none">
-                <rect width="32" height="32" rx="6" fill="#0A66C2"/>
-                <path d="M8 12h4v12H8V12zm2-1.5a2.25 2.25 0 110-4.5 2.25 2.25 0 010 4.5zM14 12h3.8v1.6h.05c.53-.95 1.83-1.95 3.77-1.95C25.2 11.65 26 14.1 26 17.3V24h-4v-6.1c0-1.45-.03-3.32-2.15-3.32-2.16 0-2.49 1.58-2.49 3.21V24H14V12z" fill="white"/>
+            <a href="https://www.linkedin.com/in/cl%C3%A9ment-boul%C3%A9/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-medium text-[#4A5B70] hover:text-[#0A66C2] transition-colors">
+              <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none">
+                <rect width="24" height="24" rx="4" fill="#0A66C2"/>
+                <path d="M6.94 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91l.04-1.68z" fill="white"/>
               </svg>
               LinkedIn
             </a>
