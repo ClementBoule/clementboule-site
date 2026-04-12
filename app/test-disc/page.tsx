@@ -6,7 +6,7 @@ type ProfileKey = 'D' | 'I' | 'S' | 'C'
 
 const DISC_COLORS: Record<ProfileKey, { main: string; dark: string; bg: string }> = {
   D: { main: '#DC2626', dark: '#991B1B', bg: 'rgba(220,38,38,0.1)' },
-  I: { main: '#D97706', dark: '#92400E', bg: 'rgba(217,119,6,0.1)' },
+    I: { main: '#EAB308', dark: '#854D0E', bg: 'rgba(234,179,8,0.1)' },
   S: { main: '#16A34A', dark: '#14532D', bg: 'rgba(22,163,74,0.1)' },
   C: { main: '#2563EB', dark: '#1E3A8A', bg: 'rgba(37,99,235,0.1)' },
 }
