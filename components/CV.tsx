@@ -1,33 +1,34 @@
 'use client'
+
 import { useLang } from './LanguageContext'
 import ScrollReveal from './ScrollReveal'
 
 /* ── Color accents per experience (matched to brand logos) ── */
 const expColors = [
-  { accent: '#3D6DB8', bg: 'rgba(61,109,184,0.12)' },    /* Freelance — blue */
-  { accent: '#2D9B7B', bg: 'rgba(45,155,123,0.12)' },    /* Mantractif — teal */
-  { accent: '#E8836A', bg: 'rgba(232,131,106,0.12)' },    /* Coach Innsbruck — coral */
+  { accent: '#3D6DB8', bg: 'rgba(61,109,184,0.12)' },   /* Freelance — blue */
+  { accent: '#2D9B7B', bg: 'rgba(45,155,123,0.12)' },   /* Mantractif — teal */
+  { accent: '#E8836A', bg: 'rgba(232,131,106,0.12)' },   /* Coach Innsbruck — coral */
 ]
 
 const expLogos = [
-  null,                           /* Freelance — no logo */
-  '/logos/mantractif.png',        /* Mantractif */
+  null,                          /* Freelance — no logo */
+  '/logos/mantractif.png',       /* Mantractif */
   '/logos/crossfit-innsbruck.png', /* CrossFit Innsbruck */
 ]
 
 /* ── Education cards: color + logo ── */
 const eduColors = [
-  { accent: '#1A1A1A', bg: 'rgba(26,26,26,0.25)' },      /* ESSEC — black */
-  { accent: '#2E7DBF', bg: 'rgba(46,125,191,0.15)' },     /* Excellens — blue */
-  { accent: '#7C9CBF', bg: 'rgba(124,156,191,0.10)' },    /* VAE — neutral */
-  { accent: '#003F6C', bg: 'rgba(0,63,108,0.20)' },       /* MCI — navy */
-  { accent: '#1E3A5F', bg: 'rgba(30,58,95,0.18)' },       /* Rennes SB — dark blue */
+  { accent: '#1A1A1A', bg: 'rgba(26,26,26,0.25)' },     /* ESSEC — black */
+  { accent: '#2E7DBF', bg: 'rgba(46,125,191,0.15)' },    /* Excellens — blue */
+  { accent: '#7C9CBF', bg: 'rgba(124,156,191,0.10)' },   /* VAE — neutral */
+  { accent: '#003F6C', bg: 'rgba(0,63,108,0.20)' },      /* MCI — navy */
+  { accent: '#1E3A5F', bg: 'rgba(30,58,95,0.18)' },      /* Rennes SB — dark blue */
 ]
 
 const eduLogos = [
   '/logos/essec.png',
   '/logos/excellens.png',
-  null,                          /* VAE — no logo */
+  null,  /* VAE — no logo */
   '/logos/mci.png',
   '/logos/rennes-sb.png',
 ]
@@ -59,6 +60,7 @@ export default function CV() {
                 {t.cv.experienceLabel}
               </h3>
             </ScrollReveal>
+
             <div className="space-y-8">
               {t.cv.experiences.map((exp: { role: string; company: string; period: string; description: string }, i: number) => {
                 const color = expColors[i] ?? expColors[0]
@@ -79,13 +81,17 @@ export default function CV() {
                       {i < t.cv.experiences.length - 1 && (
                         <div className="absolute left-[3px] top-4 bottom-0 w-px bg-white/6" />
                       )}
-                      <div className="flex items-start gap-3 mb-2">
+
+                      <div className="flex items-start gap-4 mb-2">
                         {logo && (
-                          <img
-                            src={logo}
-                            alt=""
-                            className="w-12 h-12 rounded-lg object-contain bg-white/10 p-1.5 flex-shrink-0 mt-0.5"
-                          />
+                          <div className="w-14 h-14 rounded-xl bg-white/10 backdrop-blur-sm p-1.5 flex-shrink-0 mt-0.5 shadow-md border border-white/10 relative overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none rounded-xl" />
+                            <img
+                              src={logo}
+                              alt=""
+                              className="w-full h-full object-contain relative z-10 drop-shadow-sm"
+                            />
+                          </div>
                         )}
                         <div className="space-y-1">
                           <p className="text-xs font-medium" style={{ color: color.accent }}>{exp.period}</p>
@@ -109,6 +115,7 @@ export default function CV() {
                 {t.cv.educationLabel}
               </h3>
             </ScrollReveal>
+
             <div className="space-y-5">
               {t.cv.education.map((edu: { degree: string; school: string; year: string }, i: number) => {
                 const color = eduColors[i] ?? eduColors[2]
@@ -131,11 +138,12 @@ export default function CV() {
                       }}
                     >
                       <div
-                        className="mt-0.5 w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden"
-                        style={{ backgroundColor: `${color.accent}15` }}
+                        className="mt-0.5 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden relative shadow-sm border border-white/5"
+                        style={{ backgroundColor: `${color.accent}15`, width: '3.25rem', height: '3.25rem' }}
                       >
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent pointer-events-none rounded-xl" />
                         {logo ? (
-                          <img src={logo} alt="" className="w-9 h-9 object-contain" />
+                          <img src={logo} alt="" className="w-10 h-10 object-contain relative z-10 drop-shadow-sm" />
                         ) : (
                           <svg className="w-4 h-4" style={{ color: color.accent }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l9-5-9-5-9 5 9 5z" />
