@@ -38,6 +38,43 @@ function FadeIn({
   )
 }
 
+/* Inline DISC logo matching the user's image style: 4 tilted rounded tiles */
+function DiscLogo({ size = 120 }: { size?: number }) {
+  const s = size
+  const tileW = s * 0.23
+  const tileH = s * 0.23
+  const gap = s * 0.04
+  const r = s * 0.04
+
+  const tiles = [
+    { x: 0, y: s*0.06, w: tileW, h: tileH, fill: '#DC2626', letter: 'D', rot: -3 },
+    { x: tileW + gap, y: 0, w: tileW*1.06, h: tileH*1.08, fill: '#EAB308', letter: 'I', rot: 2 },
+    { x: (tileW + gap)*2, y: s*0.04, w: tileW, h: tileH, fill: '#16A34A', letter: 'S', rot: -2 },
+    { x: (tileW + gap)*3, y: s*0.08, w: tileW*0.97, h: tileH*0.95, fill: '#2563EB', letter: 'C', rot: 3 },
+  ]
+
+  return (
+    <svg width={s} height={s * 0.35} viewBox={`0 0 ${s} ${s * 0.35}`} fill="none" xmlns="http://www.w3.org/2000/svg">
+      {tiles.map((t, i) => (
+        <g key={i} transform={`rotate(${t.rot} ${t.x + t.w/2} ${t.y + t.h/2})`}>
+          <rect x={t.x} y={t.y} width={t.w} height={t.h} rx={r} fill={t.fill} />
+          <text
+            x={t.x + t.w/2}
+            y={t.y + t.h * 0.68}
+            textAnchor="middle"
+            fill="white"
+            fontSize={t.h * 0.55}
+            fontWeight="bold"
+            fontFamily="Arial, Helvetica, sans-serif"
+          >
+            {t.letter}
+          </text>
+        </g>
+      ))}
+    </svg>
+  )
+}
+
 export default function Hero() {
   const { t } = useLang()
 
@@ -60,7 +97,7 @@ export default function Hero() {
             {/* Name */}
             <FadeIn direction="left" delay={80}>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-none tracking-tight text-[#1A2B4A]">
-                Clément Boulé
+                Clement Boule
               </h1>
             </FadeIn>
 
@@ -80,23 +117,43 @@ export default function Hero() {
 
             {/* CTAs */}
             <FadeIn direction="left" delay={440}>
-              <div className="flex flex-wrap gap-4 pt-3">
+              <div className="flex flex-wrap items-center gap-4 pt-3">
+                {/* DISC Test CTA with logo */}
                 <a
                   href="/test-disc"
                   className="inline-flex items-center gap-3 border border-[#1A2B4A]/15 hover:border-[#3D6DB8]/30 bg-white/60 hover:bg-white font-medium px-5 py-3 rounded-full transition-all hover:-translate-y-0.5 hover:shadow-lg group"
                 >
-                  {/* DISC 4-square logo */}
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-                    <rect x="1" y="1" width="12" height="12" rx="3" fill="#DC2626" />
-                    <rect x="15" y="1" width="12" height="12" rx="3" fill="#EAB308" />
-                    <rect x="1" y="15" width="12" height="12" rx="3" fill="#16A34A" />
-                    <rect x="15" y="15" width="12" height="12" rx="3" fill="#2563EB" />
-                    <text x="7" y="10" textAnchor="middle" fill="white" fontSize="7" fontWeight="bold" fontFamily="sans-serif">D</text>
-                    <text x="21" y="10" textAnchor="middle" fill="white" fontSize="7" fontWeight="bold" fontFamily="sans-serif">I</text>
-                    <text x="7" y="24" textAnchor="middle" fill="white" fontSize="7" fontWeight="bold" fontFamily="sans-serif">S</text>
-                    <text x="21" y="24" textAnchor="middle" fill="white" fontSize="7" fontWeight="bold" fontFamily="sans-serif">C</text>
-                  </svg>
+                  <DiscLogo size={80} />
                   <span className="text-[#1A2B4A]/70 group-hover:text-[#1A2B4A] transition-colors">{t.hero.disc}</span>
+                </a>
+              </div>
+            </FadeIn>
+
+            {/* Social links: LinkedIn + Malt */}
+            <FadeIn direction="left" delay={560}>
+              <div className="flex items-center gap-4 pt-2">
+                <a
+                  href="https://www.linkedin.com/in/cl%C3%A9ment-boul%C3%A9/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-[#0A66C2] hover:text-[#004182] font-medium transition-colors"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
+                  LinkedIn
+                </a>
+                <span className="text-[#1A2B4A]/20">|</span>
+                <a
+                  href="https://www.malt.fr/profile/clementboule"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-[#FC5656] hover:text-[#E03E3E] font-medium transition-colors"
+                >
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.568 14.318c-.794 1.376-3.06 5.3-3.06 5.3s-.247.45-.63.45c-.382 0-.618-.437-.618-.437l-1.636-2.835-1.636 2.835s-.236.437-.618.437c-.383 0-.63-.45-.63-.45s-2.266-3.924-3.06-5.3c-.794-1.376-.075-3.054 1.3-3.848 1.376-.794 3.054-.075 3.848 1.3l.796 1.38.796-1.38c.794-1.375 2.472-2.094 3.848-1.3 1.375.794 2.094 2.472 1.3 3.848z"/>
+                  </svg>
+                  Malt
                 </a>
               </div>
             </FadeIn>
@@ -111,7 +168,7 @@ export default function Hero() {
             <div className="relative w-72 h-96 md:w-80 md:h-[460px] rounded-2xl overflow-hidden border border-[#3D6DB8]/15 shadow-2xl shadow-[#1A2B4A]/15 hover:shadow-[#3D6DB8]/20 hover:border-[#3D6DB8]/25 transition-all duration-500">
               <Image
                 src="/clement.jpg"
-                alt="Clément Boulé"
+                alt="Clement Boule"
                 fill
                 className="object-cover object-top"
                 priority
@@ -121,16 +178,11 @@ export default function Hero() {
             </div>
 
             {/* DISC pill floating badge */}
-                        <a
+            <a
               href="/test-disc"
               className="absolute -bottom-4 left-1/2 md:left-4 -translate-x-1/2 md:translate-x-0 flex items-center gap-2 bg-white border border-[#3D6DB8]/20 shadow-lg shadow-[#1A2B4A]/10 backdrop-blur-sm text-[#1A2B4A]/70 text-xs font-semibold px-4 py-2 rounded-full hover:border-[#3D6DB8]/40 hover:shadow-[#3D6DB8]/15 hover:-translate-y-0.5 transition-all whitespace-nowrap"
             >
-              <svg width="16" height="16" viewBox="0 0 28 28" fill="none" className="flex-shrink-0">
-                <rect x="1" y="1" width="12" height="12" rx="3" fill="#DC2626" />
-                <rect x="15" y="1" width="12" height="12" rx="3" fill="#EAB308" />
-                <rect x="1" y="15" width="12" height="12" rx="3" fill="#16A34A" />
-                <rect x="15" y="15" width="12" height="12" rx="3" fill="#2563EB" />
-              </svg>
+              <DiscLogo size={40} />
               {t.hero.discCta}
             </a>
 
