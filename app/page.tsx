@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import Formations from '@/components/Formations'
+import TopClients from '@/components/TopClients'
 import CV from '@/components/CV'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
@@ -11,6 +12,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Formations />
+      <TopClients />
       <CV />
       <Contact />
       <Footer />
