@@ -4,11 +4,11 @@ import ScrollReveal from './ScrollReveal'
 
 /* ── Photo backgrounds per card ── */
 const photos = [
-  'https://images.unsplash.com/photo-1522202176988-66273c42c94b?auto=format&fit=crop&w=800&q=85',
+  'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=85',
   'https://images.unsplash.com/photo-1560439513-74b037a25d84?auto=format&fit=crop&w=800&q=85',
   'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=85',
   'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=85',
-  'https://images.unsplash.com/photo-1521737604893-d14291daa0d6?auto=format&fit=crop&w=800&q=85',
+  'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=800&q=85',
   'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=85',
 ]
 
