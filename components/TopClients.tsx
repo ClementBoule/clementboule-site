@@ -1,24 +1,26 @@
 'use client'
 import { useLang } from './LanguageContext'
 import ScrollReveal from './ScrollReveal'
+
 const clients: { name: string; logo: string | null }[] = [
-  { name: 'IHEDREA', logo: '/logos/LOGO_IHEDREA_and_RVB_1_512411908e_4b74efb9ec.png' },
-  { name: 'ISCOM Paris', logo: '/logos/ISCOM.png' },
-  { name: 'Ecole de Management Applique', logo: '/logos/ema_logo_344x117-1-1.png' },
-  { name: 'Albert School', logo: '/logos/logo_vertical_bleu.png' },
-  { name: 'EDA RH', logo: '/logos/b1896445ef48756240276b4ee38015e0.LOGO-EDA-RH-hibou.png' },
-  { name: "Les Apprentis d'Auteuil", logo: '/logos/Logo-fondation-auteuil.jpg' },
-  { name: 'Daan Tech', logo: '/logos/daan-tech-logo.png' },
-  { name: 'Sauvegarde Val d\'Oise', logo: '/logos/Logo-sauvegarde-95_v3.png' },
+  { name: 'IHEDREA', logo: '/logos/ihedrea.png' },
+  { name: 'ISCOM Paris', logo: '/logos/iscom.png' },
+  { name: 'Ecole de Management Applique', logo: '/logos/ema.png' },
+  { name: 'Albert School', logo: '/logos/albert-school.png' },
+  { name: 'EDA RH', logo: '/logos/eda-rh.png' },
+  { name: "Les Apprentis d'Auteuil", logo: '/logos/apprentis-auteuil.png' },
+  { name: 'Daan Tech', logo: '/logos/daan-tech.png' },
+  { name: 'Sauvegarde Val d\'Oise', logo: '/logos/sauvegarde-vo.png' },
 ]
+
 function ClientLogo({ name, logo }: { name: string; logo: string | null }) {
   return (
-    <div className="flex items-center justify-center h-16 px-6 rounded-2xl bg-white/70 border border-[#1A2B4A]/6 shadow-sm hover:shadow-md hover:bg-white hover:border-[#3D6DB8]/15 transition-all duration-300 group">
+    <div className="flex items-center justify-center h-24 px-6 rounded-2xl bg-white/70 border border-[#1A2B4A]/6 shadow-sm hover:shadow-md hover:bg-white hover:border-[#3D6DB8]/15 transition-all duration-300 group">
       {logo ? (
         <img
           src={logo}
           alt={name}
-          className="max-h-8 max-w-[120px] object-contain opacity-55 group-hover:opacity-95 transition-opacity grayscale group-hover:grayscale-0"
+          className="max-h-14 max-w-[160px] object-contain opacity-90 group-hover:opacity-100 transition-opacity"
         />
       ) : (
         <span className="text-sm font-semibold text-[#4A5B70]/55 group-hover:text-[#1A2B4A] transition-colors tracking-wide">
@@ -28,6 +30,7 @@ function ClientLogo({ name, logo }: { name: string; logo: string | null }) {
     </div>
   )
 }
+
 export default function TopClients() {
   const { t } = useLang()
 
