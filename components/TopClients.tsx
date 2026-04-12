@@ -1,24 +1,16 @@
 'use client'
 import { useLang } from './LanguageContext'
 import ScrollReveal from './ScrollReveal'
-
-/*
-  ─────────────────────────────────────────────
-  CLIENTS — remplace les noms / logos par les tiens.
-  Pour ajouter un logo : mets l'URL dans `logo`.
-  ─────────────────────────────────────────────
-*/
 const clients: { name: string; logo: string | null }[] = [
-  { name: 'IHEDREA', logo: null },
-  { name: 'ISCOM Paris', logo: null },
-  { name: 'École de Management Appliqué', logo: null },
-  { name: 'Albert School', logo: null },
-  { name: 'EDA RH', logo: null },
-  { name: "Les Apprentis d'Auteuil", logo: null },
-  { name: 'Daan Tech', logo: null },
-  { name: 'Sauvegarde Val d\'Oise', logo: null },
+  { name: 'IHEDREA', logo: '/logos/LOGO_IHEDREA_and_RVB_1_512411908e_4b74efb9ec.png' },
+  { name: 'ISCOM Paris', logo: '/logos/ISCOM.png' },
+  { name: 'Ecole de Management Applique', logo: '/logos/ema_logo_344x117-1-1.png' },
+  { name: 'Albert School', logo: '/logos/logo_vertical_bleu.png' },
+  { name: 'EDA RH', logo: '/logos/b1896445ef48756240276b4ee38015e0.LOGO-EDA-RH-hibou.png' },
+  { name: "Les Apprentis d'Auteuil", logo: '/logos/Logo-fondation-auteuil.jpg' },
+  { name: 'Daan Tech', logo: '/logos/daan-tech-logo.png' },
+  { name: 'Sauvegarde Val d\'Oise', logo: '/logos/Logo-sauvegarde-95_v3.png' },
 ]
-
 function ClientLogo({ name, logo }: { name: string; logo: string | null }) {
   return (
     <div className="flex items-center justify-center h-16 px-6 rounded-2xl bg-white/70 border border-[#1A2B4A]/6 shadow-sm hover:shadow-md hover:bg-white hover:border-[#3D6DB8]/15 transition-all duration-300 group">
@@ -36,7 +28,6 @@ function ClientLogo({ name, logo }: { name: string; logo: string | null }) {
     </div>
   )
 }
-
 export default function TopClients() {
   const { t } = useLang()
 
