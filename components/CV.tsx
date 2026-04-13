@@ -77,7 +77,7 @@ export default function CV() {
                 return (
                   <ScrollReveal key={i} delay={100 + i * 70}>
                     <div
-                      className="relative pl-6 cursor-default transition-all duration-300 rounded-xl p-4 pl-10"
+                      className="relative cursor-default transition-all duration-300 rounded-xl p-4 pl-10"
                       style={{
                         backgroundColor: isHovered ? `${color.accent}08` : 'transparent',
                         boxShadow: isHovered ? `0 4px 20px ${color.accent}10` : 'none',
@@ -102,8 +102,8 @@ export default function CV() {
                           <div
                             className="rounded-2xl bg-white p-3 flex-shrink-0 mt-0.5 relative overflow-hidden transition-all duration-300"
                             style={{
-                              width: '5.5rem',
-                              height: '5.5rem',
+                              width: '8rem',
+                              height: '3.2rem',
                               border: `2px solid ${isHovered ? color.accent : 'rgba(26,43,74,0.1)'}`,
                               boxShadow: isHovered ? `0 8px 24px ${color.accent}25` : '0 2px 8px rgba(0,0,0,0.08)',
                               transform: isHovered ? 'scale(1.06)' : 'scale(1)',
@@ -174,7 +174,7 @@ export default function CV() {
                       >
                         <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent pointer-events-none rounded-2xl" />
                         {logo ? (
-                          <img src={logo} alt="" className="w-16 h-16 object-contain relative z-10 p-1" />
+                          <img src={logo} alt="" className="w-28 h-11 object-contain relative z-10 p-1" />
                         ) : (
                           <svg className="w-6 h-6" style={{ color: color.accent }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l9-5-9-5-9 5 9 5z" />
