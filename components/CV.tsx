@@ -12,9 +12,9 @@ const expColors = [
 ]
 
 const expLogos = [
-  '/logos/albert-school.svg',
-  '/logos/mantractif.svg',
-  '/logos/crossfit-innsbruck.svg',
+  '/logos/exp-photo.jpg',
+  '/logos/exp-mantractif.png',
+  '/logos/exp-crossfit.png',
 ]
 
 const expScales = [1, 1, 1] // svgs scale perfectly
@@ -29,11 +29,11 @@ const eduColors = [
 ]
 
 const eduLogos = [
-  '/logos/essec.svg',
-  '/logos/excellens.png',
-  '/logos/albert-school.svg',
-  '/logos/mci.svg',
-  '/logos/rennes-sb.svg',
+  '/logos/edu-essec.jpg',
+  '/logos/edu-excellens.png',
+  '/logos/edu-normandie.png',
+  '/logos/edu-mci.png',
+  '/logos/edu-rennes-sb.jpg',
 ]
 
 const eduScales = [1, 1, 1, 1, 1] // svgs scale perfectly
