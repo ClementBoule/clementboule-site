@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200">
+  <!-- Stylized M: two arcs forming a heart-like M shape -->
+  <!-- Left arc/wing -->
+  <path d="M20 160 C20 100 40 60 80 40 C110 25 130 50 130 80 C130 110 110 130 100 160 Z" fill="#2D8C6E"/>
+  <!-- Person figure in center -->
+  <circle cx="150" cy="55" r="18" fill="#2D8C6E"/>
+  <path d="M130 80 C130 60 170 60 170 80 L165 160 L150 160 L135 160 Z" fill="#2D8C6E"/>
+  <!-- Right arc/wing -->
+  <path d="M170 80 C170 50 190 25 220 40 C260 60 280 100 280 160 L260 160 C250 130 230 110 230 80 C230 50 210 25 170 80 Z" fill="#2D8C6E"/>
+  <!-- Mantractif text -->
+  <text x="310" y="110" font-family="Arial Black, sans-serif" font-size="58" font-weight="900" fill="#2D8C6E">Mantractif</text>
+  <!-- Tagline -->
+  <text x="310" y="145" font-family="Arial, sans-serif" font-size="22" letter-spacing="3" fill="#2D8C6E">OPTEZ POUR L'HUMAIN</text>
+</svg>
