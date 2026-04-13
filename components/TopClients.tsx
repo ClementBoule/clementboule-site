@@ -10,7 +10,7 @@ const clients: { name: string; logo: string | null; color: string; scale?: numbe
   { name: 'ISCOM',      logo: '/logos/client-iscom.png',      color: '#000000' },
   { name: 'EDA RH',     logo: '/logos/client-eda-rh.png',     color: '#000000' },
   { name: 'IHEDREA',    logo: '/logos/client-ihedrea.png',    color: '#000000' },
-  { name: 'Apprentis',  logo: '/logos/client-apprentis.png',  color: '#000000' },
+  { name: 'Apprentis',  logo: '/logos/client-apprentis.jpg',  color: '#000000' },
   { name: 'Sauvegarde', logo: '/logos/client-sauvegarde.png', color: '#000000' },
   { name: 'Daan',       logo: '/logos/client-daan.png',       color: '#000000' },
 ]
