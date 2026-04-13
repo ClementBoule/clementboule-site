@@ -151,7 +151,7 @@ export default function Hero() {
                   className="inline-flex items-center gap-2 text-sm text-[#FC5656] hover:text-[#E03E3E] font-medium transition-colors"
                 >
                   <svg className="w-5 h-5" viewBox="0 0 20 16" fill="currentColor">
-                    <path d="M0 16L5 0h3L3 16zM3 16L8 0l2 5.5L12 0l5 16h-3l-2-6.5-2 6.5zm9-16h3l5 16h-3z" />
+                    <path d="M0 16L3 0h4L4 16z M4 16L7 0l3 8L8 16z M8 16L10 8l3-8L16 16z M13 0h4L20 16h-4z" />
                   </svg>
                   Malt
                 </a>
