@@ -12,12 +12,12 @@ const expColors = [
 ]
 
 const expLogos = [
-  null,
-  null,
-  null,
+  '/logos/albert-school.svg',
+  '/logos/mantractif.svg',
+  '/logos/crossfit-innsbruck.svg',
 ]
 
-const expScales = [1, 2.5, 1] // scale multipliers per experience logo
+const expScales = [1, 1, 1] // svgs scale perfectly
 
 /* Education cards: color + logo */
 const eduColors = [
@@ -29,14 +29,14 @@ const eduColors = [
 ]
 
 const eduLogos = [
-  '/logos/essec.png',
+  '/logos/essec.svg',
   '/logos/excellens.png',
-  null,
-  null,
-  '/logos/rennes-sb.png',
+  '/logos/albert-school.svg',
+  '/logos/mci.svg',
+  '/logos/rennes-sb.svg',
 ]
 
-const eduScales = [1, 1, 1, 1, 2.5] // rennes-sb needs zoom
+const eduScales = [1, 1, 1, 1, 1] // svgs scale perfectly
 
 export default function CV() {
   const { t } = useLang()
@@ -107,8 +107,8 @@ export default function CV() {
                           <div
                             className="rounded-2xl bg-white p-3 flex-shrink-0 mt-0.5 relative overflow-hidden transition-all duration-300"
                             style={{
-                              width: '8rem',
-                              height: '3.2rem',
+                              width: '14rem',
+                              height: '6rem',
                               border: `2px solid ${isHovered ? color.accent : 'rgba(26,43,74,0.1)'}`,
                               boxShadow: isHovered ? `0 8px 24px ${color.accent}25` : '0 2px 8px rgba(0,0,0,0.08)',
                               transform: isHovered ? 'scale(1.06)' : 'scale(1)',
@@ -171,8 +171,8 @@ export default function CV() {
                         className="rounded-2xl flex items-center justify-center flex-shrink-0 relative overflow-hidden transition-all duration-300"
                         style={{
                           backgroundColor: logo ? '#ffffff' : `${color.accent}08`,
-                          width: '5rem',
-                          height: '5rem',
+                          width: '8rem',
+                          height: '7rem',
                           border: `2px solid ${isHovered ? color.accent : color.accent + '20'}`,
                           transform: isHovered ? 'scale(1.08)' : 'scale(1)',
                           boxShadow: isHovered ? `0 4px 16px ${color.accent}20` : '0 2px 4px rgba(0,0,0,0.05)',
@@ -180,7 +180,7 @@ export default function CV() {
                       >
                         <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent pointer-events-none rounded-2xl" />
                         {logo ? (
-                          <img src={logo} alt="" className="w-28 h-11 object-contain relative z-10 p-1" style={{ transform: `scale(${eduScale})`, transformOrigin: 'center center' }} />
+                          <img src={logo} alt="" className="w-full h-full object-contain relative z-10 p-1" style={{ transform: `scale(${eduScale})`, transformOrigin: 'center center' }} />
                         ) : (
                           <svg className="w-6 h-6" style={{ color: color.accent }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l9-5-9-5-9 5 9 5z" />
