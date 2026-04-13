@@ -5,7 +5,7 @@ import { useLang } from './LanguageContext'
 import ScrollReveal from './ScrollReveal'
 
 const clients: { name: string; logo: string | null; color: string; scale?: number }[] = [
-  { name: 'EMA',        logo: '/logos/client-ema.png',        color: '#000000' },
+  { name: 'EMA',        logo: '/logos/client-ema.png',        color: '#000000', scale: 1.5 },
   { name: 'Albert',     logo: '/logos/client-albert.png',     color: '#000000' },
   { name: 'ISCOM',      logo: '/logos/client-iscom.png',      color: '#000000' },
   { name: 'EDA RH',     logo: '/logos/client-eda-rh.png',     color: '#000000' },
