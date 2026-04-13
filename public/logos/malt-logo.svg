@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100">
+  <!-- Malt asterisk icon - 6 rounded petals with circles at tips -->
+  <!-- Center -->
+  <circle cx="50" cy="50" r="8" fill="#FC5A5A"/>
+  <!-- Petals (6 directions) -->
+  <!-- Top -->
+  <ellipse cx="50" cy="22" rx="7" ry="14" fill="#FC5A5A"/>
+  <circle cx="50" cy="10" r="5" fill="#FC5A5A"/>
+  <!-- Bottom -->
+  <ellipse cx="50" cy="78" rx="7" ry="14" fill="#FC5A5A"/>
+  <circle cx="50" cy="90" r="5" fill="#FC5A5A"/>
+  <!-- Top-right -->
+  <ellipse cx="74" cy="26" rx="7" ry="14" fill="#FC5A5A" transform="rotate(60 74 26)"/>
+  <circle cx="84" cy="10" r="5" fill="#FC5A5A"/>
+  <!-- Bottom-left -->
+  <ellipse cx="26" cy="74" rx="7" ry="14" fill="#FC5A5A" transform="rotate(60 26 74)"/>
+  <circle cx="16" cy="90" r="5" fill="#FC5A5A"/>
+  <!-- Top-left -->
+  <ellipse cx="26" cy="26" rx="7" ry="14" fill="#FC5A5A" transform="rotate(-60 26 26)"/>
+  <circle cx="16" cy="10" r="5" fill="#FC5A5A"/>
+  <!-- Bottom-right -->
+  <ellipse cx="74" cy="74" rx="7" ry="14" fill="#FC5A5A" transform="rotate(-60 74 74)"/>
+  <circle cx="84" cy="90" r="5" fill="#FC5A5A"/>
+  <!-- malt text -->
+  <text x="110" y="68" font-family="Arial Rounded MT Bold, Arial, sans-serif" font-size="56" font-weight="900" fill="#FC5A5A">malt</text>
+</svg>
