@@ -13,7 +13,7 @@ const expColors = [
 
 const expLogos = [
   null,
-  '/logos/mantractif.png',
+  null,
   null,
 ]
 
