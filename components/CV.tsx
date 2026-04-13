@@ -14,8 +14,10 @@ const expColors = [
 const expLogos = [
   null,
   '/logos/mantractif.png',
-  '/logos/crossfit-innsbruck.png',
+  null,
 ]
+
+const expScales = [1, 2.5, 1] // scale multipliers per experience logo
 
 /* Education cards: color + logo */
 const eduColors = [
@@ -30,9 +32,11 @@ const eduLogos = [
   '/logos/essec.png',
   '/logos/excellens.png',
   null,
-  '/logos/mci.png',
+  null,
   '/logos/rennes-sb.png',
 ]
+
+const eduScales = [1, 1, 1, 1, 2.5] // rennes-sb needs zoom
 
 export default function CV() {
   const { t } = useLang()
@@ -72,6 +76,7 @@ export default function CV() {
               {t.cv.experiences.map((exp: { role: string; company: string; period: string; description: string }, i: number) => {
                 const color = expColors[i] ?? expColors[0]
                 const logo = expLogos[i]
+                const expScale = expScales[i] ?? 1
                 const isHovered = hoveredExp === i
 
                 return (
@@ -110,7 +115,7 @@ export default function CV() {
                             }}
                           >
                             <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent pointer-events-none rounded-2xl" />
-                            <img src={logo} alt="" className="w-full h-full object-contain relative z-10" />
+                            <img src={logo} alt="" className="w-full h-full object-contain relative z-10" style={{ transform: `scale(${expScale})`, transformOrigin: 'center center' }} />
                           </div>
                         )}
                         <div className="space-y-1 flex-1">
@@ -146,6 +151,7 @@ export default function CV() {
               {t.cv.education.map((edu: { degree: string; school: string; year: string }, i: number) => {
                 const color = eduColors[i] ?? eduColors[2]
                 const logo = eduLogos[i]
+            const eduScale = eduScales[i] ?? 1
                 const isHovered = hoveredEdu === i
 
                 return (
@@ -174,7 +180,7 @@ export default function CV() {
                       >
                         <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent pointer-events-none rounded-2xl" />
                         {logo ? (
-                          <img src={logo} alt="" className="w-28 h-11 object-contain relative z-10 p-1" />
+                          <img src={logo} alt="" className="w-28 h-11 object-contain relative z-10 p-1" style={{ transform: `scale(${eduScale})`, transformOrigin: 'center center' }} />
                         ) : (
                           <svg className="w-6 h-6" style={{ color: color.accent }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 14l9-5-9-5-9 5 9 5z" />
