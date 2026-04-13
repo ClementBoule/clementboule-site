@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300">
+  <!-- Simplified running panther/cat silhouette -->
+  <g fill="#1B3A72">
+    <!-- Body -->
+    <ellipse cx="130" cy="140" rx="75" ry="35" transform="rotate(-20 130 140)"/>
+    <!-- Head -->
+    <circle cx="190" cy="80" r="28"/>
+    <!-- Ear -->
+    <polygon points="200,58 215,38 225,62"/>
+    <!-- Front legs -->
+    <rect x="145" y="150" width="12" height="50" rx="6" transform="rotate(-15 145 150)"/>
+    <rect x="170" y="145" width="12" height="55" rx="6" transform="rotate(10 170 145)"/>
+    <!-- Rear legs -->
+    <rect x="85" y="148" width="12" height="48" rx="6" transform="rotate(-30 85 148)"/>
+    <rect x="60" y="143" width="12" height="52" rx="6" transform="rotate(-10 60 143)"/>
+    <!-- Tail -->
+    <path d="M55 130 C30 120 10 100 15 80 C18 68 28 70 30 80 C32 90 48 105 60 118 Z"/>
+  </g>
+  <!-- RENNES -->
+  <text x="240" y="120" font-family="Arial Black, sans-serif" font-size="52" font-weight="900" fill="#1B3A72">RENNES</text>
+  <!-- SCHOOL OF -->
+  <text x="240" y="168" font-family="Arial Black, sans-serif" font-size="38" font-weight="900" fill="#1B3A72">SCHOOL OF</text>
+  <!-- BUSINESS -->
+  <text x="240" y="214" font-family="Arial Black, sans-serif" font-size="44" font-weight="900" fill="#1B3A72">BUSINESS</text>
+</svg>
