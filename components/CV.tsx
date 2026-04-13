@@ -18,6 +18,8 @@ const expLogos = [
 ]
 
 const expScales = [1, 1, 1] // svgs scale perfectly
+const expSizes = [{w:'8rem',h:'8rem'},{w:'14rem',h:'6rem'},{w:'14rem',h:'6rem'}]
+const expObjectFits = ['cover','contain','contain']
 
 /* Education cards: color + logo */
 const eduColors = [
@@ -77,6 +79,8 @@ export default function CV() {
                 const color = expColors[i] ?? expColors[0]
                 const logo = expLogos[i]
                 const expScale = expScales[i] ?? 1
+          const expSize = expSizes[i] ?? {w:'14rem',h:'6rem'}
+          const expObjectFit = expObjectFits[i] ?? 'contain'
                 const isHovered = hoveredExp === i
 
                 return (
@@ -107,15 +111,15 @@ export default function CV() {
                           <div
                             className="rounded-2xl bg-white p-3 flex-shrink-0 mt-0.5 relative overflow-hidden transition-all duration-300"
                             style={{
-                              width: '14rem',
-                              height: '6rem',
+                              width: expSize.w,
+                              height: expSize.h,
                               border: `2px solid ${isHovered ? color.accent : 'rgba(26,43,74,0.1)'}`,
                               boxShadow: isHovered ? `0 8px 24px ${color.accent}25` : '0 2px 8px rgba(0,0,0,0.08)',
                               transform: isHovered ? 'scale(1.06)' : 'scale(1)',
                             }}
                           >
                             <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent pointer-events-none rounded-2xl" />
-                            <img src={logo} alt="" className="w-full h-full object-contain relative z-10" style={{ transform: `scale(${expScale})`, transformOrigin: 'center center' }} />
+                            <img src={logo} alt="" className="w-full h-full relative z-10" style={{ objectFit: expObjectFit as any, transform: `scale(${expScale})`, transformOrigin: 'center center' }} />
                           </div>
                         )}
                         <div className="space-y-1 flex-1">
