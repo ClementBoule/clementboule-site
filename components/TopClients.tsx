@@ -8,7 +8,7 @@ const clients: { name: string; logo: string | null; color: string; scale?: numbe
   { name: 'IHEDREA', logo: '/logos/LOGO_IHEDREA_and_RVB_1_512411908e_4b74efb9ec.png', color: '#2E5A88' },
   { name: 'ISCOM Paris', logo: '/logos/51cfd3_04e2e917e9e44bb184aa2868ab053929~mv2.png', color: '#E63946' },
   { name: 'Ecole de Management Appliqué', logo: '/logos/ema_logo_344x117-1-1.png', color: '#C05A2A', scale: 2.2 },
-  { name: 'Albert School', logo: null, color: '#3B82F6' },
+  { name: 'Albert School', logo: '/logos/albert-school.svg', color: '#3B82F6' },
   { name: 'EDA RH', logo: '/logos/69739ea11aa829bf4434d8f3_EDA RH.png', color: '#6D28D9' },
   { name: "Les Apprentis d'Auteuil", logo: '/logos/Logo-fondation-auteuil.jpg', color: '#DC2626' },
   { name: 'Daan Tech', logo: '/logos/daan-tech-logo.png', color: '#0891B2' },
