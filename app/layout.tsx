@@ -93,7 +93,7 @@ export const metadata: Metadata = {
   },
 
   /* ── Vérification Google Search Console ── */
-  // verification: { google: 'VOTRE_CODE_VERIFICATION' },
+  verification: { google: '7oudnNS1TAL5hkz9HxAewILdIKZadpvIfTsPgRPv6mg' },
 }
 
 /* ─── Schema.org JSON-LD (GEO – lisible par les IA) ─────────────────────── */
