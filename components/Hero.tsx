@@ -210,7 +210,7 @@ export default function Hero() {
             {/* Tagline */}
             <FadeIn direction="left" delay={320}>
               <p className="text-base md:text-lg text-[#1A2B4A]/65 leading-relaxed max-w-md">
-                {t.hero.tagline}
+                {t.hero.subtitle}
               </p>
             </FadeIn>
 
