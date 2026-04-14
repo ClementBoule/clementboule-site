@@ -1,117 +1,241 @@
 'use client'
+import { useState, useRef, useEffect } from 'react'
 import { useLang } from './LanguageContext'
-import ScrollReveal from './ScrollReveal'
 
-/* ── Photo backgrounds per card ── */
-const photos = [
-  'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=85',
-  'https://images.unsplash.com/photo-1560439513-74b037a25d84?auto=format&fit=crop&w=800&q=85',
-  'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=85',
-  'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=85',
-  'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=800&q=85',
-  'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=85',
-]
+const STYLES = `
+@keyframes fadeUpIn {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes tagPop {
+  0%   { transform: scale(0.8); opacity: 0; }
+  60%  { transform: scale(1.08); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.formation-card-visible {
+  animation: fadeUpIn 0.7s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+`
 
-/* Dark tinted overlays */
-const overlays = [
-  'rgba(29,60,120,0.62)',
-  'rgba(85,45,125,0.62)',
-  'rgba(18,85,70,0.62)',
-  'rgba(95,48,18,0.62)',
-  'rgba(20,58,98,0.62)',
-  'rgba(130,25,45,0.68)',
-]
-
-const tags = ['RH', 'Posture', 'Prévention', 'Stratégie', 'Humain', "Spine'Up"]
-
-interface FormationItem {
+type Formation = {
+  tag: string
+  tagColor: string
+  tagBg: string
   title: string
-  description: string
+  titleEn: string
+  desc: string
+  descEn: string
+  img: string
+  accent: string
 }
 
-function FormationCard({ item, index }: { item: FormationItem; index: number }) {
-  const overlay = overlays[index] ?? 'rgba(20,40,80,0.65)'
-  const photo = photos[index] ?? photos[0]
-  const tag = tags[index] ?? ''
+const FORMATIONS: Formation[] = [
+  {
+    tag: 'RH',
+    tagColor: '#1D4ED8',
+    tagBg: '#DBEAFE',
+    title: 'RH & Marque Employeur',
+    titleEn: 'HR & Employer Branding',
+    desc: "Aligner culture interne et image externe pour attirer et fidéliser les talents. Vos collaborateurs deviennent vos premiers ambassadeurs.",
+    descEn: "Align internal culture and external image to attract and retain talent. Your employees become your best ambassadors.",
+    img: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&q=80',
+    accent: '#3B82F6',
+  },
+  {
+    tag: 'POSTURE',
+    tagColor: '#7C3AED',
+    tagBg: '#EDE9FE',
+    title: 'Posture Professionnelle',
+    titleEn: 'Professional Presence',
+    desc: "Gestes, regard, prise de parole. Les clés d'un impact immédiat en réunion, en entretien ou face à un client exigeant.",
+    descEn: "Body language, eye contact, public speaking. Keys to immediate impact in meetings, interviews, and client interactions.",
+    img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80',
+    accent: '#8B5CF6',
+  },
+  {
+    tag: 'RPS',
+    tagColor: '#059669',
+    tagBg: '#D1FAE5',
+    title: 'Prévention des RPS',
+    titleEn: 'Psychosocial Risk Prevention',
+    desc: "Identifier les signaux faibles, désamorcer les tensions et créer un environnement de travail sain et durable.",
+    descEn: "Identify early warning signs, defuse tensions, and build a healthy, sustainable work environment.",
+    img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80',
+    accent: '#10B981',
+  },
+  {
+    tag: 'STRATÉGIE',
+    tagColor: '#B45309',
+    tagBg: '#FEF3C7',
+    title: 'Stratégie & Leadership',
+    titleEn: 'Strategy & Leadership',
+    desc: "Du diagnostic organisationnel au plan d'action concret. Accompagner les dirigeants dans leurs transformations.",
+    descEn: "From organizational diagnosis to concrete action plan. Supporting leaders through transformations.",
+    img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80',
+    accent: '#F59E0B',
+  },
+  {
+    tag: 'SOFT SKILLS',
+    tagColor: '#DC2626',
+    tagBg: '#FEE2E2',
+    title: 'Soft Skills & Impact',
+    titleEn: 'Soft Skills & Impact',
+    desc: "Intelligence émotionnelle, communication assertive, gestion du stress. Les compétences qui font la différence au quotidien.",
+    descEn: "Emotional intelligence, assertive communication, stress management. Skills that make a real difference.",
+    img: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80',
+    accent: '#EF4444',
+  },
+]
+
+function FormationCard({ f, index, lang }: { f: Formation; index: number; lang: string }) {
+  const [hovered, setHovered] = useState(false)
+  const [visible, setVisible] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setTimeout(() => setVisible(true), index * 100) } },
+      { threshold: 0.1 }
+    )
+    if (ref.current) obs.observe(ref.current)
+    return () => obs.disconnect()
+  }, [index])
+
+  const title = lang === 'en' ? f.titleEn : f.title
+  const desc  = lang === 'en' ? f.descEn  : f.desc
 
   return (
     <div
-      className="group relative overflow-hidden cursor-default rounded-3xl shadow-xl h-72 hover:-translate-y-1.5 transition-all duration-300"
+      ref={ref}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="group relative rounded-2xl overflow-hidden cursor-pointer"
       style={{
-        backgroundImage: `linear-gradient(160deg, ${overlay}, rgba(0,0,0,0.45)), url('${photo}')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateY(0)' : 'translateY(32px)',
+        transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 0.08}s, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 0.08}s`,
+        boxShadow: hovered
+          ? `0 20px 60px -10px ${f.accent}35, 0 8px 24px -4px #1A2B4A18`
+          : '0 4px 24px -4px #1A2B4A12',
+        border: `1px solid ${hovered ? f.accent + '40' : '#E5EAF3'}`,
       }}
     >
-      {/* Tag */}
-      <div className="absolute top-5 left-5 z-10">
-        <span className="text-[10px] font-bold uppercase tracking-widest text-white/80 border border-white/20 rounded-full px-3 py-1 bg-white/10 backdrop-blur-sm">
-          {tag}
-        </span>
-      </div>
+      {/* Background photo */}
+      <div
+        className="absolute inset-0 bg-cover bg-center transition-transform duration-700"
+        style={{
+          backgroundImage: `url(${f.img})`,
+          transform: hovered ? 'scale(1.07)' : 'scale(1)',
+        }}
+      />
+      {/* Dark overlay */}
+      <div
+        className="absolute inset-0 transition-all duration-500"
+        style={{
+          background: hovered
+            ? `linear-gradient(160deg, ${f.accent}22 0%, rgba(15,23,42,0.82) 50%)`
+            : 'linear-gradient(160deg, rgba(15,23,42,0.55) 0%, rgba(15,23,42,0.80) 100%)',
+        }}
+      />
 
-      {/* Default state: title at bottom */}
-      <div className="absolute inset-0 flex flex-col justify-end p-6 transition-opacity duration-300 group-hover:opacity-0">
-        <h3 className="text-white font-bold text-lg leading-snug drop-shadow-lg">
-          {item.title}
-        </h3>
-        <div className="mt-2 flex items-center gap-1.5 text-white/45 text-xs font-medium">
-          <span>En savoir plus</span>
-          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
+      {/* Accent glow on hover */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-1 transition-all duration-500"
+        style={{
+          background: `linear-gradient(90deg, transparent, ${f.accent}, transparent)`,
+          opacity: hovered ? 1 : 0,
+        }}
+      />
+
+      {/* Content */}
+      <div className="relative p-6 flex flex-col justify-between min-h-[300px] md:min-h-[340px]">
+        {/* Tag */}
+        <div>
+          <span
+            className="inline-block text-[11px] font-bold tracking-widest uppercase px-3 py-1 rounded-full transition-all duration-300"
+            style={{
+              background: hovered ? f.accent : 'rgba(255,255,255,0.15)',
+              color: hovered ? '#fff' : 'rgba(255,255,255,0.9)',
+              backdropFilter: 'blur(8px)',
+              boxShadow: hovered ? `0 0 12px ${f.accent}60` : 'none',
+            }}
+          >
+            {f.tag}
+          </span>
         </div>
-      </div>
 
-      {/* Hover state: description */}
-      <div className="absolute inset-0 flex flex-col justify-center px-7 py-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/15">
-        <div className="w-8 h-0.5 bg-white/60 rounded-full mb-4" />
-        <h3 className="text-white font-bold text-base mb-3 leading-snug">
-          {item.title}
-        </h3>
-        <p className="text-white/85 text-sm leading-relaxed">
-          {item.description}
-        </p>
-        <a
-          href="#contact"
-          className="mt-5 inline-flex items-center gap-1.5 text-white text-xs font-semibold border border-white/30 rounded-full px-4 py-1.5 hover:bg-white/15 transition-all w-fit"
-        >
-          Me contacter
-          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </a>
+        {/* Bottom content */}
+        <div className="space-y-3">
+          <h3
+            className="text-xl md:text-2xl font-bold text-white leading-snug"
+            style={{ textShadow: '0 2px 8px rgba(0,0,0,0.4)' }}
+          >
+            {title}
+          </h3>
+          <p
+            className="text-sm text-white/75 leading-relaxed transition-all duration-500"
+            style={{
+              maxHeight: hovered ? '120px' : '0px',
+              opacity: hovered ? 1 : 0,
+              overflow: 'hidden',
+            }}
+          >
+            {desc}
+          </p>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 text-xs font-semibold text-white/80 hover:text-white transition-colors group"
+          >
+            <span
+              className="transition-all duration-300"
+              style={{ color: hovered ? f.accent : 'rgba(255,255,255,0.7)' }}
+            >
+              Me contacter →
+            </span>
+          </a>
+        </div>
       </div>
     </div>
   )
 }
 
 export default function Formations() {
-  const { t } = useLang()
-  const items = t.formations.items
+  const { t, lang } = useLang()
 
   return (
-    <section id="formations" className="py-24 md:py-32 bg-[#EBF0F8]">
-      <div className="max-w-6xl mx-auto px-6">
-        {/* Header */}
-        <ScrollReveal className="mb-16 text-center">
-          <p className="text-xs font-semibold text-[#3D6DB8] uppercase tracking-widest mb-4">
-            {t.formations.label}
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1A2B4A] leading-tight max-w-2xl mx-auto">
-            {t.formations.title}
-          </h2>
-          <p className="mt-4 text-[#6B7E95] max-w-xl mx-auto leading-relaxed">
-            {t.formations.subtitle}
-          </p>
-        </ScrollReveal>
+    <section id="formations" className="py-24 md:py-32 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #EBF0F8 0%, #F5F7FB 100%)' }}>
+      <style>{STYLES}</style>
 
-        {/* 3 × 2 grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-          {items.map((item, i) => (
-            <ScrollReveal key={i} delay={i * 80}>
-              <FormationCard item={item} index={i} />
-            </ScrollReveal>
+      {/* Subtle background pattern */}
+      <div
+        className="absolute inset-0 opacity-[0.025] pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(circle, #1A2B4A 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+        }}
+      />
+
+      {/* Section accent line top */}
+      <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#3D6DB8]/40 to-transparent" />
+
+      <div className="relative max-w-6xl mx-auto px-6">
+        {/* Header */}
+        <div className="text-center mb-14">
+          <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#3D6DB8] mb-3">
+            {t.formations?.label || 'FORMATIONS'}
+          </p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1A2B4A] mb-4">
+            {t.formations?.title || 'Des programmes adaptés à vos équipes'}
+          </h2>
+          <p className="text-[#1A2B4A]/55 max-w-lg mx-auto text-base">
+            {t.formations?.subtitle || 'Opérationnels, bilingues et adaptés à votre contexte. Chaque module est personnalisable.'}
+          </p>
+        </div>
+
+        {/* Cards grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {FORMATIONS.map((f, i) => (
+            <FormationCard key={f.tag} f={f} index={i} lang={lang || 'fr'} />
           ))}
         </div>
       </div>
