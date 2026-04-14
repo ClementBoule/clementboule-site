@@ -1,81 +1,102 @@
 'use client'
-
-import { useState } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { useLang } from './LanguageContext'
-import ScrollReveal from './ScrollReveal'
 
-const clients: { name: string; logo: string | null; color: string; scale?: number }[] = [
-  { name: 'EMA',        logo: '/logos/client-ema.png',        color: '#000000', scale: 1.5 },
-  { name: 'Albert',     logo: '/logos/client-albert.png',     color: '#000000' },
-  { name: 'ISCOM',      logo: '/logos/client-iscom.png',      color: '#000000' },
-  { name: 'EDA RH',     logo: '/logos/client-eda-rh.png',     color: '#000000' },
-  { name: 'IHEDREA',    logo: '/logos/client-ihedrea.png',    color: '#000000' },
-  { name: 'Apprentis',  logo: '/logos/client-apprentis.jpg',  color: '#000000' },
-  { name: 'Sauvegarde', logo: '/logos/client-sauvegarde.png', color: '#000000' },
-  { name: 'Daan',       logo: '/logos/client-daan.png',       color: '#000000' },
-]
-
-function ClientLogo({ name, logo, color, scale = 1 }: { name: string; logo: string | null; color: string; scale?: number }) {
-  const [hovered, setHovered] = useState(false)
-  return (
-    <div
-      className="flex items-center justify-center h-36 px-6 rounded-2xl bg-white border-2 shadow-md transition-all duration-300 group relative overflow-hidden cursor-pointer"
-      style={{
-        borderColor: hovered ? color : 'rgba(26,43,74,0.08)',
-        boxShadow: hovered ? `0 12px 32px ${color}25, 0 0 0 1px ${color}15` : '0 4px 6px -1px rgba(0,0,0,0.1)',
-        transform: hovered ? 'translateY(-4px) scale(1.02)' : 'none',
-        backgroundColor: hovered ? `${color}06` : '#ffffff',
-      }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-transparent pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/20 to-white/50 pointer-events-none rounded-2xl" />
-      {hovered && (
-        <div
-          className="absolute inset-0 rounded-2xl pointer-events-none transition-opacity duration-300"
-          style={{ background: `radial-gradient(ellipse at center, ${color}12 0%, transparent 70%)` }}
-        />
-      )}
-      {logo ? (
-        <img
-          src={logo}
-          alt={name}
-          className="max-h-24 max-w-[220px] object-contain relative z-10 drop-shadow-sm transition-transform duration-300"
-          style={{ transform: `scale(${hovered ? scale * 1.08 : scale})` }}
-        />
-      ) : (
-        <span
-          className="text-sm font-bold transition-colors tracking-wide relative z-10 text-center leading-tight"
-          style={{ color: hovered ? color : 'rgba(74,91,112,0.7)', fontSize: '0.85rem' }}
-        >
-          {name}
-        </span>
-      )}
-    </div>
-  )
+const STYLES = `
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
+@keyframes fadeUpIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.marquee-track {
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+`
+
+const CLIENTS = [
+  { name: 'EMA', logo: '/logos/ema.png' },
+  { name: 'Albert School', logo: '/logos/albert.png' },
+  { name: 'ISCOM', logo: '/logos/iscom.png' },
+  { name: 'EDA BH', logo: '/logos/eda-bh.png' },
+  { name: 'IHEDREA', logo: '/logos/ihedrea.png' },
+  { name: "Apprentis d'Auteuil", logo: '/logos/apprentis.jpg' },
+  { name: 'Sauvegarde', logo: '/logos/sauvegarde.png' },
+  { name: 'Daan', logo: '/logos/daan.png' },
+]
 
 export default function TopClients() {
   const { t } = useLang()
+  const [visible, setVisible] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true) },
+      { threshold: 0.2 }
+    )
+    if (ref.current) obs.observe(ref.current)
+    return () => obs.disconnect()
+  }, [])
+
+  // Duplicate for seamless loop
+  const track = [...CLIENTS, ...CLIENTS]
+
   return (
-    <section className="py-20 bg-[#F5F7FB]">
-      <div className="max-w-6xl mx-auto px-6">
-        <ScrollReveal className="text-center mb-12">
-          <p className="text-xs font-semibold text-[#3D6DB8] uppercase tracking-widest mb-3">
-            {t.topClients.label}
-          </p>
-          <p className="text-[#6B7E95] text-base max-w-md mx-auto leading-relaxed">
-            {t.topClients.subtitle}
-          </p>
-        </ScrollReveal>
-        <ScrollReveal delay={120}>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
-            {clients.map((client) => (
-              <ClientLogo key={client.name} name={client.name} logo={client.logo} color={client.color} scale={client.scale ?? 1} />
-            ))}
-          </div>
-        </ScrollReveal>
+    <section ref={ref} className="py-20 relative overflow-hidden" style={{ background: '#F0F4FC' }}>
+      <style>{STYLES}</style>
+
+      {/* Top / bottom subtle borders */}
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#3D6DB8]/20 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#3D6DB8]/20 to-transparent" />
+
+      <div
+        className="max-w-6xl mx-auto px-6 text-center mb-10"
+        style={{
+          opacity: visible ? 1 : 0,
+          transform: visible ? 'none' : 'translateY(20px)',
+          transition: 'opacity 0.7s ease, transform 0.7s ease',
+        }}
+      >
+        <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#3D6DB8] mb-2">
+          {t.clients?.label || 'ILS ME FONT CONFIANCE'}
+        </p>
+        <p className="text-[#1A2B4A]/50 text-sm">
+          {t.clients?.subtitle || "Entreprises et institutions que j'ai eu le privilège d'accompagner."}
+        </p>
+      </div>
+
+      {/* Marquee */}
+      <div className="relative overflow-hidden">
+        {/* Fade edges */}
+        <div className="absolute left-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
+          style={{ background: 'linear-gradient(to right, #F0F4FC, transparent)' }} />
+        <div className="absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
+          style={{ background: 'linear-gradient(to left, #F0F4FC, transparent)' }} />
+
+        <div className="marquee-track flex items-center gap-10 w-max py-2">
+          {track.map((client, i) => (
+            <div
+              key={i}
+              className="flex items-center justify-center h-14 px-6 bg-white rounded-xl border border-[#E5EAF3] hover:border-[#3D6DB8]/30 hover:shadow-md hover:shadow-[#3D6DB8]/10 transition-all duration-300 hover:-translate-y-0.5 group min-w-[120px]"
+              style={{
+                boxShadow: '0 2px 8px rgba(26,43,74,0.06)',
+              }}
+            >
+              <img
+                src={client.logo}
+                alt={client.name}
+                className="max-h-8 max-w-[90px] object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-300 grayscale group-hover:grayscale-0"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )
