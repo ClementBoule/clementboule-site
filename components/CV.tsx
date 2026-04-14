@@ -5,15 +5,15 @@ import { useLang } from './LanguageContext'
 const STYLES = `
 @keyframes fadeUpIn {
   from { opacity: 0; transform: translateY(28px); }
-  to   { opacity: 1; transform: translateY(0); }
+  to { opacity: 1; transform: translateY(0); }
 }
 @keyframes lineGrow {
   from { height: 0; }
-  to   { height: 100%; }
+  to { height: 100%; }
 }
 @keyframes dotPop {
-  0%   { transform: scale(0); opacity: 0; }
-  60%  { transform: scale(1.2); }
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.2); }
   100% { transform: scale(1); opacity: 1; }
 }
 `
@@ -32,48 +32,36 @@ function useReveal(delay = 0) {
   return { ref, visible }
 }
 
-/* ── Data ────────────────────────────────────────────────────────────────── */
+/* ── Data ──────────────────────────────────────────────────────────────────────────── */
 const EXPERIENCES = [
   {
-    period: '2022 – présent',
-    periodEn: '2022 – present',
-    role: 'Formateur Indépendant',
-    roleEn: 'Independent Trainer',
+    period: '2022 – présent', periodEn: '2022 – present',
+    role: 'Formateur Indépendant', roleEn: 'Independent Trainer',
     company: 'Freelance',
     desc: 'Conception et animation de formations sur-mesure en leadership, RH et soft skills pour entreprises et collectivités.',
     descEn: 'Design and delivery of tailored training in leadership, HR, and soft skills for businesses and public organizations.',
-    logo: '/logos/exp-photo.jpg',
-    logoFit: 'cover' as const,
-    accent: '#3D6DB8',
-    bg: 'rgba(61,109,184,0.08)',
+    logo: '/logos/exp-photo.jpg', logoFit: 'cover' as const,
+    accent: '#3D6DB8', bg: 'rgba(61,109,184,0.08)',
     tags: ['Leadership', 'RH', 'Soft Skills'],
   },
   {
-    period: '2023 – présent',
-    periodEn: '2023 – present',
-    role: 'Co-Fondateur',
-    roleEn: 'Co-Founder',
+    period: '2023 – présent', periodEn: '2023 – present',
+    role: 'Co-Fondateur', roleEn: 'Co-Founder',
     company: 'Mantractif',
-    desc: "Co-création d'une société de coaching et formation basée en Île-de-France, centrée sur la transformation professionnelle.",
+    desc: "Co-création d’une société de coaching et formation basée en Île-de-France, centrée sur la transformation professionnelle.",
     descEn: 'Co-creation of a coaching and training company in Île-de-France focused on professional transformation.',
-    logo: '/logos/exp-mantractif.png',
-    logoFit: 'contain' as const,
-    accent: '#2D9B7B',
-    bg: 'rgba(45,155,123,0.08)',
+    logo: '/logos/exp-mantractif.png', logoFit: 'contain' as const,
+    accent: '#2D9B7B', bg: 'rgba(45,155,123,0.08)',
     tags: ['Coaching', 'Entrepreneuriat', 'Formation'],
   },
   {
-    period: '2018 – 2021',
-    periodEn: '2018 – 2021',
-    role: 'Coach Sportif & Performance',
-    roleEn: 'Sports & Performance Coach',
+    period: '2018 – 2021', periodEn: '2018 – 2021',
+    role: 'Coach Sportif & Performance', roleEn: 'Sports & Performance Coach',
     company: 'Indépendant — Innsbruck',
     desc: 'Coaching individuel et collectif alliant méthodes de performance et techniques de développement mental.',
     descEn: 'Individual and group coaching combining performance methods and mental development techniques.',
-    logo: '/logos/exp-crossfit.png',
-    logoFit: 'contain' as const,
-    accent: '#E8836A',
-    bg: 'rgba(232,131,106,0.08)',
+    logo: '/logos/exp-crossfit.png', logoFit: 'contain' as const,
+    accent: '#E8836A', bg: 'rgba(232,131,106,0.08)',
     tags: ['Performance', 'Mental', 'Coaching'],
   },
 ]
@@ -85,6 +73,7 @@ const EDUCATION = [
     titleEn: 'Change Management Certification',
     school: 'ESSEC',
     accent: '#1A1A2E',
+    logo: '/logos/edu-essec.jpg',
   },
   {
     year: '2024',
@@ -92,6 +81,7 @@ const EDUCATION = [
     titleEn: 'Agile Method for Change Management',
     school: 'Excellence Formation',
     accent: '#2E7DBF',
+    logo: '/logos/edu-excellens.png',
   },
   {
     year: '2021',
@@ -99,6 +89,7 @@ const EDUCATION = [
     titleEn: 'BPJEPS AF',
     school: 'VAE',
     accent: '#7C9CBF',
+    logo: '/logos/edu-normandie.png',
   },
   {
     year: '2018',
@@ -106,6 +97,7 @@ const EDUCATION = [
     titleEn: 'Master 2 Intercultural Behavior Management',
     school: 'MCI Innsbruck',
     accent: '#003F6C',
+    logo: '/logos/edu-mci.png',
   },
   {
     year: '2017',
@@ -113,10 +105,11 @@ const EDUCATION = [
     titleEn: 'Master 1 PGE International Business',
     school: 'Rennes School of Business',
     accent: '#1E3A5F',
+    logo: '/logos/edu-rennes-sb.jpg',
   },
 ]
 
-/* ── Experience card ─────────────────────────────────────────────────────── */
+/* ── Experience card ───────────────────────────────────────────────────────────────── */
 function ExpCard({ exp, index, lang }: { exp: typeof EXPERIENCES[0]; index: number; lang: string }) {
   const [hovered, setHovered] = useState(false)
   const { ref, visible } = useReveal(index * 120)
@@ -154,7 +147,6 @@ function ExpCard({ exp, index, lang }: { exp: typeof EXPERIENCES[0]; index: numb
             style={{ objectFit: exp.logoFit }}
           />
         </div>
-
         {/* Content */}
         <div className="flex-1 min-w-0">
           <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
@@ -199,7 +191,7 @@ function ExpCard({ exp, index, lang }: { exp: typeof EXPERIENCES[0]; index: numb
   )
 }
 
-/* ── Education timeline item ─────────────────────────────────────────────── */
+/* ── Education timeline item ──────────────────────────────────────────────────────────── */
 function EduItem({ edu, index, lang }: { edu: typeof EDUCATION[0]; index: number; lang: string }) {
   const [hovered, setHovered] = useState(false)
   const { ref, visible } = useReveal(index * 80)
@@ -241,8 +233,26 @@ function EduItem({ edu, index, lang }: { edu: typeof EDUCATION[0]; index: number
           border: `1px solid ${hovered ? edu.accent + '25' : 'transparent'}`,
         }}
       >
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
+        <div className="flex items-center gap-4">
+          {/* School logo */}
+          <div
+            className="shrink-0 rounded-xl overflow-hidden bg-white transition-all duration-300"
+            style={{
+              width: '56px',
+              height: '56px',
+              border: `2px solid ${hovered ? edu.accent + '50' : '#E5EAF3'}`,
+              boxShadow: hovered ? `0 4px 12px ${edu.accent}25` : '0 2px 6px rgba(0,0,0,0.05)',
+              transform: hovered ? 'scale(1.08)' : 'scale(1)',
+            }}
+          >
+            <img
+              src={edu.logo}
+              alt={edu.school}
+              className="w-full h-full object-contain p-1"
+            />
+          </div>
+          {/* Text */}
+          <div className="flex-1 min-w-0">
             <p className="text-sm font-semibold text-[#1A2B4A] leading-snug">
               {lang === 'en' ? edu.titleEn : edu.title}
             </p>
@@ -262,7 +272,7 @@ function EduItem({ edu, index, lang }: { edu: typeof EDUCATION[0]; index: number
   )
 }
 
-/* ── Main CV component ───────────────────────────────────────────────────── */
+/* ── Main CV component ──────────────────────────────────────────────────────────────────────── */
 export default function CV() {
   const { t, lang } = useLang()
   const { ref: headerRef, visible: headerVisible } = useReveal(0)
@@ -274,7 +284,6 @@ export default function CV() {
       style={{ background: 'linear-gradient(180deg, #DDEEFF 0%, #EEF5FF 40%, #F8FBFF 100%)' }}
     >
       <style>{STYLES}</style>
-
       {/* Subtle pattern */}
       <div
         className="absolute inset-0 opacity-[0.02] pointer-events-none"
@@ -305,7 +314,7 @@ export default function CV() {
           </h2>
         </div>
 
-        <div className="grid lg:grid-cols-[1fr,380px] gap-12 lg:gap-16">
+        <div className="grid lg:grid-cols-[1fr,400px] gap-12 lg:gap-16">
           {/* ── Left: Experiences ── */}
           <div>
             <p className="text-xs font-bold tracking-[0.15em] uppercase text-[#3D6DB8]/70 mb-6 flex items-center gap-2">
