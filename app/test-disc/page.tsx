@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 type ProfileKey = 'D' | 'I' | 'S' | 'C'
@@ -205,13 +205,13 @@ const profiles: Record<ProfileKey, {
         { text: "des systèmes pour assurer le suivi de vos engagements", tag: 'C' },
         { text: " et " },
         { text: "la gestion de vos priorités avec discipline", tag: 'D' },
-        { text: " vous permettra de transformer votre potentiel d'influenceur naturel en véritable force de résultats durables. " },
+        { text: " vous permettra de transformer votre potentiel d'influenceur naturel en vp�ritable force de résultats durables. " },
         { text: "Un ancrage dans la stabilité", tag: 'S' },
         { text: " renforcera encore davantage votre crédibilité." },
       ],
     ],
     strengths: ['Communication naturelle', 'Créativité', 'Enthousiasme fédérateur', 'Réseau et relations', 'Persuasion'],
-    growth: ['Organisation personnelle', 'Suivi des détails', 'Respect des dìlais', 'Ancrage dans les données'],
+    growth: ['Organisation personnelle', 'Suivi des détails', 'Respect des délais', 'Ancrage dans les données'],
     famous: ['Richard Branson', 'Oprah Winfrey', 'Bill Clinton', 'Tony Robbins'],
   },
   S: {
@@ -344,6 +344,9 @@ export default function DiscTest() {
   const [selected, setSelected] = useState<ProfileKey | null>(null)
   const [hovered, setHovered] = useState<ProfileKey | null>(null)
   const [openAnswer, setOpenAnswer] = useState('')
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => { const t = setTimeout(() => setMounted(true), 60); return () => clearTimeout(t) }, [])
 
   const handleAnswer = (profile: ProfileKey) => {
     if (selected) return
@@ -376,10 +379,35 @@ export default function DiscTest() {
     setOpenAnswer('')
   }
 
+  const ANIM_CSS = `
+    @keyframes popIn {
+      0%   { opacity: 0; transform: scale(0.3) translateY(28px); }
+      65%  { transform: scale(1.12) translateY(-5px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(14px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes barGrow {
+      from { width: 0; }
+    }
+    @keyframes heroIn {
+      0%   { opacity: 0; transform: scale(0.7) translateY(12px); }
+      70%  { transform: scale(1.06) translateY(-3px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+  `
+
   // ─── INTRO ───────────────────────────────────────────────────────────────
   if (step === 'intro') {
     return (
       <div className="min-h-screen bg-white flex flex-col">
+        <style>{ANIM_CSS}</style>
         <nav className="px-6 py-5 flex items-center justify-between border-b border-gray-100">
           <Link href="/" className="text-gray-400 hover:text-gray-700 text-sm flex items-center gap-2 transition-colors">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -393,22 +421,23 @@ export default function DiscTest() {
           <div className="max-w-2xl w-full text-center">
             <div className="flex items-end justify-center gap-3 mb-12">
               {(['D', 'I', 'S', 'C'] as ProfileKey[]).map((l, i) => (
-                <div
-                  key={l}
-                  className="rounded-2xl flex items-center justify-center font-black text-3xl text-white shadow-xl flex-shrink-0"
-                  style={{
-                    width: [80, 96, 88, 80][i],
-                    height: [80, 96, 88, 80][i],
-                    backgroundColor: DISC_COLORS[l].main,
-                    boxShadow: `0 12px 32px ${DISC_COLORS[l].main}45`,
-                    transform: `rotate(${['-3deg', '2deg', '-2deg', '3deg'][i]})`,
-                  }}
-                >
-                  {l}
+                <div key={l} style={{ animation: `popIn 0.55s cubic-bezier(0.34,1.56,0.64,1) ${i * 90}ms both` }}>
+                  <div
+                    className="rounded-2xl flex items-center justify-center font-black text-3xl text-white shadow-xl flex-shrink-0"
+                    style={{
+                      width: [80, 96, 88, 80][i],
+                      height: [80, 96, 88, 80][i],
+                      backgroundColor: DISC_COLORS[l].main,
+                      boxShadow: `0 12px 32px ${DISC_COLORS[l].main}45`,
+                      transform: `rotate(${['-3deg', '2deg', '-2deg', '3deg'][i]})`,
+                    }}
+                  >
+                    {l}
+                  </div>
                 </div>
               ))}
             </div>
-            <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 leading-tight" style={{ animation: 'fadeUp 0.5s ease 380ms both' }}>
               Quel est votre profil{' '}
               <span
                 className="text-transparent bg-clip-text"
@@ -418,10 +447,10 @@ export default function DiscTest() {
               </span>
               &nbsp;?
             </h1>
-            <p className="text-lg text-gray-500 leading-relaxed mb-10 max-w-xl mx-auto">
+            <p className="text-lg text-gray-500 leading-relaxed mb-10 max-w-xl mx-auto" style={{ animation: 'fadeUp 0.5s ease 480ms both' }}>
               20 questions pour découvrir votre style comportemental dominant et mieux comprendre comment vous interagissez avec les autres au travail.
             </p>
-            <div className="flex flex-wrap justify-center gap-3 mb-10">
+            <div className="flex flex-wrap justify-center gap-3 mb-10" style={{ animation: 'fadeUp 0.5s ease 560ms both' }}>
               {[
                 { icon: '⏱', text: '8 minutes environ' },
                 { icon: '🔒', text: 'Aucune donnée collectée' },
@@ -439,6 +468,7 @@ export default function DiscTest() {
               style={{
                 background: 'linear-gradient(135deg, #DC2626 0%, #D97706 100%)',
                 boxShadow: '0 8px 32px rgba(220,38,38,0.35)',
+                animation: 'fadeUp 0.5s ease 640ms both',
               }}
             >
               Commencer le test
@@ -461,6 +491,7 @@ export default function DiscTest() {
     const progressPct = ((current + 1) / questions.length) * 100
     return (
       <div className="min-h-screen bg-gray-50 flex flex-col">
+        <style>{ANIM_CSS}</style>
         <nav className="bg-white border-b border-gray-100 px-6 py-4 flex items-center justify-between">
           <Link href="/" className="text-gray-400 hover:text-gray-700 text-sm flex items-center gap-2 transition-colors">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -503,7 +534,7 @@ export default function DiscTest() {
         </div>
         <div className="flex-1 flex items-start justify-center px-6 py-8 md:py-12">
           <div className="max-w-2xl w-full space-y-5">
-            <div className="bg-white rounded-2xl p-7 md:p-9 shadow-sm border border-gray-100">
+            <div key={current} className="bg-white rounded-2xl p-7 md:p-9 shadow-sm border border-gray-100" style={{ animation: 'slideIn 0.28s ease both' }}>
               <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
                 Question {current + 1} sur {questions.length}
               </p>
@@ -531,6 +562,7 @@ export default function DiscTest() {
                       borderColor: active ? color.main : '#E5E7EB',
                       boxShadow: active ? `0 4px 24px ${color.main}22` : 'none',
                       transform: isSelected ? 'scale(1.01)' : 'scale(1)',
+                      animation: `fadeUp 0.22s ease ${idx * 60}ms both`,
                     }}
                   >
                     <div
@@ -567,6 +599,7 @@ export default function DiscTest() {
     const color = DISC_COLORS[dominant]
     return (
       <div className="min-h-screen bg-gray-50 flex flex-col">
+        <style>{ANIM_CSS}</style>
         <nav className="bg-white border-b border-gray-100 px-6 py-4 flex items-center justify-between">
           <Link href="/" className="text-gray-400 hover:text-gray-700 text-sm flex items-center gap-2 transition-colors">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -643,6 +676,7 @@ export default function DiscTest() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <style>{ANIM_CSS}</style>
       <div
         className="relative overflow-hidden"
         style={{ background: `linear-gradient(135deg, ${color.main} 0%, ${color.dark} 100%)` }}
@@ -675,16 +709,17 @@ export default function DiscTest() {
               backgroundColor: 'rgba(255,255,255,0.18)',
               backdropFilter: 'blur(10px)',
               border: '2px solid rgba(255,255,255,0.3)',
+              animation: 'heroIn 0.65s cubic-bezier(0.34,1.56,0.64,1) 80ms both',
             }}
           >
             {profile.letter}
           </div>
-          <p className="text-white/60 text-xs uppercase tracking-widest font-bold mb-2">{profile.tagline}</p>
-          <h1 className="text-4xl md:text-5xl font-black text-white mb-4">
+          <p className="text-white/60 text-xs uppercase tracking-widest font-bold mb-2" style={{ animation: 'fadeUp 0.45s ease 300ms both' }}>{profile.tagline}</p>
+          <h1 className="text-4xl md:text-5xl font-black text-white mb-4" style={{ animation: 'fadeUp 0.45s ease 380ms both' }}>
             Profil {profile.name}
           </h1>
           {blendSentence && (
-            <p className="text-white/80 text-sm max-w-md mx-auto leading-relaxed mt-2 mb-2 italic">
+            <p className="text-white/80 text-sm max-w-md mx-auto leading-relaxed mt-2 mb-2 italic" style={{ animation: 'fadeUp 0.45s ease 460ms both' }}>
               {blendSentence}
             </p>
           )}
@@ -693,7 +728,7 @@ export default function DiscTest() {
 
       <div className="max-w-3xl mx-auto px-6 -mt-6 pb-16 space-y-6">
         {/* Score distribution */}
-        <div className="bg-white rounded-2xl p-7 shadow-xl border border-gray-100">
+        <div className="bg-white rounded-2xl p-7 shadow-xl border border-gray-100" style={{ animation: 'fadeUp 0.5s ease 200ms both' }}>
           <h2 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-6">Répartition de vos scores</h2>
           <div className="space-y-5">
             {(Object.keys(profiles) as ProfileKey[]).sort((a, b) => scores[b] - scores[a]).map(k => {
@@ -718,7 +753,7 @@ export default function DiscTest() {
                     <span className="text-xl font-black tabular-nums" style={{ color: c.main }}>{pct}%</span>
                   </div>
                   <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
-                    <div className="h-full rounded-full transition-all duration-700" style={{ width: `${pct}%`, backgroundColor: c.main }} />
+                    <div className="h-full rounded-full transition-all duration-700" style={{ width: mounted ? `${pct}%` : '0%', backgroundColor: c.main }} />
                   </div>
                 </div>
               )
@@ -742,7 +777,7 @@ export default function DiscTest() {
 
         {/* Contexte ouvert */}
         {openAnswer.trim() && (
-          <div className="bg-white rounded-2xl p-7 shadow-sm border border-gray-100">
+          <div className="bg-white rounded-2xl p-7 shadow-sm border border-gray-100" style={{ animation: 'fadeUp 0.5s ease 320ms both' }}>
             <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
               <span>💬</span> Votre contexte
             </p>
@@ -755,7 +790,7 @@ export default function DiscTest() {
         )}
 
         {/* Description détaillée avec surlignage */}
-        <div className="bg-white rounded-2xl p-7 shadow-sm border border-gray-100">
+        <div className="bg-white rounded-2xl p-7 shadow-sm border border-gray-100" style={{ animation: 'fadeUp 0.5s ease 380ms both' }}>
           <h2 className="text-sm font-bold text-gray-900 flex items-center gap-2 mb-5">
             <span
               className="w-6 h-6 rounded-lg flex items-center justify-center text-xs font-black text-white"
@@ -789,7 +824,7 @@ export default function DiscTest() {
         </div>
 
         {/* Forces & Développement */}
-        <div className="grid sm:grid-cols-2 gap-5">
+        <div className="grid sm:grid-cols-2 gap-5" style={{ animation: 'fadeUp 0.5s ease 460ms both' }}>
           <div className="bg-white rounded-2xl p-7 shadow-sm border border-gray-100">
             <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-5 flex items-center gap-2">
               <span className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] text-white font-bold" style={{ backgroundColor: color.main }}>✓</span>
@@ -811,7 +846,7 @@ export default function DiscTest() {
             </h3>
             <ul className="space-y-3">
               {profile.growth.map(g => (
-                <li key={g} className="flex items-start gap-3 text-sm text-gray-700">
+                <li key={g} classNamE="flex items-start gap-3 text-sm text-gray-700">
                   <span className="w-2 h-2 rounded-full mt-1.5 bg-gray-300 flex-shrink-0" />
                   {g}
                 </li>
@@ -821,7 +856,7 @@ export default function DiscTest() {
         </div>
 
         {/* Profils célèbres */}
-        <div className="bg-white rounded-2xl p-7 shadow-sm border border-gray-100">
+        <div className="bg-white rounded-2xl p-7 shadow-sm border border-gray-100" style={{ animation: 'fadeUp 0.5s ease 540ms both' }}>
           <p className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-4">Profils similaires célèbres</p>
           <div className="flex flex-wrap gap-2">
             {profile.famous.map(f => (
@@ -839,7 +874,7 @@ export default function DiscTest() {
         {/* CTA */}
         <div
           className="rounded-2xl p-8 text-center space-y-4"
-          style={{ background: `linear-gradient(135deg, ${color.main}12, ${color.dark}08)`, border: `1px solid ${color.main}22` }}
+          style={{ background: `linear-gradient(135deg, ${color.main}12, ${color.dark}08)`, border: `1px solid ${color.main}22`, animation: 'fadeUp 0.5s ease 620ms both' }}
         >
           <p className="text-gray-900 text-lg font-bold">Envie d'approfondir votre profil DISC ?</p>
           <p className="text-gray-500 text-sm max-w-md mx-auto leading-relaxed">
