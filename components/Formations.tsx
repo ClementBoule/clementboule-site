@@ -5,11 +5,11 @@ import { useLang } from './LanguageContext'
 const STYLES = `
 @keyframes fadeUpIn {
   from { opacity: 0; transform: translateY(32px); }
-  to   { opacity: 1; transform: translateY(0); }
+  to { opacity: 1; transform: translateY(0); }
 }
 @keyframes tagPop {
-  0%   { transform: scale(0.8); opacity: 0; }
-  60%  { transform: scale(1.08); }
+  0% { transform: scale(0.8); opacity: 0; }
+  60% { transform: scale(1.08); }
   100% { transform: scale(1); opacity: 1; }
 }
 .formation-card-visible {
@@ -38,7 +38,7 @@ const FORMATIONS: Formation[] = [
     titleEn: 'HR & Employer Branding',
     desc: "Aligner culture interne et image externe pour attirer et fidéliser les talents. Vos collaborateurs deviennent vos premiers ambassadeurs.",
     descEn: "Align internal culture and external image to attract and retain talent. Your employees become your best ambassadors.",
-    img: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&q=80',
+    img: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=85',
     accent: '#3B82F6',
   },
   {
@@ -47,9 +47,9 @@ const FORMATIONS: Formation[] = [
     tagBg: '#EDE9FE',
     title: 'Posture Professionnelle',
     titleEn: 'Professional Presence',
-    desc: "Gestes, regard, prise de parole. Les clés d'un impact immédiat en réunion, en entretien ou face à un client exigeant.",
+    desc: "Gestes, regard, prise de parole. Les clés d’un impact immédiat en réunion, en entretien ou face à un client exigeant.",
     descEn: "Body language, eye contact, public speaking. Keys to immediate impact in meetings, interviews, and client interactions.",
-    img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80',
+    img: 'https://images.unsplash.com/photo-1560439513-74b037a25d84?auto=format&fit=crop&w=800&q=85',
     accent: '#8B5CF6',
   },
   {
@@ -60,7 +60,7 @@ const FORMATIONS: Formation[] = [
     titleEn: 'Psychosocial Risk Prevention',
     desc: "Identifier les signaux faibles, désamorcer les tensions et créer un environnement de travail sain et durable.",
     descEn: "Identify early warning signs, defuse tensions, and build a healthy, sustainable work environment.",
-    img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80',
+    img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=85',
     accent: '#10B981',
   },
   {
@@ -69,9 +69,9 @@ const FORMATIONS: Formation[] = [
     tagBg: '#FEF3C7',
     title: 'Stratégie & Leadership',
     titleEn: 'Strategy & Leadership',
-    desc: "Du diagnostic organisationnel au plan d'action concret. Accompagner les dirigeants dans leurs transformations.",
+    desc: "Du diagnostic organisationnel au plan d’action concret. Accompagner les dirigeants dans leurs transformations.",
     descEn: "From organizational diagnosis to concrete action plan. Supporting leaders through transformations.",
-    img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80',
+    img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=85',
     accent: '#F59E0B',
   },
   {
@@ -82,8 +82,19 @@ const FORMATIONS: Formation[] = [
     titleEn: 'Soft Skills & Impact',
     desc: "Intelligence émotionnelle, communication assertive, gestion du stress. Les compétences qui font la différence au quotidien.",
     descEn: "Emotional intelligence, assertive communication, stress management. Skills that make a real difference.",
-    img: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80',
+    img: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=800&q=85',
     accent: '#EF4444',
+  },
+  {
+    tag: "SPINE'UP",
+    tagColor: '#6D28D9',
+    tagBg: '#EDE9FE',
+    title: "Spine'Up — Leadership Managérial",
+    titleEn: "Spine'Up — Managerial Leadership",
+    desc: "Un programme structuré pour développer la posture managériale de vos collaborateurs. Trouvez votre juste posture pour évoluer dans votre carrière avec impact et confiance.",
+    descEn: "A structured program to develop the managerial posture of your employees. Build the right stance to lead with impact and grow your career with clarity and confidence.",
+    img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=85',
+    accent: '#7C3AED',
   },
 ]
 
@@ -94,7 +105,11 @@ function FormationCard({ f, index, lang }: { f: Formation; index: number; lang: 
 
   useEffect(() => {
     const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setTimeout(() => setVisible(true), index * 100) } },
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setVisible(true), index * 100)
+        }
+      },
       { threshold: 0.1 }
     )
     if (ref.current) obs.observe(ref.current)
@@ -102,7 +117,7 @@ function FormationCard({ f, index, lang }: { f: Formation; index: number; lang: 
   }, [index])
 
   const title = lang === 'en' ? f.titleEn : f.title
-  const desc  = lang === 'en' ? f.descEn  : f.desc
+  const desc = lang === 'en' ? f.descEn : f.desc
 
   return (
     <div
@@ -137,7 +152,6 @@ function FormationCard({ f, index, lang }: { f: Formation; index: number; lang: 
             : 'linear-gradient(160deg, rgba(15,23,42,0.55) 0%, rgba(15,23,42,0.80) 100%)',
         }}
       />
-
       {/* Accent glow on hover */}
       <div
         className="absolute inset-x-0 bottom-0 h-1 transition-all duration-500"
@@ -146,7 +160,6 @@ function FormationCard({ f, index, lang }: { f: Formation; index: number; lang: 
           opacity: hovered ? 1 : 0,
         }}
       />
-
       {/* Content */}
       <div className="relative p-6 flex flex-col justify-between min-h-[300px] md:min-h-[340px]">
         {/* Tag */}
@@ -163,7 +176,6 @@ function FormationCard({ f, index, lang }: { f: Formation; index: number; lang: 
             {f.tag}
           </span>
         </div>
-
         {/* Bottom content */}
         <div className="space-y-3">
           <h3
@@ -203,9 +215,12 @@ export default function Formations() {
   const { t, lang } = useLang()
 
   return (
-    <section id="formations" className="py-24 md:py-32 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #EBF0F8 0%, #F5F7FB 100%)' }}>
+    <section
+      id="formations"
+      className="py-24 md:py-32 relative overflow-hidden"
+      style={{ background: 'linear-gradient(180deg, #EBF0F8 0%, #F5F7FB 100%)' }}
+    >
       <style>{STYLES}</style>
-
       {/* Subtle background pattern */}
       <div
         className="absolute inset-0 opacity-[0.025] pointer-events-none"
@@ -214,7 +229,6 @@ export default function Formations() {
           backgroundSize: '32px 32px',
         }}
       />
-
       {/* Section accent line top */}
       <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#3D6DB8]/40 to-transparent" />
 
@@ -232,7 +246,7 @@ export default function Formations() {
           </p>
         </div>
 
-        {/* Cards grid */}
+        {/* Cards grid — 3 columns */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {FORMATIONS.map((f, i) => (
             <FormationCard key={f.tag} f={f} index={i} lang={lang || 'fr'} />
