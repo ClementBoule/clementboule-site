@@ -65,10 +65,10 @@ export default function TopClients() {
         }}
       >
         <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#3D6DB8] mb-2">
-          {t.clients?.label || 'ILS ME FONT CONFIANCE'}
+          {t.topClients?.label || 'ILS ME FONT CONFIANCE'}
         </p>
         <p className="text-[#1A2B4A]/50 text-sm">
-          {t.clients?.subtitle || "Entreprises et institutions que j'ai eu le privilège d'accompagner."}
+          {t.topClients?.subtitle || "Entreprises et institutions que j'ai eu le privilège d'accompagner."}
         </p>
       </div>
 
