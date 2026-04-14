@@ -846,7 +846,7 @@ export default function DiscTest() {
             </h3>
             <ul className="space-y-3">
               {profile.growth.map(g => (
-                <li key={g} classNamE="flex items-start gap-3 text-sm text-gray-700">
+                <li key={g} className="flex items-start gap-3 text-sm text-gray-700">
                   <span className="w-2 h-2 rounded-full mt-1.5 bg-gray-300 flex-shrink-0" />
                   {g}
                 </li>
