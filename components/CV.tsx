@@ -323,7 +323,7 @@ export default function CV() {
           <div>
             <p className="text-xs font-bold tracking-[0.15em] uppercase text-[#3D6DB8]/70 mb-6 flex items-center gap-2">
               <span className="w-6 h-[2px] bg-gradient-to-r from-[#3D6DB8] to-transparent rounded" />
-              {t.cv?.eduLabel || 'FORMATION'}
+              {t.cv?.educationLabel || 'FORMATION'}
             </p>
             <div className="relative">
               {EDUCATION.map((edu, i) => (
