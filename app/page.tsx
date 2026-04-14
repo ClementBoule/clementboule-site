@@ -5,6 +5,7 @@ import TopClients from '@/components/TopClients'
 import CV from '@/components/CV'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
+import ChatBot from '@/components/ChatBot'
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <CV />
       <Contact />
       <Footer />
+      <ChatBot />
     </main>
   )
 }
