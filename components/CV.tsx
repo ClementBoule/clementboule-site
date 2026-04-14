@@ -135,7 +135,7 @@ function ExpCard({ exp, index, lang }: { exp: typeof EXPERIENCES[0]; index: numb
         boxShadow: hovered
           ? `0 16px 48px -8px ${exp.accent}20, 0 4px 16px -4px rgba(26,43,74,0.08)`
           : '0 2px 12px -4px rgba(26,43,74,0.06)',
-        transition2: 'all 0.35s cubic-bezier(0.16,1,0.3,1)',
+        transition: 'all 0.35s cubic-bezier(0.16,1,0.3,1)',
       }}
       className="relative rounded-2xl p-6 md:p-8 backdrop-blur-sm"
     >
