@@ -59,11 +59,11 @@ function LofiAvatar({ size = 64 }) {
   )
 }
 
-/* ── Types ─────────────────────────────────────────────────────────────────── */
+/* ── Types ───────────────────────────────────────────────────────────────── */
 
 
 /* ── Arbre de conversation ─────────────────────────────────────────────────── */
-const TREE = {
+const TREE: Record<string, any> = {
   start: {
     message: "Bonjour 👋 Je suis Clément ! Comment puis-je vous aider aujourd'hui ?",
     choices: [
@@ -285,7 +285,7 @@ const TREE = {
 }
 
 /* ── Helpers ───────────────────────────────────────────────────────────────── */
-function buildContactURL(step) {
+function buildContactURL(step: any) {
   const params = new URLSearchParams()
   if (step.contactSubject) params.set('subject', step.contactSubject)
   if (step.contactMessage) params.set('message', step.contactMessage)
@@ -296,12 +296,12 @@ function buildContactURL(step) {
 export default function ChatBot() {
   const [open, setOpen]               = useState(false)
   const [step, setStep]               = useState('start')
-  const [messages, setMessages]       = useState([])
+  const [messages, setMessages]       = useState<{from: string; text: string}[]>([])
   const [showChoices, setShowChoices] = useState(false)
   const [typing, setTyping]           = useState(false)
   const [mounted, setMounted]         = useState(false)
   const [pulse, setPulse]             = useState(true)
-  const messagesEndRef                = useRef(null)
+  const messagesEndRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     setMounted(true)
@@ -317,7 +317,7 @@ export default function ChatBot() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, typing])
 
-  function triggerStep(key) {
+  function triggerStep(key: string) {
     const s = TREE[key]
     if (!s) return
     setStep(key)
@@ -330,13 +330,13 @@ export default function ChatBot() {
     }, 900)
   }
 
-  function handleChoice(choice) {
+  function handleChoice(choice: any) {
     setMessages(prev => [...prev, { from: 'user', text: (choice.icon ? choice.icon + ' ' : '') + choice.label }])
     setShowChoices(false)
     setTimeout(() => triggerStep(choice.next), 350)
   }
 
-  function handleAction(action) {
+  function handleAction(action: string) {
     const currentStepData = TREE[step]
     if (action === 'contact') {
       setOpen(false)
@@ -435,7 +435,7 @@ export default function ChatBot() {
                   style={{
                     borderRadius: msg.from === 'bot' ? '4px 16px 16px 16px' : '16px 4px 16px 16px',
                     background: msg.from === 'bot' ? 'rgba(61,109,184,0.18)' : 'rgba(255,255,255,0.1)',
-                    bder: msg.from === 'bot' ? '1px solid rgba(61,109,184,0.25)' : '1px solid rgba(255,255,255,0.1)',
+                    border: msg.from === 'bot' ? '1px solid rgba(61,109,184,0.25)' : '1px solid rgba(255,255,255,0.1)',
                     color: 'rgba(255,255,255,0.88)',
                   }}
                 >
@@ -516,7 +516,7 @@ export default function ChatBot() {
                 </div>
               ) : (
                 <div className="space-y-1.5 pt-1">
-                  {currentStep.choices?.map((choice) => (
+                  {currentStep.choices?.map((choice: any) => (
                     <button
                       key={choice.next}
                       onClick={() => handleChoice(choice)}
@@ -544,11 +544,9 @@ export default function ChatBot() {
                       <span style={{ color: 'rgba(255,255,255,0.25)', fontSize: '1.1em' }}>›</span>
                     </button>
                   ))}
-                             </div>
-                )}
+                </div>
+              )}
             </div>
-            )}
-          </div>
           )}
         </div>
       )}
