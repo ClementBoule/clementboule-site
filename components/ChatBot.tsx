@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from 'react'
 
 /* ── Avatar — coupe courte professionnelle, dégradé côtés ──────────────── */
-function LofiAvatar({ size = 64 }: { size?: number }) {
+function LofiAvatar({ size = 64 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="40" cy="40" r="40" fill="#EEF5FF"/>
@@ -60,7 +60,7 @@ function LofiAvatar({ size = 64 }: { size?: number }) {
 }
 
 /* ── Types ─────────────────────────────────────────────────────────────────── */
-type Message = { from: 'bot' | 'user'; text: string }
+
 type Choice  = { label: string; next: string; icon?: string }
 type Step    = {
   message: string
@@ -74,7 +74,7 @@ type Step    = {
 }
 
 /* ── Arbre de conversation ─────────────────────────────────────────────────── */
-const TREE: Record<string, Step> = {
+const TREE = {
   start: {
     message: "Bonjour 👋 Je suis Clément ! Comment puis-je vous aider aujourd'hui ?",
     choices: [
@@ -296,7 +296,7 @@ const TREE: Record<string, Step> = {
 }
 
 /* ── Helpers ───────────────────────────────────────────────────────────────── */
-function buildContactURL(step: Step): string {
+function buildContactURL(step) {
   const params = new URLSearchParams()
   if (step.contactSubject) params.set('subject', step.contactSubject)
   if (step.contactMessage) params.set('message', step.contactMessage)
@@ -307,7 +307,7 @@ function buildContactURL(step: Step): string {
 export default function ChatBot() {
   const [open, setOpen]               = useState(false)
   const [step, setStep]               = useState('start')
-  const [messages, setMessages]       = useState([] as Message[])
+  const [messages, setMessages]       = useState([])
   const [showChoices, setShowChoices] = useState(false)
   const [typing, setTyping]           = useState(false)
   const [mounted, setMounted]         = useState(false)
@@ -519,8 +519,8 @@ export default function ChatBot() {
                     onClick={restart}
                     className="w-full py-2 rounded-xl text-xs transition-all"
                     style={{ color: 'rgba(255,255,255,0.4)', border: '1px solid rgba(255,255,255,0.08)' }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = 'rgba(255,255,255,0.7)'; (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.2)' }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = 'rgba(255,255,255,0.4)'; (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.08)' }}
+                    onMouseEnter={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.7)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)' }}
+                    onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.4)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)' }}
                   >
                     ↩ Recommencer depuis le début
                   </button>
@@ -538,13 +538,13 @@ export default function ChatBot() {
                         color: 'rgba(255,255,255,0.78)',
                       }}
                       onMouseEnter={e => {
-                        const b = e.currentTarget as HTMLButtonElement
+                        const b = e.currentTarget
                         b.style.background = 'rgba(61,109,184,0.18)'
                         b.style.borderColor = 'rgba(61,109,184,0.38)'
                         b.style.color = 'rgba(255,255,255,0.95)'
                       }}
                       onMouseLeave={e => {
-                        const b = e.currentTarget as HTMLButtonElement
+                        const b = e.currentTarget
                         b.style.background = 'rgba(255,255,255,0.04)'
                         b.style.borderColor = 'rgba(255,255,255,0.09)'
                         b.style.color = 'rgba(255,255,255,0.78)'
