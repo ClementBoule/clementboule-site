@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useRef, Fragment } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 /* ── Avatar — coupe courte professionnelle, dégradé côtés ──────────────── */
 function LofiAvatar({ size = 64 }: { size?: number }) {
@@ -312,7 +312,7 @@ export default function ChatBot() {
   const [typing, setTyping]           = useState(false)
   const [mounted, setMounted]         = useState(false)
   const [pulse, setPulse]             = useState(true)
-  const messagesEndRef                = useRef<HTMLDivElement>(null)
+  const messagesEndRef                = useRef(null)
 
   useEffect(() => {
     setMounted(true)
@@ -373,7 +373,7 @@ export default function ChatBot() {
   const currentStep = TREE[step]
 
   return (
-    <Fragment>
+    <div>
       {/* ── Floating button ── */}
       <div className="fixed bottom-6 right-6 z-50">
         {pulse && (
@@ -484,7 +484,7 @@ export default function ChatBot() {
                 <div className="space-y-2 pt-2">
                   {/* CTA principal — contact ou DISC */}
                   {currentStep.action === 'contact' && (
-                    <Fragment>
+                    <div>
                       <a
                         href={buildContactURL(currentStep)}
                         onClick={() => setOpen(false)}
@@ -503,7 +503,7 @@ export default function ChatBot() {
                           📋 Voir les formations
                         </a>
                       )}
-                    </Fragment>
+                    </div>
                   )}
                   {currentStep.action === 'disc' && (
                     <button
@@ -563,6 +563,6 @@ export default function ChatBot() {
           )}
         </div>
       )}
-    </Fragment>
+    </div>
   )
 }
