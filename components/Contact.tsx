@@ -18,7 +18,7 @@ const STYLES = `
 
 export default function Contact() {
   const { t } = useLang()
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
+  const [status, setStatus] = useState('idle' as 'idle' | 'sending' | 'success' | 'error')
   const [visible, setVisible] = useState(false)
   const ref = useRef<HTMLElement>(null)
   const formRef = useRef<HTMLFormElement>(null)
