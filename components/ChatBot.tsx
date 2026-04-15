@@ -61,17 +61,6 @@ function LofiAvatar({ size = 64 }) {
 
 /* ── Types ─────────────────────────────────────────────────────────────────── */
 
-type Choice  = { label: string; next: string; icon?: string }
-type Step    = {
-  message: string
-  choices?: Choice[]
-  action?: 'contact' | 'disc' | 'restart'
-  /* Données pour pré-remplissage formulaire de contact */
-  contactSubject?: string
-  contactMessage?: string
-  /* Lien vers formation correspondante */
-  formationAnchor?: string
-}
 
 /* ── Arbre de conversation ─────────────────────────────────────────────────── */
 const TREE = {
@@ -328,7 +317,7 @@ export default function ChatBot() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, typing])
 
-  function triggerStep(key: string) {
+  function triggerStep(key) {
     const s = TREE[key]
     if (!s) return
     setStep(key)
@@ -341,13 +330,13 @@ export default function ChatBot() {
     }, 900)
   }
 
-  function handleChoice(choice: Choice) {
+  function handleChoice(choice) {
     setMessages(prev => [...prev, { from: 'user', text: (choice.icon ? choice.icon + ' ' : '') + choice.label }])
     setShowChoices(false)
     setTimeout(() => triggerStep(choice.next), 350)
   }
 
-  function handleAction(action: 'contact' | 'disc' | 'restart') {
+  function handleAction(action) {
     const currentStepData = TREE[step]
     if (action === 'contact') {
       setOpen(false)
