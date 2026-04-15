@@ -374,7 +374,7 @@ export default function ChatBot() {
 
   return (
     <>
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @keyframes cb-bounce {
           0%, 60%, 100% { transform: translateY(0); }
           30% { transform: translateY(-5px); }
@@ -389,7 +389,7 @@ export default function ChatBot() {
         }
         .cb-window { animation: cb-pop-in 0.3s cubic-bezier(0.16,1,0.3,1) forwards; }
         .cb-msg    { animation: cb-pop-in 0.25s cubic-bezier(0.16,1,0.3,1) forwards; }
-      `}</style>
+      ` }} />
 
       {/* ── Floating button ── */}
       <div className="fixed bottom-6 right-6 z-50">
