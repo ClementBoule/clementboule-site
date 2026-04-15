@@ -337,12 +337,12 @@ function renderSegments(
 }
 
 export default function DiscTest() {
-  const [step, setStep] = useState<'intro' | 'test' | 'open' | 'results'>('intro')
+  const [step, setStep] = useState('intro' as 'intro' | 'test' | 'open' | 'results')
   const [current, setCurrent] = useState(0)
-  const [answers, setAnswers] = useState<Record<number, ProfileKey>>({})
+  const [answers, setAnswers] = useState({} as Record<number, ProfileKey>)
   const [shuffled] = useState(() => questions.map(q => ({ ...q, options: shuffleOptions(q.options) })))
-  const [selected, setSelected] = useState<ProfileKey | null>(null)
-  const [hovered, setHovered] = useState<ProfileKey | null>(null)
+  const [selected, setSelected] = useState(null as ProfileKey | null)
+  const [hovered, setHovered] = useState(null as ProfileKey | null)
   const [openAnswer, setOpenAnswer] = useState('')
   const [mounted, setMounted] = useState(false)
 
