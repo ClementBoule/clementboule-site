@@ -61,7 +61,7 @@ function FormationCard({
 
 export default function Formations() {
   const { t } = useLang()
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [openIndex, setOpenIndex] = useState(null as null | number)
 
   return (
     <section id="formations" className="py-24 md:py-32 bg-[#EBF0F8]">
@@ -89,7 +89,7 @@ export default function Formations() {
             <FormationCard item={t.formations.items[2]} index={2} onClick={() => setOpenIndex(2)} />
           </div>
           <div className="sm:col-start-2 sm:col-span-2">
-            <FormationCard item={t.formations.items[3]} index={3} onClick={() => setOpenIndex3)} />
+            <FormationCard item={t.formations.items[3]} index={3} onClick={() => setOpenIndex(3)} />
           </div>
           <div className="sm:col-span-2">
             <FormationCard item={t.formations.items[4]} index={4} onClick={() => setOpenIndex(4)} />
