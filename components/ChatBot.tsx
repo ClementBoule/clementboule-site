@@ -1,4 +1,4 @@
-h'use client'
+'use client'
 import { useState, useEffect, useRef, Fragment } from 'react'
 
 /* ── Avatar — coupe courte professionnelle, dégradé côtés ──────────────── */
