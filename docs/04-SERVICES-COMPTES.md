@@ -1,25 +1,33 @@
 # Services & Comptes externes
 
+> Dernière mise à jour : 16 avril 2026
+
 ## Services identifiés
 
-| Service | Usage | URL / Détails |
-|---|---|---|
-| **GitHub** | Hébergement du code source | https://github.com/ClementBoule/clementboule-site |
-| **Vercel** | Hébergement / déploiement (CI/CD auto depuis GitHub) | https://clementboule-site.vercel.app — 153 déploiements au 16/04/2026 |
-| **OVH** | Nom de domaine clementboule.fr (DNS) | À confirmer : configuration DNS, redirections |
-| **Resend** | Service d'envoi d'emails transactionnels | Utilisé pour le formulaire de contact (hello@clementboule.com) |
-| **Google Search Console** | Indexation et SEO | Vérifié via meta tag dans layout.tsx |
+| Service | Usage | URL / Détails | Plan |
+|---|---|---|---|
+| **GitHub** | Hébergement du code source | https://github.com/ClementBoule/clementboule-site | Gratuit |
+| **Vercel** | Hébergement / déploiement (CI/CD auto depuis GitHub) | https://clementboule-site.vercel.app | Hobby (gratuit) |
+| **OVH** | Nom de domaine + DNS + hébergement mail | clementboule.fr | Payant (domaine) |
+| **Resend** | Envoi d'emails transactionnels (formulaire contact) | Clé API configurée par Claude (env var Vercel) | Gratuit (free tier) |
+| **Google Search Console** | Indexation et SEO | Vérifié via meta tag dans layout.tsx | Gratuit |
+| **Google Analytics** | Suivi du trafic | Code/clé existant mais pas pleinement paramétré | Gratuit |
 
 ## Domaines
 
 - **Production** : www.clementboule.fr (domaine OVH pointant vers Vercel)
 - **Preview Vercel** : clementboule-site.vercel.app
-- **Email** : hello@clementboule.com (à confirmer : OVH ou autre fournisseur mail)
+- **Email** : hello@clementboule.com (hébergé chez OVH)
 
-## Points à clarifier avec Clément
+## Configuration connue
+
+- Site et mail hébergés chez **OVH**
+- Clé API **Resend** configurée par Claude dans une session précédente (variable d'environnement Vercel)
+- **Google Analytics** : code/clé existe dans le projet (à retrouver et paramétrer proprement)
+- Tous les services sont en **mode gratuit**
+
+## Points restants à clarifier
 
 - [ ] Configuration DNS exacte chez OVH (enregistrements A, CNAME, MX)
-- [ ] Fournisseur email pour hello@clementboule.com (OVH Mail ? Autre ?)
-- [ ] Clé API Resend : où est-elle stockée ? (variable d'environnement Vercel ?)
-- [ ] Google Analytics ou autre outil de suivi installé ?
-- [ ] Compte Vercel : plan gratuit (Hobby) ou Pro ?
+- [ ] Retrouver où la clé API Resend est stockée exactement (vérifier env vars Vercel)
+- [ ] Paramétrer Google Analytics correctement
