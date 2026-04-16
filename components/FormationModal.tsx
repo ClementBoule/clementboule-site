@@ -9,15 +9,37 @@ export const GRADIENTS = [
   'from-[#2E9E84] to-[#6FCFBB]',
   'from-[#7B5FC5] to-[#B09FE5]',
   'from-[#D4874A] to-[#F0BA70]',
+  'from-[#7C1A2E] to-[#B04060]',
 ]
+
 export const SHADOW_COLORS = [
   'shadow-[#3D6DB8]/25 hover:shadow-[#3D6DB8]/35',
   'shadow-[#E8836A]/25 hover:shadow-[#E8836A]/35',
   'shadow-[#2E9E84]/25 hover:shadow-[#2E9E84]/35',
   'shadow-[#7B5FC5]/25 hover:shadow-[#7B5FC5]/35',
   'shadow-[#D4874A]/25 hover:shadow-[#D4874A]/35',
+  'shadow-[#7C1A2E]/25 hover:shadow-[#7C1A2E]/35',
 ]
-const ACCENTS = ['#3D6DB8', '#E8836A', '#2E9E84', '#7B5FC5', '#D4874A']
+
+const ACCENTS = ['#3D6DB8', '#E8836A', '#2E9E84', '#7B5FC5', '#D4874A', '#7C1A2E']
+
+export const PHOTOS = [
+  'https://images.unsplash.com/photo-1542744173-8e7e53415bb0',
+  'https://images.unsplash.com/photo-1560439513-74b037a25d84',
+  'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2',
+  'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40',
+  'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca',
+  'https://images.unsplash.com/photo-1552664730-d307ca884978',
+]
+
+export const OVERLAYS = [
+  'rgba(29,60,120,0.65)',
+  'rgba(85,45,125,0.65)',
+  'rgba(18,85,70,0.65)',
+  'rgba(95,48,18,0.65)',
+  'rgba(20,58,98,0.65)',
+  'rgba(130,25,45,0.70)',
+]
 
 /* ── SVG Illustrations (shared with FormationCard) ─────────────────────── */
 export const ILLUSTRATIONS = [
@@ -93,6 +115,19 @@ export const ILLUSTRATIONS = [
     <path d="M32 58 Q46 54 50 54" stroke="white" strokeWidth="1.8" strokeOpacity="0.45" strokeLinecap="round"/>
     <path d="M88 58 Q74 54 70 54" stroke="white" strokeWidth="1.8" strokeOpacity="0.45" strokeLinecap="round"/>
     <path d="M60 66 C60 66 42 54 42 43 C42 36.4 47.4 31 54 31 C57.3 31 60 33.5 60 33.5 C60 33.5 62.7 31 66 31 C72.6 31 78 36.4 78 43 C78 54 60 66 60 66 Z" fill="white" fillOpacity="0.95"/>
+  </svg>,
+
+  /* 6 – Spine'Up — Leadership Managérial */
+  <svg key="spineup" viewBox="0 0 120 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="16" y="80" width="14" height="16" rx="3" fill="white" fillOpacity="0.28"/>
+    <rect x="35" y="64" width="14" height="32" rx="3" fill="white" fillOpacity="0.45"/>
+    <rect x="54" y="47" width="14" height="49" rx="3" fill="white" fillOpacity="0.65"/>
+    <rect x="73" y="29" width="14" height="67" rx="3" fill="white" fillOpacity="0.82"/>
+    <rect x="92" y="11" width="14" height="85" rx="3" fill="white" fillOpacity="0.95"/>
+    <path d="M99 5 L100.5 9.5 L105 9.5 L101.5 12.2 L102.8 16.8 L99 14 L95.2 16.8 L96.5 12.2 L93 9.5 L97.5 9.5 Z" fill="white" fillOpacity="0.95"/>
+    <path d="M20 88 Q43 72 57 55 Q71 38 93 19" stroke="white" strokeWidth="2" strokeOpacity="0.35" strokeLinecap="round" strokeDasharray="4 3"/>
+    <circle cx="23" cy="88" r="2.5" fill="white" fillOpacity="0.5"/>
+    <circle cx="57" cy="55" r="2.5" fill="white" fillOpacity="0.5"/>
   </svg>,
 ]
 
@@ -323,6 +358,53 @@ export const FORMATION_DETAILS: FormationDetail[] = [
     contactSubject: 'Formation Soft Skills & Intelligence Relationnelle',
     contactMessage: 'Bonjour Clément,\n\nJe suis intéressé(e) par la formation Soft Skills & Intelligence Relationnelle.\nPouvez-vous me donner plus d\'informations sur les dates et modalités ?\n\nCordialement,',
   },
+
+  /* 6 – Spine'Up — Leadership Managérial */
+  {
+    title: "Spine'Up — Leadership Managérial",
+    titleEn: "Spine'Up — Managerial Leadership",
+    objectives: [
+      'Construire une posture de leader authentique et impactante',
+      'Développer son autorité naturelle et son assertivité',
+      'Maîtriser les outils du manager-coach',
+      'Engager et motiver ses équipes dans la durée',
+    ],
+    objectivesEn: [
+      'Build an authentic and impactful leadership posture',
+      'Develop natural authority and assertiveness',
+      'Master the manager-coach toolkit',
+      'Engage and motivate teams over the long term',
+    ],
+    format: 'Intra / Coaching individuel',
+    formatEn: 'In-house / Individual coaching',
+    duration: '2 jours · 14h',
+    audience: 'Managers, directeurs, cadres en évolution',
+    audienceEn: 'Managers, directors, evolving executives',
+    schedule: [
+      {
+        label: 'Jour 1 — Matin', labelEn: 'Day 1 — Morning',
+        items: ['Diagnostic de posture managériale', 'Styles de leadership & impact'],
+        itemsEn: ['Managerial posture diagnostic', 'Leadership styles & impact'],
+      },
+      {
+        label: 'Jour 1 — Après-midi', labelEn: 'Day 1 — Afternoon',
+        items: ['Communication ascendante et descendante', 'Gestion des situations difficiles'],
+        itemsEn: ['Upward & downward communication', 'Handling difficult situations'],
+      },
+      {
+        label: 'Jour 2 — Matin', labelEn: 'Day 2 — Morning',
+        items: ['Posture de manager-coach', 'Feedback, reconnaissance et développement'],
+        itemsEn: ['Manager-coach posture', 'Feedback, recognition & development'],
+      },
+      {
+        label: 'Jour 2 — Après-midi', labelEn: 'Day 2 — Afternoon',
+        items: ["Plan d'action personnel de leadership", 'Engagement et mise en pratique'],
+        itemsEn: ['Personal leadership action plan', 'Commitment & implementation'],
+      },
+    ],
+    contactSubject: "Formation Spine'Up — Leadership Managérial",
+    contactMessage: "Bonjour Clément,\n\nJe suis intéressé(e) par le programme Spine'Up — Leadership Managérial.\nPouvez-vous me contacter pour discuter des modalités et d'un accompagnement personnalisé ?\n\nCordialement,",
+  },
 ]
 
 /* ── Helpers ─────────────────────────────────────────────────────────────── */
@@ -349,7 +431,9 @@ export default function FormationModal({ index, onClose }: Props) {
 
   // Close on Escape key
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
   }, [onClose])
@@ -375,7 +459,10 @@ export default function FormationModal({ index, onClose }: Props) {
       {/* Card — stop propagation so inner clicks don't close */}
       <div
         className="relative w-full max-w-4xl max-h-[90vh] rounded-3xl overflow-hidden flex flex-col"
-        style={{ background: '#F8FBFF', boxShadow: `0 32px 80px -8px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08)` }}
+        style={{
+          background: '#F8FBFF',
+          boxShadow: `0 32px 80px -8px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08)`,
+        }}
         onClick={e => e.stopPropagation()}
       >
         {/* ── Header gradient band ── */}
@@ -430,7 +517,6 @@ export default function FormationModal({ index, onClose }: Props) {
         {/* ── Scrollable body ── */}
         <div className="flex-1 overflow-y-auto">
           <div className="grid md:grid-cols-[1fr,1fr] gap-0 divide-y md:divide-y-0 md:divide-x divide-[#E5EAF3]">
-
             {/* Left: objectives + audience */}
             <div className="px-7 py-7">
               {/* Objectifs */}
