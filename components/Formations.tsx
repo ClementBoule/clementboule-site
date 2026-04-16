@@ -1,10 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { useLang } from './LanguageContext'
-import FormationModal, { ILLUSTRATIONS, GRADIENTS, SHADOW_COLORS, FORMATION_DETAILS } from './FormationModal'
-
-/* ── Accent colours matching each gradient ──────────────────────────────── */
-const ACCENT_COLORS = ['#3D6DB8', '#E8836A', '#2E9E84', '#7B5FC5', '#D4874A']
+import FormationModal, { ILLUSTRATIONS, FORMATION_DETAILS, PHOTOS, OVERLAYS } from './FormationModal'
 
 function FormationCard({
   item,
@@ -27,19 +24,21 @@ function FormationCard({
       tabIndex={0}
       onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') onClick() }}
       aria-label={`Voir la formation : ${item.title}`}
-      className={`group relative rounded-3xl overflow-hidden cursor-pointer bg-gradient-to-br ${GRADIENTS[index]} shadow-xl ${SHADOW_COLORS[index]}`}
+      className="group relative rounded-3xl overflow-hidden cursor-pointer shadow-xl"
       style={{
-        maxHeight: hovered ? '480px' : '288px',
+        backgroundImage: `linear-gradient(to bottom, ${OVERLAYS[index]} 0%, rgba(0,0,0,0.55) 100%), url(${PHOTOS[index]}?w=800&q=80&fit=crop)`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        maxHeight: hovered ? '640px' : '288px',
         minHeight: '288px',
-        transition: 'max-height 0.42s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s ease, transform 0.3s ease',
+        transition: 'max-height 0.5s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s ease, transform 0.3s ease',
         transform: hovered ? 'translateY(-6px)' : 'none',
         willChange: 'max-height, transform',
+        boxShadow: hovered
+          ? '0 24px 48px -8px rgba(0,0,0,0.45)'
+          : '0 8px 24px -4px rgba(0,0,0,0.3)',
       }}
     >
-      {/* Background decorative orbs */}
-      <div className="absolute -top-10 -right-10 w-44 h-44 rounded-full bg-white/10 pointer-events-none" />
-      <div className="absolute -bottom-10 -left-10 w-36 h-36 rounded-full bg-white/6 pointer-events-none" />
-
       {/* ── Default face: illustration + title ── */}
       <div
         className="absolute inset-0 flex flex-col items-center justify-center gap-5 p-6 pointer-events-none"
@@ -71,22 +70,31 @@ function FormationCard({
 
         {/* Duration + format pills */}
         <div className="flex flex-wrap gap-2 mb-4">
-          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/90 px-2.5 py-1 rounded-lg"
-            style={{ background: 'rgba(0,0,0,0.18)' }}>
+          <span
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/90 px-2.5 py-1 rounded-lg"
+            style={{ background: 'rgba(0,0,0,0.28)' }}
+          >
             <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
               <circle cx="6" cy="6" r="5" stroke="white" strokeWidth="1.3"/>
               <path d="M6 3.5V6.2L7.8 8" stroke="white" strokeWidth="1.3" strokeLinecap="round"/>
             </svg>
             {detail?.duration || '–'}
           </span>
-          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/90 px-2.5 py-1 rounded-lg"
-            style={{ background: 'rgba(0,0,0,0.18)' }}>
+          <span
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/90 px-2.5 py-1 rounded-lg"
+            style={{ background: 'rgba(0,0,0,0.28)' }}
+          >
             <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
               <path d="M2 3h8M2 6h6M2 9h4" stroke="white" strokeWidth="1.3" strokeLinecap="round"/>
             </svg>
             {detail?.format || '–'}
           </span>
         </div>
+
+        {/* Description */}
+        <p className="text-white/80 text-sm leading-relaxed mb-4">
+          {item.description}
+        </p>
 
         {/* Top 3 objectives */}
         {detail?.objectives && (
@@ -131,10 +139,8 @@ export default function Formations() {
     const open = params.get('open')
     if (open !== null) {
       const idx = parseInt(open, 10)
-      if (idx >= 0 && idx < 5) {
-        // Small delay to let the section scroll into view first
+      if (idx >= 0 && idx < 6) {
         setTimeout(() => setOpenIndex(idx), 400)
-        // Clean the URL param without triggering a navigation
         const url = new URL(window.location.href)
         url.searchParams.delete('open')
         window.history.replaceState({}, '', url.toString())
@@ -157,22 +163,15 @@ export default function Formations() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-6 gap-5">
-          <div className="sm:col-span-2">
-            <FormationCard item={t.formations.items[0]} index={0} onClick={() => setOpenIndex(0)} />
-          </div>
-          <div className="sm:col-span-2">
-            <FormationCard item={t.formations.items[1]} index={1} onClick={() => setOpenIndex(1)} />
-          </div>
-          <div className="sm:col-span-2">
-            <FormationCard item={t.formations.items[2]} index={2} onClick={() => setOpenIndex(2)} />
-          </div>
-          <div className="sm:col-start-2 sm:col-span-2">
-            <FormationCard item={t.formations.items[3]} index={3} onClick={() => setOpenIndex(3)} />
-          </div>
-          <div className="sm:col-span-2">
-            <FormationCard item={t.formations.items[4]} index={4} onClick={() => setOpenIndex(4)} />
-          </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          {[0, 1, 2, 3, 4, 5].map(i => (
+            <FormationCard
+              key={i}
+              item={t.formations.items[i]}
+              index={i}
+              onClick={() => setOpenIndex(i)}
+            />
+          ))}
         </div>
       </div>
 
