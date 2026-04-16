@@ -23,20 +23,21 @@ function LofiAvatar({ size = 64 }) {
       <ellipse cx="26" cy="34" rx="3" ry="4" fill="#F5C07A"/>
       <ellipse cx="54" cy="34" rx="3" ry="4" fill="#F5C07A"/>
 
-      {/* ── Cheveux pro : undercut / coupe nette côtés, volume sur le dessus ── */}
-      {/* Masse principale — dessus arrondi, raie à gauche */}
-      <path d="M27 24 Q27 13 40 12.5 Q53 13 53 24 Q51 17 40 16 Q31 17 29 22Z" fill="#6B3F1A"/>
-      {/* Volume côté gauche — effilé court */}
-      <path d="M27 24 Q26 20 27 17 Q28 13 33 13 L31 22Z" fill="#6B3F1A"/>
-      {/* Volume côté droit — effilé court symétrique */}
-      <path d="M53 24 Q54 20 53 17 Q52 13 47 13 L49 22Z" fill="#6B3F1A"/>
-      {/* Raie côté gauche — reflet clair */}
-      <path d="M29 15 Q33 13 38 14.5 Q33 14 30 17Z" fill="#8B5E30" opacity="0.6"/>
-      {/* Dégradé / undercut côtés — zone peau visible */}
-      <path d="M26.5 26 Q26 22 27 19 Q27.5 22 28.5 25Z" fill="#F5C07A" opacity="0.5"/>
-      <path d="M53.5 26 Q54 22 53 19 Q52.5 22 51.5 25Z" fill="#F5C07A" opacity="0.5"/>
-      {/* Légère ombre pour volume 3D */}
-      <path d="M38 13 Q40 12.5 42 13 Q41 12.8 40 12.8 Q39 12.8 38 13Z" fill="#4A2A0E" opacity="0.3"/>
+      {/* ── Cheveux pro : coupe nette, posés flush sur le crâne ── */}
+      {/* Masse principale — couvre le sommet du crâne jusqu'à y≈28 (intérieur de l'ellipse) */}
+      <path d="M29 27 Q28 13 40 11.5 Q52 13 51 27 Q49 18 40 16.5 Q31 18 29 27Z" fill="#6B3F1A"/>
+      {/* Volume côté gauche — comble l'espace entre le dessus et le crâne */}
+      <path d="M29 27 Q27 21 28 17 Q29 13 34 12.5 L32 23Z" fill="#6B3F1A"/>
+      {/* Volume côté droit — symétrique */}
+      <path d="M51 27 Q53 21 52 17 Q51 13 46 12.5 L48 23Z" fill="#6B3F1A"/>
+      {/* Reflet / raie à gauche */}
+      <path d="M30 16 Q34 13 39 14.5 Q34 14 31 17Z" fill="#8B5E30" opacity="0.55"/>
+      {/* Undercut léger côté gauche — fine bande de peau */}
+      <path d="M27.5 29 Q27 25 28 22 Q28.5 24 29.5 27Z" fill="#F5C07A" opacity="0.45"/>
+      {/* Undercut léger côté droit */}
+      <path d="M52.5 29 Q53 25 52 22 Q51.5 24 50.5 27Z" fill="#F5C07A" opacity="0.45"/>
+      {/* Ombre volume 3D (sommet) */}
+      <path d="M37 12.5 Q40 11.5 43 12.5 Q41 12 40 12 Q39 12 37 12.5Z" fill="#3A1A06" opacity="0.25"/>
 
       {/* Barbe courte 3 jours */}
       <path d="M30 41 Q32 47.5 40 48.5 Q48 47.5 50 41 Q47 44.5 40 45.5 Q33 44.5 30 41Z" fill="#D4935A" opacity="0.55"/>
@@ -98,6 +99,7 @@ const TREE: Record<string, any> = {
     contactSubject: "Formation Leadership & Management",
     contactMessage: "Bonjour Clément,\n\nJe représente une entreprise et je souhaite développer mes managers grâce à vos formations sur le leadership et les soft skills.\n\nPouvez-vous me contacter pour discuter d'un programme sur mesure ?\n\nCordialement,",
     formationAnchor: '#formations',
+    formationIndex: 1,
   },
   ent_rps: {
     message: "La prévention des risques psychosociaux passe par le diagnostic, la formation et le suivi. J'accompagne les équipes RH dans cette démarche.",
@@ -109,6 +111,7 @@ const TREE: Record<string, any> = {
     contactSubject: "Prévention des Risques Psychosociaux (RPS)",
     contactMessage: "Bonjour Clément,\n\nNous souhaitons mettre en place un programme de prévention des RPS au sein de notre organisation.\n\nPouvez-vous nous proposer un accompagnement sur mesure ?\n\nCordialement,",
     formationAnchor: '#formations',
+    formationIndex: 2,
   },
   ent_culture: {
     message: "Marque employeur, onboarding, valeurs... J'aide à aligner ce que vous dites en externe avec ce que vivent vos collaborateurs au quotidien.",
@@ -120,6 +123,7 @@ const TREE: Record<string, any> = {
     contactSubject: "Marque Employeur & Culture d'Entreprise",
     contactMessage: "Bonjour Clément,\n\nNous souhaitons renforcer notre culture d'entreprise et travailler sur notre marque employeur.\n\nPouvez-vous nous présenter votre approche ?\n\nCordialement,",
     formationAnchor: '#formations',
+    formationIndex: 0,
   },
   ent_bilingual: {
     message: "Toutes mes formations sont disponibles en français ET en anglais. J'interviens dans des équipes internationales depuis plusieurs années.",
@@ -131,6 +135,7 @@ const TREE: Record<string, any> = {
     contactSubject: "Formation Bilingue FR/EN",
     contactMessage: "Bonjour Clément,\n\nNotre équipe travaille dans un contexte international et nous cherchons des formations en français et en anglais.\n\nPouvez-vous nous proposer un programme adapté ?\n\nCordialement,",
     formationAnchor: '#formations',
+    formationIndex: 4,
   },
 
   /* Association */
@@ -152,6 +157,7 @@ const TREE: Record<string, any> = {
     contactSubject: "Formation Bénévoles — Posture & Communication",
     contactMessage: "Bonjour Clément,\n\nNous représentons une association et souhaitons former nos bénévoles en posture professionnelle et communication.\n\nPouvez-vous nous proposer un programme adapté ?\n\nCordialement,",
     formationAnchor: '#formations',
+    formationIndex: 1,
   },
   asso_rh: {
     message: "Je peux vous aider à structurer vos pratiques RH, prévenir les RPS et accompagner vos équipes dans les transitions.",
@@ -167,6 +173,7 @@ const TREE: Record<string, any> = {
     contactSubject: "Formation Communication & Posture — Secteur Associatif",
     contactMessage: "Bonjour Clément,\n\nNous travaillons dans le secteur associatif et souhaitons renforcer les compétences en communication et prise de parole de nos équipes.\n\nPouvez-vous nous proposer un accompagnement ?\n\nCordialement,",
     formationAnchor: '#formations',
+    formationIndex: 1,
   },
 
   /* École */
@@ -188,6 +195,7 @@ const TREE: Record<string, any> = {
     contactSubject: "Intervention École — Soft Skills & Leadership",
     contactMessage: "Bonjour Clément,\n\nNous représentons une école et souhaitons vous intégrer dans notre programme pédagogique pour des cours de leadership et soft skills.\n\nPouvez-vous nous présenter vos modalités d'intervention ?\n\nCordialement,",
     formationAnchor: '#formations',
+    formationIndex: 4,
   },
   ecole_coaching: {
     message: "Je propose du coaching individuel : clarifier son projet, préparer ses entretiens, gérer le stress avant les partiels ou les stages.",
@@ -208,6 +216,7 @@ const TREE: Record<string, any> = {
     contactSubject: "Partenariat École / Université",
     contactMessage: "Bonjour Clément,\n\nNous souhaitons établir un partenariat avec vous pour des interventions régulières dans notre établissement.\n\nPouvez-vous nous présenter votre offre ?\n\nCordialement,",
     formationAnchor: '#formations',
+    formationIndex: 4,
   },
 
   /* Manager */
@@ -232,6 +241,7 @@ const TREE: Record<string, any> = {
     contactSubject: "Coaching Leadership Managérial — Spine'Up",
     contactMessage: "Bonjour Clément,\n\nJe suis manager et souhaite développer mon leadership et ma posture managériale.\n\nJe suis intéressé(e) par votre programme Spine'Up ou un coaching individuel. Pouvez-vous me contacter ?\n\nCordialement,",
     formationAnchor: '#formations',
+    formationIndex: 3,
   },
   mgr_change: {
     message: "J'accompagne les transformations : restructurations, fusion d'équipes, nouveaux outils. La méthode Agile au service du changement humain.",
@@ -243,6 +253,7 @@ const TREE: Record<string, any> = {
     contactSubject: "Accompagnement au Changement — Management",
     contactMessage: "Bonjour Clément,\n\nNotre organisation traverse une période de transformation et je cherche un accompagnement pour gérer le changement avec mes équipes.\n\nPouvez-vous me présenter votre approche ?\n\nCordialement,",
     formationAnchor: '#formations',
+    formationIndex: 3,
   },
   mgr_comm: {
     message: "Communication assertive, feedback constructif, gestion des conflits... Des outils concrets pour gagner en impact au quotidien.",
@@ -254,6 +265,7 @@ const TREE: Record<string, any> = {
     contactSubject: "Formation Communication Managériale",
     contactMessage: "Bonjour Clément,\n\nJe souhaite améliorer ma communication managériale : assertivité, feedback, gestion des conflits.\n\nPouvez-vous me proposer un accompagnement adapté ?\n\nCordialement,",
     formationAnchor: '#formations',
+    formationIndex: 1,
   },
 
   /* Étudiant */
@@ -431,7 +443,7 @@ export default function ChatBot() {
                   </div>
                 )}
                 <div
-                  className="max-w-[78%] px-4 py-2.5 text-sm leading-relaxed whitespace-pre-line"
+                  className="max-w[78%] px-4 py-2.5 text-sm leading-relaxed whitespace-pre-line"
                   style={{
                     borderRadius: msg.from === 'bot' ? '4px 16px 16px 16px' : '16px 4px 16px 16px',
                     background: msg.from === 'bot' ? 'rgba(61,109,184,0.18)' : 'rgba(255,255,255,0.1)',
@@ -473,7 +485,7 @@ export default function ChatBot() {
                 <div className="space-y-2 pt-2">
                   {/* CTA principal — contact ou DISC */}
                   {currentStep.action === 'contact' && (
-                    <div>
+                    <div className="space-y-2">
                       <a
                         href={buildContactURL(currentStep)}
                         onClick={() => setOpen(false)}
@@ -484,12 +496,16 @@ export default function ChatBot() {
                       </a>
                       {currentStep.formationAnchor && (
                         <a
-                          href={currentStep.formationAnchor}
+                          href={
+                            typeof currentStep.formationIndex === 'number'
+                              ? `${currentStep.formationAnchor}?open=${currentStep.formationIndex}`
+                              : currentStep.formationAnchor
+                          }
                           onClick={() => setOpen(false)}
                           className="block w-full py-2.5 rounded-xl text-xs font-semibold text-center transition-all duration-200"
                           style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.65)' }}
                         >
-                          📋 Voir les formations
+                           📋 {typeof currentStep.formationIndex === 'number' ? 'Voir cette formation' : 'Voir les formations'}
                         </a>
                       )}
                     </div>
