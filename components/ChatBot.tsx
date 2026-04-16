@@ -1,78 +1,81 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
 
-/* ── Avatar — coupe courte professionnelle, dégradé côtés ──────────────── */
-function LofiAvatar({ size = 64 }) {
+/* ── Avatar ────────────────────────────────────────────────────────────── */
+function LofiAvatar({ size = 64 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="40" cy="40" r="40" fill="#EEF5FF"/>
-      {/* Pantalon marine */}
       <path d="M22 75 L58 75 L55 62 L25 62Z" fill="#1E3A5F"/>
-      {/* Ceinture */}
       <rect x="22" y="60" width="36" height="4" rx="2" fill="#152D4A"/>
-      {/* Chemise */}
       <path d="M18 75 Q18 56 40 52 Q62 56 62 75" fill="#F8FAFC" stroke="#CBD5E1" strokeWidth="0.8"/>
       <path d="M36 52 L40 59 L44 52" fill="#F8FAFC" stroke="#CBD5E1" strokeWidth="0.8"/>
       <circle cx="40" cy="63" r="1" fill="#CBD5E1"/>
       <circle cx="40" cy="68" r="1" fill="#CBD5E1"/>
-      {/* Cou */}
       <rect x="36" y="43" width="8" height="11" rx="4" fill="#F5C07A"/>
-      {/* Tête */}
       <ellipse cx="40" cy="34" rx="14.5" ry="15" fill="#F5C07A"/>
-      {/* Oreilles */}
       <ellipse cx="26" cy="34" rx="3" ry="4" fill="#F5C07A"/>
       <ellipse cx="54" cy="34" rx="3" ry="4" fill="#F5C07A"/>
-
-      {/* ── Cheveux pro : coupe nette, posés flush sur le crâne ── */}
-      {/* Masse principale — couvre le sommet du crâne jusqu'à y≈28 (intérieur de l'ellipse) */}
       <path d="M29 27 Q28 13 40 11.5 Q52 13 51 27 Q49 18 40 16.5 Q31 18 29 27Z" fill="#6B3F1A"/>
-      {/* Volume côté gauche — comble l'espace entre le dessus et le crâne */}
       <path d="M29 27 Q27 21 28 17 Q29 13 34 12.5 L32 23Z" fill="#6B3F1A"/>
-      {/* Volume côté droit — symétrique */}
       <path d="M51 27 Q53 21 52 17 Q51 13 46 12.5 L48 23Z" fill="#6B3F1A"/>
-      {/* Reflet / raie à gauche */}
       <path d="M30 16 Q34 13 39 14.5 Q34 14 31 17Z" fill="#8B5E30" opacity="0.55"/>
-      {/* Undercut léger côté gauche — fine bande de peau */}
       <path d="M27.5 29 Q27 25 28 22 Q28.5 24 29.5 27Z" fill="#F5C07A" opacity="0.45"/>
-      {/* Undercut léger côté droit */}
       <path d="M52.5 29 Q53 25 52 22 Q51.5 24 50.5 27Z" fill="#F5C07A" opacity="0.45"/>
-      {/* Ombre volume 3D (sommet) */}
       <path d="M37 12.5 Q40 11.5 43 12.5 Q41 12 40 12 Q39 12 37 12.5Z" fill="#3A1A06" opacity="0.25"/>
-
-      {/* Barbe courte 3 jours */}
       <path d="M30 41 Q32 47.5 40 48.5 Q48 47.5 50 41 Q47 44.5 40 45.5 Q33 44.5 30 41Z" fill="#D4935A" opacity="0.55"/>
       <path d="M33 44 Q36 47 40 47.5 Q44 47 47 44" stroke="#C47A2E" strokeWidth="0.5" opacity="0.4" fill="none"/>
-      {/* Moustache */}
       <path d="M35.5 39.5 Q38 41 40 40.5 Q42 41 44.5 39.5 Q42 40.5 40 40 Q38 40.5 35.5 39.5Z" fill="#C47A2E" opacity="0.5"/>
-      {/* Yeux */}
       <ellipse cx="34" cy="33.5" rx="2.8" ry="2.8" fill="#2C1810"/>
       <ellipse cx="46" cy="33.5" rx="2.8" ry="2.8" fill="#2C1810"/>
       <circle cx="33.2" cy="32.5" r="0.9" fill="white"/>
       <circle cx="45.2" cy="32.5" r="0.9" fill="white"/>
-      {/* Sourcils */}
       <path d="M30.5 29.5 Q34 27.8 37.5 29" stroke="#5C3010" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
       <path d="M42.5 29 Q46 27.8 49.5 29.5" stroke="#5C3010" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
-      {/* Sourire */}
       <path d="M35.5 39 Q40 43 44.5 39" stroke="#2C1810" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-      {/* Nez */}
       <path d="M39 36.5 Q37.5 38.5 39 39 Q41 39 42.5 38.5 Q41 38.5 40 36.5Z" fill="#E8A060" opacity="0.6"/>
     </svg>
   )
 }
 
-/* ── Types ───────────────────────────────────────────────────────────────── */
+/* ── Keyword detection ──────────────────────────────────────────────────── */
+const KW_MAP: { kw: string[]; next: string }[] = [
+  { kw: ['hr','employer','marque employeur','recrutement','drh','rrh'], next: 'ent_culture' },
+  { kw: ['posture','prise de parole','assertiv'], next: 'ent_managers' },
+  { kw: ['rps','psychosocial','burn','burnout','prevention','prévention','risque'], next: 'ent_rps' },
+  { kw: ['business','stratégie','strategie','entrepreneuriat'], next: 'mgr_change' },
+  { kw: ['soft skills','soft skill','intelligence émotionnelle','cohésion','team building'], next: 'etu_coaching' },
+  { kw: ['spine','leadership','managérial','managerial','encadrement','cadre dirigeant'], next: 'mgr_leadership' },
+  { kw: ['disc','profil comportemental','test disc'], next: 'cta_disc' },
+  { kw: ['formation','catalogue','programme','tarif','prix','devis'], next: 'cta_formations' },
+  { kw: ['bilingue','anglais','english','international'], next: 'ent_bilingual' },
+  { kw: ['manager','management','équipe'], next: 'manager' },
+  { kw: ['étudiant','etudiant','stage','alternance','orientation'], next: 'etudiant' },
+  { kw: ['école','ecole','université','universite'], next: 'ecole' },
+  { kw: ['association','asso','collectivité','collectivite'], next: 'asso' },
+]
 
+function detectKeyword(text: string): string | null {
+  const lower = text.toLowerCase()
+  for (const { kw, next } of KW_MAP) {
+    if (kw.some(k => lower.includes(k))) return next
+  }
+  return null
+}
 
-/* ── Arbre de conversation ─────────────────────────────────────────────────── */
+/* ── Types ──────────────────────────────────────────────────────────────── */
+type Msg = { from: 'bot' | 'user'; text: string }
+
+/* ── TREE ───────────────────────────────────────────────────────────────── */
 const TREE: Record<string, any> = {
   start: {
     message: "Bonjour 👋 Je suis Clément ! Comment puis-je vous aider aujourd'hui ?",
     choices: [
-      { icon: '🏢', label: 'Je représente une entreprise',  next: 'entreprise' },
-      { icon: '🏛️', label: 'Association / Collectivité',    next: 'asso' },
-      { icon: '🎓', label: 'École / Université',            next: 'ecole' },
-      { icon: '👔', label: 'Je suis manager',               next: 'manager' },
-      { icon: '📚', label: 'Je suis étudiant(e)',           next: 'etudiant' },
+      { icon: '🏢', label: 'Je représente une entreprise', next: 'entreprise' },
+      { icon: '🏛️', label: 'Association / Collectivité', next: 'asso' },
+      { icon: '🎓', label: 'École / Université', next: 'ecole' },
+      { icon: '👔', label: 'Je suis manager', next: 'manager' },
+      { icon: '📚', label: 'Je suis étudiant(e)', next: 'etudiant' },
     ],
   },
 
@@ -80,22 +83,22 @@ const TREE: Record<string, any> = {
   entreprise: {
     message: "Super ! Je travaille régulièrement avec des équipes RH et des dirigeants. Quel est votre enjeu principal ?",
     choices: [
-      { icon: '🚀', label: 'Développer mes managers',   next: 'ent_managers' },
-      { icon: '⚠️', label: 'Prévenir les RPS',          next: 'ent_rps' },
-      { icon: '💡', label: 'Renforcer la culture',       next: 'ent_culture' },
-      { icon: '🌍', label: 'Contexte bilingue FR/EN',   next: 'ent_bilingual' },
+      { icon: '🚀', label: 'Développer mes managers', next: 'ent_managers' },
+      { icon: '⚠️', label: 'Prévenir les RPS', next: 'ent_rps' },
+      { icon: '💡', label: 'Renforcer la culture', next: 'ent_culture' },
+      { icon: '🌍', label: 'Contexte bilingue FR/EN', next: 'ent_bilingual' },
     ],
   },
   ent_managers: {
     message: "Je propose des formations sur mesure en leadership, soft skills et communication managériale — en FR ou EN, de 1 à 3 jours, adaptées à vos équipes.",
     choices: [
-      { icon: '💬', label: "Discutons-en",        next: 'cta_ent_managers' },
+      { icon: '💬', label: "Discutons-en", next: 'cta_ent_managers' },
       { icon: '📋', label: "Voir les formations", next: 'cta_formations' },
     ],
   },
   cta_ent_managers: {
-    message: "Super ! Je vous prépare un message pré-rempli. Cliquez ci-dessous pour me contacter directement 👇",
-    action: 'contact',
+    message: "Parfait ! Remplissez ce formulaire et je vous réponds sous 24h 👇",
+    action: 'form',
     contactSubject: "Formation Leadership & Management",
     contactMessage: "Bonjour Clément,\n\nJe représente une entreprise et je souhaite développer mes managers grâce à vos formations sur le leadership et les soft skills.\n\nPouvez-vous me contacter pour discuter d'un programme sur mesure ?\n\nCordialement,",
     formationAnchor: '#formations',
@@ -106,8 +109,8 @@ const TREE: Record<string, any> = {
     choices: [{ icon: '💬', label: "Prenons RDV", next: 'cta_ent_rps' }],
   },
   cta_ent_rps: {
-    message: "Je vous prépare un message axé RPS. Cliquez ci-dessous 👇",
-    action: 'contact',
+    message: "Partagez-moi vos coordonnées et votre contexte 👇",
+    action: 'form',
     contactSubject: "Prévention des Risques Psychosociaux (RPS)",
     contactMessage: "Bonjour Clément,\n\nNous souhaitons mettre en place un programme de prévention des RPS au sein de notre organisation.\n\nPouvez-vous nous proposer un accompagnement sur mesure ?\n\nCordialement,",
     formationAnchor: '#formations',
@@ -118,8 +121,8 @@ const TREE: Record<string, any> = {
     choices: [{ icon: '💬', label: "En savoir plus", next: 'cta_ent_culture' }],
   },
   cta_ent_culture: {
-    message: "Je vous prépare un message sur la culture d'entreprise 👇",
-    action: 'contact',
+    message: "Remplissez ce formulaire, on en parle 👇",
+    action: 'form',
     contactSubject: "Marque Employeur & Culture d'Entreprise",
     contactMessage: "Bonjour Clément,\n\nNous souhaitons renforcer notre culture d'entreprise et travailler sur notre marque employeur.\n\nPouvez-vous nous présenter votre approche ?\n\nCordialement,",
     formationAnchor: '#formations',
@@ -130,8 +133,8 @@ const TREE: Record<string, any> = {
     choices: [{ icon: '💬', label: "Parfait, contactez-moi", next: 'cta_ent_bilingual' }],
   },
   cta_ent_bilingual: {
-    message: "Message pré-rempli pour un contexte bilingue 👇",
-    action: 'contact',
+    message: "Remplissez ce formulaire pour un contexte bilingue 👇",
+    action: 'form',
     contactSubject: "Formation Bilingue FR/EN",
     contactMessage: "Bonjour Clément,\n\nNotre équipe travaille dans un contexte international et nous cherchons des formations en français et en anglais.\n\nPouvez-vous nous proposer un programme adapté ?\n\nCordialement,",
     formationAnchor: '#formations',
@@ -142,8 +145,8 @@ const TREE: Record<string, any> = {
   asso: {
     message: "Je travaille régulièrement avec le secteur associatif et public. Qu'est-ce qui vous amène ?",
     choices: [
-      { icon: '🤝', label: 'Former des bénévoles',     next: 'asso_benevoles' },
-      { icon: '📊', label: 'Accompagnement RH',        next: 'asso_rh' },
+      { icon: '🤝', label: 'Former des bénévoles', next: 'asso_benevoles' },
+      { icon: '📊', label: 'Accompagnement RH', next: 'asso_rh' },
       { icon: '🗣️', label: 'Communication & posture', next: 'asso_comm' },
     ],
   },
@@ -152,8 +155,8 @@ const TREE: Record<string, any> = {
     choices: [{ icon: '💬', label: "Parlons-en", next: 'cta_asso_benevoles' }],
   },
   cta_asso_benevoles: {
-    message: "Message pré-rempli pour la formation de bénévoles 👇",
-    action: 'contact',
+    message: "Laissez-moi vos coordonnées 👇",
+    action: 'form',
     contactSubject: "Formation Bénévoles — Posture & Communication",
     contactMessage: "Bonjour Clément,\n\nNous représentons une association et souhaitons former nos bénévoles en posture professionnelle et communication.\n\nPouvez-vous nous proposer un programme adapté ?\n\nCordialement,",
     formationAnchor: '#formations',
@@ -168,8 +171,8 @@ const TREE: Record<string, any> = {
     choices: [{ icon: '💬', label: "Contactez-moi", next: 'cta_asso_comm' }],
   },
   cta_asso_comm: {
-    message: "Message pré-rempli sur communication & posture 👇",
-    action: 'contact',
+    message: "Partagez-moi votre besoin 👇",
+    action: 'form',
     contactSubject: "Formation Communication & Posture — Secteur Associatif",
     contactMessage: "Bonjour Clément,\n\nNous travaillons dans le secteur associatif et souhaitons renforcer les compétences en communication et prise de parole de nos équipes.\n\nPouvez-vous nous proposer un accompagnement ?\n\nCordialement,",
     formationAnchor: '#formations',
@@ -181,8 +184,8 @@ const TREE: Record<string, any> = {
     message: "J'interviens dans de nombreuses écoles parisiennes (Albert School, ISCOM, IHEDREA...). Quel type d'intervention vous intéresse ?",
     choices: [
       { icon: '📝', label: 'Cours leadership / soft skills', next: 'ecole_cours' },
-      { icon: '🧠', label: 'Coaching étudiant',             next: 'ecole_coaching' },
-      { icon: '🤝', label: 'Partenariat école',             next: 'cta_ecole_partenariat' },
+      { icon: '🧠', label: 'Coaching étudiant', next: 'ecole_coaching' },
+      { icon: '🤝', label: 'Partenariat école', next: 'cta_ecole_partenariat' },
     ],
   },
   ecole_cours: {
@@ -190,8 +193,8 @@ const TREE: Record<string, any> = {
     choices: [{ icon: '💬', label: "Discutons d'un programme", next: 'cta_ecole_cours' }],
   },
   cta_ecole_cours: {
-    message: "Message pré-rempli pour un partenariat école 👇",
-    action: 'contact',
+    message: "Présentez-moi votre établissement 👇",
+    action: 'form',
     contactSubject: "Intervention École — Soft Skills & Leadership",
     contactMessage: "Bonjour Clément,\n\nNous représentons une école et souhaitons vous intégrer dans notre programme pédagogique pour des cours de leadership et soft skills.\n\nPouvez-vous nous présenter vos modalités d'intervention ?\n\nCordialement,",
     formationAnchor: '#formations',
@@ -200,19 +203,19 @@ const TREE: Record<string, any> = {
   ecole_coaching: {
     message: "Je propose du coaching individuel : clarifier son projet, préparer ses entretiens, gérer le stress avant les partiels ou les stages.",
     choices: [
-      { icon: '💬', label: "Me contacter",        next: 'cta_ecole_coaching' },
+      { icon: '💬', label: "Me contacter", next: 'cta_ecole_coaching' },
       { icon: '🎯', label: "Passer le test DISC", next: 'cta_disc' },
     ],
   },
   cta_ecole_coaching: {
-    message: "Message pré-rempli pour du coaching étudiant 👇",
-    action: 'contact',
+    message: "Dis-moi en quelques mots ce que tu cherches 👇",
+    action: 'form',
     contactSubject: "Coaching Individuel Étudiant",
     contactMessage: "Bonjour Clément,\n\nJe suis étudiant(e) et je souhaiterais bénéficier d'un coaching individuel pour clarifier mon projet professionnel et préparer mes entretiens.\n\nPouvez-vous me contacter pour discuter des modalités ?\n\nCordialement,",
   },
   cta_ecole_partenariat: {
-    message: "Message pré-rempli pour un partenariat institutionnel 👇",
-    action: 'contact',
+    message: "Présentez-moi votre établissement 👇",
+    action: 'form',
     contactSubject: "Partenariat École / Université",
     contactMessage: "Bonjour Clément,\n\nNous souhaitons établir un partenariat avec vous pour des interventions régulières dans notre établissement.\n\nPouvez-vous nous présenter votre offre ?\n\nCordialement,",
     formationAnchor: '#formations',
@@ -224,44 +227,44 @@ const TREE: Record<string, any> = {
     message: "Bienvenue ! Je coache et forme des managers depuis plus de 10 ans. Qu'est-ce que vous cherchez ?",
     choices: [
       { icon: '💪', label: 'Développer mon leadership', next: 'mgr_leadership' },
-      { icon: '🔄', label: 'Gérer le changement',       next: 'mgr_change' },
-      { icon: '🧭', label: 'Mieux communiquer',         next: 'mgr_comm' },
+      { icon: '🔄', label: 'Gérer le changement', next: 'mgr_change' },
+      { icon: '🧭', label: 'Mieux communiquer', next: 'mgr_comm' },
     ],
   },
   mgr_leadership: {
     message: "Coaching individuel ou formation : trouver votre style de management, motiver votre équipe, communiquer avec impact.",
     choices: [
-      { icon: '💬', label: "Prendre RDV",                  next: 'cta_mgr_leadership' },
-      { icon: '🎯', label: "Découvrir mon profil DISC",    next: 'cta_disc' },
+      { icon: '💬', label: "Prendre RDV", next: 'cta_mgr_leadership' },
+      { icon: '🎯', label: "Découvrir mon profil DISC", next: 'cta_disc' },
     ],
   },
   cta_mgr_leadership: {
-    message: "Message pré-rempli sur le développement managérial 👇",
-    action: 'contact',
+    message: "Partagez-moi votre contexte managérial 👇",
+    action: 'form',
     contactSubject: "Coaching Leadership Managérial — Spine'Up",
     contactMessage: "Bonjour Clément,\n\nJe suis manager et souhaite développer mon leadership et ma posture managériale.\n\nJe suis intéressé(e) par votre programme Spine'Up ou un coaching individuel. Pouvez-vous me contacter ?\n\nCordialement,",
     formationAnchor: '#formations',
-    formationIndex: 3,
+    formationIndex: 5,
   },
   mgr_change: {
     message: "J'accompagne les transformations : restructurations, fusion d'équipes, nouveaux outils. La méthode Agile au service du changement humain.",
     choices: [{ icon: '💬', label: "En savoir plus", next: 'cta_mgr_change' }],
   },
   cta_mgr_change: {
-    message: "Message pré-rempli sur la gestion du changement 👇",
-    action: 'contact',
+    message: "Décrivez votre situation 👇",
+    action: 'form',
     contactSubject: "Accompagnement au Changement — Management",
     contactMessage: "Bonjour Clément,\n\nNotre organisation traverse une période de transformation et je cherche un accompagnement pour gérer le changement avec mes équipes.\n\nPouvez-vous me présenter votre approche ?\n\nCordialement,",
     formationAnchor: '#formations',
-    formationIndex: 3,
+    formationIndex: 5,
   },
   mgr_comm: {
     message: "Communication assertive, feedback constructif, gestion des conflits... Des outils concrets pour gagner en impact au quotidien.",
     choices: [{ icon: '💬', label: "Parlons-en", next: 'cta_mgr_comm' }],
   },
   cta_mgr_comm: {
-    message: "Message pré-rempli sur la communication managériale 👇",
-    action: 'contact',
+    message: "Partagez-moi votre besoin 👇",
+    action: 'form',
     contactSubject: "Formation Communication Managériale",
     contactMessage: "Bonjour Clément,\n\nJe souhaite améliorer ma communication managériale : assertivité, feedback, gestion des conflits.\n\nPouvez-vous me proposer un accompagnement adapté ?\n\nCordialement,",
     formationAnchor: '#formations',
@@ -272,8 +275,8 @@ const TREE: Record<string, any> = {
   etudiant: {
     message: "Bonjour ! Tu prépares ton avenir ? Je peux t'aider à mieux te connaître et à te positionner.",
     choices: [
-      { icon: '🧭', label: "Coaching orientation",   next: 'etu_coaching' },
-      { icon: '🎯', label: "Passer le test DISC",    next: 'cta_disc' },
+      { icon: '🧭', label: "Coaching orientation", next: 'etu_coaching' },
+      { icon: '🎯', label: "Passer le test DISC", next: 'cta_disc' },
       { icon: '📋', label: "Formations disponibles", next: 'cta_formations' },
     ],
   },
@@ -288,31 +291,104 @@ const TREE: Record<string, any> = {
     action: 'disc',
   },
   cta_formations: {
-    message: "Retrouvez tous mes programmes dans la section Formations de ce site 👇",
-    action: 'contact',
-    contactSubject: "Demande d'information — Formations",
-    contactMessage: "Bonjour Clément,\n\nJe souhaite en savoir plus sur vos programmes de formation.\n\nPouvez-vous me contacter pour discuter de mes besoins ?\n\nCordialement,",
+    message: "Voici mes 6 programmes de formation. Cliquez pour voir le détail de chacun 👇",
+    action: 'formations',
     formationAnchor: '#formations',
+  },
+  _sent: {
+    message: '✅ Message envoyé ! Je vous répondrai dans les 24h. À très bientôt 👋',
+    choices: [{ icon: '↩', label: 'Revenir au début', next: 'start' }],
   },
 }
 
-/* ── Helpers ───────────────────────────────────────────────────────────────── */
-function buildContactURL(step: any) {
-  const params = new URLSearchParams()
-  if (step.contactSubject) params.set('subject', step.contactSubject)
-  if (step.contactMessage) params.set('message', step.contactMessage)
-  return `/#contact?${params.toString()}`
+/* ── Inline contact form ─────────────────────────────────────────────────── */
+function ContactForm({
+  subject, defaultMsg, formationIndex, onClose, onSent,
+}: {
+  subject: string
+  defaultMsg: string
+  formationIndex?: number
+  onClose: () => void
+  onSent: () => void
+}) {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [msg, setMsg] = useState(defaultMsg)
+  const [sending, setSending] = useState(false)
+  const [err, setErr] = useState('')
+
+  async function submit(e: React.FormEvent) {
+    e.preventDefault()
+    if (!name.trim() || !email.trim() || !msg.trim()) { setErr('Tous les champs sont requis.'); return }
+    if (!/\S+@\S+\.\S+/.test(email)) { setErr('Email invalide.'); return }
+    setSending(true); setErr('')
+    try {
+      const r = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, subject, message: msg }),
+      })
+      if (!r.ok) throw new Error()
+    } catch {
+      window.open(
+        `mailto:boule.clement@gmail.com?subject=${encodeURIComponent('[Site] ' + subject)}&body=${encodeURIComponent('De : ' + name + ' (' + email + ')\n\n' + msg)}`,
+        '_blank'
+      )
+    } finally {
+      setSending(false)
+      onSent()
+    }
+  }
+
+  const ic = 'w-full px-3 py-2.5 rounded-xl text-sm bg-white/5 border border-white/10 text-white/90 placeholder-white/25 focus:outline-none focus:border-blue-400/50 transition-colors'
+
+  return (
+    <form onSubmit={submit} className="space-y-2 pt-1 pb-1">
+      <input
+        className={ic} type="text" placeholder="Votre prénom / nom"
+        value={name} onChange={e => setName(e.target.value)}
+      />
+      <input
+        className={ic} type="email" placeholder="Votre email"
+        value={email} onChange={e => setEmail(e.target.value)}
+      />
+      <textarea
+        className={`${ic} resize-none`} rows={3}
+        value={msg} onChange={e => setMsg(e.target.value)}
+      />
+      {err && <p className="text-red-400/80 text-xs px-1">{err}</p>}
+      <button
+        type="submit" disabled={sending}
+        className="w-full py-2.5 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 disabled:opacity-60"
+        style={{ background: 'linear-gradient(135deg,#3D6DB8,#5B8DD4)', boxShadow: '0 4px 14px rgba(61,109,184,0.35)' }}
+      >
+        {sending ? 'Envoi en cours…' : '📨 Envoyer le message'}
+      </button>
+      {formationIndex !== undefined && (
+        <a
+          href={`#formations?open=${formationIndex}`}
+          onClick={onClose}
+          className="block w-full py-2 rounded-xl text-xs font-medium text-center transition-all"
+          style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.55)' }}
+        >
+          📋 Voir cette formation
+        </a>
+      )}
+    </form>
+  )
 }
 
-/* ── Main component ─────────────────────────────────────────────────────────── */
+/* ── Main component ──────────────────────────────────────────────────────── */
 export default function ChatBot() {
-  const [open, setOpen]               = useState(false)
-  const [step, setStep]               = useState('start')
-  const [messages, setMessages]       = useState<{from: string; text: string}[]>([])
+  const [open, setOpen] = useState(false)
+  const [step, setStep] = useState('start')
+  const [messages, setMessages] = useState<Msg[]>([])
   const [showChoices, setShowChoices] = useState(false)
-  const [typing, setTyping]           = useState(false)
-  const [mounted, setMounted]         = useState(false)
-  const [pulse, setPulse]             = useState(true)
+  const [typing, setTyping] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  const [pulse, setPulse] = useState(true)
+  const [showForm, setShowForm] = useState(false)
+  const [inputText, setInputText] = useState('')
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -327,18 +403,22 @@ export default function ChatBot() {
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [messages, typing])
+  }, [messages, typing, showForm])
 
   function triggerStep(key: string) {
     const s = TREE[key]
     if (!s) return
     setStep(key)
     setShowChoices(false)
+    setShowForm(false)
     setTyping(true)
     setTimeout(() => {
       setTyping(false)
       setMessages(prev => [...prev, { from: 'bot', text: s.message }])
-      setTimeout(() => setShowChoices(true), 120)
+      setTimeout(() => {
+        if (s.action === 'form') setShowForm(true)
+        else setShowChoices(true)
+      }, 120)
     }, 900)
   }
 
@@ -348,17 +428,38 @@ export default function ChatBot() {
     setTimeout(() => triggerStep(choice.next), 350)
   }
 
-  function handleAction(action: string) {
-    const currentStepData = TREE[step]
-    if (action === 'contact') {
-      setOpen(false)
-      // Navigate with pre-filled params
-      const url = currentStepData ? buildContactURL(currentStepData) : '/#contact'
-      window.location.href = url
-    } else if (action === 'disc') {
-      window.location.href = '/test-disc'
+  function handleTextSend() {
+    const text = inputText.trim()
+    if (!text) return
+    setMessages(prev => [...prev, { from: 'user', text }])
+    setInputText('')
+    setShowChoices(false)
+    setShowForm(false)
+    const match = detectKeyword(text)
+    if (match) {
+      setTimeout(() => triggerStep(match), 350)
     } else {
-      restart()
+      setTyping(true)
+      setTimeout(() => {
+        setTyping(false)
+        setMessages(prev => [...prev, { from: 'bot', text: "Je n'ai pas saisi votre question précisément. Voici ce que je peux faire pour vous 👇" }])
+        setStep('start')
+        setTimeout(() => setShowChoices(true), 120)
+      }, 900)
+    }
+  }
+
+  function handleFormSent() {
+    setShowForm(false)
+    triggerStep('_sent')
+  }
+
+  function handleAction(action: string) {
+    if (action === 'disc') {
+      window.location.href = '/test-disc'
+    } else if (action === 'formations') {
+      setOpen(false)
+      window.location.href = '/#formations'
     }
   }
 
@@ -367,6 +468,8 @@ export default function ChatBot() {
     setStep('start')
     setShowChoices(false)
     setTyping(false)
+    setShowForm(false)
+    setInputText('')
     setTimeout(() => triggerStep('start'), 80)
   }
 
@@ -378,10 +481,10 @@ export default function ChatBot() {
       {/* ── Floating button ── */}
       <div className="fixed bottom-6 right-6 z-50">
         {pulse && (
-          <span className="absolute inset-0 rounded-full" style={{
-            animation: 'cb-pulse-ring 1.8s ease-out infinite',
-            background: 'rgba(61,109,184,0.4)',
-          }}/>
+          <span
+            className="absolute inset-0 rounded-full"
+            style={{ animation: 'cb-pulse-ring 1.8s ease-out infinite', background: 'rgba(61,109,184,0.4)' }}
+          />
         )}
         <button
           onClick={() => { setPulse(false); setOpen(o => !o) }}
@@ -402,33 +505,40 @@ export default function ChatBot() {
         </button>
       </div>
 
-      {/* ── Chat window — 480px large, 620px max-height ── */}
+      {/* ── Chat window ── */}
       {open && (
         <div
           className="cb-window fixed bottom-24 right-6 z-50 flex flex-col rounded-2xl shadow-2xl overflow-hidden"
           style={{
             width: 'min(480px, calc(100vw - 32px))',
-            maxHeight: 'min(620px, calc(100vh - 120px))',
+            maxHeight: 'min(640px, calc(100vh - 120px))',
             background: 'linear-gradient(160deg,#0F1A30 0%,#0B1120 100%)',
             border: '1px solid rgba(61,109,184,0.3)',
           }}
         >
           {/* Header */}
-          <div className="flex items-center gap-3 px-5 py-4 flex-shrink-0"
-            style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+          <div
+            className="flex items-center gap-3 px-5 py-4 flex-shrink-0"
+            style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}
+          >
             <div className="w-11 h-11 rounded-full overflow-hidden flex-shrink-0" style={{ background: '#EEF5FF' }}>
               <LofiAvatar size={44} />
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-white text-sm font-semibold leading-tight">Clément Boulé</p>
               <p className="text-xs flex items-center gap-1.5 mt-0.5" style={{ color: '#6B9ED4' }}>
-                <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block"
-                  style={{ animation: 'cb-bounce 2s ease-in-out infinite' }}/>
+                <span
+                  className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block"
+                  style={{ animation: 'cb-bounce 2s ease-in-out infinite' }}
+                />
                 Formateur · Coach · Disponible
               </p>
             </div>
-            <button onClick={restart} title="Recommencer"
-              className="flex items-center justify-center w-8 h-8 rounded-lg text-white/30 hover:text-white/70 hover:bg-white/5 transition-all text-base">
+            <button
+              onClick={restart}
+              title="Recommencer"
+              className="flex items-center justify-center w-8 h-8 rounded-lg text-white/30 hover:text-white/70 hover:bg-white/5 transition-all text-base"
+            >
               ↺
             </button>
           </div>
@@ -460,15 +570,21 @@ export default function ChatBot() {
                 <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0" style={{ background: '#EEF5FF' }}>
                   <LofiAvatar size={32} />
                 </div>
-                <div className="px-4 py-3" style={{
-                  borderRadius: '4px 16px 16px 16px',
-                  background: 'rgba(61,109,184,0.18)',
-                  border: '1px solid rgba(61,109,184,0.25)',
-                }}>
+                <div
+                  className="px-4 py-3"
+                  style={{
+                    borderRadius: '4px 16px 16px 16px',
+                    background: 'rgba(61,109,184,0.18)',
+                    border: '1px solid rgba(61,109,184,0.25)',
+                  }}
+                >
                   <div className="flex gap-1 items-center h-4">
                     {[0, 1, 2].map(j => (
-                      <span key={j} className="w-1.5 h-1.5 rounded-full bg-white/50 inline-block"
-                        style={{ animation: `cb-bounce 1.1s ease-in-out ${j * 0.18}s infinite` }}/>
+                      <span
+                        key={j}
+                        className="w-1.5 h-1.5 rounded-full bg-white/50 inline-block"
+                        style={{ animation: `cb-bounce 1.1s ease-in-out ${j * 0.18}s infinite` }}
+                      />
                     ))}
                   </div>
                 </div>
@@ -477,91 +593,99 @@ export default function ChatBot() {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Choices / CTAs */}
-          {showChoices && !typing && currentStep && (
-            <div className="px-5 pb-5 pt-2 flex-shrink-0 space-y-2"
-              style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-              {currentStep.action ? (
-                <div className="space-y-2 pt-2">
-                  {/* CTA principal — contact ou DISC */}
-                  {currentStep.action === 'contact' && (
-                    <div className="space-y-2">
-                      <a
-                        href={buildContactURL(currentStep)}
-                        onClick={() => setOpen(false)}
-                        className="block w-full py-3 rounded-xl text-sm font-semibold text-white text-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+          {/* Bottom panel: form OR choices */}
+          {!typing && currentStep && (showChoices || showForm) && (
+            <div
+              className="px-5 pb-3 pt-2 flex-shrink-0 space-y2"
+              style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}
+            >
+              {showForm && currentStep.action === 'form' ? (
+                <ContactForm
+                  subject={currentStep.contactSubject ?? 'Contact depuis le site'}
+                  defaultMsg={currentStep.contactMessage ?? ''}
+                  formationIndex={currentStep.formationIndex}
+                  onClose={() => setOpen(false)}
+                  onSent={handleFormSent}
+                />
+              ) : showChoices ? (
+                currentStep.action ? (
+                  <div className="space-y-2 pt-1">
+                    {currentStep.action === 'disc' && (
+                      <button
+                        onClick={() => handleAction('disc')}
+                        className="w-full py-3 rounded-xl text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5"
+                        style={{ background: 'linear-gradient(135deg,#6B21A8,#9333EA)', boxShadow: '0 4px 16px rgba(147,51,234,0.3)' }}
+                      >
+                         🎯 Passer le test DISC
+                      </button>
+                    )}
+                    {currentStep.action === 'formations' && (
+                      <button
+                        onClick={() => handleAction('formations')}
+                        className="w-full py-3 rounded-xl text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5"
                         style={{ background: 'linear-gradient(135deg,#3D6DB8,#5B8DD4)', boxShadow: '0 4px 16px rgba(61,109,184,0.35)' }}
                       >
-                        💬 M'envoyer un message
-                      </a>
-                      {currentStep.formationAnchor && (
-                        <a
-                          href={
-                            typeof currentStep.formationIndex === 'number'
-                              ? `${currentStep.formationAnchor}?open=${currentStep.formationIndex}`
-                              : currentStep.formationAnchor
-                          }
-                          onClick={() => setOpen(false)}
-                          className="block w-full py-2.5 rounded-xl text-xs font-semibold text-center transition-all duration-200"
-                          style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.65)' }}
-                        >
-                           📋 {typeof currentStep.formationIndex === 'number' ? 'Voir cette formation' : 'Voir les formations'}
-                        </a>
-                      )}
-                    </div>
-                  )}
-                  {currentStep.action === 'disc' && (
+                        📋 Voir les formations
+                      </button>
+                    )}
                     <button
-                      onClick={() => handleAction('disc')}
-                      className="w-full py-3 rounded-xl text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
-                      style={{ background: 'linear-gradient(135deg,#6B21A8,#9333EA)', boxShadow: '0 4px 16px rgba(147,51,234,0.3)' }}
+                      onClick={restart}
+                      className="w-full py-2 rounded-xl text-xs transition-all"
+                      style={{ color: 'rgba(255,255,255,0.4)', border: '1px solid rgba(255,255,255,0.08)' }}
+                      onMouseEnter={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.7)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)' }}
+                      onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.4)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)' }}
                     >
-                      🎯 Passer le test DISC
+                       ↩ Recommencer depuis le début
                     </button>
-                  )}
-                  {/* Recommencer */}
-                  <button
-                    onClick={restart}
-                    className="w-full py-2 rounded-xl text-xs transition-all"
-                    style={{ color: 'rgba(255,255,255,0.4)', border: '1px solid rgba(255,255,255,0.08)' }}
-                    onMouseEnter={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.7)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)' }}
-                    onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.4)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)' }}
-                  >
-                    ↩ Recommencer depuis le début
-                  </button>
-                </div>
-              ) : (
-                <div className="space-y-1.5 pt-1">
-                  {currentStep.choices?.map((choice: any) => (
-                    <button
-                      key={choice.next}
-                      onClick={() => handleChoice(choice)}
-                      className="w-full text-left px-4 py-3 rounded-xl text-sm flex items-center gap-3 transition-all duration-200 hover:-translate-y-px"
-                      style={{
-                        background: 'rgba(255,255,255,0.04)',
-                        border: '1px solid rgba(255,255,255,0.09)',
-                        color: 'rgba(255,255,255,0.78)',
-                      }}
-                      onMouseEnter={e => {
-                        const b = e.currentTarget
-                        b.style.background = 'rgba(61,109,184,0.18)'
-                        b.style.borderColor = 'rgba(61,109,184,0.38)'
-                        b.style.color = 'rgba(255,255,255,0.95)'
-                      }}
-                      onMouseLeave={e => {
-                        const b = e.currentTarget
-                        b.style.background = 'rgba(255,255,255,0.04)'
-                        b.style.borderColor = 'rgba(255,255,255,0.09)'
-                        b.style.color = 'rgba(255,255,255,0.78)'
-                      }}
-                    >
-                      {choice.icon && <span className="text-base flex-shrink-0">{choice.icon}</span>}
-                      <span className="flex-1">{choice.label}</span>
-                      <span style={{ color: 'rgba(255,255,255,0.25)', fontSize: '1.1em' }}>›</span>
-                    </button>
-                  ))}
-                </div>
-              )}
+                  </div>
+                ) : (
+                  <div className="space-y-1.5 pt-1">
+                    {currentStep.choices?.map((choice: any) => (
+                      <button
+                        key={choice.next}
+                        onClick={() => handleChoice(choice)}
+                        className="w-full text-left px-4 py-3 rounded-xl text-sm flex items-center gap-3 transition-all duration-200 hover:-translate-y-px"
+                        style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.09)', color: 'rgba(255,255,255,0.78)' }}
+                        onMouseEnter={e => { const b = e.currentTarget; b.style.background = 'rgba(61,109,184,0.18)'; b.style.borderColor = 'rgba(61,109,184,0.38)'; b.style.color = 'rgba(255,255,255,0.95)' }}
+                        onMouseLeave={e => { const b = e.currentTarget; b.style.background = 'rgba(255,255,255,0.04)'; b.style.borderColor = 'rgba(255,255,255,0.09)'; b.style.color = 'rgba(255,255,255,0.78)' }}
+                      >
+                        {choice.icon && <span className="text-base flex-shrink-0">{choice.icon}</span>}
+                        <span className="flex-1">{choice.label}</span>
+                        <span style={{ color: 'rgba(255,255,255,0.25)', fontSize: '1.1em' }}>›</span>
+                      </button>
+                    ))}
+                  </div>
+                )
+              ) : null}
+            </div>
+          )}
+
+          {/* Text input — always visible when form not shown */}
+          {!showForm && (
+            <div
+              className="px-5 pb-4 pt-2 flex-shrink-0"
+              style={{ borderTop: showChoices ? '1px solid rgba(255,255,255,0.05)' : 'none' }}
+            >
+              <div className="flex gap-2 items-center">
+                <input
+                  type="text"
+                  value={inputText}
+                  onChange={e => setInputText(e.target.value)}
+                  onKeyDown={e => { if (e.key === 'Enter') handleTextSend() }}
+                  placeholder="Posez votre question…"
+                  className="flex-1 px-3 py-2.5 rounded-xl text-sm bg-white/5 border border-white/10 text-white/90 placeholder-white/25 focus:outline-none focus:border-blue-400/40 transition-colors"
+                />
+                <button
+                  onClick={handleTextSend}
+                  disabled={!inputText.trim()}
+                  className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all disabled:opacity-30 hover:-translate-y-px"
+                  style={{ background: 'rgba(61,109,184,0.35)', border: '1px solid rgba(61,109,184,0.4)' }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M2 8L14 2L10 8L14 14L2 8Z" fill="rgba(255,255,255,0.8)" stroke="rgba(255,255,255,0.6)" strokeWidth="0.5"/>
+                  </svg>
+                </button>
+              </div>
             </div>
           )}
         </div>
