@@ -84,7 +84,6 @@ export default function TopClients() {
 }
 
 function LogoCard({ client }: { client: { name: string; logo: string } }) {
-  const [loaded, setLoaded] = useState(false)
   const [errored, setErrored] = useState(false)
   const [hovered, setHovered] = useState(false)
 
@@ -113,14 +112,14 @@ function LogoCard({ client }: { client: { name: string; logo: string } }) {
         <img
           src={client.logo}
           alt={client.name}
-          onLoad={() => setLoaded(true)}
+          loading="eager"
           onError={() => setErrored(true)}
           style={{
             maxHeight: '52px',
             maxWidth: '120px',
             width: 'auto',
             objectFit: 'contain',
-            opacity: loaded ? (hovered ? 1 : 0.72) : 0,
+            opacity: hovered ? 1 : 0.72,
             filter: hovered ? 'grayscale(0%)' : 'grayscale(25%)',
             transition: 'opacity 0.3s ease, filter 0.3s ease',
           }}
