@@ -42,10 +42,7 @@ export default function Footer() {
               >
                 <span className="w-6 h-6 rounded-md flex items-center justify-center shrink-0 overflow-hidden"
                   style={{ background: 'rgba(255,255,255,0.08)' }}>
-                  <svg width="13" height="13" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 1L18.66 6.5V13.5L10 19L1.34 13.5V6.5L10 1Z" fill="currentColor" opacity="0.9"/>
-                    <path d="M10 5.5L15 8.75V11.25L10 14.5L5 11.25V8.75L10 5.5Z" fill="#1A2B4A" opacity="0.4"/>
-                  </svg>
+                  <img src="/logos/malt-logo.svg" alt="Malt" width="14" height="14" style={{ objectFit: 'contain' }} />
                 </span>
                 Malt
               </a>
