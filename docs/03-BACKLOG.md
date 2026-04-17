@@ -1,17 +1,17 @@
 # Backlog — clementboule.fr
 
 > Classement par priorité (Impact vs Effort). À mettre à jour à chaque session.
-> Dernière mise à jour : 16 avril 2026
+> Dernière mise à jour : 17 avril 2026
 
 ## Légende
 
-- CRITIQUE — à faire en premier
-- IMPORTANT — forte valeur ajoutée
-- NICE-TO-HAVE — améliorations futures
+- 🔴 Critique — à faire en premier
+- 🟠 Important — forte valeur ajoutée
+- 🟢 Nice-to-have — améliorations futures
 
 ---
 
-## Priorité haute
+## 🔴 Priorité haute
 
 ### BACK-001 — Audit de performance (Core Web Vitals)
 - **Quoi** : Tester le site via Lighthouse / PageSpeed Insights, corriger les points bloquants
@@ -34,11 +34,11 @@
 - **Statut** : Partiel (OpenGraph + Search Console OK, reste à compléter)
 
 ### BACK-005 — Production des illustrations V2 "Clément dessiné"
-- **Quoi** : Générer 18 illustrations IA via Midjourney + Leonardo AI (calibrage style, production, post-production)
+- **Quoi** : Générer 22 illustrations IA via Midjourney + Leonardo AI (calibrage style → production → post-production) avec ambiances culturelles (lo-fi, gaming/RPG, mentor/fantasy, universitaire, épique, parisien)
 - **Pourquoi** : Direction artistique V2 — personnage illustré sur chaque page du site
 - **Statut** : En cours — calibrage de style (Test A encre terminé, Test B aquarelle soumis, Tests C/D en attente)
 - **Deadline** : 16 mai 2026 (fin des abonnements)
-- **Suivi détaillé** : voir 08-SUIVI-ILLUSTRATIONS.md
+- **Suivi détaillé** : voir \`08-SUIVI-ILLUSTRATIONS.md\`
 
 ### BACK-006 — Sécurité : headers HTTP et CSP
 - **Quoi** : Configurer Content-Security-Policy, X-Frame-Options, HSTS, etc. dans next.config.js
@@ -47,7 +47,7 @@
 
 ---
 
-## Priorité moyenne
+## 🟠 Priorité moyenne
 
 ### BACK-007 — Contenu bilingue complet (FR/EN)
 - **Quoi** : Vérifier et compléter toutes les traductions anglaises
@@ -77,7 +77,7 @@
 
 ---
 
-## Nice-to-have
+## 🟢 Nice-to-have
 
 ### BACK-012 — Animations et micro-interactions
 - **Quoi** : Peaufiner les transitions, hover states, loading states
@@ -120,3 +120,6 @@
 | — | Kit illustrations V2 (prompts, workflow, catalogue 18 poses) | 16/04/2026 |
 | — | Souscription Leonardo AI Essential + Midjourney Basic (1 mois) | 16/04/2026 |
 | — | Calibrage style Midjourney — Test A encre (4 variantes) | 16/04/2026 |
+| — | Réécriture catalogue : 22 prompts avec 6 ambiances culturelles | 17/04/2026 |
+| — | Mise à jour suivi illustrations (direction artistique V2) | 17/04/2026 |
+
