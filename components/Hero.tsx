@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { useLang } from './LanguageContext'
 
-function FadeIn({
+function FadeIn({h
   children,
   delay = 0,
   direction = 'up',
