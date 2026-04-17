@@ -1,8 +1,8 @@
 # Suivi de production — Illustrations V2 "Clément dessiné"
 
-> Dernière mise à jour : 16 avril 2026
+> Dernière mise à jour : 17 avril 2026
 > Deadline : **16 mai 2026** (fin des abonnements Leonardo AI + Midjourney)
-> Référence : `07-KIT-ILLUSTRATIONS-V2.md` (sur GitHub) pour les prompts et le workflow détaillé
+> Référence : \`07-KIT-ILLUSTRATIONS-V2.md\` (sur GitHub) pour les prompts et le workflow détaillé
 
 ---
 
@@ -23,7 +23,7 @@
 | Leonardo AI | 8 500 Fast Tokens | ~20-30 tokens/image | ~280-425 images |
 | **Total** | — | — | **~1400-2400 images** |
 
-Besoin estimé : ~600-700 images (30-50 variations × 18 poses). Marge confortable.
+Besoin estimé : ~250-300 images (calibrage + 22 poses × ~10 variantes). Marge confortable.
 
 ---
 
@@ -42,10 +42,10 @@ Objectif : tester 4 styles artistiques avec la même photo de référence, puis 
 
 | Test | Style | Prompt | Statut | Résultat |
 |---|---|---|---|---|
-| **A** | Encre / Ink | Bold ink editorial portrait... --ar 3:4 --s 250 | Terminé | 4 variantes générées. Style convaincant, ressemblance partielle. |
-| **B** | Aquarelle | Watercolor editorial portrait... --ar 3:4 --s 250 | Soumis | Prompt lancé, résultats non vérifiés. |
-| **C** | Ligne claire | Clean line editorial portrait... --ar 3:4 --s 250 | À lancer | — |
-| **D** | Mixed media | Mixed media editorial portrait... --ar 3:4 --s 250 | À lancer | — |
+| **A** | Encre / Ink | \`Bold ink editorial portrait of a 32-year-old French man, strong black ink strokes, confident stance with arms crossed, hand-drawn feel, minimalist white background, professional but approachable, sketch-like quality --ar 3:4 --s 250\` | ✅ Terminé | 4 variantes générées. Style convaincant, ressemblance partielle. |
+| **B** | Aquarelle | \`Watercolor editorial portrait of a 32-year-old French man, soft washes of warm tones, hand-drawn feel, minimalist background, professional but approachable, sketch-like quality --ar 3:4 --s 250\` | ⏳ Soumis | Prompt lancé, résultats non vérifiés. |
+| **C** | Ligne claire | \`Clean line editorial portrait of a 32-year-old French man, precise thin ink outlines, minimal shading, Franco-Belgian comic style, professional but approachable --ar 3:4 --s 250\` | ❌ À lancer | — |
+| **D** | Mixed media | \`Mixed media editorial portrait of a 32-year-old French man, combining ink lines with watercolor washes and pencil textures, hand-drawn feel, professional but approachable --ar 3:4 --s 250\` | ❌ À lancer | — |
 
 ### Note technique importante
 
@@ -60,66 +60,92 @@ Objectif : tester 4 styles artistiques avec la même photo de référence, puis 
 
 | Étape | Statut |
 |---|---|
-| Accès au blueprint "Consistent Character" | Trouvé |
-| Upload de la photo de référence | À refaire (perdue après navigation) |
-| Description de l'action/pose | En attente |
-| Définition du style | En attente |
-| Première génération test | En attente |
+| Accès au blueprint "Consistent Character" | ✅ Trouvé |
+| Upload de la photo de référence | ❌ À refaire (perdue après navigation) |
+| Description de l'action/pose | ❌ En attente |
+| Définition du style | ❌ En attente |
+| Première génération test | ❌ En attente |
 
 ---
 
-## 4. Catalogue des 18 poses (production)
+## 4. Direction artistique V2
 
-> Ne commence qu'après validation du style. Priorité 3 étoiles d'abord.
+### Principe : trait unifié + décors culturels
 
-| # | Code | Pose / Section | Priorité | Statut |
-|---|---|---|---|---|
-| 1 | HERO | Debout confiant, bras croisés ou main sur menton | Haute | En attente |
-| 2 | POINT | Pointe du doigt vers la droite (CTA) | Haute | En attente |
-| 3 | FORM-01 | Assis décontracté, tourne la tête vers le visiteur | Haute | En attente |
-| 4 | DISC | Tient un cercle DISC coloré / roue des couleurs | Haute | En attente |
-| 5 | TEACH | Debout devant tableau blanc, marqueur en main | Haute | En attente |
-| 6 | LAPTOP | Assis avec laptop ouvert, sourire concentré | Moyenne | En attente |
-| 7 | TALK | En train de parler sur scène, micro-cravate | Moyenne | En attente |
-| 8 | WAVE | Salut amical de la main (page contact) | Moyenne | En attente |
-| 9 | THINK | Main sur le menton, regard pensif (section méthode) | Moyenne | En attente |
-| 10 | TEAM | Debout avec groupe stylisé (section clients) | Moyenne | En attente |
-| 11 | BOOK | Lit un livre ouvert (section parcours) | Basse | En attente |
-| 12 | COFFEE | Tient une tasse, pose détendue (section à propos) | Basse | En attente |
-| 13 | WALK | Marche de profil, sacoche en main | Basse | En attente |
-| 14 | WRITE | Écrit dans un carnet (section blog) | Basse | En attente |
-| 15 | CELEBRATE | Bras levés, expression de victoire | Basse | En attente |
-| 16 | LISTEN | Écoute attentive, tête légèrement penchée | Basse | En attente |
-| 17 | PRESENT | Présente un écran/slide derrière lui | Basse | En attente |
-| 18 | LEAN | Appuyé décontracté contre un mur/cadre | Basse | En attente |
+Le personnage garde un trait artistique constant (médium à définir après calibrage). Ce qui change d'une illustration à l'autre, c'est l'univers de fond et l'ambiance, avec des références culturelles assumées :
+
+| Univers | Références | Utilisé pour |
+|---|---|---|
+| **Lo-fi / Cozy** | Lofi Girl, ambiance study, pluie, casque, tasse | CONT-001, DECO-001, BLOG-004 |
+| **Gaming / RPG** | Character select, HUD, barres de stats | HERO-002, DISC-001, CLI-001, BLOG-003 |
+| **Mentor / Fantasy** | Gandalf, Dumbledore, lumière dorée, livres anciens | QSJ-001, BLOG-001, BLOG-002, BLOG-005 |
+| **Universitaire / Cinéma** | Good Will Hunting, tableau noir, campus | FORM-001, FORM-002 |
+| **Épique / Cinématographique** | Affiche de film, éclairage dramatique | HERO-001, FORM-003 |
+| **Parisien / Éditorial** | Terrasse de café, Haussmann, magazine | QSJ-002, CONT-002, DECO-002, BLOG-006 |
+
+---
+
+## 5. Catalogue des 22 illustrations (production)
+
+> Ne commence qu'après validation du style. Priorité ★★★ d'abord.
+> Prompts détaillés dans \`07-KIT-ILLUSTRATIONS-V2.md\` (section 6).
+
+| # | Code | Pose / Section | Ambiance | Priorité | Statut |
+|---|---|---|---|---|---|
+| 1 | HERO-001 | Portrait héroïque / Home | Épique / Cinéma | ★★★ | ❌ |
+| 2 | HERO-002 | Geste d'accueil gaming / Home | Gaming / RPG | ★★★ | ❌ |
+| 3 | QSJ-001 | Pensif, bureau de mentor / Qui suis-je | Mentor / Fantasy | ★★★ | ❌ |
+| 4 | FORM-001 | Pointant, Good Will Hunting / Formations | Universitaire / Cinéma | ★★★ | ❌ |
+| 5 | DISC-001 | RPG Character Stats / Test DISC | Gaming / RPG | ★★★ | ❌ |
+| 6 | CONT-001 | Lo-fi accueil / Contact | Lo-fi / Cozy | ★★★ | ❌ |
+| 7 | QSJ-002 | Storytelling terrasse / Qui suis-je | Parisien | ★★☆ | ❌ |
+| 8 | FORM-002 | Devant tableau blanc / Formations | Universitaire | ★★☆ | ❌ |
+| 9 | FORM-003 | Bras croisés expert / Formations | Épique subtile | ★★☆ | ❌ |
+| 10 | CLI-001 | Avec la guilde / Clients | Gaming / RPG | ★★☆ | ❌ |
+| 11 | DECO-001 | Lo-fi laptop / Déco | Lo-fi pur | ★★☆ | ❌ |
+| 12 | DECO-003 | Clin d'oeil / Déco | Éditorial | ★★☆ | ❌ |
+| 13 | DECO-004 | Salut amical / Déco | Minimal | ★★☆ | ❌ |
+| 14 | CLI-002 | Poignée de main / Clients | Éditorial / Pro | ★☆☆ | ❌ |
+| 15 | CONT-002 | Au téléphone, Paris / Contact | Parisien | ★☆☆ | ❌ |
+| 16 | DECO-002 | De dos, Paris / Déco | Parisien / Cinéma | ★☆☆ | ❌ |
+| 17 | DISC-002 | Eureka level up / Test DISC | Gaming | ★☆☆ | ❌ |
+| 18 | BLOG-001 | Écriture Tolkien / Blog | Mentor / Fantasy | ★☆☆ | ❌ |
+| 19 | BLOG-002 | Bibliothèque fantasy / Blog | Mentor / Fantasy | ★☆☆ | ❌ |
+| 20 | BLOG-003 | Quest Complete / Blog | Gaming | ★☆☆ | ❌ |
+| 21 | BLOG-004 | Podcast lo-fi / Blog | Lo-fi | ★☆☆ | ❌ |
+| 22 | BLOG-005 | Classe magique / Blog | Mentor / Fantasy | ★☆☆ | ❌ |
+
+Ordre de production : ★★★ d'abord (6 poses), puis ★★☆ (7 poses), puis ★☆☆ (9 poses) si GPU restant.
 
 ### Convention de nommage
 
+\`\`\`
 CB-[CODE]-[NUMERO]-[OUTIL].png
+\`\`\`
 
-Exemples : CB-HERO-001-MJ.png, CB-DISC-003-LEO.png
+Exemples : \`CB-HERO001-01-MJ.png\`, \`CB-DISC001-03-LEO.png\`, \`CB-HERO001-FINAL.png\`
 
 ---
 
-## 5. Pipeline post-production
+## 6. Pipeline post-production
 
 | Étape | Outil | Statut |
 |---|---|---|
-| Sélection des meilleures variantes | Manuel | En attente |
-| Suppression des fonds | remove.bg ou rembg (Python) | En attente |
-| Export WebP optimisé | Sharp (Node.js) | En attente |
-| Redimensionnement responsive | Sharp (Node.js) | En attente |
-| Intégration Next.js (composant Image) | Code | En attente |
-| Commit + déploiement Vercel | GitHub CI/CD | En attente |
+| Sélection des meilleures variantes | Manuel (toi + moi) | ❌ |
+| Suppression des fonds | remove.bg ou rembg (Python) | ❌ |
+| Export WebP optimisé | Sharp (Node.js) | ❌ |
+| Redimensionnement responsive | Sharp (Node.js) | ❌ |
+| Intégration Next.js (composant \`<Image>\`) | Code | ❌ |
+| Commit + déploiement Vercel | GitHub CI/CD | ❌ |
 
 ---
 
-## 6. Timeline
+## 7. Timeline
 
 | Semaine | Objectif |
 |---|---|
 | S1 (16-22 avril) | Calibrage style (4 tests) + choix du style final |
-| S2 (23-29 avril) | Production poses haute priorité (5 poses x 30-50 variantes) |
-| S3 (30 avril - 6 mai) | Production poses moyenne + basse priorité |
+| S2 (23-29 avril) | Production poses ★★★ (6 poses × ~10 variantes) |
+| S3 (30 avril - 6 mai) | Production poses ★★☆ (7 poses) + ★☆☆ (9 poses) |
 | S4 (7-13 mai) | Sélection + post-production + intégration |
 | **16 mai** | **Deadline — fin des abonnements** |
