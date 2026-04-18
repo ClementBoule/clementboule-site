@@ -25,7 +25,6 @@ export default function DiscContactSection({
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
-  const [expanded, setExpanded] = useState(false)
 
   const color = DISC_COLORS[dominant]
   const profile = profiles[dominant]
@@ -74,42 +73,7 @@ export default function DiscContactSection({
         border: `1px solid ${color.main}20`,
       }}
     >
-      {/* CTA initial — s'expand au clic */}
-      {!expanded ? (
-        <button
-          onClick={() => setExpanded(true)}
-          className="w-full p-8 text-center transition-all hover:opacity-90 group"
-        >
-          <div className="flex items-center justify-center gap-4 mb-3">
-            {/* Mini portrait */}
-            <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 shadow-lg flex-shrink-0" style={{ borderColor: color.main }}>
-              <Image
-                src="/clement-illustration.png"
-                alt="Clément Boulé"
-                fill
-                className="object-cover object-top"
-              />
-            </div>
-            <div className="text-left">
-              <p className="text-lg font-bold text-gray-900">
-                Envie de décoder votre profil {profile.name} ?
-              </p>
-              <p className="text-sm text-gray-500">
-                {profile.teaser}
-              </p>
-            </div>
-          </div>
-          <div
-            className="inline-flex items-center gap-2 text-white font-bold px-7 py-3 rounded-xl transition-all group-hover:-translate-y-0.5 mt-2"
-            style={{ backgroundColor: color.main, boxShadow: `0 4px 20px ${color.main}45` }}
-          >
-            Discuter de mon profil
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
-        </button>
-      ) : (
+      {/* Formulaire de contact direct */}
         <div className="p-6 md:p-8">
           {/* Layout : Mage + Bulle | Formulaire */}
           <div className="grid md:grid-cols-2 gap-8 items-start">
@@ -266,7 +230,6 @@ export default function DiscContactSection({
             </div>
           </div>
         </div>
-      )}
     </div>
   )
 }
