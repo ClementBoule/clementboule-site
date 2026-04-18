@@ -443,10 +443,6 @@ export default function Hero() {
                   fill
                   className="object-contain object-center"
                   priority
-                  style={{
-                    WebkitMaskImage: 'radial-gradient(ellipse 100% 100% at center 45%, black 75%, transparent 100%)',
-                    maskImage: 'radial-gradient(ellipse 100% 100% at center 45%, black 75%, transparent 100%)',
-                  }}
                 />
               </div>
               <div
