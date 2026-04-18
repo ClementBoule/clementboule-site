@@ -111,7 +111,7 @@ export default function DiscMap({
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 })
 
   const total = Object.values(scores).reduce((a, b) => a + b, 0) || 1
-  const size = compact ? 340 : 460
+  const size = compact ? 360 : 500
 
   // ─── Pourcentages normalisés (0→1) pour le radar ──────────────
   const pcts = useMemo(() => {
@@ -395,25 +395,25 @@ export default function DiscMap({
           const isHovered = hoveredSP === spKey
 
           // Taille du point
-          const dotRadius = isIdentified ? 2.2 : isInDominantQ ? 1.5 : 1.0
+          const dotRadius = isIdentified ? 2.5 : isInDominantQ ? 1.8 : 1.0
 
           // Opacité
-          const dotOpacity = isIdentified ? 1 : isInDominantQ ? 0.85 : 0.3
+          const dotOpacity = isIdentified ? 1 : isInDominantQ ? 0.9 : 0.3
 
-          // Position du label (décalage intelligent)
+          // Position du label (décalage intelligent — écarté du point pour éviter les chevauchements)
           const labelAngle = normAngle(angle)
           let labelDx = 0
-          let labelDy = -2.5
+          let labelDy = -3.5
           let labelAnchor: 'start' | 'middle' | 'end' = 'middle'
 
           if (labelAngle >= 45 && labelAngle < 135) {
-            labelDx = 3
+            labelDx = 4
             labelDy = 0.5
             labelAnchor = 'start'
           } else if (labelAngle >= 135 && labelAngle < 225) {
-            labelDy = 3.5
+            labelDy = 4.5
           } else if (labelAngle >= 225 && labelAngle < 315) {
-            labelDx = -3
+            labelDx = -4
             labelDy = 0.5
             labelAnchor = 'end'
           }
@@ -489,30 +489,18 @@ export default function DiscMap({
                   x={pos.x + labelDx}
                   y={pos.y + labelDy}
                   textAnchor={labelAnchor}
-                  fontSize={isIdentified ? 2.4 : 2.0}
-                  fontWeight={isIdentified ? '700' : '500'}
+                  fontSize={isIdentified ? 3.0 : 2.5}
+                  fontWeight={isIdentified ? '700' : '600'}
                   fill={color.dark}
-                  opacity={isIdentified ? 1 : 0.7}
+                  opacity={isIdentified ? 1 : 0.75}
                   className="pointer-events-none"
+                  style={{ textShadow: '0 0 3px white, 0 0 3px white, 0 0 3px white' }}
                 >
                   {spData.name.replace(/^(L'|Le |La )/, '')}
                 </text>
               )}
 
-              {/* "?" pour les sous-profils verrouillés */}
-              {locked && (
-                <text
-                  x={pos.x}
-                  y={pos.y + 0.8}
-                  textAnchor="middle"
-                  fontSize="1.8"
-                  fontWeight="700"
-                  fill="#9CA3AF"
-                  className="pointer-events-none"
-                >
-                  ?
-                </text>
-              )}
+              {/* Sous-profils verrouillés : pas de "?" — juste le point grisé suffit */}
             </g>
           )
         })}
