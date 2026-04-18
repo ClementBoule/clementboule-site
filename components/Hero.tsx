@@ -83,9 +83,77 @@ function DiscLogo({ size = 120 }: { size?: number }) {
   )
 }
 
+// ─── DISC SPARKS (4 particules aux couleurs DISC en orbite) ──────────────────
+function DiscSparks() {
+  return (
+    <span aria-hidden className="disc-sparks pointer-events-none absolute inset-0 overflow-visible">
+      <span className="disc-spark disc-spark-d" />
+      <span className="disc-spark disc-spark-i" />
+      <span className="disc-spark disc-spark-s" />
+      <span className="disc-spark disc-spark-c" />
+      <style jsx>{`
+        .disc-spark {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 6px;
+          height: 6px;
+          border-radius: 9999px;
+          transform-origin: 0 0;
+          opacity: 0;
+          filter: blur(0.3px);
+        }
+        .disc-spark-d {
+          background: radial-gradient(circle, #F87171 0%, #DC2626 55%, transparent 85%);
+          box-shadow: 0 0 8px rgba(220, 38, 38, 0.8), 0 0 14px rgba(220, 38, 38, 0.4);
+          animation: disc-orbit 4.2s linear infinite;
+        }
+        .disc-spark-i {
+          background: radial-gradient(circle, #FDE047 0%, #EAB308 55%, transparent 85%);
+          box-shadow: 0 0 8px rgba(234, 179, 8, 0.8), 0 0 14px rgba(234, 179, 8, 0.4);
+          animation: disc-orbit 5.2s linear infinite;
+          animation-delay: -1.3s;
+        }
+        .disc-spark-s {
+          background: radial-gradient(circle, #4ADE80 0%, #16A34A 55%, transparent 85%);
+          box-shadow: 0 0 8px rgba(22, 163, 74, 0.8), 0 0 14px rgba(22, 163, 74, 0.4);
+          animation: disc-orbit 4.6s linear infinite;
+          animation-delay: -2.3s;
+        }
+        .disc-spark-c {
+          background: radial-gradient(circle, #60A5FA 0%, #2563EB 55%, transparent 85%);
+          box-shadow: 0 0 8px rgba(37, 99, 235, 0.8), 0 0 14px rgba(37, 99, 235, 0.4);
+          animation: disc-orbit 5.6s linear infinite;
+          animation-delay: -3.4s;
+        }
+        @keyframes disc-orbit {
+          0% {
+            transform: translate(-50%, -50%) rotate(0deg) translateX(75px) rotate(0deg) scale(0.6);
+            opacity: 0;
+          }
+          8% { opacity: 1; }
+          50% { transform: translate(-50%, -50%) rotate(180deg) translateX(105px) rotate(-180deg) scale(1); }
+          92% { opacity: 1; }
+          100% {
+            transform: translate(-50%, -50%) rotate(360deg) translateX(75px) rotate(-360deg) scale(0.6);
+            opacity: 0;
+          }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .disc-spark { animation: none !important; opacity: 0.55; }
+          .disc-spark-d { transform: translate(-50%, -50%) translateX(90px) translateY(0); }
+          .disc-spark-i { transform: translate(-50%, -50%) translateX(0) translateY(-40px); }
+          .disc-spark-s { transform: translate(-50%, -50%) translateX(-90px) translateY(0); }
+          .disc-spark-c { transform: translate(-50%, -50%) translateX(0) translateY(40px); }
+        }
+      `}</style>
+    </span>
+  )
+}
+
 // ─── MAGIC TOGGLE (mobile / touch only) ──────────────────────────────────────
 // Bouton élégant et magique, affiché uniquement sur écrans sans hover.
-// Particules dorées orbitales + halo pulsant + baguette centrale.
+// Halo doré prononcé + 6 étincelles orbitales + baguette centrale.
 function MagicToggle({
   active,
   onToggle,
@@ -101,33 +169,36 @@ function MagicToggle({
       aria-pressed={active}
       aria-label={active ? 'Revenir à la version pro' : label}
       onClick={onToggle}
-      className="magic-toggle group relative inline-flex items-center gap-3 px-5 py-3 rounded-full bg-white/80 backdrop-blur-sm border border-[#C9A55C]/40 shadow-md active:scale-95 transition-transform duration-150"
+      className="magic-toggle group relative inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-white/85 backdrop-blur-sm border-2 border-[#C9A55C]/50 shadow-lg active:scale-95 transition-transform duration-150 pointer-events-auto"
       style={{
         boxShadow: active
-          ? '0 0 0 1px #C9A55C55, 0 6px 24px -6px #C9A55C80'
-          : '0 0 0 1px #C9A55C30, 0 4px 16px -6px #C9A55C50',
+          ? '0 0 0 2px #C9A55C66, 0 10px 32px -6px #C9A55Caa, 0 0 50px -10px #F2D27Cbb'
+          : '0 0 0 2px #C9A55C40, 0 8px 24px -6px #C9A55C80, 0 0 40px -12px #F2D27Caa',
       }}
     >
-      {/* Halo pulsant doré */}
+      {/* Halo pulsant doré (plus marqué) */}
       <span
         aria-hidden
-        className="magic-halo pointer-events-none absolute inset-0 rounded-full"
+        className="magic-halo pointer-events-none absolute -inset-2 rounded-full"
         style={{
           background:
-            'radial-gradient(ellipse at center, rgba(201,165,92,0.28) 0%, rgba(201,165,92,0) 70%)',
+            'radial-gradient(ellipse at center, rgba(242, 210, 124, 0.55) 0%, rgba(201, 165, 92, 0.25) 40%, rgba(201, 165, 92, 0) 75%)',
         }}
       />
 
-      {/* Particules orbitales */}
+      {/* Particules orbitales (6 étoiles au lieu de 3, plus visibles) */}
       <span aria-hidden className="pointer-events-none absolute inset-0">
         <span className="magic-spark magic-spark-1" />
         <span className="magic-spark magic-spark-2" />
         <span className="magic-spark magic-spark-3" />
+        <span className="magic-spark magic-spark-4" />
+        <span className="magic-spark magic-spark-5" />
+        <span className="magic-spark magic-spark-6" />
       </span>
 
       {/* Icône baguette magique */}
       <svg
-        className="relative w-5 h-5 text-[#B88A2F] shrink-0"
+        className="relative w-6 h-6 text-[#B88A2F] shrink-0 drop-shadow-sm"
         viewBox="0 0 24 24"
         fill="none"
         aria-hidden
@@ -135,7 +206,7 @@ function MagicToggle({
         <path
           d="M4 20L16 8"
           stroke="currentColor"
-          strokeWidth="2"
+          strokeWidth="2.2"
           strokeLinecap="round"
         />
         <path
@@ -145,59 +216,80 @@ function MagicToggle({
         <path
           d="M6 13l.5 1.2L7.7 14.7l-1.2.5L6 16.4l-.5-1.2L4.3 14.7l1.2-.5L6 13z"
           fill="currentColor"
-          opacity="0.7"
+          opacity="0.75"
         />
       </svg>
 
-      <span className="relative text-sm font-medium text-[#5A3E0E] tracking-tight">
+      <span className="relative text-sm font-semibold text-[#5A3E0E] tracking-tight">
         {active ? 'Version pro' : label}
       </span>
 
       <style jsx>{`
         .magic-halo {
-          animation: magic-pulse 2.6s ease-in-out infinite;
+          animation: magic-pulse 2.4s ease-in-out infinite;
         }
         .magic-spark {
           position: absolute;
           top: 50%;
           left: 50%;
-          width: 4px;
-          height: 4px;
+          width: 6px;
+          height: 6px;
           border-radius: 9999px;
-          background: radial-gradient(circle, #F2D27C 0%, #C9A55C 60%, transparent 100%);
-          box-shadow: 0 0 6px rgba(242, 210, 124, 0.9);
+          background: radial-gradient(circle, #FEF3C7 0%, #F2D27C 40%, #C9A55C 75%, transparent 100%);
+          box-shadow: 0 0 10px rgba(242, 210, 124, 1), 0 0 18px rgba(201, 165, 92, 0.6);
           transform-origin: 0 0;
           opacity: 0;
         }
-        .magic-spark-1 {
-          animation: magic-orbit 3.8s linear infinite;
-        }
+        .magic-spark-1 { animation: magic-orbit 3.4s linear infinite; }
         .magic-spark-2 {
-          animation: magic-orbit 4.6s linear infinite;
-          animation-delay: -1.2s;
+          animation: magic-orbit 4.2s linear infinite;
+          animation-delay: -0.8s;
+          width: 5px;
+          height: 5px;
         }
         .magic-spark-3 {
+          animation: magic-orbit 4.8s linear infinite;
+          animation-delay: -1.6s;
+        }
+        .magic-spark-4 {
+          animation: magic-orbit 3.8s linear infinite;
+          animation-delay: -2.3s;
+          width: 4px;
+          height: 4px;
+        }
+        .magic-spark-5 {
           animation: magic-orbit 5.2s linear infinite;
-          animation-delay: -2.4s;
-          width: 3px;
-          height: 3px;
+          animation-delay: -3.0s;
+        }
+        .magic-spark-6 {
+          animation: magic-orbit 4.4s linear infinite;
+          animation-delay: -3.7s;
+          width: 5px;
+          height: 5px;
         }
         @keyframes magic-pulse {
-          0%, 100% { opacity: 0.5; transform: scale(1); }
-          50% { opacity: 0.9; transform: scale(1.04); }
+          0%, 100% { opacity: 0.55; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.08); }
         }
         @keyframes magic-orbit {
-          0% { transform: translate(-50%, -50%) rotate(0deg) translateX(52px) rotate(0deg); opacity: 0; }
-          10% { opacity: 1; }
-          90% { opacity: 1; }
-          100% { transform: translate(-50%, -50%) rotate(360deg) translateX(52px) rotate(-360deg); opacity: 0; }
+          0% {
+            transform: translate(-50%, -50%) rotate(0deg) translateX(58px) rotate(0deg) scale(0.7);
+            opacity: 0;
+          }
+          8% { opacity: 1; }
+          50% { transform: translate(-50%, -50%) rotate(180deg) translateX(85px) rotate(-180deg) scale(1.1); }
+          92% { opacity: 1; }
+          100% {
+            transform: translate(-50%, -50%) rotate(360deg) translateX(58px) rotate(-360deg) scale(0.7);
+            opacity: 0;
+          }
         }
         @media (prefers-reduced-motion: reduce) {
           .magic-halo,
           .magic-spark {
             animation: none !important;
           }
-          .magic-spark { opacity: 0.6; }
+          .magic-spark { opacity: 0.65; }
         }
       `}</style>
     </button>
@@ -308,15 +400,18 @@ export default function Hero() {
             </FadeIn>
             <FadeIn direction="left" delay={440}>
               <div className="flex flex-wrap items-center gap-4 pt-3">
-                <a
-                  href="/test-disc"
-                  className="inline-flex items-center gap-3 border border-[#1A2B4A]/15 hover:border-[#3D6DB8]/30 bg-white/60 hover:bg-white font-medium px-5 py-3 rounded-full transition-all hover:-translate-y-0.5 hover:shadow-lg group"
-                >
-                  <DiscLogo size={80} />
-                  <span className="text-[#1A2B4A]/70 group-hover:text-[#1A2B4A] transition-colors">
-                    {t.hero.disc}
-                  </span>
-                </a>
+                <span className="relative inline-flex">
+                  <DiscSparks />
+                  <a
+                    href="/test-disc"
+                    className="relative z-10 inline-flex items-center gap-3 border border-[#1A2B4A]/15 hover:border-[#3D6DB8]/30 bg-white/70 hover:bg-white font-medium px-5 py-3 rounded-full transition-all hover:-translate-y-0.5 hover:shadow-lg group"
+                  >
+                    <DiscLogo size={80} />
+                    <span className="text-[#1A2B4A]/70 group-hover:text-[#1A2B4A] transition-colors">
+                      {t.hero.disc}
+                    </span>
+                  </a>
+                </span>
               </div>
             </FadeIn>
             <FadeIn direction="left" delay={560}>
@@ -411,25 +506,40 @@ export default function Hero() {
               </FadeIn>
               <FadeIn direction="left" delay={440}>
                 <div className="flex flex-wrap items-center gap-4 pt-3">
-                  <a
-                    href="/test-disc"
-                    className="inline-flex items-center gap-3 border border-[#7B3DB8]/20 bg-white/60 font-medium px-5 py-3 rounded-full"
-                  >
-                    <DiscLogo size={80} />
-                    <span className="text-[#2D1A4A]/70">
-                      Lancer le sortilège DISC
-                    </span>
-                  </a>
+                  <span className="relative inline-flex pointer-events-auto">
+                    <DiscSparks />
+                    <a
+                      href="/test-disc"
+                      className="relative z-10 inline-flex items-center gap-3 border border-[#7B3DB8]/25 hover:border-[#7B3DB8]/50 bg-white/70 hover:bg-white font-medium px-5 py-3 rounded-full transition-all hover:-translate-y-0.5 hover:shadow-lg group"
+                    >
+                      <DiscLogo size={80} />
+                      <span className="text-[#2D1A4A]/75 group-hover:text-[#2D1A4A] transition-colors">
+                        Lancer le sortilège DISC
+                      </span>
+                    </a>
+                  </span>
                 </div>
               </FadeIn>
               <FadeIn direction="left" delay={560}>
                 <div className="flex flex-wrap items-center gap-3 pt-2">
-                  <span className="text-xs font-medium text-[#7B3DB8]/70 bg-[#7B3DB8]/8 px-3 py-1.5 rounded-full border border-[#7B3DB8]/15">
+                  <a
+                    href="https://www.linkedin.com/in/cl%C3%A9ment-boul%C3%A9/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="pointer-events-auto inline-flex items-center gap-2 text-xs font-medium text-[#7B3DB8]/80 hover:text-[#7B3DB8] bg-[#7B3DB8]/8 hover:bg-[#7B3DB8]/14 px-3 py-1.5 rounded-full border border-[#7B3DB8]/20 hover:border-[#7B3DB8]/40 transition-colors"
+                  >
+                    <img src="/logos/linkedin.png" alt="" style={{ height: '14px', width: 'auto', objectFit: 'contain' }} />
                     +2 500 XP en accompagnement
-                  </span>
-                  <span className="text-xs font-medium text-[#B8843D]/70 bg-[#B8843D]/8 px-3 py-1.5 rounded-full border border-[#B8843D]/15">
-                    Guilde des Formateurs
-                  </span>
+                  </a>
+                  <a
+                    href="https://www.malt.fr/profile/clementboule"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="pointer-events-auto inline-flex items-center gap-2 text-xs font-medium text-[#B8843D]/80 hover:text-[#B8843D] bg-[#B8843D]/8 hover:bg-[#B8843D]/14 px-3 py-1.5 rounded-full border border-[#B8843D]/20 hover:border-[#B8843D]/40 transition-colors"
+                  >
+                    <img src="/logos/malt.png" alt="" style={{ height: '14px', width: 'auto', objectFit: 'contain' }} />
+                    Guilde des Aventuriers
+                  </a>
                 </div>
               </FadeIn>
             </div>
@@ -469,11 +579,11 @@ export default function Hero() {
         />
       )}
 
-      {/* ═══ BOUTON MAGIQUE (tactile uniquement) ═══ */}
+      {/* ═══ BOUTON MAGIQUE (tactile uniquement, positionné haut pour visibilité) ═══ */}
       {isTouch && (
         <FadeIn
           delay={700}
-          className="absolute bottom-24 left-1/2 -translate-x-1/2 z-40"
+          className="absolute top-24 left-1/2 -translate-x-1/2 z-40 pointer-events-auto"
         >
           <MagicToggle
             active={mageMobile}
