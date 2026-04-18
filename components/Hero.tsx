@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { useLang } from './LanguageContext'
 
-function FadeIn({h
+function FadeIn({
   children,
   delay = 0,
   direction = 'up',
@@ -155,22 +155,17 @@ export default function Hero() {
             </FadeIn>
           </div>
 
-          {/* Right: Photo */}
+          {/* Right: Illustration */}
           <FadeIn direction="right" delay={150} className="relative flex justify-center md:justify-end">
-            {/* Glow behind photo */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#6B9ED4]/25 to-[#F5A98C]/20 rounded-3xl blur-2xl scale-90" />
-
-            {/* Photo frame */}
-            <div className="relative w-72 h-96 md:w-80 md:h-[460px] rounded-2xl overflow-hidden border border-[#3D6DB8]/15 shadow-2xl shadow-[#1A2B4A]/15 hover:shadow-[#3D6DB8]/20 hover:border-[#3D6DB8]/25 transition-all duration-500">
+            {/* Illustration - transparent background, no frame needed */}
+            <div className="relative w-80 h-[420px] md:w-96 md:h-[520px]">
               <Image
-                src="/clement.jpg"
-                alt="Clement Boule"
+                src="/clement-illustration.png"
+                alt="Clement Boule â illustration portrait"
                 fill
-                className="object-cover object-top"
+                className="object-contain object-center"
                 priority
               />
-              {/* Subtle gradient overlay at bottom */}
-              <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#1A2B4A]/30 to-transparent" />
             </div>
 
             {/* DISC pill floating badge */}
