@@ -18,8 +18,13 @@ const expLogos = [
 ]
 
 const expScales = [1, 1, 1] // svgs scale perfectly
-const expSizes = [{w:'8rem',h:'8rem'},{w:'14rem',h:'6rem'},{w:'14rem',h:'6rem'}]
-const expObjectFits = ['cover','contain','contain']
+// Tailles responsives (mobile -> md) pour éviter le débordement sur smartphones
+const expSizes = [
+  { w: '6rem', h: '6rem', wMd: '8rem', hMd: '8rem' },
+  { w: '9rem', h: '5rem', wMd: '14rem', hMd: '6rem' },
+  { w: '9rem', h: '5rem', wMd: '14rem', hMd: '6rem' },
+]
+const expObjectFits = ['cover', 'contain', 'contain']
 
 /* Education cards: color + logo */
 const eduColors = [
@@ -79,14 +84,14 @@ export default function CV() {
                 const color = expColors[i] ?? expColors[0]
                 const logo = expLogos[i]
                 const expScale = expScales[i] ?? 1
-          const expSize = expSizes[i] ?? {w:'14rem',h:'6rem'}
-          const expObjectFit = expObjectFits[i] ?? 'contain'
+                const expSize = expSizes[i] ?? { w: '9rem', h: '5rem', wMd: '14rem', hMd: '6rem' }
+                const expObjectFit = expObjectFits[i] ?? 'contain'
                 const isHovered = hoveredExp === i
 
                 return (
                   <ScrollReveal key={i} delay={100 + i * 70}>
                     <div
-                      className="relative cursor-default transition-all duration-300 rounded-xl p-4 pl-10"
+                      className="relative cursor-default transition-all duration-300 rounded-xl p-3 pl-8 sm:p-4 sm:pl-10 min-w-0"
                       style={{
                         backgroundColor: isHovered ? `${color.accent}08` : 'transparent',
                         boxShadow: isHovered ? `0 4px 20px ${color.accent}10` : 'none',
@@ -106,13 +111,15 @@ export default function CV() {
                         <div className="absolute left-[19px] top-8 bottom-0 w-px bg-[#1A2B4A]/10" />
                       )}
 
-                      <div className="flex items-start gap-5 mb-2">
+                      <div className="flex items-start gap-3 sm:gap-5 mb-2">
                         {logo && (
                           <div
-                            className="rounded-2xl bg-white p-3 flex-shrink-0 mt-0.5 relative overflow-hidden transition-all duration-300"
+                            className="exp-logo-card rounded-2xl bg-white p-2 sm:p-3 flex-shrink-0 mt-0.5 relative overflow-hidden transition-all duration-300"
                             style={{
-                              width: expSize.w,
-                              height: expSize.h,
+                              ['--w-mobile' as any]: expSize.w,
+                              ['--h-mobile' as any]: expSize.h,
+                              ['--w-desktop' as any]: expSize.wMd,
+                              ['--h-desktop' as any]: expSize.hMd,
                               border: `2px solid ${isHovered ? color.accent : 'rgba(26,43,74,0.1)'}`,
                               boxShadow: isHovered ? `0 8px 24px ${color.accent}25` : '0 2px 8px rgba(0,0,0,0.08)',
                               transform: isHovered ? 'scale(1.06)' : 'scale(1)',
@@ -161,7 +168,7 @@ export default function CV() {
                 return (
                   <ScrollReveal key={i} delay={140 + i * 60}>
                     <div
-                      className="rounded-2xl px-5 py-4 flex items-center gap-5 transition-all duration-300 cursor-default bg-white/70 backdrop-blur-sm"
+                      className="rounded-2xl px-3 py-3 sm:px-5 sm:py-4 flex items-center gap-3 sm:gap-5 transition-all duration-300 cursor-default bg-white/70 backdrop-blur-sm min-w-0"
                       style={{
                         border: `2px solid ${isHovered ? color.accent : color.accent + '18'}`,
                         boxShadow: isHovered ? `0 10px 30px ${color.accent}20` : '0 2px 8px rgba(0,0,0,0.06)',
@@ -172,11 +179,9 @@ export default function CV() {
                       onMouseLeave={() => setHoveredEdu(null)}
                     >
                       <div
-                        className="rounded-2xl flex items-center justify-center flex-shrink-0 relative overflow-hidden transition-all duration-300"
+                        className="edu-logo-card rounded-2xl flex items-center justify-center flex-shrink-0 relative overflow-hidden transition-all duration-300"
                         style={{
                           backgroundColor: logo ? '#ffffff' : `${color.accent}08`,
-                          width: '8rem',
-                          height: '7rem',
                           border: `2px solid ${isHovered ? color.accent : color.accent + '20'}`,
                           transform: isHovered ? 'scale(1.08)' : 'scale(1)',
                           boxShadow: isHovered ? `0 4px 16px ${color.accent}20` : '0 2px 4px rgba(0,0,0,0.05)',
@@ -209,6 +214,27 @@ export default function CV() {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        :global(.exp-logo-card) {
+          width: var(--w-mobile);
+          height: var(--h-mobile);
+        }
+        :global(.edu-logo-card) {
+          width: 6rem;
+          height: 5.5rem;
+        }
+        @media (min-width: 768px) {
+          :global(.exp-logo-card) {
+            width: var(--w-desktop);
+            height: var(--h-desktop);
+          }
+          :global(.edu-logo-card) {
+            width: 8rem;
+            height: 7rem;
+          }
+        }
+      `}</style>
     </section>
   )
 }
