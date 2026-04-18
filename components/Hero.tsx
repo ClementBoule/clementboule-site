@@ -158,10 +158,10 @@ export default function Hero() {
           {/* Right: Illustration */}
           <FadeIn direction="right" delay={150} className="relative flex justify-center md:justify-end">
             {/* Illustration - transparent background, no frame needed */}
-            <div className="relative w-80 h-[420px] md:w-96 md:h-[520px]">
+            <div className="relative w-[420px] h-[520px] md:w-[500px] md:h-[640px]">
               <Image
                 src="/clement-illustration.png"
-                alt="Clement Boule â illustration portrait"
+                alt="Clement Boule Ã¢ÂÂ illustration portrait"
                 fill
                 className="object-contain object-center"
                 priority
