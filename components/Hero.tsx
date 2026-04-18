@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useLang } from './LanguageContext'
 
-// âââ FADE-IN ANIMATION ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ─── FADE-IN ANIMATION ────────────────────────────────────────────────────────
 function FadeIn({
   children,
   delay = 0,
@@ -40,7 +40,7 @@ function FadeIn({
   )
 }
 
-// âââ DISC LOGO (inline SVG) ââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ─── DISC LOGO (inline SVG) ──────────────────────────────────────────────────
 function DiscLogo({ size = 120 }: { size?: number }) {
   const s = size
   const tileW = s * 0.23
@@ -83,9 +83,9 @@ function DiscLogo({ size = 120 }: { size?: number }) {
   )
 }
 
-// âââ HERO COMPONENT ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ─── HERO COMPONENT ──────────────────────────────────────────────────────────
 // Effet balayage vertical : barre qui suit le curseur en X
-// Ã gauche de la barre = version pro, Ã  droite = version sorcier
+// À gauche de la barre = version pro, à droite = version sorcier
 export default function Hero() {
   const { t } = useLang()
   const sectionRef = useRef<HTMLElement>(null)
@@ -125,14 +125,14 @@ export default function Hero() {
       id="hero"
       className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-gradient-to-br from-[#F5F7FB] via-[#EEF3FA] to-[#F5F0FB]"
     >
-      {/* Background blobs (partagÃ©s) */}
+      {/* Background blobs (partagés) */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#6B9ED4]/20 rounded-full blur-3xl" />
         <div className="absolute bottom-1/3 right-1/4 w-72 h-72 bg-[#F5A98C]/18 rounded-full blur-3xl" />
         <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-[#B09FE5]/12 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
       </div>
 
-      {/* âââ COUCHE PRO (visible par dÃ©faut, masquÃ©e Ã  droite de la barre) âââ */}
+      {/* ═══ COUCHE PRO (visible par défaut, masquée à droite de la barre) ═══ */}
       <div
         className="relative max-w-6xl mx-auto px-6 pt-28 pb-20 w-full"
         style={
@@ -202,7 +202,7 @@ export default function Hero() {
             <div className="relative w-80 h-[420px] md:w-96 md:h-[520px]">
               <Image
                 src="/clement-illustration.png"
-                alt="ClÃ©ment BoulÃ© â illustration portrait"
+                alt="Clément Boulé — illustration portrait"
                 fill
                 className="object-contain object-center"
                 priority
@@ -219,7 +219,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* âââ COUCHE SORCIER (masquÃ©e par dÃ©faut, visible Ã  droite de la barre) âââ */}
+      {/* ═══ COUCHE SORCIER (masquée par défaut, visible à droite de la barre) ═══ */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -229,35 +229,35 @@ export default function Hero() {
           transition: isRevealing ? 'none' : 'clip-path 0.4s ease-in',
         }}
       >
-        {/* Teinte lÃ©gÃ¨rement plus chaude pour le cÃ´tÃ© sorcier */}
+        {/* Teinte légèrement plus chaude pour le côté sorcier */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#FBF5F5] via-[#F5EEF3] to-[#F0EBF5] pointer-events-none" />
 
-        {/* Blobs lÃ©gÃ¨rement teintÃ©s */}
+        {/* Blobs légèrement teintés */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#B09FE5]/20 rounded-full blur-3xl" />
           <div className="absolute bottom-1/3 right-1/4 w-72 h-72 bg-[#E5A98C]/18 rounded-full blur-3xl" />
           <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-[#9FB0E5]/15 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
         </div>
 
-        {/* Contenu sorcier (mÃªme layout) */}
+        {/* Contenu sorcier (même layout) */}
         <div className="relative max-w-6xl mx-auto px-6 pt-28 pb-20 w-full min-h-screen flex flex-col justify-center">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             {/* Texte sorcier */}
             <div className="space-y-5">
               <div>
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-none tracking-tight text-[#2D1A4A]">
-                  ClÃ©ment BoulÃ©
+                  Clément Boulé
                 </h1>
               </div>
               <div>
                 <p className="text-xl md:text-2xl font-semibold text-[#7B3DB8]">
-                  Sorcier Formateur Â· Lvl 32
+                  Sorcier Formateur · Lvl 32
                 </p>
               </div>
               <div>
                 <p className="text-base text-[#6B5E7E] leading-relaxed max-w-md pt-1">
-                  MaÃ®tre en arts comportementaux et sciences de la communication.
-                  SpÃ©cialisÃ© en sorts DISC, enchantements d'Ã©quipe et potions de leadership.
+                  Maître en arts comportementaux et sciences de la communication.
+                  Spécialisé en sorts DISC, enchantements d'équipe et potions de leadership.
                 </p>
               </div>
               <div>
@@ -268,7 +268,7 @@ export default function Hero() {
                   >
                     <DiscLogo size={80} />
                     <span className="text-[#2D1A4A]/70">
-                      Lancer le sortilÃ¨ge DISC
+                      Lancer le sortilège DISC
                     </span>
                   </a>
                 </div>
@@ -287,10 +287,10 @@ export default function Hero() {
 
             {/* Illustration sorcier */}
             <div className="relative flex justify-center md:justify-end">
-              <div className="relative w-80 h-[420px] md:w-96 md:h-[520px]">
+              <div className="relative w-[26rem] h-[560px] md:w-[34rem] md:h-[700px]">
                 <Image
                   src="/mage-illustration.png"
-                  alt="ClÃ©ment BoulÃ© â Sorcier Formateur"
+                  alt="Clément Boulé — Sorcier Formateur"
                   fill
                   className="object-contain object-center"
                   priority
@@ -308,7 +308,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* âââ BARRE DE SÃPARATION âââ */}
+      {/* ═══ BARRE DE SÉPARATION ═══ */}
       {isRevealing && (
         <div
           className="absolute top-0 bottom-0 z-30 pointer-events-none"
