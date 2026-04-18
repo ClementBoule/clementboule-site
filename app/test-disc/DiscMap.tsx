@@ -342,7 +342,7 @@ export default function DiscMap({
 
           // Ajuster l'ancrage selon la position
           const angle = normAngle(axis.compassAngle)
-          let anchor: string = 'middle'
+          let anchor: 'start' | 'middle' | 'end' = 'middle'
           if (angle > 30 && angle < 150) anchor = 'start'
           else if (angle > 210 && angle < 330) anchor = 'end'
 
@@ -404,7 +404,7 @@ export default function DiscMap({
           const labelAngle = normAngle(angle)
           let labelDx = 0
           let labelDy = -2.5
-          let labelAnchor: string = 'middle'
+          let labelAnchor: 'start' | 'middle' | 'end' = 'middle'
 
           if (labelAngle >= 45 && labelAngle < 135) {
             labelDx = 3
@@ -555,7 +555,7 @@ export default function DiscMap({
         ].map((desc, i) => {
           const pos = compassToXY(desc.textAngle, MAX_R + 0.5)
           const angle = normAngle(desc.textAngle)
-          let anchor: string = 'middle'
+          let anchor: 'start' | 'middle' | 'end' = 'middle'
           if (angle > 30 && angle < 150) anchor = 'start'
           else if (angle > 210 && angle < 330) anchor = 'end'
           const dy = angle < 60 || angle > 300 ? -0.5 : angle > 120 && angle < 240 ? 2 : 0.5
