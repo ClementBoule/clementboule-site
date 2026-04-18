@@ -4,8 +4,8 @@ import Image from 'next/image'
 import type { ProfileKey, SubProfileKey } from './disc-data'
 import { DISC_COLORS, profiles, subProfiles, akinatorByDominant } from './disc-data'
 
-// âââ SECTION CONTACT "AKINATOR" ââââââââââââââââââââââââââââââââââââââââââââ
-// ApparaÃ®t en bas des rÃ©sultats aprÃ¨s Phase 1 ou Phase 2
+// ─── SECTION CONTACT "AKINATOR" ────────────────────────────────────────────
+// Apparaît en bas des résultats après Phase 1 ou Phase 2
 // Layout : Portrait mage (gauche) + bulle de dialogue + formulaire (droite)
 
 interface DiscContactSectionProps {
@@ -36,12 +36,12 @@ export default function DiscContactSection({
     ? sp.akinatorMessage
     : akinatorByDominant[dominant]
 
-  // PrÃ©-remplir le message du formulaire avec le contexte DISC
+  // Pré-remplir le message du formulaire avec le contexte DISC
   const total = Object.values(scores).reduce((a, b) => a + b, 0) || 1
   const scoresSummary = (['D', 'I', 'S', 'C'] as ProfileKey[])
     .map(k => `${k}: ${Math.round((scores[k] / total) * 100)}%`)
     .join(', ')
-  const defaultMessage = `Bonjour ClÃ©ment,\n\nJe viens de faire le test DISC sur votre site. Mon profil dominant est ${profile.name}${sp ? ` (sous-profil : ${sp.name})` : ''} (${scoresSummary}).\n\nJ'aimerais en savoir plus sur comment appliquer ces rÃ©sultats dans mon contexte professionnel.\n\nCordialement,`
+  const defaultMessage = `Bonjour Clément,\n\nJe viens de faire le test DISC sur votre site. Mon profil dominant est ${profile.name}${sp ? ` (sous-profil : ${sp.name})` : ''} (${scoresSummary}).\n\nJ'aimerais en savoir plus sur comment appliquer ces résultats dans mon contexte professionnel.\n\nCordialement,`
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -54,7 +54,7 @@ export default function DiscContactSection({
           name,
           email,
           message: message || defaultMessage,
-          _subject: `[DISC ${profile.letter}${sp ? ` Â· ${sp.name}` : ''}] Nouveau profil Ã  accompagner`,
+          _subject: `[DISC ${profile.letter}${sp ? ` · ${sp.name}` : ''}] Nouveau profil à accompagner`,
           _disc_profile: profile.name,
           _disc_subprofile: sp?.name || 'Phase 1 uniquement',
           _disc_scores: scoresSummary,
@@ -74,7 +74,7 @@ export default function DiscContactSection({
         border: `1px solid ${color.main}20`,
       }}
     >
-      {/* CTA initial â s'expand au clic */}
+      {/* CTA initial — s'expand au clic */}
       {!expanded ? (
         <button
           onClick={() => setExpanded(true)}
@@ -85,14 +85,14 @@ export default function DiscContactSection({
             <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 shadow-lg flex-shrink-0" style={{ borderColor: color.main }}>
               <Image
                 src="/clement-illustration.png"
-                alt="ClÃ©ment BoulÃ©"
+                alt="Clément Boulé"
                 fill
                 className="object-cover object-top"
               />
             </div>
             <div className="text-left">
               <p className="text-lg font-bold text-gray-900">
-                Envie de dÃ©coder votre profil {profile.name} ?
+                Envie de décoder votre profil {profile.name} ?
               </p>
               <p className="text-sm text-gray-500">
                 {profile.teaser}
@@ -114,7 +114,7 @@ export default function DiscContactSection({
           {/* Layout : Mage + Bulle | Formulaire */}
           <div className="grid md:grid-cols-2 gap-8 items-start">
 
-            {/* âââ Colonne gauche : Portrait mage + bulle âââ */}
+            {/* ─── Colonne gauche : Portrait mage + bulle ─── */}
             <div className="flex flex-col items-center md:items-start">
               {/* Portrait avec effet mage */}
               <div className="relative mb-4">
@@ -122,11 +122,11 @@ export default function DiscContactSection({
                   className="relative w-40 h-48 md:w-48 md:h-56 rounded-2xl overflow-hidden shadow-xl"
                   style={{ border: `3px solid ${color.main}40` }}
                 >
-                  {/* TODO: Remplacer par l'illustration Midjourney "ClÃ©ment mage"
+                  {/* TODO: Remplacer par l'illustration Midjourney "Clément mage"
                        Pour l'instant on utilise l'illustration line drawing existante */}
                   <Image
                     src="/clement-illustration.png"
-                    alt="ClÃ©ment BoulÃ© â Consultant DISC"
+                    alt="Clément Boulé — Consultant DISC"
                     fill
                     className="object-cover object-top"
                   />
@@ -159,24 +159,24 @@ export default function DiscContactSection({
                   {bubbleMessage}
                 </p>
                 <p className="text-xs text-gray-400 mt-3 font-medium">
-                  â ClÃ©ment BoulÃ©, Formateur & Consultant
+                  — Clément Boulé, Formateur & Consultant
                 </p>
               </div>
             </div>
 
-            {/* âââ Colonne droite : Formulaire âââ */}
+            {/* ─── Colonne droite : Formulaire ─── */}
             <div>
               <h3 className="text-lg font-bold text-gray-900 mb-1">
                 Parlons de votre profil
               </h3>
               <p className="text-sm text-gray-500 mb-5">
-                SÃ©ance individuelle ou atelier d'Ã©quipe â je vous recontacte sous 24h.
+                Séance individuelle ou atelier d'équipe — je vous recontacte sous 24h.
               </p>
 
               {status === 'success' ? (
                 <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-6 text-center">
-                  <div className="text-3xl mb-2">â</div>
-                  <p className="text-emerald-800 font-bold mb-1">Message envoyÃ©</p>
+                  <div className="text-3xl mb-2">✓</div>
+                  <p className="text-emerald-800 font-bold mb-1">Message envoyé</p>
                   <p className="text-emerald-600 text-sm">
                     Je vous recontacte rapidement pour discuter de votre profil {profile.name}{sp ? ` (${sp.name})` : ''}.
                   </p>
@@ -230,7 +230,7 @@ export default function DiscContactSection({
 
                   {status === 'error' && (
                     <p className="text-red-600 text-sm font-medium">
-                      Une erreur est survenue. RÃ©essayez ou contactez-moi directement Ã  hello@clementboule.com.
+                      Une erreur est survenue. Réessayez ou contactez-moi directement à hello@clementboule.com.
                     </p>
                   )}
 
@@ -259,7 +259,7 @@ export default function DiscContactSection({
                   </button>
 
                   <p className="text-xs text-gray-400 text-center">
-                    ð Vos donnÃ©es sont envoyÃ©es uniquement Ã  ClÃ©ment BoulÃ©. Aucune donnÃ©e n'est stockÃ©e sur ce site.
+                    🔒 Vos données sont envoyées uniquement à Clément Boulé. Aucune donnée n'est stockée sur ce site.
                   </p>
                 </form>
               )}
