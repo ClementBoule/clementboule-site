@@ -5,21 +5,23 @@ import { useLang } from './LanguageContext'
 import ScrollReveal from './ScrollReveal'
 
 const clients: { name: string; logo: string | null; color: string; scale?: number }[] = [
-  { name: 'EMA',        logo: '/logos/client-ema.png',        color: '#000000', scale: 1.5 },
-  { name: 'Albert',     logo: '/logos/client-albert.png',     color: '#000000' },
-  { name: 'ISCOM',      logo: '/logos/client-iscom.png',      color: '#000000' },
-  { name: 'EDA RH',     logo: '/logos/client-eda-rh.png',     color: '#000000' },
-  { name: 'IHEDREA',    logo: '/logos/client-ihedrea.png',    color: '#000000' },
-  { name: 'Apprentis',  logo: '/logos/client-apprentis.jpg',  color: '#000000' },
+  { name: 'EMA', logo: '/logos/client-ema.png', color: '#000000', scale: 1.5 },
+  { name: 'Albert', logo: '/logos/client-albert.png', color: '#000000' },
+  { name: 'ISCOM', logo: '/logos/client-iscom.png', color: '#000000' },
+  { name: 'EDA RH', logo: '/logos/client-eda-rh.png', color: '#000000' },
+  { name: 'IHEDREA', logo: '/logos/client-ihedrea.png', color: '#000000' },
+  { name: 'Apprentis', logo: '/logos/client-apprentis.jpg', color: '#000000' },
   { name: 'Sauvegarde', logo: '/logos/client-sauvegarde.png', color: '#000000' },
-  { name: 'Daan',       logo: '/logos/client-daan.png',       color: '#000000' },
+  { name: 'Daan', logo: '/logos/client-daan.png', color: '#000000' },
 ]
 
 function ClientLogo({ name, logo, color, scale = 1 }: { name: string; logo: string | null; color: string; scale?: number }) {
   const [hovered, setHovered] = useState(false)
+  // Sur mobile, on plafonne le scale à 1 pour tenir dans la carte
+  const mobileScale = Math.min(scale, 1)
   return (
     <div
-      className="flex items-center justify-center h-36 px-6 rounded-2xl bg-white border-2 shadow-md transition-all duration-300 group relative overflow-hidden cursor-pointer"
+      className="flex items-center justify-center h-28 sm:h-36 px-3 sm:px-6 rounded-2xl bg-white border-2 shadow-md transition-all duration-300 group relative overflow-hidden cursor-pointer min-w-0"
       style={{
         borderColor: hovered ? color : 'rgba(26,43,74,0.08)',
         boxShadow: hovered ? `0 12px 32px ${color}25, 0 0 0 1px ${color}15` : '0 4px 6px -1px rgba(0,0,0,0.1)',
@@ -41,8 +43,11 @@ function ClientLogo({ name, logo, color, scale = 1 }: { name: string; logo: stri
         <img
           src={logo}
           alt={name}
-          className="max-h-24 max-w-[220px] object-contain relative z-10 drop-shadow-sm transition-transform duration-300"
-          style={{ transform: `scale(${hovered ? scale * 1.08 : scale})` }}
+          className="client-logo-img max-h-16 sm:max-h-24 max-w-full sm:max-w-[220px] object-contain relative z-10 drop-shadow-sm transition-transform duration-300"
+          style={{
+            ['--scale-mobile' as any]: `${hovered ? mobileScale * 1.04 : mobileScale}`,
+            ['--scale-desktop' as any]: `${hovered ? scale * 1.08 : scale}`,
+          }}
         />
       ) : (
         <span
@@ -59,9 +64,9 @@ function ClientLogo({ name, logo, color, scale = 1 }: { name: string; logo: stri
 export default function TopClients() {
   const { t } = useLang()
   return (
-    <section className="py-20 bg-[#F5F7FB]">
-      <div className="max-w-6xl mx-auto px-6">
-        <ScrollReveal className="text-center mb-12">
+    <section className="py-16 sm:py-20 bg-[#F5F7FB] overflow-hidden">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <ScrollReveal className="text-center mb-10 sm:mb-12">
           <p className="text-xs font-semibold text-[#3D6DB8] uppercase tracking-widest mb-3">
             {t.topClients.label}
           </p>
@@ -70,13 +75,24 @@ export default function TopClients() {
           </p>
         </ScrollReveal>
         <ScrollReveal delay={120}>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-5">
             {clients.map((client) => (
               <ClientLogo key={client.name} name={client.name} logo={client.logo} color={client.color} scale={client.scale ?? 1} />
             ))}
           </div>
         </ScrollReveal>
       </div>
+
+      <style jsx>{`
+        :global(.client-logo-img) {
+          transform: scale(var(--scale-mobile));
+        }
+        @media (min-width: 640px) {
+          :global(.client-logo-img) {
+            transform: scale(var(--scale-desktop));
+          }
+        }
+      `}</style>
     </section>
   )
 }
