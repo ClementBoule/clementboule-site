@@ -559,6 +559,9 @@ export default function DiscTest() {
             <div className="space-y-3">
               {q.options.map((opt, idx) => {
                 const isSelected = phase2Selected === q.id && idx === q.options.indexOf(opt)
+                // Couleur de l'option basée sur le profil DISC dominant des sous-profils favorisés
+                const optDominant = opt.favors.length > 0 ? subProfiles[opt.favors[0]].zone.dominant : dominant
+                const optColor = DISC_COLORS[optDominant]
                 return (
                   <button
                     key={opt.label}
@@ -567,27 +570,27 @@ export default function DiscTest() {
                     className="w-full text-left rounded-xl border-2 transition-all duration-200 flex items-center gap-4"
                     style={{
                       padding: '18px 20px',
-                      backgroundColor: isSelected ? color.bg : 'white',
-                      borderColor: isSelected ? color.main : '#E5E7EB',
-                      boxShadow: isSelected ? `0 4px 24px ${color.main}22` : 'none',
+                      backgroundColor: isSelected ? optColor.bg : 'white',
+                      borderColor: isSelected ? optColor.main : '#E5E7EB',
+                      boxShadow: isSelected ? `0 4px 24px ${optColor.main}22` : 'none',
                       animation: `fadeUp 0.22s ease ${idx * 60}ms both`,
                     }}
                   >
                     <div
                       className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 transition-all duration-200"
-                      style={{ backgroundColor: isSelected ? color.main : '#F3F4F6', color: isSelected ? 'white' : '#9CA3AF' }}
+                      style={{ backgroundColor: isSelected ? optColor.main : '#F3F4F6', color: isSelected ? 'white' : '#9CA3AF' }}
                     >
                       {String.fromCharCode(65 + idx)}
                     </div>
                     <span
                       className="text-sm md:text-base font-medium leading-relaxed transition-colors duration-200"
-                      style={{ color: isSelected ? color.dark : '#374151' }}
+                      style={{ color: isSelected ? optColor.dark : '#374151' }}
                     >
                       {opt.label}
                     </span>
                     {isSelected && (
                       <div className="ml-auto flex-shrink-0">
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: color.main }}>
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: optColor.main }}>
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                         </svg>
                       </div>
