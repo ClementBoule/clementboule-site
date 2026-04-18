@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import Image from 'next/image'
 import { useLang } from './LanguageContext'
 import ScrollReveal from './ScrollReveal'
 
@@ -57,6 +58,16 @@ export default function Contact() {
               </svg>
               hello@clementboule.com
             </a>
+
+            {/* Photo portrait */}
+            <div className="relative w-48 h-64 rounded-2xl overflow-hidden border border-white/10 shadow-lg mt-4 hidden lg:block">
+              <Image
+                src="/clement.jpg"
+                alt="Clement Boule"
+                fill
+                className="object-cover object-top"
+              />
+            </div>
           </ScrollReveal>
 
           {/* Right: form */}
