@@ -3,12 +3,12 @@ import { useMemo } from 'react'
 import type { ProfileKey, SubProfileKey } from './disc-data'
 import { DISC_COLORS, subProfiles } from './disc-data'
 
-// ─── DISC CARTOGRAPHY MAP ──────────────────────────────────────────────────
-// Composant SVG interactif de la carte DISC circulaire avec :
-// - 4 quadrants colorés (D/I/S/C)
-// - 15 sous-profils positionnés
-// - Mode "teasing" (sous-profils cachés avec "?")
-// - Mode "résultat" (position exacte de l'utilisateur mise en évidence)
+// ─── DISC RADAR CHART (Toile d'araignée) ─────────────────────────────────
+// Composant SVG : radar chart à 4 axes (D/I/S/C)
+// - Grille concentrique en toile d'araignée
+// - Zone colorée représentant les scores
+// - Animation au reveal
+// - Sous-profil identifié mis en évidence
 
 interface DiscMapProps {
   scores: Record<ProfileKey, number>
@@ -20,154 +20,277 @@ interface DiscMapProps {
   compact?: boolean
 }
 
-const SUB_PROFILE_POSITIONS: Record<SubProfileKey, { x: number; y: number }> = {
-  evaluateur:    { x: 62, y: 18 },
-  explorateur:   { x: 78, y: 28 },
-  competiteur:   { x: 85, y: 15 },
-  producteur:    { x: 82, y: 40 },
-  inspirateur:   { x: 82, y: 55 },
-  influenceur:   { x: 85, y: 72 },
-  promoteur:     { x: 75, y: 82 },
-  coach:         { x: 55, y: 82 },
-  pacificateur:  { x: 28, y: 82 },
-  planificateur: { x: 18, y: 72 },
-  factuel:       { x: 15, y: 55 },
-  formaliste:    { x: 15, y: 40 },
-  concretiseur:  { x: 22, y: 28 },
-  investigateur: { x: 35, y: 18 },
-  technicien:    { x: 18, y: 20 },
-}
+// Les 4 axes dans l'ordre : D (haut), I (droite), S (bas), C (gauche)
+const AXES: { key: ProfileKey; label: string; angle: number }[] = [
+  { key: 'D', label: 'Dominant', angle: -90 },    // haut
+  { key: 'I', label: 'Influent', angle: 0 },      // droite
+  { key: 'S', label: 'Stable', angle: 90 },       // bas
+  { key: 'C', label: 'Consciencieux', angle: 180 }, // gauche
+]
 
-const SUB_PROFILE_QUADRANT: Record<SubProfileKey, ProfileKey> = {
-  evaluateur: 'D', explorateur: 'D', competiteur: 'D', producteur: 'D',
-  inspirateur: 'I', influenceur: 'I', promoteur: 'I',
-  coach: 'S', pacificateur: 'S', planificateur: 'S',
-  factuel: 'C', formaliste: 'C', concretiseur: 'C', investigateur: 'C', technicien: 'C',
+const CENTER = 50
+const MAX_R = 40 // rayon max de la toile
+const GRID_LEVELS = [0.25, 0.5, 0.75, 1.0] // niveaux de grille
+
+function polarToXY(angleDeg: number, radius: number): { x: number; y: number } {
+  const rad = (angleDeg * Math.PI) / 180
+  return {
+    x: CENTER + radius * Math.cos(rad),
+    y: CENTER + radius * Math.sin(rad),
+  }
 }
 
 export default function DiscMap({
-  scores, dominant, secondary, phase2Unlocked = false,
-  identifiedSubProfile = null, onLockedClick, compact = false,
+  scores,
+  dominant,
+  secondary,
+  phase2Unlocked = false,
+  identifiedSubProfile = null,
+  onLockedClick,
+  compact = false,
 }: DiscMapProps) {
   const total = Object.values(scores).reduce((a, b) => a + b, 0) || 1
   const size = compact ? 320 : 420
-  const userPosition = useMemo(() => {
-    const dPct = scores.D / total
-    const iPct = scores.I / total
-    const sPct = scores.S / total
-    const cPct = scores.C / total
-    const x = 50 + (dPct + iPct - sPct - cPct) * 40
-    const y = 50 + (sPct + iPct - dPct - cPct) * 40
-    return { x, y }
+
+  // Calculer les pourcentages normalisés (0 à 1)
+  const pcts = useMemo(() => {
+    const raw: Record<ProfileKey, number> = {
+      D: scores.D / total,
+      I: scores.I / total,
+      S: scores.S / total,
+      C: scores.C / total,
+    }
+    // Normaliser pour que le max touche le bord
+    const maxPct = Math.max(...Object.values(raw))
+    const scale = maxPct > 0 ? 1 / maxPct : 1
+    return {
+      D: raw.D * scale,
+      I: raw.I * scale,
+      S: raw.S * scale,
+      C: raw.C * scale,
+    }
   }, [scores, total])
-  const fontSize = compact ? 8 : 10
-  const labelFontSize = compact ? 7 : 9
-  const dotR = compact ? 4 : 5
+
+  // Points du polygone des scores
+  const scorePoints = useMemo(() => {
+    return AXES.map(axis => {
+      const r = pcts[axis.key] * MAX_R
+      return polarToXY(axis.angle, r)
+    })
+  }, [pcts])
+
+  const scorePolygon = scorePoints.map(p => `${p.x},${p.y}`).join(' ')
+
+  // Couleur du gradient basée sur le dominant
+  const mainColor = DISC_COLORS[dominant].main
+  const sp = identifiedSubProfile ? subProfiles[identifiedSubProfile] : null
 
   return (
     <div className="relative mx-auto" style={{ width: size, height: size }}>
-      <svg viewBox="0 0 100 100" className="w-full h-full" style={{ filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.08))' }}>
+      <svg viewBox="0 0 100 100" className="w-full h-full">
         <defs>
-          <clipPath id="disc-circle"><circle cx="50" cy="50" r="46" /></clipPath>
-          {(['D', 'I', 'S', 'C'] as ProfileKey[]).map(k => (
-            <radialGradient key={k} id={`grad-${k}`} cx="50%" cy="50%" r="80%">
-              <stop offset="0%" stopColor={DISC_COLORS[k].main} stopOpacity="0.08" />
-              <stop offset="100%" stopColor={DISC_COLORS[k].main} stopOpacity="0.25" />
-            </radialGradient>
-          ))}
+          {/* Gradient pour la zone des scores */}
+          <radialGradient id="score-gradient" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor={mainColor} stopOpacity="0.35" />
+            <stop offset="100%" stopColor={mainColor} stopOpacity="0.12" />
+          </radialGradient>
+          {/* Gradient pour chaque quadrant de fond */}
+          <linearGradient id="bg-D" x1="0.5" y1="0" x2="0.5" y2="0.5">
+            <stop offset="0%" stopColor={DISC_COLORS.D.main} stopOpacity="0.06" />
+            <stop offset="100%" stopColor={DISC_COLORS.D.main} stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id="bg-I" x1="1" y1="0.5" x2="0.5" y2="0.5">
+            <stop offset="0%" stopColor={DISC_COLORS.I.main} stopOpacity="0.06" />
+            <stop offset="100%" stopColor={DISC_COLORS.I.main} stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id="bg-S" x1="0.5" y1="1" x2="0.5" y2="0.5">
+            <stop offset="0%" stopColor={DISC_COLORS.S.main} stopOpacity="0.06" />
+            <stop offset="100%" stopColor={DISC_COLORS.S.main} stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id="bg-C" x1="0" y1="0.5" x2="0.5" y2="0.5">
+            <stop offset="0%" stopColor={DISC_COLORS.C.main} stopOpacity="0.06" />
+            <stop offset="100%" stopColor={DISC_COLORS.C.main} stopOpacity="0" />
+          </linearGradient>
         </defs>
-        <circle cx="50" cy="50" r="46" fill="white" stroke="#E5E7EB" strokeWidth="0.5" />
-        <g clipPath="url(#disc-circle)">
-          <path d="M50,50 L50,4 A46,46 0 0,1 96,50 Z" fill={`url(#grad-D)`} />
-          <path d="M50,50 L96,50 A46,46 0 0,1 50,96 Z" fill={`url(#grad-I)`} />
-          <path d="M50,50 L50,96 A46,46 0 0,1 4,50 Z" fill={`url(#grad-S)`} />
-          <path d="M50,50 L4,50 A46,46 0 0,1 50,4 Z" fill={`url(#grad-C)`} />
-        </g>
-        {[15, 28, 38].map(r => (
-          <circle key={r} cx="50" cy="50" r={r} fill="none" stroke="#E5E7EB" strokeWidth="0.3" strokeDasharray="2,2" />
-        ))}
-        <line x1="50" y1="4" x2="50" y2="96" stroke="#D1D5DB" strokeWidth="0.4" />
-        <line x1="4" y1="50" x2="96" y2="50" stroke="#D1D5DB" strokeWidth="0.4" />
-        <line x1="17" y1="17" x2="83" y2="83" stroke="#E5E7EB" strokeWidth="0.2" strokeDasharray="1,2" />
-        <line x1="83" y1="17" x2="17" y2="83" stroke="#E5E7EB" strokeWidth="0.2" strokeDasharray="1,2" />
-        <text x="50" y="2.5" textAnchor="middle" fontSize="3.5" fontWeight="800" fill={DISC_COLORS.D.main} opacity="0.7">ASSERTIF</text>
-        <text x="50" y="99" textAnchor="middle" fontSize="3.5" fontWeight="800" fill={DISC_COLORS.S.main} opacity="0.7">SUPPORTIF</text>
-        <text x="2" y="50" textAnchor="start" fontSize="3.5" fontWeight="800" fill={DISC_COLORS.C.main} opacity="0.7" transform="rotate(-90, 2, 50)" dy="1">ANALYTIQUE</text>
-        <text x="98" y="50" textAnchor="end" fontSize="3.5" fontWeight="800" fill={DISC_COLORS.I.main} opacity="0.7" transform="rotate(90, 98, 50)" dy="1">PERSUASIF</text>
-        <text x="72" y="22" textAnchor="middle" fontSize="14" fontWeight="900" fill={DISC_COLORS.D.main} opacity="0.12">D</text>
-        <text x="78" y="72" textAnchor="middle" fontSize="14" fontWeight="900" fill={DISC_COLORS.I.main} opacity="0.12">I</text>
-        <text x="28" y="78" textAnchor="middle" fontSize="14" fontWeight="900" fill={DISC_COLORS.S.main} opacity="0.12">S</text>
-        <text x="22" y="28" textAnchor="middle" fontSize="14" fontWeight="900" fill={DISC_COLORS.C.main} opacity="0.12">C</text>
-        {[
-          { profile: 'D' as ProfileKey, startAngle: -90, endAngle: 0 },
-          { profile: 'I' as ProfileKey, startAngle: 0, endAngle: 90 },
-          { profile: 'S' as ProfileKey, startAngle: 90, endAngle: 180 },
-          { profile: 'C' as ProfileKey, startAngle: 180, endAngle: 270 },
-        ].map(({ profile, startAngle, endAngle }) => {
-          const r = 46
-          const x1 = 50 + r * Math.cos((startAngle * Math.PI) / 180)
-          const y1 = 50 + r * Math.sin((startAngle * Math.PI) / 180)
-          const x2 = 50 + r * Math.cos((endAngle * Math.PI) / 180)
-          const y2 = 50 + r * Math.sin((endAngle * Math.PI) / 180)
+
+        {/* Fond par quadrant (subtil) */}
+        <path d={`M${CENTER},${CENTER} L${CENTER},${CENTER - MAX_R} A${MAX_R},${MAX_R} 0 0,1 ${CENTER + MAX_R},${CENTER} Z`} fill="url(#bg-D)" />
+        <path d={`M${CENTER},${CENTER} L${CENTER + MAX_R},${CENTER} A${MAX_R},${MAX_R} 0 0,1 ${CENTER},${CENTER + MAX_R} Z`} fill="url(#bg-I)" />
+        <path d={`M${CENTER},${CENTER} L${CENTER},${CENTER + MAX_R} A${MAX_R},${MAX_R} 0 0,1 ${CENTER - MAX_R},${CENTER} Z`} fill="url(#bg-S)" />
+        <path d={`M${CENTER},${CENTER} L${CENTER - MAX_R},${CENTER} A${MAX_R},${MAX_R} 0 0,1 ${CENTER},${CENTER - MAX_R} Z`} fill="url(#bg-C)" />
+
+        {/* Grille concentrique (toile d'araignée) */}
+        {GRID_LEVELS.map(level => {
+          const r = level * MAX_R
+          const points = AXES.map(axis => polarToXY(axis.angle, r))
+          const d = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x},${p.y}`).join(' ') + ' Z'
           return (
-            <path key={profile} d={`M ${x1} ${y1} A ${r} ${r} 0 0 1 ${x2} ${y2}`}
-              fill="none" stroke={DISC_COLORS[profile].main} strokeWidth="2.5" strokeLinecap="round" opacity="0.6" />
+            <path
+              key={level}
+              d={d}
+              fill="none"
+              stroke="#E5E7EB"
+              strokeWidth={level === 1 ? '0.5' : '0.3'}
+              strokeDasharray={level === 1 ? 'none' : '1.5,1.5'}
+            />
           )
         })}
-        {(Object.keys(subProfiles) as SubProfileKey[]).map(key => {
-          const pos = SUB_PROFILE_POSITIONS[key]
-          const quadrant = SUB_PROFILE_QUADRANT[key]
-          const color = DISC_COLORS[quadrant]
-          const sp = subProfiles[key]
-          const isIdentified = identifiedSubProfile === key
-          const isInDominantZone = quadrant === dominant
-          const isLocked = !phase2Unlocked && !isIdentified
-          const showLabel = phase2Unlocked || isIdentified || isInDominantZone
-          const showAsLocked = isLocked && !isInDominantZone
+
+        {/* Axes */}
+        {AXES.map(axis => {
+          const end = polarToXY(axis.angle, MAX_R)
           return (
-            <g key={key} className="transition-all duration-300"
-              style={{ cursor: showAsLocked && onLockedClick ? 'pointer' : 'default' }}
-              onClick={() => showAsLocked && onLockedClick?.()}>
-              <circle cx={pos.x} cy={pos.y} r={isIdentified ? dotR + 2 : dotR}
-                fill={isIdentified ? color.main : showAsLocked ? '#D1D5DB' : `${color.main}88`}
-                stroke={isIdentified ? 'white' : 'none'} strokeWidth={isIdentified ? 1 : 0}>
-                {isIdentified && (
-                  <animate attributeName="r" values={`${dotR + 2};${dotR + 4};${dotR + 2}`} dur="2s" repeatCount="indefinite" />
-                )}
-              </circle>
-              {showAsLocked ? (
-                <text x={pos.x} y={pos.y + 0.8} textAnchor="middle" dominantBaseline="central"
-                  fontSize={fontSize} fontWeight="900" fill="#9CA3AF">?</text>
-              ) : (
-                <text x={pos.x} y={pos.y + (compact ? 7 : 9)} textAnchor="middle"
-                  fontSize={labelFontSize} fontWeight={isIdentified ? '800' : '600'}
-                  fill={isIdentified ? color.dark : `${color.main}99`}>
-                  {sp.name.replace("L'", '').replace('Le ', '')}
-                </text>
+            <line
+              key={axis.key}
+              x1={CENTER}
+              y1={CENTER}
+              x2={end.x}
+              y2={end.y}
+              stroke={DISC_COLORS[axis.key].main}
+              strokeWidth="0.4"
+              strokeOpacity="0.5"
+            />
+          )
+        })}
+
+        {/* Zone des scores (polygone rempli) */}
+        <polygon
+          points={scorePolygon}
+          fill="url(#score-gradient)"
+          stroke={mainColor}
+          strokeWidth="1.2"
+          strokeLinejoin="round"
+          style={{ filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.1))' }}
+        >
+          <animate
+            attributeName="opacity"
+            values="0;1"
+            dur="0.8s"
+            fill="freeze"
+          />
+        </polygon>
+
+        {/* Points sur chaque axe */}
+        {AXES.map((axis, i) => {
+          const p = scorePoints[i]
+          const isMain = axis.key === dominant
+          const r = isMain ? 2.5 : 1.8
+          return (
+            <g key={axis.key}>
+              <circle
+                cx={p.x}
+                cy={p.y}
+                r={r}
+                fill={DISC_COLORS[axis.key].main}
+                stroke="white"
+                strokeWidth="0.8"
+              />
+              {isMain && (
+                <circle
+                  cx={p.x}
+                  cy={p.y}
+                  r={r}
+                  fill="none"
+                  stroke={DISC_COLORS[axis.key].main}
+                  strokeWidth="0.4"
+                  opacity="0.5"
+                >
+                  <animate attributeName="r" values={`${r};${r + 3};${r}`} dur="2s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" values="0.5;0;0.5" dur="2s" repeatCount="indefinite" />
+                </circle>
               )}
             </g>
           )
         })}
-        <g>
-          <circle cx={userPosition.x} cy={userPosition.y} r="3" fill="white"
-            stroke={DISC_COLORS[dominant].main} strokeWidth="1.5" />
-          <circle cx={userPosition.x} cy={userPosition.y} r="1.5" fill={DISC_COLORS[dominant].main} />
-          <circle cx={userPosition.x} cy={userPosition.y} r="3" fill="none"
-            stroke={DISC_COLORS[dominant].main} strokeWidth="0.5" opacity="0.5">
-            <animate attributeName="r" values="3;8;3" dur="2.5s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.5;0;0.5" dur="2.5s" repeatCount="indefinite" />
-          </circle>
-        </g>
-      </svg>
-      <div className="flex justify-center gap-4 mt-3 flex-wrap">
-        {(['D', 'I', 'S', 'C'] as ProfileKey[]).map(k => {
-          const pct = Math.round((scores[k] / total) * 100)
+
+        {/* Labels des axes avec pourcentages */}
+        {AXES.map(axis => {
+          const pct = Math.round((scores[axis.key] / total) * 100)
+          const labelR = MAX_R + 6
+          const pos = polarToXY(axis.angle, labelR)
+          const isTop = axis.angle === -90
+          const isBottom = axis.angle === 90
+          const isLeft = axis.angle === 180
+          const isRight = axis.angle === 0
+
+          const anchor = isLeft ? 'end' : isRight ? 'start' : 'middle'
+          const dy = isTop ? -1 : isBottom ? 3 : 0.5
+
           return (
-            <div key={k} className="flex items-center gap-1.5">
-              <div className="w-3 h-3 rounded-sm"
-                style={{ backgroundColor: DISC_COLORS[k].main, opacity: k === dominant ? 1 : 0.4 }} />
-              <span className={`text-xs font-semibold ${k === dominant ? 'text-gray-900' : 'text-gray-400'}`}>
-                {k} · {pct}%
+            <g key={`label-${axis.key}`}>
+              {/* Lettre DISC */}
+              <text
+                x={pos.x}
+                y={pos.y + dy}
+                textAnchor={anchor}
+                fontSize={compact ? 4.5 : 5}
+                fontWeight="800"
+                fill={DISC_COLORS[axis.key].main}
+              >
+                {axis.key}
+              </text>
+              {/* Pourcentage */}
+              <text
+                x={pos.x}
+                y={pos.y + dy + (compact ? 3.5 : 4)}
+                textAnchor={anchor}
+                fontSize={compact ? 3 : 3.2}
+                fontWeight="600"
+                fill={DISC_COLORS[axis.key].main}
+                opacity="0.7"
+              >
+                {pct}%
+              </text>
+            </g>
+          )
+        })}
+
+        {/* Sous-profil identifié — badge au centre */}
+        {sp && (
+          <g>
+            <rect
+              x={CENTER - 14}
+              y={CENTER - 3.5}
+              width="28"
+              height="7"
+              rx="3.5"
+              fill={mainColor}
+              opacity="0.9"
+            />
+            <text
+              x={CENTER}
+              y={CENTER + 1}
+              textAnchor="middle"
+              dominantBaseline="central"
+              fontSize={compact ? 2.5 : 2.8}
+              fontWeight="700"
+              fill="white"
+            >
+              {sp.name}
+            </text>
+          </g>
+        )}
+      </svg>
+
+      {/* Légende en dessous */}
+      <div className="flex justify-center gap-4 mt-3 flex-wrap">
+        {AXES.map(axis => {
+          const pct = Math.round((scores[axis.key] / total) * 100)
+          return (
+            <div key={axis.key} className="flex items-center gap-1.5">
+              <div
+                className="w-3 h-3 rounded-sm"
+                style={{
+                  backgroundColor: DISC_COLORS[axis.key].main,
+                  opacity: axis.key === dominant ? 1 : 0.4,
+                }}
+              />
+              <span
+                className={`text-xs font-semibold ${
+                  axis.key === dominant ? 'text-gray-900' : 'text-gray-400'
+                }`}
+              >
+                {axis.label} · {pct}%
               </span>
             </div>
           )
