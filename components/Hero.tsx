@@ -83,14 +83,148 @@ function DiscLogo({ size = 120 }: { size?: number }) {
   )
 }
 
+// ─── MAGIC TOGGLE (mobile / touch only) ──────────────────────────────────────
+// Bouton élégant et magique, affiché uniquement sur écrans sans hover.
+// Particules dorées orbitales + halo pulsant + baguette centrale.
+function MagicToggle({
+  active,
+  onToggle,
+  label,
+}: {
+  active: boolean
+  onToggle: () => void
+  label: string
+}) {
+  return (
+    <button
+      type="button"
+      aria-pressed={active}
+      aria-label={active ? 'Revenir à la version pro' : label}
+      onClick={onToggle}
+      className="magic-toggle group relative inline-flex items-center gap-3 px-5 py-3 rounded-full bg-white/80 backdrop-blur-sm border border-[#C9A55C]/40 shadow-md active:scale-95 transition-transform duration-150"
+      style={{
+        boxShadow: active
+          ? '0 0 0 1px #C9A55C55, 0 6px 24px -6px #C9A55C80'
+          : '0 0 0 1px #C9A55C30, 0 4px 16px -6px #C9A55C50',
+      }}
+    >
+      {/* Halo pulsant doré */}
+      <span
+        aria-hidden
+        className="magic-halo pointer-events-none absolute inset-0 rounded-full"
+        style={{
+          background:
+            'radial-gradient(ellipse at center, rgba(201,165,92,0.28) 0%, rgba(201,165,92,0) 70%)',
+        }}
+      />
+
+      {/* Particules orbitales */}
+      <span aria-hidden className="pointer-events-none absolute inset-0">
+        <span className="magic-spark magic-spark-1" />
+        <span className="magic-spark magic-spark-2" />
+        <span className="magic-spark magic-spark-3" />
+      </span>
+
+      {/* Icône baguette magique */}
+      <svg
+        className="relative w-5 h-5 text-[#B88A2F] shrink-0"
+        viewBox="0 0 24 24"
+        fill="none"
+        aria-hidden
+      >
+        <path
+          d="M4 20L16 8"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M17 3l.9 2.1L20 6l-2.1.9L17 9l-.9-2.1L14 6l2.1-.9L17 3z"
+          fill="currentColor"
+        />
+        <path
+          d="M6 13l.5 1.2L7.7 14.7l-1.2.5L6 16.4l-.5-1.2L4.3 14.7l1.2-.5L6 13z"
+          fill="currentColor"
+          opacity="0.7"
+        />
+      </svg>
+
+      <span className="relative text-sm font-medium text-[#5A3E0E] tracking-tight">
+        {active ? 'Version pro' : label}
+      </span>
+
+      <style jsx>{`
+        .magic-halo {
+          animation: magic-pulse 2.6s ease-in-out infinite;
+        }
+        .magic-spark {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 4px;
+          height: 4px;
+          border-radius: 9999px;
+          background: radial-gradient(circle, #F2D27C 0%, #C9A55C 60%, transparent 100%);
+          box-shadow: 0 0 6px rgba(242, 210, 124, 0.9);
+          transform-origin: 0 0;
+          opacity: 0;
+        }
+        .magic-spark-1 {
+          animation: magic-orbit 3.8s linear infinite;
+        }
+        .magic-spark-2 {
+          animation: magic-orbit 4.6s linear infinite;
+          animation-delay: -1.2s;
+        }
+        .magic-spark-3 {
+          animation: magic-orbit 5.2s linear infinite;
+          animation-delay: -2.4s;
+          width: 3px;
+          height: 3px;
+        }
+        @keyframes magic-pulse {
+          0%, 100% { opacity: 0.5; transform: scale(1); }
+          50% { opacity: 0.9; transform: scale(1.04); }
+        }
+        @keyframes magic-orbit {
+          0% { transform: translate(-50%, -50%) rotate(0deg) translateX(52px) rotate(0deg); opacity: 0; }
+          10% { opacity: 1; }
+          90% { opacity: 1; }
+          100% { transform: translate(-50%, -50%) rotate(360deg) translateX(52px) rotate(-360deg); opacity: 0; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .magic-halo,
+          .magic-spark {
+            animation: none !important;
+          }
+          .magic-spark { opacity: 0.6; }
+        }
+      `}</style>
+    </button>
+  )
+}
+
 // ─── HERO COMPONENT ──────────────────────────────────────────────────────────
 // Effet balayage vertical : barre qui suit le curseur en X
 // À gauche de la barre = version pro, à droite = version sorcier
+// Sur écrans tactiles : bouton magique pour basculer vers la version mage
 export default function Hero() {
   const { t } = useLang()
   const sectionRef = useRef<HTMLElement>(null)
   const [splitX, setSplitX] = useState<number | null>(null)
+  const [mageMobile, setMageMobile] = useState(false)
+  const [isTouch, setIsTouch] = useState(false)
   const rafRef = useRef<number>(0)
+
+  // Détection écran tactile / sans hover
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const mq = window.matchMedia('(hover: none), (pointer: coarse)')
+    const update = () => setIsTouch(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
     if (rafRef.current) cancelAnimationFrame(rafRef.current)
@@ -108,6 +242,8 @@ export default function Hero() {
   useEffect(() => {
     const el = sectionRef.current
     if (!el) return
+    // Pas de tracking curseur sur tactile
+    if (isTouch) return
     el.addEventListener('mousemove', handleMouseMove, { passive: true })
     el.addEventListener('mouseleave', handleMouseLeave)
     return () => {
@@ -115,9 +251,21 @@ export default function Hero() {
       el.removeEventListener('mouseleave', handleMouseLeave)
       if (rafRef.current) cancelAnimationFrame(rafRef.current)
     }
-  }, [handleMouseMove, handleMouseLeave])
+  }, [handleMouseMove, handleMouseLeave, isTouch])
 
   const isRevealing = splitX !== null
+  // ClipPath pour couche pro : si mageMobile actif, on cache TOUT le pro
+  const proClipPath = mageMobile
+    ? 'inset(0 100% 0 0)'
+    : isRevealing
+    ? `inset(0 calc(100% - ${splitX}px) 0 0)`
+    : undefined
+  // ClipPath pour couche sorcier
+  const mageClipPath = mageMobile
+    ? 'inset(0 0 0 0)'
+    : isRevealing
+    ? `inset(0 0 0 ${splitX}px)`
+    : 'inset(0 0 0 100%)'
 
   return (
     <section
@@ -134,19 +282,18 @@ export default function Hero() {
 
       {/* ═══ COUCHE PRO (visible par défaut, masquée à droite de la barre) ═══ */}
       <div
-        className="relative max-w-6xl mx-auto px-6 pt-28 pb-20 w-full"
-        style={
-          isRevealing
-            ? { clipPath: `inset(0 calc(100% - ${splitX}px) 0 0)` }
-            : undefined
-        }
+        className="relative max-w-6xl mx-auto px-6 pt-28 pb-24 w-full min-h-screen flex flex-col justify-center"
+        style={{
+          clipPath: proClipPath,
+          transition: mageMobile ? 'clip-path 0.5s ease-in-out' : undefined,
+        }}
       >
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+        <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           {/* Texte pro */}
           <div className="space-y-5">
             <FadeIn direction="left" delay={80}>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-none tracking-tight text-[#1A2B4A]">
-                Clement Boule
+                Clément Boulé
               </h1>
             </FadeIn>
             <FadeIn direction="left" delay={200}>
@@ -173,7 +320,7 @@ export default function Hero() {
               </div>
             </FadeIn>
             <FadeIn direction="left" delay={560}>
-              <div className="flex items-center gap-4 pt-2">
+              <div className="flex flex-wrap items-center gap-3 pt-2">
                 <a
                   href="https://www.linkedin.com/in/cl%C3%A9ment-boul%C3%A9/"
                   target="_blank"
@@ -199,7 +346,7 @@ export default function Hero() {
 
           {/* Illustration pro */}
           <FadeIn direction="right" delay={150} className="relative flex justify-center md:justify-end">
-            <div className="relative w-80 h-[420px] md:w-96 md:h-[520px]">
+            <div className="relative w-[22rem] h-[480px] md:w-[30rem] md:h-[620px]">
               <Image
                 src="/clement-illustration.png"
                 alt="Clément Boulé — illustration portrait"
@@ -209,7 +356,7 @@ export default function Hero() {
               />
             </div>
             <div
-              className="absolute -bottom-6 -right-6 w-32 h-32 opacity-30"
+              className="absolute -bottom-6 -right-6 w-32 h-32 opacity-30 hidden md:block"
               style={{
                 backgroundImage: 'radial-gradient(circle, #3D6DB8 1px, transparent 1px)',
                 backgroundSize: '12px 12px',
@@ -223,10 +370,12 @@ export default function Hero() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          clipPath: isRevealing
-            ? `inset(0 0 0 ${splitX}px)`
-            : 'inset(0 0 0 100%)',
-          transition: isRevealing ? 'none' : 'clip-path 0.4s ease-in',
+          clipPath: mageClipPath,
+          transition: mageMobile
+            ? 'clip-path 0.5s ease-in-out'
+            : isRevealing
+            ? 'none'
+            : 'clip-path 0.4s ease-in',
         }}
       >
         {/* Teinte légèrement plus chaude pour le côté sorcier */}
@@ -239,28 +388,28 @@ export default function Hero() {
           <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-[#9FB0E5]/15 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
         </div>
 
-        {/* Contenu sorcier (même layout) */}
-        <div className="relative max-w-6xl mx-auto px-6 pt-28 pb-20 w-full min-h-screen flex flex-col justify-center">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+        {/* Contenu sorcier (même layout que pro) */}
+        <div className="relative max-w-6xl mx-auto px-6 pt-28 pb-24 w-full min-h-screen flex flex-col justify-center">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
             {/* Texte sorcier */}
             <div className="space-y-5">
-              <div>
+              <FadeIn direction="left" delay={80}>
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-none tracking-tight text-[#2D1A4A]">
                   Clément Boulé
                 </h1>
-              </div>
-              <div>
+              </FadeIn>
+              <FadeIn direction="left" delay={200}>
                 <p className="text-xl md:text-2xl font-semibold text-[#7B3DB8]">
                   Sorcier Formateur · Lvl 32
                 </p>
-              </div>
-              <div>
+              </FadeIn>
+              <FadeIn direction="left" delay={320}>
                 <p className="text-base text-[#6B5E7E] leading-relaxed max-w-md pt-1">
                   Maître en arts comportementaux et sciences de la communication.
                   Spécialisé en sorts DISC, enchantements d'équipe et potions de leadership.
                 </p>
-              </div>
-              <div>
+              </FadeIn>
+              <FadeIn direction="left" delay={440}>
                 <div className="flex flex-wrap items-center gap-4 pt-3">
                   <a
                     href="/test-disc"
@@ -272,22 +421,22 @@ export default function Hero() {
                     </span>
                   </a>
                 </div>
-              </div>
-              <div>
-                <div className="flex items-center gap-3 pt-2">
-                  <span className="text-xs font-medium text-[#7B3DB8]/60 bg-[#7B3DB8]/8 px-3 py-1.5 rounded-full border border-[#7B3DB8]/15">
+              </FadeIn>
+              <FadeIn direction="left" delay={560}>
+                <div className="flex flex-wrap items-center gap-3 pt-2">
+                  <span className="text-xs font-medium text-[#7B3DB8]/70 bg-[#7B3DB8]/8 px-3 py-1.5 rounded-full border border-[#7B3DB8]/15">
                     +2 500 XP en accompagnement
                   </span>
-                  <span className="text-xs font-medium text-[#B8843D]/60 bg-[#B8843D]/8 px-3 py-1.5 rounded-full border border-[#B8843D]/15">
+                  <span className="text-xs font-medium text-[#B8843D]/70 bg-[#B8843D]/8 px-3 py-1.5 rounded-full border border-[#B8843D]/15">
                     Guilde des Formateurs
                   </span>
                 </div>
-              </div>
+              </FadeIn>
             </div>
 
             {/* Illustration sorcier */}
-            <div className="relative flex justify-center md:justify-end">
-              <div className="relative w-[26rem] h-[560px] md:w-[34rem] md:h-[700px]">
+            <FadeIn direction="right" delay={150} className="relative flex justify-center md:justify-end">
+              <div className="relative w-[22rem] h-[480px] md:w-[30rem] md:h-[620px]">
                 <Image
                   src="/mage-illustration.png"
                   alt="Clément Boulé — Sorcier Formateur"
@@ -297,19 +446,19 @@ export default function Hero() {
                 />
               </div>
               <div
-                className="absolute -bottom-6 -right-6 w-32 h-32 opacity-30"
+                className="absolute -bottom-6 -right-6 w-32 h-32 opacity-30 hidden md:block"
                 style={{
                   backgroundImage: 'radial-gradient(circle, #7B3DB8 1px, transparent 1px)',
                   backgroundSize: '12px 12px',
                 }}
               />
-            </div>
+            </FadeIn>
           </div>
         </div>
       </div>
 
       {/* ═══ BARRE DE SÉPARATION ═══ */}
-      {isRevealing && (
+      {isRevealing && !mageMobile && (
         <div
           className="absolute top-0 bottom-0 z-30 pointer-events-none"
           style={{
@@ -320,10 +469,24 @@ export default function Hero() {
         />
       )}
 
+      {/* ═══ BOUTON MAGIQUE (tactile uniquement) ═══ */}
+      {isTouch && (
+        <FadeIn
+          delay={700}
+          className="absolute bottom-24 left-1/2 -translate-x-1/2 z-40"
+        >
+          <MagicToggle
+            active={mageMobile}
+            onToggle={() => setMageMobile((v) => !v)}
+            label="Révéler le sorcier"
+          />
+        </FadeIn>
+      )}
+
       {/* Scroll indicator */}
       <FadeIn
         delay={900}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#9AAABB] animate-bounce z-30"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#9AAABB] animate-bounce z-30"
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
