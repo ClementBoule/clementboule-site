@@ -293,25 +293,28 @@ export const subProfiles: Record<SubProfileKey, SubProfile> = {
 // de l'utilisateur (et poser les bonnes questions en Phase 2)
 
 export const subProfileMapping: Record<string, SubProfileKey[]> = {
-  // Dominant D
-  'D-C': ['evaluateur', 'concretiseur'],
-  'D-I': ['explorateur', 'inspirateur'],
+  // Cohérence stricte : chaque combinaison X-Y ne contient que des sous-profils
+  // dont zone.dominant === X. Garantit que le sous-profil identifié est toujours
+  // dans le quadrant visuel du dominant DISC réel.
+  // Dominant D — zone rouge
+  'D-C': ['evaluateur'],
+  'D-I': ['explorateur'],
   'D-S': ['producteur', 'competiteur'],
   'D-D': ['competiteur'],
-  // Dominant I
-  'I-D': ['inspirateur', 'explorateur'],
-  'I-S': ['promoteur', 'coach'],
-  'I-C': ['influenceur', 'technicien'],
+  // Dominant I — zone jaune
+  'I-D': ['inspirateur'],
+  'I-S': ['promoteur'],
+  'I-C': ['influenceur'],
   'I-I': ['influenceur'],
-  // Dominant S
+  // Dominant S — zone verte
   'S-I': ['coach', 'pacificateur'],
-  'S-C': ['planificateur', 'formaliste'],
-  'S-D': ['pacificateur', 'producteur'],
+  'S-C': ['planificateur'],
+  'S-D': ['pacificateur'],
   'S-S': ['pacificateur'],
-  // Dominant C
+  // Dominant C — zone bleue
   'C-D': ['investigateur', 'concretiseur'],
   'C-I': ['factuel', 'technicien'],
-  'C-S': ['formaliste', 'planificateur'],
+  'C-S': ['formaliste'],
   'C-C': ['factuel'],
 }
 
