@@ -488,7 +488,7 @@ export default function Hero() {
       {/* ═══ BOUTON MAGIQUE (toutes tailles d'écran : reveal en clic) ═══ */}
       <FadeIn
         delay={700}
-        className="absolute top-24 left-1/2 -translate-x-1/2 z-40 pointer-events-auto"
+        className="fixed bottom-6 right-6 md:absolute md:top-24 md:right-auto md:left-1/2 md:bottom-auto md:-translate-x-1/2 z-40 pointer-events-auto"
       >
         <MagicToggle
           active={revealed}
