@@ -134,6 +134,10 @@ export default async function FormationDetailPage({
                   alt={f.title}
                   fill
                   className="object-contain object-center mix-blend-multiply"
+                  style={{
+                    maskImage: 'radial-gradient(ellipse 80% 80% at center, black 50%, transparent 95%)',
+                    WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at center, black 50%, transparent 95%)',
+                  }}
                   priority
                   sizes="(max-width: 768px) 100vw, 500px"
                 />
