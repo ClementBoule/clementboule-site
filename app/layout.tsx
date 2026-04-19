@@ -69,7 +69,14 @@ export const metadata: Metadata = {
     creator: '@clementboule',
   },
 
-  /* ── Favicons via app/icon.tsx + app/apple-icon.tsx ── */
+  /* ── Favicons : fichiers classiques dans /public + app/icon.tsx dynamique ── */
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
   manifest: '/site.webmanifest',
 
   /* ── Canonical + robots ── */
