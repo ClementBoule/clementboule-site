@@ -369,8 +369,8 @@ export default function DiscMap({
                 x={pos.x}
                 y={pos.y + dy + (compact ? 3.5 : 3.8)}
                 textAnchor={anchor}
-                fontSize={compact ? 2.6 : 2.8}
-                fontWeight="600"
+                fontSize={compact ? 3.2 : 3.4}
+                fontWeight="700"
                 fill={color.main}
                 opacity={isMain ? 0.8 : 0.35}
               >
@@ -402,21 +402,25 @@ export default function DiscMap({
 
           // Position du label (décalage intelligent — écarté du point pour éviter les chevauchements)
           const labelAngle = normAngle(angle)
+          // Decalages agrandis pour eviter chevauchements entre sous-profils du meme quadrant
           let labelDx = 0
-          let labelDy = -3.5
+          let labelDy = -5.5
           let labelAnchor: 'start' | 'middle' | 'end' = 'middle'
 
-          if (labelAngle >= 45 && labelAngle < 135) {
-            labelDx = 4
-            labelDy = 0.5
+          if (labelAngle >= 30 && labelAngle < 150) {
+            labelDx = 6
+            labelDy = 0.8
             labelAnchor = 'start'
-          } else if (labelAngle >= 135 && labelAngle < 225) {
-            labelDy = 4.5
-          } else if (labelAngle >= 225 && labelAngle < 315) {
-            labelDx = -4
-            labelDy = 0.5
+          } else if (labelAngle >= 150 && labelAngle < 210) {
+            labelDy = 6.5
+          } else if (labelAngle >= 210 && labelAngle < 330) {
+            labelDx = -6
+            labelDy = 0.8
             labelAnchor = 'end'
           }
+          // Micro-decalage vertical base sur hash du nom pour eviter collisions exactes
+          const nameHash = (spData.name.charCodeAt(3) || 0) + (spData.name.charCodeAt(5) || 0)
+          labelDy += ((nameHash % 5) - 2) * 1.4
 
           return (
             <g
