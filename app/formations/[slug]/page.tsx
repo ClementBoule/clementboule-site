@@ -133,7 +133,7 @@ export default async function FormationDetailPage({
                   src={f.image}
                   alt={f.title}
                   fill
-                  className="object-contain object-center"
+                  className="object-contain object-center mix-blend-multiply"
                   priority
                   sizes="(max-width: 768px) 100vw, 500px"
                 />
