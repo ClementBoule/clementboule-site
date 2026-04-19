@@ -49,7 +49,7 @@ function FormationCard({
           src={image}
           alt={title}
           fill
-          className="object-contain object-center p-6 transition-transform duration-500 group-hover:scale-105"
+          className="object-contain object-center p-6 mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>
