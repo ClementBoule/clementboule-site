@@ -265,6 +265,16 @@ export default function Hero() {
   const { t } = useLang()
   const sectionRef = useRef<HTMLElement>(null)
   const [revealed, setRevealed] = useState(false)
+  const [fabVisible, setFabVisible] = useState(true)
+
+  // Sur mobile, cacher le FAB mage quand user scroll hors du hero
+  useEffect(() => {
+    const onScroll = () => {
+      setFabVisible(window.scrollY < window.innerHeight * 0.8)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   // Pause les animations CSS quand le hero n'est plus visible (perf)
   useEffect(() => {
@@ -488,7 +498,7 @@ export default function Hero() {
       {/* ═══ BOUTON MAGIQUE (toutes tailles d'écran : reveal en clic) ═══ */}
       <FadeIn
         delay={700}
-        className="fixed bottom-24 right-6 md:absolute md:top-24 md:right-auto md:left-1/2 md:bottom-auto md:-translate-x-1/2 z-40 pointer-events-auto"
+        className={`fixed bottom-24 right-6 md:absolute md:top-24 md:right-auto md:left-1/2 md:bottom-auto md:-translate-x-1/2 z-40 pointer-events-auto transition-opacity duration-500 ${fabVisible ? 'opacity-100' : 'opacity-0 pointer-events-none md:opacity-100 md:pointer-events-auto'}`}
       >
         <MagicToggle
           active={revealed}
