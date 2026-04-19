@@ -50,6 +50,10 @@ function FormationCard({
           alt={title}
           fill
           className="object-contain object-center p-6 mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
+          style={{
+            maskImage: 'radial-gradient(ellipse 75% 75% at center, black 40%, transparent 90%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 75% 75% at center, black 40%, transparent 90%)',
+          }}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>
