@@ -360,7 +360,7 @@ export default function DiscTest() {
             </div>
             <div className="space-y-3">
               {q.options.map((opt, idx) => {
-                const color = DISC_COLORS[opt.profile]
+                // Phase 1 neutre : pas de couleur DISC pour ne pas influencer la reponse
                 const isSelected = selected === opt.profile
                 const isHov = hovered === opt.profile && !selected
                 const active = isSelected || isHov
@@ -374,28 +374,28 @@ export default function DiscTest() {
                     className="w-full text-left rounded-xl border-2 transition-all duration-200 flex items-center gap-4"
                     style={{
                       padding: '18px 20px',
-                      backgroundColor: active ? color.bg : 'white',
-                      borderColor: active ? color.main : '#E5E7EB',
-                      boxShadow: active ? `0 4px 24px ${color.main}22` : 'none',
+                      backgroundColor: active ? '#F9FAFB' : 'white',
+                      borderColor: active ? '#9CA3AF' : '#E5E7EB',
+                      boxShadow: active ? '0 4px 16px rgba(0,0,0,0.06)' : 'none',
                       transform: isSelected ? 'scale(1.01)' : 'scale(1)',
                       animation: `fadeUp 0.22s ease ${idx * 60}ms both`,
                     }}
                   >
                     <div
                       className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 transition-all duration-200"
-                      style={{ backgroundColor: active ? color.main : '#F3F4F6', color: active ? 'white' : '#9CA3AF' }}
+                      style={{ backgroundColor: active ? '#374151' : '#F3F4F6', color: active ? 'white' : '#9CA3AF' }}
                     >
                       {String.fromCharCode(65 + idx)}
                     </div>
                     <span
                       className="text-sm md:text-base font-medium leading-relaxed transition-colors duration-200"
-                      style={{ color: active ? color.dark : '#374151' }}
+                      style={{ color: active ? '#111827' : '#374151' }}
                     >
                       {opt.label}
                     </span>
                     {isSelected && (
                       <div className="ml-auto flex-shrink-0">
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: color.main }}>
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#374151' }}>
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                         </svg>
                       </div>
