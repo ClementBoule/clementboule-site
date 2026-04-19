@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { LanguageProvider } from '@/components/LanguageContext'
+import HomeFab from '@/components/HomeFab'
 
 /* ─── Metadata optimisées SEO + GEO ─────────────────────────────────────── */
 export const metadata: Metadata = {
@@ -245,7 +246,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>{children}<HomeFab /></LanguageProvider>
       </body>
     </html>
   )
