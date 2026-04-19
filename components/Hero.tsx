@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLang } from './LanguageContext'
 
 // ─── FADE-IN ANIMATION ────────────────────────────────────────────────────────
@@ -102,6 +102,7 @@ function DiscSparks() {
           transform-origin: 0 0;
           opacity: 0;
           filter: blur(0.3px);
+          animation-play-state: var(--hero-anim-state, running);
         }
         .disc-spark-d {
           background: radial-gradient(circle, #F87171 0%, #DC2626 55%, transparent 85%);
@@ -151,9 +152,9 @@ function DiscSparks() {
   )
 }
 
-// ─── MAGIC TOGGLE (mobile / touch only) ──────────────────────────────────────
-// Bouton élégant et magique, affiché uniquement sur écrans sans hover.
-// Halo doré prononcé + 6 étincelles orbitales + baguette centrale.
+// ─── MAGIC REVEAL TOGGLE (toutes tailles d'écran) ────────────────────────────
+// Bouton élégant et magique : halo doré pulsant + 6 étincelles orbitales + baguette.
+// Click pour basculer entre version pro et version sorcier.
 function MagicToggle({
   active,
   onToggle,
@@ -169,14 +170,14 @@ function MagicToggle({
       aria-pressed={active}
       aria-label={active ? 'Revenir à la version pro' : label}
       onClick={onToggle}
-      className="magic-toggle group relative inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-white/85 backdrop-blur-sm border-2 border-[#C9A55C]/50 shadow-lg active:scale-95 transition-transform duration-150 pointer-events-auto"
+      className="magic-toggle group relative inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-white/85 backdrop-blur-sm border-2 border-[#C9A55C]/50 shadow-lg active:scale-95 hover:scale-[1.03] transition-transform duration-200 pointer-events-auto"
       style={{
         boxShadow: active
           ? '0 0 0 2px #C9A55C66, 0 10px 32px -6px #C9A55Caa, 0 0 50px -10px #F2D27Cbb'
           : '0 0 0 2px #C9A55C40, 0 8px 24px -6px #C9A55C80, 0 0 40px -12px #F2D27Caa',
       }}
     >
-      {/* Halo pulsant doré (plus marqué) */}
+      {/* Halo pulsant doré */}
       <span
         aria-hidden
         className="magic-halo pointer-events-none absolute -inset-2 rounded-full"
@@ -186,7 +187,7 @@ function MagicToggle({
         }}
       />
 
-      {/* Particules orbitales (6 étoiles au lieu de 3, plus visibles) */}
+      {/* 6 étincelles orbitales */}
       <span aria-hidden className="pointer-events-none absolute inset-0">
         <span className="magic-spark magic-spark-1" />
         <span className="magic-spark magic-spark-2" />
@@ -203,21 +204,9 @@ function MagicToggle({
         fill="none"
         aria-hidden
       >
-        <path
-          d="M4 20L16 8"
-          stroke="currentColor"
-          strokeWidth="2.2"
-          strokeLinecap="round"
-        />
-        <path
-          d="M17 3l.9 2.1L20 6l-2.1.9L17 9l-.9-2.1L14 6l2.1-.9L17 3z"
-          fill="currentColor"
-        />
-        <path
-          d="M6 13l.5 1.2L7.7 14.7l-1.2.5L6 16.4l-.5-1.2L4.3 14.7l1.2-.5L6 13z"
-          fill="currentColor"
-          opacity="0.75"
-        />
+        <path d="M4 20L16 8" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+        <path d="M17 3l.9 2.1L20 6l-2.1.9L17 9l-.9-2.1L14 6l2.1-.9L17 3z" fill="currentColor" />
+        <path d="M6 13l.5 1.2L7.7 14.7l-1.2.5L6 16.4l-.5-1.2L4.3 14.7l1.2-.5L6 13z" fill="currentColor" opacity="0.75" />
       </svg>
 
       <span className="relative text-sm font-semibold text-[#5A3E0E] tracking-tight">
@@ -227,6 +216,7 @@ function MagicToggle({
       <style jsx>{`
         .magic-halo {
           animation: magic-pulse 2.4s ease-in-out infinite;
+          animation-play-state: var(--hero-anim-state, running);
         }
         .magic-spark {
           position: absolute;
@@ -239,56 +229,27 @@ function MagicToggle({
           box-shadow: 0 0 10px rgba(242, 210, 124, 1), 0 0 18px rgba(201, 165, 92, 0.6);
           transform-origin: 0 0;
           opacity: 0;
+          animation-play-state: var(--hero-anim-state, running);
         }
         .magic-spark-1 { animation: magic-orbit 3.4s linear infinite; }
-        .magic-spark-2 {
-          animation: magic-orbit 4.2s linear infinite;
-          animation-delay: -0.8s;
-          width: 5px;
-          height: 5px;
-        }
-        .magic-spark-3 {
-          animation: magic-orbit 4.8s linear infinite;
-          animation-delay: -1.6s;
-        }
-        .magic-spark-4 {
-          animation: magic-orbit 3.8s linear infinite;
-          animation-delay: -2.3s;
-          width: 4px;
-          height: 4px;
-        }
-        .magic-spark-5 {
-          animation: magic-orbit 5.2s linear infinite;
-          animation-delay: -3.0s;
-        }
-        .magic-spark-6 {
-          animation: magic-orbit 4.4s linear infinite;
-          animation-delay: -3.7s;
-          width: 5px;
-          height: 5px;
-        }
+        .magic-spark-2 { animation: magic-orbit 4.2s linear infinite; animation-delay: -0.8s; width: 5px; height: 5px; }
+        .magic-spark-3 { animation: magic-orbit 4.8s linear infinite; animation-delay: -1.6s; }
+        .magic-spark-4 { animation: magic-orbit 3.8s linear infinite; animation-delay: -2.3s; width: 4px; height: 4px; }
+        .magic-spark-5 { animation: magic-orbit 5.2s linear infinite; animation-delay: -3.0s; }
+        .magic-spark-6 { animation: magic-orbit 4.4s linear infinite; animation-delay: -3.7s; width: 5px; height: 5px; }
         @keyframes magic-pulse {
           0%, 100% { opacity: 0.55; transform: scale(1); }
           50% { opacity: 1; transform: scale(1.08); }
         }
         @keyframes magic-orbit {
-          0% {
-            transform: translate(-50%, -50%) rotate(0deg) translateX(58px) rotate(0deg) scale(0.7);
-            opacity: 0;
-          }
+          0% { transform: translate(-50%, -50%) rotate(0deg) translateX(58px) rotate(0deg) scale(0.7); opacity: 0; }
           8% { opacity: 1; }
           50% { transform: translate(-50%, -50%) rotate(180deg) translateX(85px) rotate(-180deg) scale(1.1); }
           92% { opacity: 1; }
-          100% {
-            transform: translate(-50%, -50%) rotate(360deg) translateX(58px) rotate(-360deg) scale(0.7);
-            opacity: 0;
-          }
+          100% { transform: translate(-50%, -50%) rotate(360deg) translateX(58px) rotate(-360deg) scale(0.7); opacity: 0; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .magic-halo,
-          .magic-spark {
-            animation: none !important;
-          }
+          .magic-halo, .magic-spark { animation: none !important; }
           .magic-spark { opacity: 0.65; }
         }
       `}</style>
@@ -297,67 +258,27 @@ function MagicToggle({
 }
 
 // ─── HERO COMPONENT ──────────────────────────────────────────────────────────
-// Effet balayage vertical : barre qui suit le curseur en X
-// À gauche de la barre = version pro, à droite = version sorcier
-// Sur écrans tactiles : bouton magique pour basculer vers la version mage
+// Reveal SORCIER : déclenché au clic sur MagicToggle (PC + mobile, UX unifiée).
+// Pas de tracking curseur (réduit cognitive overload + plus pro).
+// Animations CSS pausées quand le hero sort du viewport (perf Core Web Vitals).
 export default function Hero() {
   const { t } = useLang()
   const sectionRef = useRef<HTMLElement>(null)
-  const [splitX, setSplitX] = useState<number | null>(null)
-  const [mageMobile, setMageMobile] = useState(false)
-  const [isTouch, setIsTouch] = useState(false)
-  const rafRef = useRef<number>(0)
+  const [revealed, setRevealed] = useState(false)
 
-  // Détection écran tactile / sans hover
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    const mq = window.matchMedia('(hover: none), (pointer: coarse)')
-    const update = () => setIsTouch(mq.matches)
-    update()
-    mq.addEventListener('change', update)
-    return () => mq.removeEventListener('change', update)
-  }, [])
-
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    if (rafRef.current) cancelAnimationFrame(rafRef.current)
-    rafRef.current = requestAnimationFrame(() => {
-      if (!sectionRef.current) return
-      const rect = sectionRef.current.getBoundingClientRect()
-      setSplitX(e.clientX - rect.left)
-    })
-  }, [])
-
-  const handleMouseLeave = useCallback(() => {
-    setSplitX(null)
-  }, [])
-
+  // Pause les animations CSS quand le hero n'est plus visible (perf)
   useEffect(() => {
     const el = sectionRef.current
-    if (!el) return
-    // Pas de tracking curseur sur tactile
-    if (isTouch) return
-    el.addEventListener('mousemove', handleMouseMove, { passive: true })
-    el.addEventListener('mouseleave', handleMouseLeave)
-    return () => {
-      el.removeEventListener('mousemove', handleMouseMove)
-      el.removeEventListener('mouseleave', handleMouseLeave)
-      if (rafRef.current) cancelAnimationFrame(rafRef.current)
-    }
-  }, [handleMouseMove, handleMouseLeave, isTouch])
-
-  const isRevealing = splitX !== null
-  // ClipPath pour couche pro : si mageMobile actif, on cache TOUT le pro
-  const proClipPath = mageMobile
-    ? 'inset(0 100% 0 0)'
-    : isRevealing
-    ? `inset(0 calc(100% - ${splitX}px) 0 0)`
-    : undefined
-  // ClipPath pour couche sorcier
-  const mageClipPath = mageMobile
-    ? 'inset(0 0 0 0)'
-    : isRevealing
-    ? `inset(0 0 0 ${splitX}px)`
-    : 'inset(0 0 0 100%)'
+    if (!el || typeof IntersectionObserver === 'undefined') return
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        el.style.setProperty('--hero-anim-state', entry.isIntersecting ? 'running' : 'paused')
+      },
+      { threshold: 0.01 }
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
 
   return (
     <section
@@ -372,12 +293,12 @@ export default function Hero() {
         <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-[#B09FE5]/12 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
       </div>
 
-      {/* ═══ COUCHE PRO (visible par défaut, masquée à droite de la barre) ═══ */}
+      {/* ═══ COUCHE PRO (visible quand revealed=false) ═══ */}
       <div
         className="relative max-w-6xl mx-auto px-6 pt-28 pb-24 w-full min-h-screen flex flex-col justify-center"
         style={{
-          clipPath: proClipPath,
-          transition: mageMobile ? 'clip-path 0.5s ease-in-out' : undefined,
+          clipPath: revealed ? 'inset(0 100% 0 0)' : undefined,
+          transition: 'clip-path 0.55s cubic-bezier(0.65, 0, 0.35, 1)',
         }}
       >
         <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
@@ -461,16 +382,13 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ═══ COUCHE SORCIER (masquée par défaut, visible à droite de la barre) ═══ */}
+      {/* ═══ COUCHE SORCIER (visible quand revealed=true) ═══ */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0"
         style={{
-          clipPath: mageClipPath,
-          transition: mageMobile
-            ? 'clip-path 0.5s ease-in-out'
-            : isRevealing
-            ? 'none'
-            : 'clip-path 0.4s ease-in',
+          clipPath: revealed ? 'inset(0 0 0 0)' : 'inset(0 0 0 100%)',
+          transition: 'clip-path 0.55s cubic-bezier(0.65, 0, 0.35, 1)',
+          pointerEvents: revealed ? 'auto' : 'none',
         }}
       >
         {/* Teinte légèrement plus chaude pour le côté sorcier */}
@@ -506,7 +424,7 @@ export default function Hero() {
               </FadeIn>
               <FadeIn direction="left" delay={440}>
                 <div className="flex flex-wrap items-center gap-4 pt-3">
-                  <span className="relative inline-flex pointer-events-auto">
+                  <span className="relative inline-flex">
                     <DiscSparks />
                     <a
                       href="/test-disc"
@@ -526,7 +444,7 @@ export default function Hero() {
                     href="https://www.linkedin.com/in/cl%C3%A9ment-boul%C3%A9/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="pointer-events-auto inline-flex items-center gap-2 text-xs font-medium text-[#7B3DB8]/80 hover:text-[#7B3DB8] bg-[#7B3DB8]/8 hover:bg-[#7B3DB8]/14 px-3 py-1.5 rounded-full border border-[#7B3DB8]/20 hover:border-[#7B3DB8]/40 transition-colors"
+                    className="inline-flex items-center gap-2 text-xs font-medium text-[#7B3DB8]/80 hover:text-[#7B3DB8] bg-[#7B3DB8]/8 hover:bg-[#7B3DB8]/14 px-3 py-1.5 rounded-full border border-[#7B3DB8]/20 hover:border-[#7B3DB8]/40 transition-colors"
                   >
                     <img src="/logos/linkedin.png" alt="" style={{ height: '14px', width: 'auto', objectFit: 'contain' }} />
                     +2 500 XP en accompagnement
@@ -535,7 +453,7 @@ export default function Hero() {
                     href="https://www.malt.fr/profile/clementboule"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="pointer-events-auto inline-flex items-center gap-2 text-xs font-medium text-[#B8843D]/80 hover:text-[#B8843D] bg-[#B8843D]/8 hover:bg-[#B8843D]/14 px-3 py-1.5 rounded-full border border-[#B8843D]/20 hover:border-[#B8843D]/40 transition-colors"
+                    className="inline-flex items-center gap-2 text-xs font-medium text-[#B8843D]/80 hover:text-[#B8843D] bg-[#B8843D]/8 hover:bg-[#B8843D]/14 px-3 py-1.5 rounded-full border border-[#B8843D]/20 hover:border-[#B8843D]/40 transition-colors"
                   >
                     <img src="/logos/malt.png" alt="" style={{ height: '14px', width: 'auto', objectFit: 'contain' }} />
                     Guilde des Aventuriers
@@ -567,31 +485,17 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ═══ BARRE DE SÉPARATION ═══ */}
-      {isRevealing && !mageMobile && (
-        <div
-          className="absolute top-0 bottom-0 z-30 pointer-events-none"
-          style={{
-            left: `${splitX}px`,
-            width: '2px',
-            background: 'linear-gradient(180deg, transparent, rgba(123, 61, 184, 0.3) 20%, rgba(123, 61, 184, 0.3) 80%, transparent)',
-          }}
+      {/* ═══ BOUTON MAGIQUE (toutes tailles d'écran : reveal en clic) ═══ */}
+      <FadeIn
+        delay={700}
+        className="absolute top-24 left-1/2 -translate-x-1/2 z-40 pointer-events-auto"
+      >
+        <MagicToggle
+          active={revealed}
+          onToggle={() => setRevealed((v) => !v)}
+          label="Révéler le sorcier"
         />
-      )}
-
-      {/* ═══ BOUTON MAGIQUE (tactile uniquement, positionné haut pour visibilité) ═══ */}
-      {isTouch && (
-        <FadeIn
-          delay={700}
-          className="absolute top-24 left-1/2 -translate-x-1/2 z-40 pointer-events-auto"
-        >
-          <MagicToggle
-            active={mageMobile}
-            onToggle={() => setMageMobile((v) => !v)}
-            label="Révéler le sorcier"
-          />
-        </FadeIn>
-      )}
+      </FadeIn>
 
       {/* Scroll indicator */}
       <FadeIn
@@ -599,12 +503,7 @@ export default function Hero() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#9AAABB] animate-bounce z-30"
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={1.5}
-            d="M19 9l-7 7-7-7"
-          />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
         </svg>
       </FadeIn>
     </section>
