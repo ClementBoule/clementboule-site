@@ -68,7 +68,7 @@ export default function DiscTest() {
   // Phase 2 state
   const [phase2Current, setPhase2Current] = useState(0)
   const [phase2Answers, setPhase2Answers] = useState<Record<number, SubProfileKey[]>>({})
-  const [phase2Selected, setPhase2Selected] = useState<number | null>(null)
+  const [phase2Selected, setPhase2Selected] = useState<{ q: number; idx: number } | null>(null)
   const [identifiedSubProfile, setIdentifiedSubProfile] = useState<SubProfileKey | null>(null)
 
   useEffect(() => { const t = setTimeout(() => setMounted(true), 60); return () => clearTimeout(t) }, [])
@@ -142,9 +142,9 @@ export default function DiscTest() {
     }, 380)
   }
 
-  const handlePhase2Answer = (questionId: number, favors: SubProfileKey[]) => {
+  const handlePhase2Answer = (questionId: number, optionIdx: number, favors: SubProfileKey[]) => {
     if (phase2Selected !== null) return
-    setPhase2Selected(questionId)
+    setPhase2Selected({ q: questionId, idx: optionIdx })
     setTimeout(() => {
       setPhase2Answers(prev => ({ ...prev, [questionId]: favors }))
       if (phase2Current < phase2Questions.length - 1) {
@@ -558,14 +558,14 @@ export default function DiscTest() {
             </div>
             <div className="space-y-3">
               {q.options.map((opt, idx) => {
-                const isSelected = phase2Selected === q.id && idx === q.options.indexOf(opt)
+                const isSelected = phase2Selected?.q === q.id && phase2Selected?.idx === idx
                 // Couleur de l'option basée sur le profil DISC dominant des sous-profils favorisés
                 const optDominant = opt.favors.length > 0 ? subProfiles[opt.favors[0]].zone.dominant : dominant
                 const optColor = DISC_COLORS[optDominant]
                 return (
                   <button
                     key={opt.label}
-                    onClick={() => handlePhase2Answer(q.id, opt.favors)}
+                    onClick={() => handlePhase2Answer(q.id, idx, opt.favors)}
                     disabled={phase2Selected !== null}
                     className="w-full text-left rounded-xl border-2 transition-all duration-200 flex items-center gap-4"
                     style={{
