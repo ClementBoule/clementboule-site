@@ -119,7 +119,7 @@ const translations = {
       contact: 'Contact',
     },
     hero: {
-      badge: 'Formateur & Consultant',
+      badge: 'Formateur & consultant',
       headline: 'Former des équipes qui changent vraiment',
       subtitle: "Formateur consultant indépendant en Île-de-France. J'interviens sur le management, les RH et les soft skills. Chaque programme est construit sur votre contexte réel, pas tiré d'un catalogue.",
       cta: 'Me contacter',
@@ -133,11 +133,11 @@ const translations = {
       subtitle: "Opérationnels, bilingues, construits sur votre réalité. Chaque module s'adapte à votre contexte.",
       items: [
         {
-          title: 'RH & Marque Employeur',
+          title: 'RH & marque employeur',
           description: "Aligner ce que vous vivez en interne avec ce que vous montrez à l'extérieur. Vos collaborateurs deviennent vos meilleurs ambassadeurs.",
         },
         {
-          title: 'Posture Professionnelle',
+          title: 'Posture professionnelle',
           description: "Corps, voix, regard. Ce que vous dégagez avant même d'ouvrir la bouche. Les leviers d'un impact qui dure.",
         },
         {
@@ -145,7 +145,7 @@ const translations = {
           description: "Voir les signaux avant la crise. Un format concret pour les managers en première ligne, pas pour les experts RH.",
         },
         {
-          title: "Stratégie d'Entreprise",
+          title: "Stratégie d'entreprise",
           description: "Du diagnostic à l'exécution. Savoir où aller, pourquoi, et comment embarquer tout le monde sans perdre la moitié en route.",
         },
         {
@@ -153,7 +153,7 @@ const translations = {
           description: "Écoute, communication, conflits. Les compétences qu'on sous-estime jusqu'au jour où elles font vraiment la différence.",
         },
         {
-          title: "Spine'Up — Leadership Managérial",
+          title: "Spine'Up — leadership managérial",
           description: "Un parcours pour les managers qui veulent trouver leur posture sans se dénaturer. Concret, progressif, et ça reste après la formation.",
         },
       ],
@@ -169,26 +169,26 @@ const translations = {
       educationLabel: 'Formation',
       experiences: [
         {
-          role: 'Formateur Indépendant',
+          role: 'Formateur indépendant',
           company: 'Freelance',
           period: '2022 – présent',
           description: "Conception et animation de formations sur-mesure en leadership, RH et soft skills. En entreprises et collectivités, en France et à l'étranger.",
         },
         {
-          role: 'Co-Fondateur',
+          role: 'Co-fondateur',
           company: 'Mantractif',
           period: '2023 – présent',
           description: "Cofondateur d'une structure de coaching et formation en Île-de-France, axée sur le développement professionnel et le management.",
         },
         {
-          role: 'Coach Sportif & Performance',
+          role: 'Coach sportif & performance',
           company: 'Indépendant — Innsbruck',
           period: '2018 – 2021',
           description: 'Coaching individuel et collectif sur la performance et le développement mental. Autriche et Allemagne.',
         },
       ],
       education: [
-        { degree: 'Certification Management du Changement', school: 'ESSEC', year: '2026' },
+        { degree: 'Certification management du changement', school: 'ESSEC', year: '2026' },
         { degree: 'La méthode Agile pour accompagner le changement', school: 'Excellence Formation', year: '2024' },
         { degree: 'BPJEPS AF', school: 'VAE', year: '2021' },
         { degree: 'Master 2 Intercultural Behavior Management', school: 'MCI Innsbruck', year: '2018' },
@@ -211,7 +211,7 @@ const translations = {
       error: 'Une erreur est survenue. Réessayez ou écrivez directement à hello@clementboule.com',
     },
     footer: {
-      tagline: 'Formateur · Consultant · Coach',
+      tagline: 'Formateur · consultant · coach',
       mentions: 'Mentions légales',
       privacy: 'Politique de confidentialité',
     },
