@@ -55,9 +55,9 @@ Site vitrine B2B pour convertir des DRH, managers et dirigeants PME en clients d
 
 Ces protocoles prennent priorité sur toute tâche en cours. Ils sont déclenchés par des mots-clés exacts écrits par l'utilisateur (seuls ou en début de phrase). Toute instance Claude lisant ce fichier doit les respecter strictement.
 
-### Protocole "launch" — reprise de session
+### Protocole "open" — reprise de session
 
-Déclencheur : l'utilisateur écrit **"launch"**.
+Déclencheur : l'utilisateur écrit **"open"**.
 
 Actions Claude :
 1. Lire `memory/site.md` (état projet, commits récents, composants, next steps)
@@ -69,9 +69,9 @@ Actions Claude :
    - Next steps prioritaires
 4. Proposer un point de reprise concret (ex: "On reprend sur le sprint SEO ? Ou tu veux que je lance autre chose ?")
 
-### Protocole "memory" — fin de session
+### Protocole "close" — fin de session
 
-Déclencheur : l'utilisateur écrit **"memory"**.
+Déclencheur : l'utilisateur écrit **"close"**.
 
 Actions Claude :
 1. Répondre exactement : *"Je mets à jour la mémoire et on arrête pour le moment ? (oui/non)"*
