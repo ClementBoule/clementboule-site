@@ -42,8 +42,10 @@ export type Formation = {
   }
 }
 
-// ─── 6 FORMATIONS ───────────────────────────────────────────────────────────
+// ─── 6 FORMATIONS ─────────────────────────────────────────────────────────────
+
 export const formations: Formation[] = [
+
   // ═══════════════════════════════════════════════════════════════════════
   // 1. RH & MARQUE EMPLOYEUR
   // ═══════════════════════════════════════════════════════════════════════
@@ -54,20 +56,18 @@ export const formations: Formation[] = [
     bg: '#EEF3FA',
     image: '/illustrations/formations/rh-marque-employeur.png',
     title: 'RH & Marque Employeur',
-    shortDescription:
-      'Aligner culture interne et image externe pour attirer et fidéliser les talents. Vos collaborateurs deviennent vos premiers ambassadeurs.',
-    intro:
-      "Une marque employeur forte ne se décrète pas, elle se construit de l'intérieur. Cette formation aligne votre culture vécue avec votre promesse externe, pour transformer vos collaborateurs en ambassadeurs sincères.",
+    shortDescription: "Aligner ce que vous vivez en interne avec ce que vous montrez à l'extérieur. Vos collaborateurs deviennent vos meilleurs ambassadeurs.",
+    intro: "La marque employeur, c'est rarement un problème de communication. C'est un problème d'alignement. Ce que vous promettez à l'extérieur doit coller avec ce que vivent vos équipes au quotidien. Cette formation travaille exactement sur cet écart.",
     forWhom: [
-      "Directions RH & responsables marque employeur",
-      "Dirigeants de PME en croissance qui peinent à recruter",
-      "Managers qui veulent fidéliser leurs équipes au-delà du salaire",
+      "DRH et responsables marque employeur qui veulent aller au-delà des affiches",
+      "Dirigeants de PME qui peinent à recruter malgré une bonne réputation terrain",
+      "Managers qui veulent fidéliser leurs équipes sans forcément augmenter les salaires",
     ],
     outcomes: [
-      "Diagnostic clair de l'écart entre culture vécue et image perçue",
-      "Plan d'action concret pour aligner discours et expérience collaborateur",
-      "Outils pour mesurer l'attractivité et la fidélisation",
-      "Cadre pour activer vos collaborateurs en relais d'opinion",
+      "Mettre le doigt sur l'écart entre ce que vous affichez et ce que vos équipes vivent vraiment",
+      "Construire une promesse employeur qui tient la route face à vos propres collaborateurs",
+      "Outiller vos managers pour qu'ils deviennent des relais crédibles, pas des porte-paroles forcés",
+      "Mesurer ce qui change concrètement sur l'attractivité et la fidélisation",
     ],
     phases: [
       {
@@ -97,7 +97,7 @@ export const formations: Formation[] = [
     tools: [
       'Canvas EVP (Employee Value Proposition)',
       'Matrice de cohérence interne/externe',
-      'Grille d\'audit Glassdoor / LinkedIn',
+      "Grille d'audit Glassdoor / LinkedIn",
       'Templates de communication interne',
     ],
     format: {
@@ -118,20 +118,18 @@ export const formations: Formation[] = [
     bg: '#F3EEFA',
     image: '/illustrations/formations/posture-professionnelle.png',
     title: 'Posture Professionnelle',
-    shortDescription:
-      "Gestes, regard, prise de parole. Les clés d'un impact immédiat en réunion, en entretien ou face à un client exigeant.",
-    intro:
-      "55% de l'impact d'un message passe par le non-verbal. Cette formation vous donne les leviers concrets pour incarner votre rôle, ajuster votre posture aux situations à enjeux et créer une présence qui marque.",
+    shortDescription: "Corps, voix, regard. Ce que vous dégagez avant même d'ouvrir la bouche. Les leviers d'un impact qui dure.",
+    intro: "Avant même d'ouvrir la bouche, vous avez déjà dit quelque chose. Cette formation travaille sur ce que vous dégagez : le corps, la voix, le regard. Pas pour jouer un rôle, mais pour être pleinement à votre place.",
     forWhom: [
-      "Managers nouvellement nommés qui doivent affirmer leur autorité",
-      "Cadres confirmés en transition vers des postes à exposition",
-      "Commerciaux et consultants en contact client haut niveau",
+      "Managers nouvellement nommés qui veulent asseoir leur légitimité sans forcer",
+      "Cadres en transition vers des postes à forte exposition",
+      "Commerciaux et consultants en face à face avec des clients exigeants",
     ],
     outcomes: [
-      "Identifier votre posture naturelle et ses points d'amélioration",
-      "Maîtriser les ajustements voix / regard / corps selon les contextes",
-      "Gérer le trac et les situations déstabilisantes",
-      "Construire une présence cohérente sans jouer un rôle",
+      "Voir ce que vous dégagez naturellement et l'effet que ça produit chez les autres",
+      "Ajuster voix, regard et posture selon les situations à enjeux",
+      "Garder la maîtrise quand la pression monte",
+      "Être vous-même, pas une version corrigée de quelqu'un d'autre",
     ],
     phases: [
       {
@@ -160,9 +158,9 @@ export const formations: Formation[] = [
     ],
     tools: [
       'Méthode des 3V (Verbal / Vocal / Visuel)',
-      'Grille d\'observation comportementale',
+      "Grille d'observation comportementale",
       'Caméra + retour pair-à-pair',
-      'Cadre des "5 postures de management" (Mintzberg adapté)',
+      "Cadre des \"5 postures de management\" (Mintzberg adapté)",
     ],
     format: {
       duration: '2 jours',
@@ -182,20 +180,18 @@ export const formations: Formation[] = [
     bg: '#EFF8F2',
     image: '/illustrations/formations/prevention-rps.png',
     title: 'Prévention des RPS',
-    shortDescription:
-      "Identifier les signaux faibles et agir avant la crise. Un format opérationnel pour les managers en première ligne.",
-    intro:
-      "Les Risques Psycho-Sociaux coûtent en moyenne 3% à 4% de la masse salariale (INRS). Cette formation outille les managers pour repérer les signaux d'alerte et agir tôt, avant l'arrêt maladie ou le départ.",
+    shortDescription: "Voir les signaux avant la crise. Un format concret pour les managers en première ligne, pas pour les experts RH.",
+    intro: "Les RPS ne débarquent pas du jour au lendemain. Les signaux étaient là avant. Cette formation apprend aux managers à les lire et à agir tôt, avant l'arrêt maladie ou le départ. Cadre INRS, méthode terrain.",
     forWhom: [
-      "Managers de proximité confrontés à des équipes sous tension",
-      "DRH et préventeurs en charge de la QVT",
-      "CHSCT/CSE souhaitant un cadre opérationnel",
+      "Managers de proximité avec des équipes sous pression",
+      "DRH et référents QVT qui cherchent un outil concret, pas un guide de 200 pages",
+      "Membres de CSE/CHSCT en charge de la prévention",
     ],
     outcomes: [
-      "Connaître le cadre légal et les obligations de l'employeur",
-      "Repérer les 6 familles de RPS (INRS) dans votre quotidien",
-      "Mener un entretien de soutien sans devenir thérapeute",
-      "Construire un dispositif de prévention adapté à votre contexte",
+      "Connaître le cadre légal sans vous noyer dans le juridique",
+      "Repérer les 6 familles de risques dans votre quotidien de manager",
+      "Conduire un entretien de soutien sans jouer au psy",
+      "Mettre en place un dispositif de prévention adapté à votre taille et votre secteur",
     ],
     phases: [
       {
@@ -246,20 +242,18 @@ export const formations: Formation[] = [
     bg: '#FAF4EB',
     image: '/illustrations/formations/strategie-entreprise.png',
     title: "Stratégie d'Entreprise",
-    shortDescription:
-      "Du diagnostic au plan d'action concret. Prioriser, aligner les équipes et piloter votre croissance avec clarté.",
-    intro:
-      "Beaucoup de stratégies meurent dans le PowerPoint du séminaire annuel. Cette formation vous donne les frameworks pour construire une stratégie qui s'exécute : claire, priorisée, alignée et pilotée.",
+    shortDescription: "Du diagnostic à l'exécution. Savoir où aller, pourquoi, et comment embarquer tout le monde sans perdre la moitié en route.",
+    intro: "La plupart des stratégies sont bonnes sur le papier. Là où ça coince, c'est à l'exécution. Cette formation donne aux dirigeants et managers les outils pour construire une stratégie que les équipes comprennent, qui se pilote vraiment et qui résiste au terrain.",
     forWhom: [
-      "Dirigeants et CODIR en phase de structuration ou pivot",
+      "Dirigeants et CODIR en phase de structuration ou de pivot",
       "Managers en charge d'un BU ou d'un projet transverse",
-      "Comités de direction préparant un séminaire stratégique",
+      "Comités de direction qui préparent leur séminaire stratégique",
     ],
     outcomes: [
-      "Cadrer votre vision et vos priorités à 3 ans",
-      "Maîtriser 4 frameworks éprouvés (OKR, Wardley, BCG, Blue Ocean)",
-      "Aligner votre COMEX et vos managers autour d'un cap commun",
-      "Mettre en place un rituel de pilotage qui survit aux urgences",
+      "Cadrer votre vision à 3 ans de façon claire et partageable",
+      "Utiliser les bons frameworks sans vous noyer dedans (OKR, BCG, Blue Ocean...)",
+      "Aligner votre CODIR et vos managers sur un cap commun",
+      "Mettre en place un pilotage qui tient dans la durée, pas juste jusqu'au prochain séminaire",
     ],
     phases: [
       {
@@ -276,7 +270,7 @@ export const formations: Formation[] = [
       },
       {
         step: 'Phase 3',
-        title: 'Plan d\'exécution & pilotage',
+        title: "Plan d'exécution & pilotage",
         desc: "OKR, roadmap, rituels de revue. Outillage des managers pour faire vivre la stratégie au quotidien.",
         duration: '1 jour',
       },
@@ -311,20 +305,18 @@ export const formations: Formation[] = [
     bg: '#FAEDED',
     image: '/illustrations/formations/soft-skills.png',
     title: 'Soft Skills',
-    shortDescription:
-      "Écoute active, communication non violente, gestion des conflits. Les compétences humaines qui font vraiment la différence.",
-    intro:
-      "Les hard skills vous font embaucher, les soft skills vous font évoluer. Cette formation muscle les compétences relationnelles qui font la différence en management, en commercial et en collaboration transverse.",
+    shortDescription: "Écoute, communication, conflits. Les compétences qu'on sous-estime jusqu'au jour où elles font vraiment la différence.",
+    intro: "Ce sont les compétences absentes des fiches de poste mais présentes dans chaque décision de recrutement. L'écoute, la communication, la gestion des conflits. Cette formation les rend concrètes et praticables dès le lendemain.",
     forWhom: [
-      "Managers transversaux ou matriciels",
-      "Équipes commerciales et relation client",
-      "Chefs de projet en environnement complexe",
+      "Managers transversaux ou matriciels qui gèrent sans autorité hiérarchique",
+      "Équipes commerciales et relation client sous pression",
+      "Chefs de projet dans des environnements complexes",
     ],
     outcomes: [
-      "Écouter activement sans projeter ni interpréter",
-      "Formuler une demande ou un désaccord en CNV",
-      "Désamorcer un conflit avant qu'il ne s'envenime",
-      "Donner un feedback qui motive plutôt que démotive",
+      "Écouter vraiment, sans préparer sa réponse pendant que l'autre parle encore",
+      "Formuler un désaccord ou une demande sans déclencher une guerre froide",
+      "Désamorcer un conflit avant qu'il parasite tout le reste",
+      "Donner un feedback qui fait avancer au lieu de braquer",
     ],
     phases: [
       {
@@ -375,20 +367,18 @@ export const formations: Formation[] = [
     bg: '#ECF6F4',
     image: '/illustrations/formations/spine-up.png',
     title: "Spine'Up — Leadership Managérial",
-    shortDescription:
-      "Un programme structuré pour développer la posture managériale de vos collaborateurs. Trouvez votre juste posture pour évoluer dans votre carrière avec impact et confiance.",
-    intro:
-      "Spine'Up est un parcours signature qui combine posture corporelle, leadership relationnel et stratégie de carrière. Pensé pour les managers qui veulent grandir sans se travestir.",
+    shortDescription: "Un parcours pour les managers qui veulent trouver leur posture sans se dénaturer. Concret, progressif, et ça reste après la formation.",
+    intro: "Spine'Up est un parcours de développement managérial que j'ai construit à partir de ce que je vois en entreprise : des managers compétents qui ne savent pas comment occuper leur place. Pas un problème de compétences. Un problème de posture. Ce programme travaille exactement lá-dessus.",
     forWhom: [
-      "Managers en prise de poste ou en évolution rapide",
-      "Talents identifiés en plan de succession",
-      "Cadres confirmés cherchant à dépasser un plafond de verre",
+      "Managers en prise de poste qui veulent partir du bon pied",
+      "Talents identifiés en plan de succession qui préparent leur prochaine étape",
+      "Cadres confirmés qui sentent qu'ils plafonnent sans comprendre pourquoi",
     ],
     outcomes: [
-      "Identifier vos signatures de leadership (style DISC + ancrages)",
-      "Construire votre récit professionnel et vos arguments d'évolution",
-      "Maîtriser les 5 postures clés du manager (Mintzberg adapté)",
-      "Repartir avec un plan de carrière 18 mois et un kit d'argumentaires",
+      "Comprendre votre style naturel de management avec le profil DISC",
+      "Construire votre présence managériale sans copier quelqu'un d'autre",
+      "Avoir un récit professionnel clair pour vos entretiens et vos ambitions",
+      "Repartir avec un plan de développement sur 18 mois, actionnable",
     ],
     phases: [
       {
@@ -437,7 +427,7 @@ export const formations: Formation[] = [
   },
 ]
 
-// ─── HELPERS ────────────────────────────────────────────────────────────────
+// ─── HELPERS ──────────────────────────────────────────────────────────────────
 
 export function getFormation(slug: string): Formation | undefined {
   return formations.find((f) => f.slug === slug)
