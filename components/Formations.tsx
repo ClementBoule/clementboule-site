@@ -2,10 +2,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useLang } from './LanguageContext'
-import ScrollReveal from './ScrollReveal'
 import { formations } from './formations-data'
 
-// ─── Card formation ─────────────────────────────────────────────────────────
+// ─── Card formation ────────────────────────────────────────────────────────────
 function FormationCard({
   slug,
   tag,
@@ -14,6 +13,7 @@ function FormationCard({
   image,
   title,
   shortDescription,
+  delay,
 }: {
   slug: string
   tag: string
@@ -22,12 +22,17 @@ function FormationCard({
   image: string
   title: string
   shortDescription: string
+  delay: number
 }) {
   return (
     <Link
       href={`/formations/${slug}`}
       className="group relative flex flex-col overflow-hidden rounded-3xl bg-white border border-[#1A2B4A]/8 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-transparent transition-all duration-300"
-      style={{ backgroundColor: bg }}
+      style={{
+        backgroundColor: bg,
+        animation: `cbFadeUp 0.55s ease both`,
+        animationDelay: `${delay}ms`,
+      }}
     >
       {/* Tag */}
       <div className="absolute top-4 left-4 z-10">
@@ -81,7 +86,7 @@ function FormationCard({
   )
 }
 
-// ─── Section Formations ─────────────────────────────────────────────────────
+// ─── Section Formations ────────────────────────────────────────────────────────
 export default function Formations() {
   const { t } = useLang()
 
@@ -90,9 +95,19 @@ export default function Formations() {
       id="formations"
       className="relative py-16 md:py-20 bg-gradient-to-b from-[#F5F0FB] via-[#F1F4FA] to-[#EBF0F8]"
     >
+      <style>{`
+        @keyframes cbFadeUp {
+          from { opacity: 0; transform: translateY(24px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
+
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
-        <ScrollReveal className="mb-10 md:mb-14 text-center">
+        <div
+          className="mb-10 md:mb-14 text-center"
+          style={{ animation: 'cbFadeUp 0.5s ease both' }}
+        >
           <p className="text-xs font-semibold text-[#3D6DB8] uppercase tracking-widest mb-3">
             {t.formations.label}
           </p>
@@ -102,27 +117,30 @@ export default function Formations() {
           <p className="mt-4 text-[#6B7E95] max-w-xl mx-auto leading-relaxed">
             {t.formations.subtitle}
           </p>
-        </ScrollReveal>
+        </div>
 
         {/* Grid 1 / 2 / 3 colonnes */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {formations.map((f, i) => (
-            <ScrollReveal key={f.slug} delay={i * 70}>
-              <FormationCard
-                slug={f.slug}
-                tag={f.tag}
-                accent={f.accent}
-                bg={f.bg}
-                image={f.image}
-                title={f.title}
-                shortDescription={f.shortDescription}
-              />
-            </ScrollReveal>
+            <FormationCard
+              key={f.slug}
+              slug={f.slug}
+              tag={f.tag}
+              accent={f.accent}
+              bg={f.bg}
+              image={f.image}
+              title={f.title}
+              shortDescription={f.shortDescription}
+              delay={i * 80}
+            />
           ))}
         </div>
 
         {/* CTA centre : voir toutes les formations */}
-        <ScrollReveal delay={500} className="mt-12 text-center">
+        <div
+          className="mt-12 text-center"
+          style={{ animation: 'cbFadeUp 0.5s ease both 500ms' }}
+        >
           <Link
             href="/formations"
             className="inline-flex items-center gap-2 text-sm font-semibold text-[#1A2B4A] hover:text-[#3D6DB8] transition-colors"
@@ -132,7 +150,7 @@ export default function Formations() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </Link>
-        </ScrollReveal>
+        </div>
       </div>
     </section>
   )
