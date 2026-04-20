@@ -1,4 +1,5 @@
 'use client'
+
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 
 type Lang = 'en' | 'fr'
@@ -118,9 +119,9 @@ const translations = {
       contact: 'Contact',
     },
     hero: {
-      badge: 'Formateur et consultant',
-      headline: 'Transformez votre entreprise en agissant sur ce qui compte',
-      subtitle: "Du diagnostic stratégique aux transformations RH concrètes — j'accompagne les entreprises à traverser leurs défis en construisant des cultures d'entreprise durables et engageantes.",
+      badge: 'Formateur & Consultant',
+      headline: 'Former des équipes qui changent vraiment',
+      subtitle: "Formateur consultant indépendant en Île-de-France. J'interviens sur le management, les RH et les soft skills. Chaque programme est construit sur votre contexte réel, pas tiré d'un catalogue.",
       cta: 'Me contacter',
       disc: 'Faire le test DISC',
       discTeaser: 'Découvrez votre profil DISC',
@@ -128,42 +129,42 @@ const translations = {
     },
     formations: {
       label: 'Formations',
-      title: 'Des programmes adaptés à vos équipes',
-      subtitle: 'Opérationnels, bilingues et adaptés à votre contexte. Chaque module est personnalisable.',
+      title: 'Des programmes taillés pour vos équipes',
+      subtitle: "Opérationnels, bilingues, construits sur votre réalité. Chaque module s'adapte à votre contexte.",
       items: [
         {
           title: 'RH & Marque Employeur',
-          description: "Aligner culture interne et image externe pour attirer et fidéliser les talents. Vos collaborateurs deviennent vos premiers ambassadeurs.",
+          description: "Aligner ce que vous vivez en interne avec ce que vous montrez à l'extérieur. Vos collaborateurs deviennent vos meilleurs ambassadeurs.",
         },
         {
           title: 'Posture Professionnelle',
-          description: "Gestes, regard, prise de parole. Les clés d'un impact immédiat en réunion, en entretien ou face à un client exigeant.",
+          description: "Corps, voix, regard. Ce que vous dégagez avant même d'ouvrir la bouche. Les leviers d'un impact qui dure.",
         },
         {
           title: 'Prévention des RPS',
-          description: 'Identifier les signaux faibles et agir avant la crise. Un format opérationnel pour les managers en première ligne.',
+          description: "Voir les signaux avant la crise. Un format concret pour les managers en première ligne, pas pour les experts RH.",
         },
         {
           title: "Stratégie d'Entreprise",
-          description: "Du diagnostic au plan d'action concret. Prioriser, aligner les équipes et piloter votre croissance avec clarté.",
+          description: "Du diagnostic à l'exécution. Savoir où aller, pourquoi, et comment embarquer tout le monde sans perdre la moitié en route.",
         },
         {
           title: 'Soft Skills',
-          description: 'Écoute active, communication non violente, gestion des conflits. Les compétences humaines qui font vraiment la différence.',
+          description: "Écoute, communication, conflits. Les compétences qu'on sous-estime jusqu'au jour où elles font vraiment la différence.",
         },
         {
           title: "Spine'Up — Leadership Managérial",
-          description: "Un programme structuré pour développer la posture managériale de vos collaborateurs. Trouvez votre juste posture pour évoluer dans votre carrière avec impact et confiance.",
+          description: "Un parcours pour les managers qui veulent trouver leur posture sans se dénaturer. Concret, progressif, et ça reste après la formation.",
         },
       ],
     },
     topClients: {
       label: 'Ils me font confiance',
-      subtitle: 'Entreprises et institutions que j\'ai eu le privilège d\'accompagner.',
+      subtitle: "Entreprises et institutions avec qui j'ai travaillé.",
     },
     cv: {
       label: 'Parcours',
-      title: 'Une décennie de coaching et de formation bilingue',
+      title: "10 ans de formation et de coaching, en France et à l'international",
       experienceLabel: 'Expériences',
       educationLabel: 'Formation',
       experiences: [
@@ -171,19 +172,19 @@ const translations = {
           role: 'Formateur Indépendant',
           company: 'Freelance',
           period: '2022 – présent',
-          description: 'Conception et animation de formations sur-mesure en leadership, RH et soft skills pour entreprises et collectivités.',
+          description: "Conception et animation de formations sur-mesure en leadership, RH et soft skills. En entreprises et collectivités, en France et à l'étranger.",
         },
         {
           role: 'Co-Fondateur',
           company: 'Mantractif',
           period: '2023 – présent',
-          description: "Co-création d'une société de coaching et formation basée en Île-de-France, centrée sur la transformation professionnelle.",
+          description: "Cofondateur d'une structure de coaching et formation en Île-de-France, axée sur le développement professionnel et le management.",
         },
         {
           role: 'Coach Sportif & Performance',
           company: 'Indépendant — Innsbruck',
           period: '2018 – 2021',
-          description: 'Coaching individuel et collectif alliant méthodes de performance et techniques de développement mental.',
+          description: 'Coaching individuel et collectif sur la performance et le développement mental. Autriche et Allemagne.',
         },
       ],
       education: [
@@ -196,18 +197,18 @@ const translations = {
     },
     contact: {
       label: 'Contact',
-      title: 'Travaillons ensemble',
-      subtitle: "Un projet, une question, une idée de partenariat ? Envoyez-moi un message, je reviens vers vous sous 48h.",
+      title: 'On travaille ensemble ?',
+      subtitle: "Un projet, une question, une idée ? Envoyez-moi un message, je réponds sous 48h.",
       name: 'Nom',
       namePlaceholder: 'Votre nom complet',
       email: 'Email',
       emailPlaceholder: 'votre@email.com',
       message: 'Message',
-      messagePlaceholder: 'Parlez-moi de votre projet ou votre question...',
-      send: 'Envoyer le message',
+      messagePlaceholder: 'Parlez-moi de votre projet...',
+      send: 'Envoyer',
       sending: 'Envoi en cours...',
       success: 'Message envoyé ! Je reviens vers vous rapidement.',
-      error: 'Une erreur est survenue. Réessayez ou écrivez à hello@clementboule.com',
+      error: 'Une erreur est survenue. Réessayez ou écrivez directement à hello@clementboule.com',
     },
     footer: {
       tagline: 'Formateur · Consultant · Coach',
