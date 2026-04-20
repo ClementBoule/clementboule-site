@@ -55,7 +55,7 @@ export const formations: Formation[] = [
     accent: '#3D6DB8',
     bg: '#EEF3FA',
     image: '/illustrations/formations/rh-marque-employeur.png',
-    title: 'RH & Marque Employeur',
+    title: 'RH & marque employeur',
     shortDescription: "Aligner ce que vous vivez en interne avec ce que vous montrez à l'extérieur. Vos collaborateurs deviennent vos meilleurs ambassadeurs.",
     intro: "La marque employeur, c'est rarement un problème de communication. C'est un problème d'alignement. Ce que vous promettez à l'extérieur doit coller avec ce que vivent vos équipes au quotidien. Cette formation travaille exactement sur cet écart.",
     forWhom: [
@@ -117,7 +117,7 @@ export const formations: Formation[] = [
     accent: '#7B3DB8',
     bg: '#F3EEFA',
     image: '/illustrations/formations/posture-professionnelle.png',
-    title: 'Posture Professionnelle',
+    title: 'Posture professionnelle',
     shortDescription: "Corps, voix, regard. Ce que vous dégagez avant même d'ouvrir la bouche. Les leviers d'un impact qui dure.",
     intro: "Avant même d'ouvrir la bouche, vous avez déjà dit quelque chose. Cette formation travaille sur ce que vous dégagez : le corps, la voix, le regard. Pas pour jouer un rôle, mais pour être pleinement à votre place.",
     forWhom: [
@@ -241,7 +241,7 @@ export const formations: Formation[] = [
     accent: '#B8843D',
     bg: '#FAF4EB',
     image: '/illustrations/formations/strategie-entreprise.png',
-    title: "Stratégie d'Entreprise",
+    title: "Stratégie d'entreprise",
     shortDescription: "Du diagnostic à l'exécution. Savoir où aller, pourquoi, et comment embarquer tout le monde sans perdre la moitié en route.",
     intro: "La plupart des stratégies sont bonnes sur le papier. Là où ça coince, c'est à l'exécution. Cette formation donne aux dirigeants et managers les outils pour construire une stratégie que les équipes comprennent, qui se pilote vraiment et qui résiste au terrain.",
     forWhom: [
@@ -366,9 +366,9 @@ export const formations: Formation[] = [
     accent: '#0F766E',
     bg: '#ECF6F4',
     image: '/illustrations/formations/spine-up.png',
-    title: "Spine'Up — Leadership Managérial",
+    title: "Spine'Up — leadership managérial",
     shortDescription: "Un parcours pour les managers qui veulent trouver leur posture sans se dénaturer. Concret, progressif, et ça reste après la formation.",
-    intro: "Spine'Up est un parcours de développement managérial que j'ai construit à partir de ce que je vois en entreprise : des managers compétents qui ne savent pas comment occuper leur place. Pas un problème de compétences. Un problème de posture. Ce programme travaille exactement lá-dessus.",
+    intro: "Spine'Up est un parcours de développement managérial que j'ai construit à partir de ce que je vois en entreprise : des managers compétents qui ne savent pas comment occuper leur place. Pas un problème de compétences. Un problème de posture. Ce programme travaille exactement là-dessus.",
     forWhom: [
       "Managers en prise de poste qui veulent partir du bon pied",
       "Talents identifiés en plan de succession qui préparent leur prochaine étape",
