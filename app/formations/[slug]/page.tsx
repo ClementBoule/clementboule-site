@@ -4,12 +4,12 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { formations, getFormation, getNextFormation, getPrevFormation } from '../../../components/formations-data'
 
-// ─── Pré-génération statique des 6 slugs ────────────────────────────────────
+// âââ PrÃ©-gÃ©nÃ©ration statique des 6 slugs ââââââââââââââââââââââââââââââââââââ
 export function generateStaticParams() {
   return formations.map((f) => ({ slug: f.slug }))
 }
 
-// ─── Metadata SEO dynamique ─────────────────────────────────────────────────
+// âââ Metadata SEO dynamique âââââââââââââââââââââââââââââââââââââââââââââââââ
 export async function generateMetadata({
   params,
 }: {
@@ -19,17 +19,17 @@ export async function generateMetadata({
   const f = getFormation(slug)
   if (!f) return { title: 'Formation introuvable' }
   return {
-    title: `${f.title} — Formation Clément Boulé`,
+    title: `${f.title} â Formation ClÃ©ment BoulÃ©`,
     description: f.shortDescription,
     openGraph: {
-      title: `${f.title} — Formation`,
+      title: `${f.title} â Formation`,
       description: f.shortDescription,
       images: [{ url: f.image, width: 1200, height: 630, alt: f.title }],
     },
   }
 }
 
-// ─── Page détail ────────────────────────────────────────────────────────────
+// âââ Page dÃ©tail ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 export default async function FormationDetailPage({
   params,
 }: {
@@ -50,7 +50,7 @@ export default async function FormationDetailPage({
     description: f.shortDescription,
     provider: {
       '@type': 'Person',
-      name: 'Clément Boulé',
+      name: 'ClÃ©ment BoulÃ©',
       url: 'https://www.clementboule.fr',
     },
     offers: {
@@ -72,7 +72,7 @@ export default async function FormationDetailPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* ═══ HERO FORMATION ═══ */}
+      {/* âââ HERO FORMATION âââ */}
       <section
         className="relative pt-24 md:pt-28 pb-12 md:pb-16 overflow-hidden"
         style={{ backgroundColor: f.bg }}
@@ -147,7 +147,7 @@ export default async function FormationDetailPage({
         </div>
       </section>
 
-      {/* ═══ POUR QUI + RÉSULTATS (split 2 colonnes) ═══ */}
+      {/* âââ POUR QUI + RÃSULTATS (split 2 colonnes) âââ */}
       <section className="py-16 md:py-20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-10 md:gap-16">
@@ -177,7 +177,7 @@ export default async function FormationDetailPage({
               </ul>
             </div>
 
-            {/* Résultats concrets */}
+            {/* RÃ©sultats concrets */}
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-[#1A2B4A] mb-6 flex items-center gap-3">
                 <span
@@ -190,7 +190,7 @@ export default async function FormationDetailPage({
                 {f.outcomes.map((o, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="flex-shrink-0 text-lg mt-0.5" style={{ color: f.accent }}>
-                      ▸
+                      â¸
                     </span>
                     <span className="text-[#4A5B70] leading-relaxed font-medium">{o}</span>
                   </li>
@@ -201,7 +201,7 @@ export default async function FormationDetailPage({
         </div>
       </section>
 
-      {/* ═══ PROGRAMME — Phases ═══ */}
+      {/* âââ PROGRAMME â Phases âââ */}
       <section id="programme" className="py-16 md:py-20" style={{ backgroundColor: f.bg + '50' }}>
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -209,7 +209,7 @@ export default async function FormationDetailPage({
               className="text-xs font-bold uppercase tracking-widest mb-3"
               style={{ color: f.accent }}
             >
-              Programme détaillé
+              Programme dÃ©taillÃ©
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-[#1A2B4A]">
               Une progression en {f.phases.length} {f.phases.length > 3 ? 'modules' : 'phases'}
@@ -230,7 +230,7 @@ export default async function FormationDetailPage({
                     {p.step}
                   </span>
                   {p.duration && (
-                    <p className="text-xs text-[#6B7E95]">Durée : {p.duration}</p>
+                    <p className="text-xs text-[#6B7E95]">DurÃ©e : {p.duration}</p>
                   )}
                 </div>
                 <div className="flex-1">
@@ -243,7 +243,7 @@ export default async function FormationDetailPage({
         </div>
       </section>
 
-      {/* ═══ ATELIERS ═══ */}
+      {/* âââ ATELIERS âââ */}
       <section className="py-16 md:py-20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -254,7 +254,7 @@ export default async function FormationDetailPage({
               Ateliers & exercices
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-[#1A2B4A]">
-              Des mises en situation concrètes
+              Des mises en situation concrÃ¨tes
             </h2>
           </div>
 
@@ -279,7 +279,7 @@ export default async function FormationDetailPage({
         </div>
       </section>
 
-      {/* ═══ OUTILS + FORMAT (2 colonnes) ═══ */}
+      {/* âââ OUTILS + FORMAT (2 colonnes) âââ */}
       <section className="py-16 md:py-20 bg-[#F8FAFC]">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-10 md:gap-16">
@@ -292,7 +292,7 @@ export default async function FormationDetailPage({
                 Outils & frameworks
               </p>
               <h2 className="text-2xl md:text-3xl font-bold text-[#1A2B4A] mb-6">
-                Les méthodes utilisées
+                Les mÃ©thodes utilisÃ©es
               </h2>
               <ul className="space-y-2">
                 {f.tools.map((t, i) => (
@@ -315,14 +315,14 @@ export default async function FormationDetailPage({
                 Format
               </p>
               <h2 className="text-2xl md:text-3xl font-bold text-[#1A2B4A] mb-6">
-                Modalités pratiques
+                ModalitÃ©s pratiques
               </h2>
               <div className="space-y-4">
                 {[
-                  { label: 'Durée', value: f.format.duration, icon: '⏱' },
-                  { label: 'Mode', value: f.format.mode, icon: '📍' },
-                  { label: 'Taille du groupe', value: f.format.groupSize, icon: '👥' },
-                  { label: 'Tarif', value: f.format.pricing, icon: '💼' },
+                  { label: 'DurÃ©e', value: f.format.duration, icon: 'â±' },
+                  { label: 'Mode', value: f.format.mode, icon: 'ð' },
+                  { label: 'Taille du groupe', value: f.format.groupSize, icon: 'ð¥' },
+                  { label: 'Tarif', value: f.format.pricing, icon: 'ð¼' },
                 ].map((item, i) => (
                   <div
                     key={i}
@@ -343,14 +343,14 @@ export default async function FormationDetailPage({
         </div>
       </section>
 
-      {/* ═══ CTA FINAL ═══ */}
+      {/* âââ CTA FINAL âââ */}
       <section id="contact" className="py-16 md:py-20" style={{ backgroundColor: f.bg }}>
         <div className="max-w-3xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-[#1A2B4A] mb-4 leading-tight">
             On en parle ?
           </h2>
           <p className="text-[#4A5B70] leading-relaxed mb-8 max-w-xl mx-auto">
-            Chaque formation est adaptée à votre contexte, vos enjeux et votre calendrier. Le devis est gratuit et vous repartez au minimum avec un cadre clarifié.
+            Chaque formation est adaptÃ©e Ã  votre contexte, vos enjeux et votre calendrier. Le devis est gratuit et vous repartez au minimum avec un cadre clarifiÃ©.
           </p>
           <Link
             href="/#contact"
@@ -365,7 +365,45 @@ export default async function FormationDetailPage({
         </div>
       </section>
 
-      {/* ═══ NAVIGATION PREV / NEXT ═══ */}
+      {/* ─── CTA CONTACT DIRECT ─── */}
+      <section className="py-16 md:py-20 bg-gradient-to-br from-[#1A2B4A] to-[#2A4A7A]">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <p className="text-xs font-semibold text-white/50 uppercase tracking-widest mb-4">
+            Travaillons ensemble
+          </p>
+          <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight mb-4">
+            Cette formation correspond à vos enjeux ?
+          </h2>
+          <p className="text-white/70 leading-relaxed mb-8 max-w-xl mx-auto">
+            Chaque programme est construit sur-mesure. Contactez-moi pour qu&apos;on échange sur vos objectifs,
+            votre équipe et le format le mieux adapté à votre contexte.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href="mailto:boule.clement@gmail.com"
+              className="inline-flex items-center gap-2 bg-white text-[#1A2B4A] font-semibold px-7 py-3.5 rounded-full hover:bg-white/90 hover:-translate-y-0.5 transition-all shadow-lg"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              M&apos;écrire directement
+            </a>
+            <a
+              href="https://calendly.com/clementboule"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 border border-white/30 text-white font-semibold px-7 py-3.5 rounded-full hover:bg-white/10 hover:-translate-y-0.5 transition-all"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+              Prendre un rendez-vous
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* âââ NAVIGATION PREV / NEXT âââ */}
       <section className="py-12 border-t border-[#1A2B4A]/8">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-4">
           <Link
@@ -382,7 +420,7 @@ export default async function FormationDetailPage({
             </svg>
             <div className="flex-1 min-w-0">
               <p className="text-xs text-[#6B7E95] uppercase tracking-widest font-semibold mb-1">
-                Formation précédente
+                Formation prÃ©cÃ©dente
               </p>
               <p className="text-sm font-bold text-[#1A2B4A] truncate">{prev.title}</p>
             </div>
