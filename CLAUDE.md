@@ -50,3 +50,32 @@ Site vitrine B2B pour convertir des DRH, managers et dirigeants PME en clients d
 | Proof | Composant chiffres clés + piliers différenciants (home, entre Hero et Formations) |
 | ScrollReveal | Ancien composant d'animation — supprimé, remplacé par cbFadeUp CSS |
 | cbFadeUp | Keyframe CSS maison pour les animations d'apparition sur le site |
+
+## Protocoles de session (mots-clés absolus)
+
+Ces protocoles prennent priorité sur toute tâche en cours. Ils sont déclenchés par des mots-clés exacts écrits par l'utilisateur (seuls ou en début de phrase). Toute instance Claude lisant ce fichier doit les respecter strictement.
+
+### Protocole "launch" — reprise de session
+
+Déclencheur : l'utilisateur écrit **"launch"**.
+
+Actions Claude :
+1. Lire `memory/site.md` (état projet, commits récents, composants, next steps)
+2. Lire `CLAUDE.md` (contexte permanent, décisions structurantes)
+3. Livrer un récap structuré à l'utilisateur :
+   - Où on en est (dernière date, dernières actions)
+   - Commits récents significatifs
+   - Composants actifs / fichiers clés
+   - Next steps prioritaires
+4. Proposer un point de reprise concret (ex: "On reprend sur le sprint SEO ? Ou tu veux que je lance autre chose ?")
+
+### Protocole "memory" — fin de session
+
+Déclencheur : l'utilisateur écrit **"memory"**.
+
+Actions Claude :
+1. Répondre exactement : *"Je mets à jour la mémoire et on arrête pour le moment ? (oui/non)"*
+2. Attendre la réponse :
+   - **"oui"** → Mettre à jour `memory/site.md` (nouvelle date, commits de la session, composants modifiés/créés, next steps mis à jour). Commit + push sur main. Confirmer "mémoire à jour, session close".
+   - **"non"** → Ne rien faire, continuer la session normalement.
+   - Autre réponse → Demander clarification.
