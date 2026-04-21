@@ -31,6 +31,25 @@ Site vitrine B2B pour convertir des DRH, managers et dirigeants PME en clients d
 ## ORBIT - Ecosysteme de pilotage (en construction)
 Systeme parallele connectant tous les outils pro de Clement. Ne pas modifier les outils existants avant validation.
 
+### ORBIT Dashboard (calendrier visuel annuel)
+Deploye le 21/04/2026 - operationnel.
+
+| Info | Valeur |
+|------|--------|
+| URL deployee | https://clementboule.github.io/orbit-dashboard/ |
+| Repo GitHub | ClementBoule/orbit-dashboard (public, HTML) |
+| Stack | HTML/CSS/JS statique - Google Identity Services OAuth2 |
+| APIs | Google Calendar (readonly) + Google Tasks (readonly) |
+| Client ID OAuth | 809762603017-0on9sai9oth9v65ft4jmqfviejo3kn90.apps.googleusercontent.com |
+| Origines autorisees | http://localhost, http://localhost:8080, https://clementboule.github.io |
+| Vue | Grille AM/PM Sept 2025 - Aout 2026, coloree par type d'activite |
+
+A FAIRE : Integrer vue calendrier ORBIT dans Google Sheets "Orbit 1 - CRM & Pilotage"
+- Sheets ID : 1ypHM2H-1t8sUUiAGmazUaP7KkSnlUYsKuveg4GAOA5M
+- Onglet source : "Calendrier 25-26" (Date | Jour | Matin | Aprem | Notes)
+- Vue souhaitee : grille annuelle mois/jours, AM/PM colore par type d'activite
+- Technologie : Google Apps Script
+
 ### Airtable (base appcn2qmcqdKL7wgi)
 | Table | ID | Role |
 |-------|----|------|
@@ -58,13 +77,16 @@ ATTENTION: Client EDA-RH non encore identifie dans les sessions - a valider avec
 
 ### Modules ORBIT prevus
 1. FAIT : Sessions BPF -> Airtable (65 sessions 2026 importees)
-2. A FAIRE : Recap mensuel automatique (URSSAF, CA)
-3. A FAIRE : Google Calendar <- BPF Calendrier (sync)
-4. A FAIRE : Veille juridique automatisee (Legifrance, URSSAF, DGEFP)
-5. A FAIRE : HubSpot signature mail amelioree
-6. A FAIRE : Facturation electronique B2B (loi ~sept 2027 pour TPE)
+2. FAIT : ORBIT Dashboard deploye sur GitHub Pages (calendrier visuel)
+3. A FAIRE : Integrer calendrier ORBIT dans Google Sheets "Orbit 1" (Apps Script)
+4. A FAIRE : Recap mensuel automatique (URSSAF, CA)
+5. A FAIRE : Google Calendar <- BPF Calendrier (sync)
+6. A FAIRE : Veille juridique automatisee (Legifrance, URSSAF, DGEFP)
+7. A FAIRE : HubSpot signature mail amelioree
+8. A FAIRE : Facturation electronique B2B (loi ~sept 2027 pour TPE)
 
 ## Ce qui reste a faire
+- ORBIT : Calendrier dans Sheets "Orbit 1" (Apps Script) - prochaine priorite
 - ORBIT : Recap mensuel auto + sync Google Calendar + veille juridique
 - Site : Calendly - creer le compte, mettre a jour l'URL dans CTA formation
 - Site : Temoignages - fournir vrais verbatims (SMS/email client suffit)
@@ -102,5 +124,7 @@ Quand Clement ecrit "close" dans le chat :
 | cbFadeUp | Keyframe CSS maison pour les animations d'apparition sur le site |
 | BPF | Bilan Pedagogique et Financier - declaration annuelle obligatoire organisme de formation |
 | MAF | Mon Activite Formation - portail gouvernemental (Ministere du Travail) |
-| ORBIT | Nom de l'ecosysteme de pilotage pro de Clement (Airtable + outils connectes) |
+| ORBIT | Ecosysteme de pilotage pro de Clement (Airtable + Dashboard + Sheets + outils connectes) |
+| ORBIT Dashboard | Calendrier visuel annuel AM/PM deploye sur GitHub Pages |
+| Sheets ORBIT | "Orbit 1 - CRM & Pilotage Clement Boule" - centralise CRM, sessions, calendrier |
 | MRPI / EIRRP | Modules ISCOM (Management des RH / EIR Pratique et Internationale) |
