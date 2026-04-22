@@ -43,7 +43,6 @@ Deploye le 21/04/2026 - operationnel.
 | Client ID OAuth | 809762603017-0on9sai9oth9v65ft4jmqfviejo3kn90.apps.googleusercontent.com |
 | Origines autorisees | http://localhost, http://localhost:8080, https://clementboule.github.io |
 | Vue | Grille AM/PM Sept 2025 - Aout 2026, coloree par type d'activite |
-
 A FAIRE : Integrer vue calendrier ORBIT dans Google Sheets "Orbit 1 - CRM & Pilotage"
 - Sheets ID : 1ypHM2H-1t8sUUiAGmazUaP7KkSnlUYsKuveg4GAOA5M
 - Onglet source : "Calendrier 25-26" (Date | Jour | Matin | Aprem | Notes)
@@ -54,7 +53,7 @@ A FAIRE : Integrer vue calendrier ORBIT dans Google Sheets "Orbit 1 - CRM & Pilo
 | Table | ID | Role |
 |-------|----|------|
 | ORBIT - Sessions | tblxxg0sM1NzukU6D | Journal BPF - 1 ligne par session |
-| ORBIT - Recap mensuel | tblUrFbpamyOWKABN | CA par client + suivi URSSAF |
+| ORBIT - Recap mensuel | tbl\�mBpamyOWKABN | CA par client + suivi URSSAF |
 
 ### Donnees importees
 - 65 sessions 2026 importees (jan-20 avr), CA total 13 222.50 EUR, 192.5h
@@ -97,14 +96,25 @@ ATTENTION: Client EDA-RH non encore identifie dans les sessions - a valider avec
 
 ### Protocole OPEN (debut de session)
 Quand Clement ecrit "open" dans le chat :
-1. Je lis CLAUDE.md sur GitHub
-2. Je resume les actions recentes et l'etat du projet
-3. Je propose la suite logique et on reprend le travail
+0. OBLIGATOIRE AVANT TOUTE REPONSE : je clone le repo GitHub dans mon dossier de travail
+   (git clone https://github.com/ClementBoule/clementboule-site.git)
+   et je lis CLAUDE.md + memory/site.md depuis ce clone frais.
+   Je n'ai PAS le droit de me baser sur ma memoire de session, sur le
+   system prompt initial, ou sur un contexte en cache pour le recap.
+   GitHub est la seule source de verite. Si le clone echoue, j'explique
+   l'erreur a Clement avant de continuer.
+1. Je resume les actions recentes et l'etat du projet a partir des fichiers cloner.
+2. Je propose la suite logique et on reprend le travail
 
 ### Protocole CLOSE (fin de session)
 Quand Clement ecrit "close" dans le chat :
 1. Je reponds : "Je me mets a jour et on arrete pour le moment ?"
-2. Si oui -> je mets a jour CLAUDE.md + memory/site.md sur GitHub, puis je conclus
+2. Si oui :
+   a. Je mets a jour CLAUDE.md + memory/site.md localement avec toutes les avancees de la session
+   b. Je commit avec un message qui inclut un timestamp ISO 8601
+      (ex: "close 2026-04-22T15:30+02:00 - <resume court>")
+   c. Je push sur GitHub (branche main) et je confirme a Clement avec le commit hash
+   d. Je ne conclus qu'apres confirmation du push reussi
 3. Si non -> je continue sans rien changer
 
 ## Preferences de travail
