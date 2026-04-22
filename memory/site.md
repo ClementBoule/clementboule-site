@@ -1,43 +1,43 @@
 # État du projet — clementboule.fr & ORBIT
-Dernière mise à jour : 21 avril 2026
+Dernière mise à jour : 22 avril 2026 (close 2026-04-22T21:51+02:00)
 
 ## Commits récents (clementboule-site)
 | Commit | Description | Date |
 |--------|-------------|------|
+| [à pousser] | feat: refonte langage + architecture conversion (23 fichiers, patch dans outputs) | 22 avr 2026 |
+| 1b74210 | chore: durcir protocoles OPEN/CLOSE (clone GitHub obligatoire + push confirmé) | 22 avr 2026 |
 | 01549f8 | Revise CLAUDE.md for clarity and formatting | 21 avr 2026 |
-| b6a1679 | Add CLAUDE.md with project and personal details | 20 avr 2026 |
-| DLuvz7dKb | CTA contact direct sur pages formations | 20 avr 2026 |
-| BwAdF9hDW | Proof component ajouté à la home | 20 avr 2026 |
-| 5nhTHY4mt | Proof component créé (stats + piliers) | 20 avr 2026 |
-| CZqYwyBGe | Formations.tsx refactorisé (CSS keyframes) | 20 avr 2026 |
 
-## Structure de la home (app/page.tsx)
-Navbar → Hero → Proof → Formations → TopClients → [Testimonials commenté] → CV → Contact → Footer
+## Note session
+Le push direct sur main n'a pas été possible via Chrome pour les 23 fichiers en raison de la complexité. Patch livré dans Cowork outputs (.patch + .tar.gz + DEPLOY_INSTRUCTIONS.md). Build testé localement, 19 pages OK.
 
-## Composants créés / modifiés
-- components/Formations.tsx — bug fix ScrollReveal, CSS keyframes cbFadeUp
-- components/Proof.tsx — NOUVEAU (chiffres réels + 3 piliers différenciants)
-- components/Testimonials.tsx — NOUVEAU (en attente verbatims, commenté dans page.tsx)
-- app/page.tsx — ajout import Proof
-- app/formations/[slug]/page.tsx — ajout section CTA contact direct
-- components/formations-data.ts — corrections majuscules FR
-- components/LanguageContext.tsx — corrections majuscules FR
-- docs/plan-site.md — plan sprints 1-4
-- CLAUDE.md (racine repo) — mémoire de travail cross-device
+User applique en 3 commandes :
+```
+cd /path/to/clementboule-site
+git pull origin main
+git am /path/to/0001-feat-refonte-*.patch
+git push origin main
+```
 
-## ORBIT Dashboard — déployé le 21/04/2026
-- URL : https://clementboule.github.io/orbit-dashboard/
-- Repo : ClementBoule/orbit-dashboard (public, HTML statique)
-- Stack : HTML/CSS/JS + Google Identity Services OAuth2
-- APIs : Google Calendar (readonly) + Google Tasks (readonly)
-- OAuth Client ID : 809762603017-0on9sai9oth9v65ft4jmqfviejo3kn90.apps.googleusercontent.com
-- Origines OAuth autorisées : localhost, https://clementboule.github.io
-- Vue : grille AM/PM colorée par type, Sept 2025–Août 2026
+## Travail session 22/04
+- Nettoyage em-dashes dans LanguageContext, formations-data, Proof, Hero alts, formations/page, layout
+- Nouveaux composants UI (Container, Section, SectionHeader, Button, FAQ accordion)
+- Nouvelles sections home (Process, HomeFAQ, FinalCTA)
+- Nouvelles pages (/a-propos, /cas-clients, /faq, /contact, /ressources)
+- Refonte Navbar + Footer
+- sitemap.xml à jour (15 URLs)
+
+## ORBIT Dashboard - 21/04/2026
+https://clementboule.github.io/orbit-dashboard/
+
+## ORBIT Sheets (Orbit 1) - 22/04/2026
+https://docs.google.com/spreadsheets/d/1ypHM2H-1t8sUUiAGmazUaP7KkSnlUYsKuveg4GAOA5M/edit
+12 onglets, calendrier annuel matin/aprem, compteur BPF SUMIFS
 
 ## Prochaines priorités
-1. ORBIT Sheets — intégrer calendrier visuel ORBIT dans "Orbit 1" via Google Apps Script
-2. Calendly → créer compte et mettre à jour URL dans slug page
-3. Testimonials → activer dès réception vrais verbatims
-4. Sécurité → vérifier variables d'env Vercel (incident signalé 21/04/2026)
-5. SEO → JSON-LD, meta descriptions, sitemap
-6. Performance → audit Core Web Vitals
+1. Appliquer le patch site (cf commandes ci-dessus)
+2. ORBIT Sheets : compléter SIRET/adresse/catégorie BPF modules
+3. Intégrer vue calendrier ORBIT dans Sheets Orbit 1 via Apps Script
+4. Calendly → créer compte et URL slug page
+5. Cas clients site : remplir 3 placeholders
+6. Sécurité : variables d'env Vercel (incident 21/04)
