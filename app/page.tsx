@@ -1,9 +1,9 @@
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import Proof from '@/components/Proof'
+import TopClients from '@/components/TopClients'
 import Formations from '@/components/Formations'
 import Process from '@/components/Process'
-import TopClients from '@/components/TopClients'
 import HomeFAQ from '@/components/HomeFAQ'
 import FinalCTA from '@/components/FinalCTA'
 import Footer from '@/components/Footer'
@@ -17,9 +17,9 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Proof />
+      <TopClients />
       <Formations />
       <Process />
-      <TopClients />
       {/* <Testimonials /> */}
       <HomeFAQ />
       <FinalCTA />
