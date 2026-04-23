@@ -1,13 +1,13 @@
 # État du projet — clementboule.fr & ORBIT
-Dernière mise à jour : 23 avril 2026 (open 2026-04-23T16:37+02:00)
+Dernière mise à jour : 23 avril 2026 — 19:15 (close 2026-04-23T19:15+02:00)
 
 ## Site clementboule.fr — état actuel (main, déployé Vercel)
 
 ### Pages actives
-- `/` (home) — Navbar → Hero → Proof → TopClients → Formations → Process → HomeFAQ → FinalCTA → Footer
+- `/` (home) — Navbar → Hero → Proof → TopClients → Formations → **MatchQuiz** → Process → HomeFAQ → FinalCTA → Footer
 - `/formations` + 6 slugs (RH, posture, RPS, stratégie, soft-skills, spine-up)
 - `/a-propos` — parcours complet (4 expériences, 3 formations/certifs, valeurs)
-- `/cas-clients` — 4 cas réels (business school, PME IdF, association nationale, groupe international) + CTA intermédiaire après cas 2
+- `/cas-clients` — 4 cas réels + CTA intermédiaire après cas 2
 - `/faq` — 4 catégories (Approche, Formats, Tarifs, DISC)
 - `/contact` — ContactForm + infos (email, localisation, délai, réseaux)
 - `/ressources` — 6 cards (test DISC highlighté, formations, à propos, FAQ, LinkedIn, Malt)
@@ -16,46 +16,42 @@ Dernière mise à jour : 23 avril 2026 (open 2026-04-23T16:37+02:00)
 
 ### Composants clés
 - UI primitives : `components/ui/` (Button, Container, Section, SectionHeader)
-- Home : Hero (toggle pro/sorcier), Proof (4 stats + 3 piliers icônes), Formations, Process (scroll-reveal, palette par step), HomeFAQ (bilingue accordion), FinalCTA (bilingue)
+- Home : Hero, Proof, Formations, **MatchQuiz (nouveau 23/04)**, Process, HomeFAQ, FinalCTA
 - Nav : Navbar (CTA Contactez-moi desktop + mobile), Footer (3 colonnes FR/EN)
 - Forms : ContactForm (mailto), Contact.tsx (legacy, non importé mais conservé)
 
 ### Build status
 Next.js 14.2.3, 19 pages statiques générées, zéro régression, langue par défaut FR.
+Home : 25,5 kB First Load JS (+1 kB suite ajout MatchQuiz).
 
-## Historique récent (depuis le close 22/04T21:51)
+## Session 23/04 après-midi — MatchQuiz V1 livré
 
-Le patch de refonte (23 fichiers) a été appliqué puis étendu par 25 commits. État au 23/04 matin :
+Nouvelle section interactive sur la home, entre Formations et Process. Objectif CRO : transformer un visiteur passif en lead qualifié en 30 s via 3 questions chaînées.
 
-| Commit | Description |
-|--------|-------------|
-| ce51abe | Process redesign animé : scroll-reveal, palette par step, badges |
-| c57ae3b | Cas-clients : CTA intermédiaire après le 2e cas |
-| fa68929 | Home : TopClients remonte après Proof |
-| 60def75 | Navbar : CTA Contactez-moi desktop + mobile |
-| 4893177 | Hero : CTA primaire + secondaire version pro |
-| 7ae4b50 | Langue par défaut FR (CRO) |
-| 62cd4cd | Page Contact : ContactForm remplace mailto |
-| 7b95496 | Nouveau ContactForm (mailto) |
-| f9bb2aa | Fix slug page (encoding + SVG icons) |
-| 91ca11e | Rewrite politique-de-confidentialite |
-| b8b5790 | Proof : icônes globe/sliders/shield-check |
-| d61ad49 | Fix globals.css (`@import` avant `@tailwind`) |
-| 3c31990 | Process bilingue |
-| fdc4873 | FAQ bilingue |
-| b950e40 | Styles + language context refactor |
-| dcb2b68 | Sitemap.xml mis à jour |
-| 52d07d1 | Process + HomeFAQ + FinalCTA ajoutés |
-| 6e9d663 | Footer bilingue |
-| ba9c35f | Navbar bilingue |
-| 3c974bf | Fix string quotes formations-data.ts |
-| b6ff990 | Fix export useLang |
-| 4b7b568 | SectionHeader |
-| b8b3416 | Section |
-| a53d8ba | Container |
-| 24932eb | Button (variants + sizes) |
-| 6cd001c | close session 2026-04-22T21:51 (memory/site.md) |
-| 1b74210 | durcir protocoles OPEN/CLOSE |
+**Mécanique** : 3 étapes — audience (CODIR / managers / équipes / moi-même) → sujet (les 6 formations du catalogue) → durée (demi-journée / 1 jour / 2-3 jours / parcours étalé) → card de recommandation → 2 CTA (mailto pré-rempli avec le contexte structuré + lien vers la page formation).
+
+**Inclus dans la V1** :
+- Composant client `components/MatchQuiz.tsx` (692 lignes, zéro dépendance externe)
+- Bilingue FR/EN via `useLang()` existant
+- Palette accent dynamique par formation (prend la couleur du catalogue)
+- Animations fade-up natives (CSS keyframes `cbFadeUp`)
+- Warning soft si durée choisie < format recommandé de la formation (non-bloquant, encourage le cadrage)
+- Persistance `sessionStorage` (clé `cb_matchquiz_v1`, RGPD-exempt art. 82 LIL, pas de cookie)
+- Instrumentation analytics multi-vendor (Plausible / Umami / GTM dataLayer) — no-op tant qu'aucun outil n'est branché, zéro requête réseau en attendant
+
+**Commits** :
+- `d2557cb` — feat(home): add MatchQuiz section
+- `35caf50` — feat(home): wire MatchQuiz between Formations and Process
+- `22b28f8` — merge PR #1 sur main (commit de merge)
+
+**PR** : https://github.com/ClementBoule/clementboule-site/pull/1 (mergée, closed)
+
+**Vérifié en live** : section visible sur https://www.clementboule.fr/ — headings « En 3 clics, tu sais par où commencer » et « Qui veux-tu former ? » présents dans le DOM. Si invisible côté utilisateur : cache navigateur (hard refresh Cmd/Ctrl+Shift+R).
+
+**Prochaines itérations possibles (non planifiées)** :
+- Remplacer le mailto par un widget Calendly inline une fois le compte créé
+- Brancher un analytics RGPD-friendly pour mesurer le drop-off par étape (Umami self-hosted gratuit recommandé)
+- Ajouter une vidéo perso 60-90 s dans Process pour humaniser le funnel (hors MatchQuiz)
 
 ## ORBIT Dashboard — déployé 21/04/2026
 - URL : https://clementboule.github.io/orbit-dashboard/
@@ -74,7 +70,7 @@ Le patch de refonte (23 fichiers) a été appliqué puis étendu par 25 commits.
 ## Ce qui reste à faire (par priorité)
 
 ### Backlog ORBIT
-1. **Intégrer vue calendrier ORBIT dans Sheets Orbit 1 via Apps Script** (priorité 1 depuis plusieurs sessions)
+1. **Intégrer vue calendrier ORBIT dans Sheets Orbit 1 via Apps Script** (priorité 1 depuis plusieurs sessions — script `Orbit1_AppsScript.gs` prêt dans outputs Cowork 22/04)
 2. Récap mensuel automatique (URSSAF, CA)
 3. Google Calendar ← BPF Calendrier sync
 4. Veille juridique automatisée (Légifrance, URSSAF, DGEFP)
@@ -82,21 +78,34 @@ Le patch de refonte (23 fichiers) a été appliqué puis étendu par 25 commits.
 6. Facturation électronique B2B (loi ~sept 2027 TPE)
 
 ### Backlog site
-1. **Sécurité : vérifier variables d'env Vercel suite incident 21/04/2026** (ouvert depuis 2 jours)
-2. Calendly : créer compte et mettre à jour URL dans CTA slug formation
-3. Témoignages : activer Testimonials.tsx dès réception verbatims
+1. **Sécurité : vérifier variables d'env Vercel suite incident 21/04/2026** (ouvert depuis 2 jours — à prioriser au prochain OPEN)
+2. Calendly : créer compte et mettre à jour URL dans CTA slug formation (débloquerait aussi la V2 MatchQuiz avec booking inline)
+3. Témoignages : activer `Testimonials.tsx` dès réception verbatims réels
 4. Valider ou corriger le nombre d'entreprises clientes affiché
-5. Nettoyage code : Contact.tsx non importé (ex-ancien composant), à supprimer si confirmé
+5. Nettoyage code : `Contact.tsx` non importé (ex-ancien composant), à supprimer si confirmé
+6. Analytics RGPD-friendly à installer si on veut mesurer le funnel MatchQuiz (Umami self-hosted gratuit recommandé)
+7. Supprimer la branche `quiz-match-section` sur GitHub si plus utilisée
 
 ### Backlog ORBIT Sheets user-side
-6. Compléter SIRET + adresse pro dans onglet Paramètres
-7. Vérifier catégorie BPF sur chaque module
+8. Compléter SIRET + adresse pro dans onglet Paramètres
+9. Vérifier catégorie BPF sur chaque module
 
-## Livrables Cowork outputs (session 22/04, persistent sur poste user)
+### Dette technique flaggée
+- **`CLAUDE.md` ligne 56** : ID Airtable de la table « ORBIT - Recap mensuel » corrompu dans le fichier brut du repo (caractère invalide). À corriger au prochain OPEN — Clément doit redonner la vraie valeur depuis l'UI Airtable.
+- Message du commit `74f88d8` : typo « non documentescent commits » (concaténation cassée entre « non documentés » et « recent commits »). Historique, non corrigeable.
+- PR #1 body : quelques bullets auto-doublés (`- -`) à cause de l'auto-complétion du GitHub web editor. Cosmétique.
+
+## Livrables Cowork outputs (session 23/04 soir)
+- `quiz-match-section/MatchQuiz.tsx` (24 KB) — composant standalone
+- `quiz-match-section/page.tsx.new` — nouvelle home avec import et insertion
+- `quiz-match-section/0001-feat-home-add-MatchQuiz-section.patch` — patch git V1 initial
+- `quiz-match-section/README.md` — doc d'application
+
+## Livrables Cowork outputs (session 22/04, persistent)
 - `0001-feat-refonte-langage-architecture-conversion.patch` (71 KB) — patch d'origine (déjà appliqué + étendu)
 - `clementboule-site-code-changes.tar.gz` (106 KB) — snapshot pré-merge
 - `DEPLOY_INSTRUCTIONS.md` — instructions initiales
 - `Orbit1_AppsScript.gs` (30 KB) — script Apps Script complet
 
 ## Note protocole
-Les 25 commits entre 22/04T22h et 23/04T16h n'ont pas été documentés à chaque push (close pas appelé). Ce rattrapage le corrige. Pour la suite, respecter le protocole CLOSE avant chaque sortie de session.
+Session 23/04 (OPEN → CLOSE) : protocole respecté. Push effectué via Chrome (sandbox sans credentials GitHub). Le merge sur `main` et le déploiement prod Vercel ont été autorisés explicitement par Clément pendant la session. Déploiement prod confirmé READY (dpl_5MjTEi..., commit 22b28f8). Section MatchQuiz visible sur clementboule.fr en live.
