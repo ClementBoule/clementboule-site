@@ -3,6 +3,7 @@ import Hero from '@/components/Hero'
 import Proof from '@/components/Proof'
 import TopClients from '@/components/TopClients'
 import Formations from '@/components/Formations'
+import MatchQuiz from '@/components/MatchQuiz'
 import Process from '@/components/Process'
 import HomeFAQ from '@/components/HomeFAQ'
 import FinalCTA from '@/components/FinalCTA'
@@ -19,6 +20,7 @@ export default function Home() {
       <Proof />
       <TopClients />
       <Formations />
+      <MatchQuiz />
       <Process />
       {/* <Testimonials /> */}
       <HomeFAQ />
