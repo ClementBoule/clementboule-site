@@ -153,8 +153,6 @@ function DiscSparks() {
 }
 
 // ─── MAGIC REVEAL TOGGLE (toutes tailles d'écran) ────────────────────────────
-// Bouton élégant et magique : halo doré pulsant + 6 étincelles orbitales + baguette.
-// Click pour basculer entre version pro et version sorcier.
 function MagicToggle({
   active,
   onToggle,
@@ -177,7 +175,6 @@ function MagicToggle({
           : '0 0 0 2px #C9A55C40, 0 8px 24px -6px #C9A55C80, 0 0 40px -12px #F2D27Caa',
       }}
     >
-      {/* Halo pulsant doré */}
       <span
         aria-hidden
         className="magic-halo pointer-events-none absolute -inset-2 rounded-full"
@@ -186,8 +183,6 @@ function MagicToggle({
             'radial-gradient(ellipse at center, rgba(242, 210, 124, 0.55) 0%, rgba(201, 165, 92, 0.25) 40%, rgba(201, 165, 92, 0) 75%)',
         }}
       />
-
-      {/* 6 étincelles orbitales */}
       <span aria-hidden className="pointer-events-none absolute inset-0">
         <span className="magic-spark magic-spark-1" />
         <span className="magic-spark magic-spark-2" />
@@ -196,8 +191,6 @@ function MagicToggle({
         <span className="magic-spark magic-spark-5" />
         <span className="magic-spark magic-spark-6" />
       </span>
-
-      {/* Icône baguette magique */}
       <svg
         className="relative w-6 h-6 text-[#B88A2F] shrink-0 drop-shadow-sm"
         viewBox="0 0 24 24"
@@ -208,11 +201,9 @@ function MagicToggle({
         <path d="M17 3l.9 2.1L20 6l-2.1.9L17 9l-.9-2.1L14 6l2.1-.9L17 3z" fill="currentColor" />
         <path d="M6 13l.5 1.2L7.7 14.7l-1.2.5L6 16.4l-.5-1.2L4.3 14.7l1.2-.5L6 13z" fill="currentColor" opacity="0.75" />
       </svg>
-
       <span className="relative text-sm font-semibold text-[#5A3E0E] tracking-tight">
         {active ? 'Version pro' : label}
       </span>
-
       <style jsx>{`
         .magic-halo {
           animation: magic-pulse 2.4s ease-in-out infinite;
@@ -258,16 +249,12 @@ function MagicToggle({
 }
 
 // ─── HERO COMPONENT ──────────────────────────────────────────────────────────
-// Reveal SORCIER : déclenché au clic sur MagicToggle (PC + mobile, UX unifiée).
-// Pas de tracking curseur (réduit cognitive overload + plus pro).
-// Animations CSS pausées quand le hero sort du viewport (perf Core Web Vitals).
 export default function Hero() {
   const { t } = useLang()
   const sectionRef = useRef<HTMLElement>(null)
   const [revealed, setRevealed] = useState(false)
   const [fabVisible, setFabVisible] = useState(true)
 
-  // Sur mobile, cacher le FAB mage quand user scroll hors du hero
   useEffect(() => {
     const onScroll = () => {
       setFabVisible(window.scrollY < window.innerHeight * 0.8)
@@ -276,7 +263,6 @@ export default function Hero() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Pause les animations CSS quand le hero n'est plus visible (perf)
   useEffect(() => {
     const el = sectionRef.current
     if (!el || typeof IntersectionObserver === 'undefined') return
@@ -296,14 +282,14 @@ export default function Hero() {
       id="hero"
       className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-gradient-to-br from-[#F5F7FB] via-[#EEF3FA] to-[#F5F0FB]"
     >
-      {/* Background blobs (partagés) */}
+      {/* Background blobs */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#6B9ED4]/20 rounded-full blur-3xl" />
         <div className="absolute bottom-1/3 right-1/4 w-72 h-72 bg-[#F5A98C]/18 rounded-full blur-3xl" />
         <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-[#B09FE5]/12 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
       </div>
 
-      {/* ═══ COUCHE PRO (visible quand revealed=false) ═══ */}
+      {/* ═══ COUCHE PRO ═══ */}
       <div
         className="relative max-w-6xl mx-auto px-6 pt-28 pb-24 w-full min-h-screen flex flex-col justify-center"
         style={{
@@ -312,7 +298,6 @@ export default function Hero() {
         }}
       >
         <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-          {/* Texte pro */}
           <div className="space-y-5">
             <FadeIn direction="left" delay={80}>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-none tracking-tight text-[#1A2B4A]">
@@ -329,8 +314,27 @@ export default function Hero() {
                 {t.hero.subtitle}
               </p>
             </FadeIn>
-            <FadeIn direction="left" delay={440}>
-              <div className="flex flex-wrap items-center gap-4 pt-3">
+            <FadeIn direction="left" delay={420}>
+              <div className="flex flex-wrap items-center gap-3 pt-3">
+                <a
+                  href="/contact"
+                  className="inline-flex items-center gap-2 bg-[#3D6DB8] text-white font-semibold px-6 py-3 rounded-full hover:bg-[#2D5A9E] hover:-translate-y-0.5 shadow-md transition-all duration-200"
+                >
+                  Discutons de votre projet
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+                <a
+                  href="/formations"
+                  className="inline-flex items-center gap-2 text-[#3D6DB8] font-semibold px-5 py-3 rounded-full border border-[#3D6DB8]/30 hover:bg-[#3D6DB8]/6 hover:-translate-y-0.5 transition-all duration-200"
+                >
+                  Voir les formations
+                </a>
+              </div>
+            </FadeIn>
+            <FadeIn direction="left" delay={540}>
+              <div className="flex flex-wrap items-center gap-4 pt-1">
                 <span className="relative inline-flex">
                   <DiscSparks />
                   <a
@@ -345,7 +349,7 @@ export default function Hero() {
                 </span>
               </div>
             </FadeIn>
-            <FadeIn direction="left" delay={560}>
+            <FadeIn direction="left" delay={660}>
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <a
                   href="https://www.linkedin.com/in/cl%C3%A9ment-boul%C3%A9/"
@@ -370,7 +374,6 @@ export default function Hero() {
             </FadeIn>
           </div>
 
-          {/* Illustration pro */}
           <FadeIn direction="right" delay={150} className="relative flex justify-center md:justify-end">
             <div className="relative w-[22rem] h-[480px] md:w-[30rem] md:h-[620px]">
               <Image
@@ -392,7 +395,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ═══ COUCHE SORCIER (visible quand revealed=true) ═══ */}
+      {/* ═══ COUCHE SORCIER ═══ */}
       <div
         className="absolute inset-0"
         style={{
@@ -401,20 +404,14 @@ export default function Hero() {
           pointerEvents: revealed ? 'auto' : 'none',
         }}
       >
-        {/* Teinte légèrement plus chaude pour le côté sorcier */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#FBF5F5] via-[#F5EEF3] to-[#F0EBF5] pointer-events-none" />
-
-        {/* Blobs légèrement teintés */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#B09FE5]/20 rounded-full blur-3xl" />
           <div className="absolute bottom-1/3 right-1/4 w-72 h-72 bg-[#E5A98C]/18 rounded-full blur-3xl" />
           <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-[#9FB0E5]/15 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
         </div>
-
-        {/* Contenu sorcier (même layout que pro) */}
         <div className="relative max-w-6xl mx-auto px-6 pt-28 pb-24 w-full min-h-screen flex flex-col justify-center">
           <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-            {/* Texte sorcier */}
             <div className="space-y-5">
               <FadeIn direction="left" delay={80}>
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-none tracking-tight text-[#2D1A4A]">
@@ -471,8 +468,6 @@ export default function Hero() {
                 </div>
               </FadeIn>
             </div>
-
-            {/* Illustration sorcier */}
             <FadeIn direction="right" delay={150} className="relative flex justify-center md:justify-end">
               <div className="relative w-[22rem] h-[480px] md:w-[30rem] md:h-[620px]">
                 <Image
@@ -495,7 +490,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ═══ BOUTON MAGIQUE (toutes tailles d'écran : reveal en clic) ═══ */}
+      {/* ═══ BOUTON MAGIQUE ═══ */}
       <FadeIn
         delay={700}
         className={`fixed bottom-24 right-6 md:absolute md:top-24 md:right-auto md:left-1/2 md:bottom-auto md:-translate-x-1/2 z-40 pointer-events-auto transition-opacity duration-500 ${fabVisible ? 'opacity-100' : 'opacity-0 pointer-events-none md:opacity-100 md:pointer-events-auto'}`}
