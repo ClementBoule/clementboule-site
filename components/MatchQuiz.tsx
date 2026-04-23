@@ -1,0 +1,690 @@
+'use client'
+import { useState, useMemo, useEffect } from 'react'
+import { useLang } from './LanguageContext'
+import { formations } from './formations-data'
+
+// ─────────────────────────────────────────────────────────────────────────────
+// MatchQuiz — mini-quiz de pré-qualification (3 questions → recommandation)
+// Objectif CRO : convertir un visiteur passif en lead qualifié en 30 secondes.
+// Mécanique : 3 choix chips → card de recommandation avec CTA mailto pré-rempli.
+//
+// V1.1 — ajouts :
+//   1. Warning soft si durée choisie < durée recommandée (pas de blocage).
+//   2. Persistance sessionStorage (RGPD-exempt art. 82 LIL, pas de cookie).
+//   3. Instrumentation analytics multi-vendor (Plausible / Umami / GTM dataLayer).
+// ─────────────────────────────────────────────────────────────────────────────
+
+type AudienceKey = 'codir' | 'managers' | 'teams' | 'self'
+type DurationKey = 'half' | 'day' | 'twoThree' | 'program'
+
+type Answers = {
+  audience: AudienceKey | null
+  topic: string | null // slug de formation
+  duration: DurationKey | null
+}
+
+type Copy = {
+  label: string
+  title: string
+  subtitle: string
+  steps: {
+    audience: { q: string; options: Record<AudienceKey, string> }
+    topic: { q: string }
+    duration: { q: string; options: Record<DurationKey, string> }
+  }
+  progress: (current: number, total: number) => string
+  back: string
+  result: {
+    eyebrow: string
+    headline: (formationTitle: string) => string
+    summaryLabel: string
+    primary: string
+    secondary: string
+    fallback: string
+    restart: string
+    audienceLabel: string
+    durationLabel: string
+    warningTitle: string
+    warningBody: (officialFormat: string) => string
+  }
+  mailto: {
+    subject: (formationTitle: string) => string
+    bodyIntro: string
+    bodyAudience: string
+    bodyTopic: string
+    bodyDuration: string
+    bodyOutro: string
+  }
+}
+
+const COPY: Record<'fr' | 'en', Copy> = {
+  fr: {
+    label: 'Trouve ton format',
+    title: 'En 3 clics, tu sais par où commencer',
+    subtitle: "Décris ton besoin, je te propose le format le plus adapté. Aucune inscription, aucun engagement.",
+    steps: {
+      audience: {
+        q: 'Qui veux-tu former ?',
+        options: {
+          codir: 'Mon CODIR',
+          managers: 'Mes managers',
+          teams: 'Mes équipes opérationnelles',
+          self: 'Moi-même',
+        },
+      },
+      topic: { q: 'Sur quel sujet en priorité ?' },
+      duration: {
+        q: 'Combien de temps tu peux y consacrer ?',
+        options: {
+          half: 'Demi-journée',
+          day: '1 journée',
+          twoThree: '2 à 3 jours',
+          program: 'Parcours étalé',
+        },
+      },
+    },
+    progress: (c, t) => `Étape ${c} sur ${t}`,
+    back: 'Retour',
+    result: {
+      eyebrow: 'Ma recommandation',
+      headline: (t) => `${t} — c'est ce qui colle le mieux à ton contexte`,
+      summaryLabel: 'Ce que tu as choisi',
+      primary: 'Cadrer ce projet en 30 min',
+      secondary: 'Voir le détail de la formation',
+      fallback: 'Pas sûr ? Parle-moi de ton besoin directement',
+      restart: 'Recommencer le test',
+      audienceLabel: 'Pour',
+      durationLabel: 'Format',
+      warningTitle: 'À cadrer ensemble',
+      warningBody: (official) =>
+        `Le format complet de cette formation est ${official}. Une version condensée reste possible, mais elle mérite un cadrage en amont pour ne rien sacrifier de l'efficacité.`,
+    },
+    mailto: {
+      subject: (t) => `[clementboule.fr] Projet formation — ${t}`,
+      bodyIntro: "Bonjour Clément,\n\nJ'ai utilisé l'outil de matching sur le site et voici mon contexte :",
+      bodyAudience: 'Public à former',
+      bodyTopic: 'Sujet prioritaire',
+      bodyDuration: 'Format envisagé',
+      bodyOutro: "\nPeux-tu me recontacter pour cadrer ensemble ? Merci.",
+    },
+  },
+  en: {
+    label: 'Find your format',
+    title: 'In 3 clicks, you know where to start',
+    subtitle: 'Describe your need, I suggest the most suitable format. No signup, no commitment.',
+    steps: {
+      audience: {
+        q: 'Who do you want to train?',
+        options: {
+          codir: 'My executive team',
+          managers: 'My managers',
+          teams: 'My frontline teams',
+          self: 'Myself',
+        },
+      },
+      topic: { q: 'On which topic first?' },
+      duration: {
+        q: 'How much time can you dedicate?',
+        options: {
+          half: 'Half-day',
+          day: '1 full day',
+          twoThree: '2 to 3 days',
+          program: 'Extended program',
+        },
+      },
+    },
+    progress: (c, t) => `Step ${c} of ${t}`,
+    back: 'Back',
+    result: {
+      eyebrow: 'My recommendation',
+      headline: (t) => `${t} — this is the best fit for your context`,
+      summaryLabel: 'Your choices',
+      primary: 'Frame this project in 30 min',
+      secondary: 'See the full program',
+      fallback: 'Not sure? Tell me about your need directly',
+      restart: 'Restart the quiz',
+      audienceLabel: 'For',
+      durationLabel: 'Format',
+      warningTitle: "Let's frame it together",
+      warningBody: (official) =>
+        `The full format for this training is ${official}. A condensed version remains possible but deserves upfront framing to preserve effectiveness.`,
+    },
+    mailto: {
+      subject: (t) => `[clementboule.fr] Training project — ${t}`,
+      bodyIntro: "Hi Clément,\n\nI used the matching tool on your site. Here is my context:",
+      bodyAudience: 'Audience to train',
+      bodyTopic: 'Priority topic',
+      bodyDuration: 'Format',
+      bodyOutro: '\nCan we set up a call to frame this together? Thanks.',
+    },
+  },
+}
+
+// ─── Constantes ──────────────────────────────────────────────────────────────
+const AUDIENCE_ORDER: AudienceKey[] = ['codir', 'managers', 'teams', 'self']
+const DURATION_ORDER: DurationKey[] = ['half', 'day', 'twoThree', 'program']
+
+// Rang numérique des slots de durée (pour comparer proposé vs recommandé).
+const DURATION_RANK: Record<DurationKey, number> = {
+  half: 1,
+  day: 2,
+  twoThree: 3,
+  program: 4,
+}
+
+// Durée minimum recommandée par formation (dérivée de formations-data.ts).
+// Si le visiteur choisit un slot inférieur → warning soft (pas de blocage).
+const MIN_DURATION_BY_SLUG: Record<string, DurationKey> = {
+  'rh-marque-employeur': 'twoThree',     // 2,5 jours
+  'posture-professionnelle': 'twoThree', // 2 jours
+  'prevention-rps': 'twoThree',          // 2 jours
+  'strategie-entreprise': 'twoThree',    // 3 jours
+  'soft-skills': 'twoThree',             // 2 jours
+  'spine-up': 'program',                 // 3,5 jours étalés sur 3 mois
+}
+
+// Persistance sessionStorage (scope onglet, RGPD-exempt : storage strictement
+// nécessaire au fonctionnement du service demandé par l'utilisateur).
+const STORAGE_KEY = 'cb_matchquiz_v1'
+
+type PersistedState = { step: number; answers: Answers }
+
+function loadState(): PersistedState | null {
+  if (typeof window === 'undefined') return null
+  try {
+    const raw = window.sessionStorage.getItem(STORAGE_KEY)
+    if (!raw) return null
+    const parsed = JSON.parse(raw)
+    if (parsed && typeof parsed.step === 'number' && parsed.answers) {
+      return parsed as PersistedState
+    }
+  } catch {
+    // ignore
+  }
+  return null
+}
+
+function saveState(state: PersistedState) {
+  if (typeof window === 'undefined') return
+  try {
+    window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state))
+  } catch {
+    // quota / private mode
+  }
+}
+
+function clearState() {
+  if (typeof window === 'undefined') return
+  try {
+    window.sessionStorage.removeItem(STORAGE_KEY)
+  } catch {
+    // ignore
+  }
+}
+
+// ─── Analytics multi-vendor (no-op tant qu'aucun outil n'est installé) ───────
+// Pattern défensif : détecte Plausible, Umami ou GTM dataLayer sur window.
+// Si rien n'est branché, aucun appel réseau n'est émis.
+function trackEvent(name: string, props?: Record<string, unknown>) {
+  if (typeof window === 'undefined') return
+  try {
+    const w = window as unknown as {
+      plausible?: (name: string, opts?: { props?: Record<string, unknown> }) => void
+      umami?: { track?: (name: string, props?: Record<string, unknown>) => void }
+      dataLayer?: Array<Record<string, unknown>>
+    }
+    if (typeof w.plausible === 'function') {
+      w.plausible(name, props ? { props } : undefined)
+    } else if (w.umami && typeof w.umami.track === 'function') {
+      w.umami.track(name, props)
+    } else if (Array.isArray(w.dataLayer)) {
+      w.dataLayer.push({ event: name, ...(props || {}) })
+    }
+  } catch {
+    // ignore
+  }
+}
+
+// ─── Recommandation logic ────────────────────────────────────────────────────
+function getRecommendation(answers: Answers) {
+  if (!answers.topic) return null
+  return formations.find((f) => f.slug === answers.topic) ?? null
+}
+
+// ─── Primitive : chip button ─────────────────────────────────────────────────
+function Chip({
+  label,
+  selected,
+  accent,
+  onClick,
+}: {
+  label: string
+  selected: boolean
+  accent?: string
+  onClick: () => void
+}) {
+  const activeAccent = accent ?? '#3D6DB8'
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="group relative text-left px-5 py-4 rounded-xl border text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
+      style={{
+        background: selected ? activeAccent : '#FFFFFF',
+        color: selected ? '#FFFFFF' : '#1A2B4A',
+        borderColor: selected ? activeAccent : 'rgba(26,43,74,0.12)',
+        boxShadow: selected
+          ? `0 6px 18px ${activeAccent}33, 0 1px 2px rgba(0,0,0,0.04)`
+          : '0 1px 2px rgba(0,0,0,0.03)',
+        // @ts-expect-error focus ring color via CSS variable
+        '--tw-ring-color': `${activeAccent}66`,
+      }}
+      onMouseEnter={(e) => {
+        if (selected) return
+        const el = e.currentTarget as HTMLElement
+        el.style.borderColor = `${activeAccent}66`
+        el.style.transform = 'translateY(-1px)'
+      }}
+      onMouseLeave={(e) => {
+        if (selected) return
+        const el = e.currentTarget as HTMLElement
+        el.style.borderColor = 'rgba(26,43,74,0.12)'
+        el.style.transform = 'translateY(0)'
+      }}
+    >
+      {label}
+    </button>
+  )
+}
+
+// ─── Progress dots ───────────────────────────────────────────────────────────
+function ProgressDots({ step, total, accent }: { step: number; total: number; accent: string }) {
+  return (
+    <div className="flex items-center gap-2" aria-hidden="true">
+      {Array.from({ length: total }).map((_, i) => (
+        <span
+          key={i}
+          className="rounded-full transition-all duration-300"
+          style={{
+            width: i === step ? 24 : 8,
+            height: 4,
+            background: i <= step ? accent : 'rgba(26,43,74,0.15)',
+          }}
+        />
+      ))}
+    </div>
+  )
+}
+
+// ─── Main component ──────────────────────────────────────────────────────────
+export default function MatchQuiz() {
+  const { lang } = useLang()
+  const copy = COPY[lang]
+
+  const [step, setStep] = useState(0) // 0,1,2 = questions ; 3 = résultat
+  const [answers, setAnswers] = useState<Answers>({
+    audience: null,
+    topic: null,
+    duration: null,
+  })
+  const [hydrated, setHydrated] = useState(false)
+
+  // Hydratation depuis sessionStorage au mount
+  useEffect(() => {
+    const saved = loadState()
+    if (saved) {
+      setStep(saved.step)
+      setAnswers(saved.answers)
+    }
+    setHydrated(true)
+  }, [])
+
+  // Sync sessionStorage à chaque changement
+  useEffect(() => {
+    if (!hydrated) return
+    saveState({ step, answers })
+  }, [step, answers, hydrated])
+
+  const currentAccent = useMemo(() => {
+    if (!answers.topic) return '#3D6DB8'
+    return formations.find((f) => f.slug === answers.topic)?.accent ?? '#3D6DB8'
+  }, [answers.topic])
+
+  const reco = useMemo(() => getRecommendation(answers), [answers])
+
+  // Warning durée : choisi < recommandé ?
+  const durationWarning = useMemo(() => {
+    if (!reco || !answers.duration) return null
+    const minKey = MIN_DURATION_BY_SLUG[reco.slug]
+    if (!minKey) return null
+    if (DURATION_RANK[answers.duration] < DURATION_RANK[minKey]) {
+      return { officialFormat: reco.format.duration }
+    }
+    return null
+  }, [reco, answers.duration])
+
+  // ─── Navigation ──────────────────────────────────────────────────────────
+  const goNext = () => setStep((s) => Math.min(s + 1, 3))
+  const goBack = () => setStep((s) => Math.max(s - 1, 0))
+  const reset = () => {
+    setAnswers({ audience: null, topic: null, duration: null })
+    setStep(0)
+    clearState()
+    trackEvent('quiz_restart')
+  }
+
+  const pickAudience = (v: AudienceKey) => {
+    setAnswers((p) => ({ ...p, audience: v }))
+    trackEvent('quiz_step_complete', { step: 1, field: 'audience', value: v })
+    if (step === 0 && !answers.audience) trackEvent('quiz_start')
+    setTimeout(goNext, 180)
+  }
+  const pickTopic = (slug: string) => {
+    setAnswers((p) => ({ ...p, topic: slug }))
+    trackEvent('quiz_step_complete', { step: 2, field: 'topic', value: slug })
+    setTimeout(goNext, 180)
+  }
+  const pickDuration = (v: DurationKey) => {
+    setAnswers((p) => ({ ...p, duration: v }))
+    trackEvent('quiz_step_complete', { step: 3, field: 'duration', value: v })
+    setTimeout(() => {
+      goNext()
+      // quiz_complete émis une fois, au passage à l'écran résultat
+      trackEvent('quiz_complete', {
+        audience: answers.audience,
+        topic: answers.topic,
+        duration: v,
+      })
+    }, 180)
+  }
+
+  // ─── Mailto builder ──────────────────────────────────────────────────────
+  const mailtoHref = useMemo(() => {
+    if (!reco || !answers.audience || !answers.duration) return '#'
+    const audienceLabel = copy.steps.audience.options[answers.audience]
+    const durationLabel = copy.steps.duration.options[answers.duration]
+    const subject = encodeURIComponent(copy.mailto.subject(reco.title))
+    const body = encodeURIComponent(
+      [
+        copy.mailto.bodyIntro,
+        '',
+        `• ${copy.mailto.bodyAudience} : ${audienceLabel}`,
+        `• ${copy.mailto.bodyTopic} : ${reco.title}`,
+        `• ${copy.mailto.bodyDuration} : ${durationLabel}`,
+        '',
+        copy.mailto.bodyOutro,
+      ].join('\n')
+    )
+    return `mailto:hello@clementboule.com?subject=${subject}&body=${body}`
+  }, [reco, answers, copy])
+
+  // ─── Rendu : header commun ───────────────────────────────────────────────
+  const header = (
+    <div className="text-center max-w-2xl mx-auto mb-10">
+      <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: currentAccent }}>
+        {copy.label}
+      </p>
+      <h2 className="text-3xl md:text-4xl font-bold text-[#1A2B4A] leading-tight mb-4">
+        {copy.title}
+      </h2>
+      <p className="text-sm md:text-base text-[#6B7E95] leading-relaxed">{copy.subtitle}</p>
+    </div>
+  )
+
+  // ─── Rendu : étape question générique ────────────────────────────────────
+  const renderStep = () => {
+    if (step === 0) {
+      return (
+        <>
+          <h3 className="text-lg font-semibold text-[#1A2B4A] mb-6 text-center">
+            {copy.steps.audience.q}
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto">
+            {AUDIENCE_ORDER.map((key) => (
+              <Chip
+                key={key}
+                label={copy.steps.audience.options[key]}
+                selected={answers.audience === key}
+                onClick={() => pickAudience(key)}
+              />
+            ))}
+          </div>
+        </>
+      )
+    }
+    if (step === 1) {
+      return (
+        <>
+          <h3 className="text-lg font-semibold text-[#1A2B4A] mb-6 text-center">
+            {copy.steps.topic.q}
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 max-w-4xl mx-auto">
+            {formations.map((f) => (
+              <Chip
+                key={f.slug}
+                label={f.title}
+                selected={answers.topic === f.slug}
+                accent={f.accent}
+                onClick={() => pickTopic(f.slug)}
+              />
+            ))}
+          </div>
+        </>
+      )
+    }
+    if (step === 2) {
+      return (
+        <>
+          <h3 className="text-lg font-semibold text-[#1A2B4A] mb-6 text-center">
+            {copy.steps.duration.q}
+          </h3>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto">
+            {DURATION_ORDER.map((key) => (
+              <Chip
+                key={key}
+                label={copy.steps.duration.options[key]}
+                selected={answers.duration === key}
+                accent={currentAccent}
+                onClick={() => pickDuration(key)}
+              />
+            ))}
+          </div>
+        </>
+      )
+    }
+    // step === 3 : résultat
+    if (!reco || !answers.audience || !answers.duration) return null
+    const audienceLabel = copy.steps.audience.options[answers.audience]
+    const durationLabel = copy.steps.duration.options[answers.duration]
+    return (
+      <div
+        className="max-w-3xl mx-auto"
+        style={{
+          animation: 'cbFadeUp 0.5s ease both',
+        }}
+      >
+        <div
+          className="rounded-2xl p-7 md:p-9"
+          style={{
+            background: '#FFFFFF',
+            border: `1px solid ${reco.accent}33`,
+            boxShadow: `0 10px 32px ${reco.accent}1F, 0 1px 4px rgba(0,0,0,0.04)`,
+          }}
+        >
+          <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: reco.accent }}>
+            {copy.result.eyebrow}
+          </p>
+          <h3 className="text-2xl md:text-3xl font-bold text-[#1A2B4A] leading-tight mb-5">
+            {copy.result.headline(reco.title)}
+          </h3>
+
+          {/* Résumé des choix */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
+            <div className="rounded-xl p-4" style={{ background: reco.bg }}>
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-[#6B7E95] mb-1">
+                {copy.result.audienceLabel}
+              </p>
+              <p className="text-sm font-semibold text-[#1A2B4A]">{audienceLabel}</p>
+            </div>
+            <div className="rounded-xl p-4" style={{ background: reco.bg }}>
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-[#6B7E95] mb-1">
+                {copy.result.durationLabel}
+              </p>
+              <p className="text-sm font-semibold text-[#1A2B4A]">{durationLabel}</p>
+            </div>
+            <div className="rounded-xl p-4" style={{ background: reco.bg }}>
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-[#6B7E95] mb-1">
+                {reco.tag}
+              </p>
+              <p className="text-sm font-semibold text-[#1A2B4A]">{reco.format.duration}</p>
+            </div>
+          </div>
+
+          {/* Warning durée si incompatibilité soft */}
+          {durationWarning && (
+            <div
+              className="mb-6 flex gap-3 p-4 rounded-xl"
+              style={{
+                background: '#FFF9EC',
+                border: '1px solid #E8B84722',
+              }}
+              role="note"
+            >
+              <svg
+                className="w-5 h-5 shrink-0 mt-0.5"
+                fill="none"
+                stroke="#B07B0B"
+                strokeWidth={1.8}
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 9v3.75m0 3.75h.008v.008H12v-.008zM12 2.25 2.25 20.25h19.5L12 2.25z"
+                />
+              </svg>
+              <div>
+                <p className="text-sm font-semibold text-[#1A2B4A] mb-1">
+                  {copy.result.warningTitle}
+                </p>
+                <p className="text-xs text-[#6B7E95] leading-relaxed">
+                  {copy.result.warningBody(durationWarning.officialFormat)}
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* CTA primaire + secondaire */}
+          <div className="flex flex-col sm:flex-row gap-3">
+            <a
+              href={mailtoHref}
+              onClick={() =>
+                trackEvent('quiz_cta_primary_click', {
+                  topic: reco.slug,
+                  audience: answers.audience,
+                  duration: answers.duration,
+                })
+              }
+              className="inline-flex items-center justify-center gap-2 text-white font-semibold px-6 py-3.5 rounded-full hover:-translate-y-0.5 shadow-md hover:shadow-lg transition-all duration-200"
+              style={{ background: reco.accent }}
+            >
+              {copy.result.primary}
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+            <a
+              href={`/formations/${reco.slug}`}
+              onClick={() =>
+                trackEvent('quiz_cta_secondary_click', { topic: reco.slug })
+              }
+              className="inline-flex items-center justify-center gap-2 font-semibold px-6 py-3.5 rounded-full border transition-all duration-200 hover:-translate-y-0.5"
+              style={{
+                color: reco.accent,
+                borderColor: `${reco.accent}66`,
+                background: '#FFFFFF',
+              }}
+            >
+              {copy.result.secondary}
+            </a>
+          </div>
+
+          {/* Fallback + restart */}
+          <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-[#6B7E95]">
+            <a
+              href="/contact"
+              onClick={() => trackEvent('quiz_fallback_click')}
+              className="hover:text-[#1A2B4A] underline underline-offset-2"
+            >
+              {copy.result.fallback}
+            </a>
+            <button
+              type="button"
+              onClick={reset}
+              className="hover:text-[#1A2B4A] underline underline-offset-2 text-left sm:text-right"
+            >
+              {copy.result.restart}
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <section
+      className="py-20 md:py-28 relative overflow-hidden"
+      style={{ background: 'linear-gradient(180deg, #F0F4FB 0%, #FFFFFF 100%)' }}
+      aria-label={copy.title}
+    >
+      {/* Keyframe inline pour l'animation */}
+      <style>{`
+        @keyframes cbFadeUp {
+          from { opacity: 0; transform: translateY(16px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
+
+      {/* Background accent subtil */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] rounded-full blur-3xl"
+          style={{ background: `${currentAccent}0F` }}
+        />
+      </div>
+
+      <div className="relative max-w-6xl mx-auto px-6">
+        {header}
+
+        {/* Progress + back */}
+        {step < 3 && (
+          <div className="flex items-center justify-between max-w-2xl mx-auto mb-6">
+            <button
+              type="button"
+              onClick={goBack}
+              disabled={step === 0}
+              className="text-xs font-medium text-[#6B7E95] hover:text-[#1A2B4A] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            >
+              ← {copy.back}
+            </button>
+            <div className="flex items-center gap-3">
+              <span className="text-xs font-medium text-[#6B7E95]">
+                {copy.progress(step + 1, 3)}
+              </span>
+              <ProgressDots step={step} total={3} accent={currentAccent} />
+            </div>
+          </div>
+        )}
+
+        {/* Step content */}
+        <div
+          key={step}
+          style={{ animation: 'cbFadeUp 0.4s ease both' }}
+        >
+          {renderStep()}
+        </div>
+      </div>
+    </section>
+  )
+}
