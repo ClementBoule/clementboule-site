@@ -413,7 +413,7 @@ export const formations: Formation[] = [
       { icon: '🛤️', name: 'Roadmap 18 mois', desc: "Plan d'action concret avec jalons trimestriels." },
     ],
     tools: [
-      'Test DISC + 15 sous-profils (méthode propriétaire)',
+      "Test DISC + 15 sous-profils (méthode propriétaire)",
       'Modèle des 5 postures (Mintzberg adapté)',
       'Canvas de carrière 18 mois',
       'Argumentaire STAR (Situation, Task, Action, Result)',
@@ -445,4 +445,4 @@ export function getNextFormation(slug: string): Formation {
 export function getPrevFormation(slug: string): Formation {
   const idx = getFormationIndex(slug)
   return formations[(idx - 1 + formations.length) % formations.length]
-}
+    }
