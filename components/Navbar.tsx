@@ -15,19 +15,20 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
-    const t = setTimeout(() => setMounted(true), 50)
-    return () => clearTimeout(t)
+    const timer = setTimeout(() => setMounted(true), 50)
+    return () => clearTimeout(timer)
   }, [])
 
   const navLinks = [
-    { label: t.nav.home, href: '#hero' },
-    { label: t.nav.formations, href: '#formations' },
-    { label: t.nav.cv, href: '#cv' },
-    { label: t.nav.contact, href: '#contact' },
-    { label: 'DISC', href: '/test-disc' },
+    { label: lang === 'fr' ? 'Accueil' : 'Home', href: '/' },
+    { label: lang === 'fr' ? 'Formations' : 'Training', href: '/formations' },
+    { label: lang === 'fr' ? 'À propos' : 'About', href: '/a-propos' },
+    { label: lang === 'fr' ? 'Cas clients' : 'Case studies', href: '/cas-clients' },
+    { label: 'FAQ', href: '/faq' },
+    { label: 'Contact', href: '/contact' },
+    { label: 'DISC', href: '/test-disc', special: true },
   ]
 
-  /* ── Adaptive text colors ── */
   const brand = scrolled
     ? 'text-white font-semibold text-lg tracking-tight hover:text-[#7C9CBF] transition-colors'
     : 'text-[#1A2B4A] font-semibold text-lg tracking-tight hover:text-[#3D6DB8] transition-colors'
@@ -37,8 +38,8 @@ export default function Navbar() {
     : 'text-[#1A2B4A]/70 hover:text-[#1A2B4A]'
 
   const discLink = scrolled
-    ? 'text-[#7C9CBF] border border-[#7C9CBF]/40 px-3 py-1.5 rounded-full hover:bg-[#7C9CBF]/10'
-    : 'text-[#3D6DB8] border border-[#3D6DB8]/40 px-3 py-1.5 rounded-full hover:bg-[#3D6DB8]/10'
+    ? 'text-[#7C9CBF] border border-[#7C9CBF]/40 px-3 py-1 rounded-full hover:bg-[#7C9CBF]/10'
+    : 'text-[#3D6DB8] border border-[#3D6DB8]/40 px-3 py-1 rounded-full hover:bg-[#3D6DB8]/10'
 
   const langBtn = scrolled
     ? 'flex items-center gap-1.5 text-xs font-semibold text-white/50 hover:text-white/80 transition-colors border border-white/10 rounded-full px-3 py-1.5'
@@ -58,20 +59,18 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Brand */}
-        <a href="#hero" className={brand}>
+        <a href="/" className={brand}>
           CB
         </a>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-5">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               className={`text-sm font-medium transition-colors ${
-                link.label === 'DISC'
-                  ? discLink
-                  : linkBase
+                link.special ? discLink : linkBase
               }`}
             >
               {link.label}
@@ -92,7 +91,8 @@ export default function Navbar() {
         {/* Mobile menu button */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className={`md:hidden p-1 ${scrolled ? 'text-white/70 hover:text-white' : 'text-[#1A2B4A]/70 hover:text-[#1A2B4A]'}`}
+          className={`lg:hidden p-1 ${scrolled ? 'text-white/70 hover:text-white' : 'text-[#1A2B4A]/70 hover:text-[#1A2B4A]'}`}
+          aria-label="Menu"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {menuOpen ? (
@@ -106,7 +106,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-[#0F1A2E]/98 backdrop-blur-md border-t border-white/5 px-6 py-4 flex flex-col gap-4">
+        <div className="lg:hidden bg-[#0F1A2E]/98 backdrop-blur-md border-t border-white/5 px-6 py-4 flex flex-col gap-4">
           {navLinks.map((link) => (
             <a
               key={link.href}
