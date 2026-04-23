@@ -4,12 +4,12 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { formations, getFormation, getNextFormation, getPrevFormation } from '../../../components/formations-data'
 
-// âââ PrÃ©-gÃ©nÃ©ration statique des 6 slugs ââââââââââââââââââââââââââââââââââââ
+// ─── Pré-génération statique des 6 slugs ──────────────────────────────────────
 export function generateStaticParams() {
   return formations.map((f) => ({ slug: f.slug }))
 }
 
-// âââ Metadata SEO dynamique âââââââââââââââââââââââââââââââââââââââââââââââââ
+// ─── Metadata SEO dynamique ────────────────────────────────────────────────────
 export async function generateMetadata({
   params,
 }: {
@@ -19,17 +19,17 @@ export async function generateMetadata({
   const f = getFormation(slug)
   if (!f) return { title: 'Formation introuvable' }
   return {
-    title: `${f.title} â Formation ClÃ©ment BoulÃ©`,
+    title: `${f.title} — Formation Clément Boulé`,
     description: f.shortDescription,
     openGraph: {
-      title: `${f.title} â Formation`,
+      title: `${f.title} — Formation`,
       description: f.shortDescription,
       images: [{ url: f.image, width: 1200, height: 630, alt: f.title }],
     },
   }
 }
 
-// âââ Page dÃ©tail ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ─── Page détail ──────────────────────────────────────────────────────────────
 export default async function FormationDetailPage({
   params,
 }: {
@@ -50,7 +50,7 @@ export default async function FormationDetailPage({
     description: f.shortDescription,
     provider: {
       '@type': 'Person',
-      name: 'ClÃ©ment BoulÃ©',
+      name: 'Clément Boulé',
       url: 'https://www.clementboule.fr',
     },
     offers: {
@@ -72,13 +72,12 @@ export default async function FormationDetailPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* âââ HERO FORMATION âââ */}
+      {/* ─── HERO FORMATION ─── */}
       <section
         className="relative pt-24 md:pt-28 pb-12 md:pb-16 overflow-hidden"
         style={{ backgroundColor: f.bg }}
       >
         <div className="max-w-6xl mx-auto px-6">
-          {/* Breadcrumb + retour */}
           <Link
             href="/formations"
             className="inline-flex items-center gap-2 text-sm text-[#1A2B4A]/50 hover:text-[#1A2B4A] transition-colors mb-6"
@@ -126,7 +125,6 @@ export default async function FormationDetailPage({
               </div>
             </div>
 
-            {/* Illustration */}
             <div className="relative flex justify-center md:justify-end">
               <div className="relative w-full max-w-md aspect-[4/5]">
                 <Image
@@ -147,17 +145,13 @@ export default async function FormationDetailPage({
         </div>
       </section>
 
-      {/* âââ POUR QUI + RÃSULTATS (split 2 colonnes) âââ */}
+      {/* ─── POUR QUI + RÉSULTATS ─── */}
       <section className="py-16 md:py-20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-10 md:gap-16">
-            {/* Pour qui ? */}
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-[#1A2B4A] mb-6 flex items-center gap-3">
-                <span
-                  className="inline-block w-10 h-0.5 rounded-full"
-                  style={{ backgroundColor: f.accent }}
-                />
+                <span className="inline-block w-10 h-0.5 rounded-full" style={{ backgroundColor: f.accent }} />
                 Pour qui ?
               </h2>
               <ul className="space-y-3">
@@ -177,20 +171,18 @@ export default async function FormationDetailPage({
               </ul>
             </div>
 
-            {/* RÃ©sultats concrets */}
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-[#1A2B4A] mb-6 flex items-center gap-3">
-                <span
-                  className="inline-block w-10 h-0.5 rounded-full"
-                  style={{ backgroundColor: f.accent }}
-                />
+                <span className="inline-block w-10 h-0.5 rounded-full" style={{ backgroundColor: f.accent }} />
                 Ce que vous repartirez avec
               </h2>
               <ul className="space-y-3">
                 {f.outcomes.map((o, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="flex-shrink-0 text-lg mt-0.5" style={{ color: f.accent }}>
-                      â¸
+                    <span className="flex-shrink-0 mt-1" style={{ color: f.accent }}>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
                     </span>
                     <span className="text-[#4A5B70] leading-relaxed font-medium">{o}</span>
                   </li>
@@ -201,15 +193,12 @@ export default async function FormationDetailPage({
         </div>
       </section>
 
-      {/* âââ PROGRAMME â Phases âââ */}
+      {/* ─── PROGRAMME ─── */}
       <section id="programme" className="py-16 md:py-20" style={{ backgroundColor: f.bg + '50' }}>
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-12">
-            <p
-              className="text-xs font-bold uppercase tracking-widest mb-3"
-              style={{ color: f.accent }}
-            >
-              Programme dÃ©taillÃ©
+            <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: f.accent }}>
+              Programme détaillé
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-[#1A2B4A]">
               Une progression en {f.phases.length} {f.phases.length > 3 ? 'modules' : 'phases'}
@@ -229,9 +218,7 @@ export default async function FormationDetailPage({
                   >
                     {p.step}
                   </span>
-                  {p.duration && (
-                    <p className="text-xs text-[#6B7E95]">DurÃ©e : {p.duration}</p>
-                  )}
+                  {p.duration && <p className="text-xs text-[#6B7E95]">Durée : {p.duration}</p>}
                 </div>
                 <div className="flex-1">
                   <h3 className="text-lg font-bold text-[#1A2B4A] mb-2">{p.title}</h3>
@@ -243,27 +230,21 @@ export default async function FormationDetailPage({
         </div>
       </section>
 
-      {/* âââ ATELIERS âââ */}
+      {/* ─── ATELIERS ─── */}
       <section className="py-16 md:py-20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
-            <p
-              className="text-xs font-bold uppercase tracking-widest mb-3"
-              style={{ color: f.accent }}
-            >
+            <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: f.accent }}>
               Ateliers & exercices
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1A2B4A]">
-              Des mises en situation concrÃ¨tes
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1A2B4A]">Des mises en situation concrètes</h2>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {f.workshops.map((w, i) => (
               <div
                 key={i}
-                className="p-6 rounded-2xl border-2 border-[#1A2B4A]/8 hover:border-transparent hover:shadow-lg transition-all"
-                style={{ backgroundColor: 'white' }}
+                className="p-6 rounded-2xl border-2 border-[#1A2B4A]/8 hover:border-transparent hover:shadow-lg transition-all bg-white"
               >
                 <div
                   className="inline-flex items-center justify-center w-12 h-12 rounded-xl text-2xl mb-4"
@@ -279,60 +260,73 @@ export default async function FormationDetailPage({
         </div>
       </section>
 
-      {/* âââ OUTILS + FORMAT (2 colonnes) âââ */}
+      {/* ─── OUTILS + FORMAT ─── */}
       <section className="py-16 md:py-20 bg-[#F8FAFC]">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-10 md:gap-16">
-            {/* Outils */}
             <div>
-              <p
-                className="text-xs font-bold uppercase tracking-widest mb-3"
-                style={{ color: f.accent }}
-              >
+              <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: f.accent }}>
                 Outils & frameworks
               </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-[#1A2B4A] mb-6">
-                Les mÃ©thodes utilisÃ©es
-              </h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-[#1A2B4A] mb-6">Les méthodes utilisées</h2>
               <ul className="space-y-2">
                 {f.tools.map((t, i) => (
-                  <li
-                    key={i}
-                    className="text-sm text-[#4A5B70] px-4 py-3 rounded-xl bg-white border border-[#1A2B4A]/8"
-                  >
+                  <li key={i} className="text-sm text-[#4A5B70] px-4 py-3 rounded-xl bg-white border border-[#1A2B4A]/8">
                     {t}
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Format */}
             <div>
-              <p
-                className="text-xs font-bold uppercase tracking-widest mb-3"
-                style={{ color: f.accent }}
-              >
+              <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: f.accent }}>
                 Format
               </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-[#1A2B4A] mb-6">
-                ModalitÃ©s pratiques
-              </h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-[#1A2B4A] mb-6">Modalités pratiques</h2>
               <div className="space-y-4">
                 {[
-                  { label: 'DurÃ©e', value: f.format.duration, icon: 'â±' },
-                  { label: 'Mode', value: f.format.mode, icon: 'ð' },
-                  { label: 'Taille du groupe', value: f.format.groupSize, icon: 'ð¥' },
-                  { label: 'Tarif', value: f.format.pricing, icon: 'ð¼' },
+                  {
+                    label: 'Durée',
+                    value: f.format.duration,
+                    icon: (
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    ),
+                  },
+                  {
+                    label: 'Mode',
+                    value: f.format.mode,
+                    icon: (
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    ),
+                  },
+                  {
+                    label: 'Taille du groupe',
+                    value: f.format.groupSize,
+                    icon: (
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    ),
+                  },
+                  {
+                    label: 'Tarif',
+                    value: f.format.pricing,
+                    icon: (
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z" />
+                      </svg>
+                    ),
+                  },
                 ].map((item, i) => (
-                  <div
-                    key={i}
-                    className="flex items-start gap-4 p-4 rounded-xl bg-white border border-[#1A2B4A]/8"
-                  >
-                    <span className="text-2xl">{item.icon}</span>
+                  <div key={i} className="flex items-start gap-4 p-4 rounded-xl bg-white border border-[#1A2B4A]/8">
+                    <span className="text-[#3D6DB8] mt-0.5 flex-shrink-0">{item.icon}</span>
                     <div>
-                      <p className="text-xs text-[#6B7E95] uppercase tracking-widest font-semibold mb-1">
-                        {item.label}
-                      </p>
+                      <p className="text-xs text-[#6B7E95] uppercase tracking-widest font-semibold mb-1">{item.label}</p>
                       <p className="text-sm font-medium text-[#1A2B4A]">{item.value}</p>
                     </div>
                   </div>
@@ -343,14 +337,12 @@ export default async function FormationDetailPage({
         </div>
       </section>
 
-      {/* âââ CTA FINAL âââ */}
+      {/* ─── CTA FINAL ─── */}
       <section id="contact" className="py-16 md:py-20" style={{ backgroundColor: f.bg }}>
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1A2B4A] mb-4 leading-tight">
-            On en parle ?
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1A2B4A] mb-4 leading-tight">On en parle ?</h2>
           <p className="text-[#4A5B70] leading-relaxed mb-8 max-w-xl mx-auto">
-            Chaque formation est adaptÃ©e Ã  votre contexte, vos enjeux et votre calendrier. Le devis est gratuit et vous repartez au minimum avec un cadre clarifiÃ©.
+            Chaque formation est adaptée à votre contexte, vos enjeux et votre calendrier. Le devis est gratuit et vous repartez au minimum avec un cadre clarifié.
           </p>
           <Link
             href="/#contact"
@@ -368,11 +360,9 @@ export default async function FormationDetailPage({
       {/* ─── CTA CONTACT DIRECT ─── */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-[#1A2B4A] to-[#2A4A7A]">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <p className="text-xs font-semibold text-white/50 uppercase tracking-widest mb-4">
-            Travaillons ensemble
-          </p>
+          <p className="text-xs font-semibold text-white/50 uppercase tracking-widest mb-4">Travaillons ensemble</p>
           <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight mb-4">
-            Cette formation correspond à vos enjeux ?
+            Cette formation correspond à vos enjeux ?
           </h2>
           <p className="text-white/70 leading-relaxed mb-8 max-w-xl mx-auto">
             Chaque programme est construit sur-mesure. Contactez-moi pour qu&apos;on échange sur vos objectifs,
@@ -380,7 +370,7 @@ export default async function FormationDetailPage({
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="mailto:boule.clement@gmail.com"
+              href="mailto:hello@clementboule.com"
               className="inline-flex items-center gap-2 bg-white text-[#1A2B4A] font-semibold px-7 py-3.5 rounded-full hover:bg-white/90 hover:-translate-y-0.5 transition-all shadow-lg"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -403,25 +393,18 @@ export default async function FormationDetailPage({
         </div>
       </section>
 
-      {/* âââ NAVIGATION PREV / NEXT âââ */}
+      {/* ─── NAVIGATION PREV / NEXT ─── */}
       <section className="py-12 border-t border-[#1A2B4A]/8">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-4">
           <Link
             href={`/formations/${prev.slug}`}
             className="group flex items-center gap-4 p-5 rounded-2xl border-2 border-[#1A2B4A]/8 hover:border-transparent hover:shadow-lg transition-all"
           >
-            <svg
-              className="w-5 h-5 text-[#1A2B4A]/40 group-hover:text-[#1A2B4A] transition-colors flex-shrink-0"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="w-5 h-5 text-[#1A2B4A]/40 group-hover:text-[#1A2B4A] transition-colors flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
             <div className="flex-1 min-w-0">
-              <p className="text-xs text-[#6B7E95] uppercase tracking-widest font-semibold mb-1">
-                Formation prÃ©cÃ©dente
-              </p>
+              <p className="text-xs text-[#6B7E95] uppercase tracking-widest font-semibold mb-1">Formation précédente</p>
               <p className="text-sm font-bold text-[#1A2B4A] truncate">{prev.title}</p>
             </div>
           </Link>
@@ -431,26 +414,16 @@ export default async function FormationDetailPage({
             className="group flex items-center gap-4 p-5 rounded-2xl border-2 border-[#1A2B4A]/8 hover:border-transparent hover:shadow-lg transition-all md:justify-end md:text-right"
           >
             <div className="flex-1 min-w-0">
-              <p className="text-xs text-[#6B7E95] uppercase tracking-widest font-semibold mb-1">
-                Formation suivante
-              </p>
+              <p className="text-xs text-[#6B7E95] uppercase tracking-widest font-semibold mb-1">Formation suivante</p>
               <p className="text-sm font-bold text-[#1A2B4A] truncate">{next.title}</p>
             </div>
-            <svg
-              className="w-5 h-5 text-[#1A2B4A]/40 group-hover:text-[#1A2B4A] transition-colors flex-shrink-0"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="w-5 h-5 text-[#1A2B4A]/40 group-hover:text-[#1A2B4A] transition-colors flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </Link>
         </div>
         <div className="max-w-6xl mx-auto px-6 mt-6 text-center">
-          <Link
-            href="/formations"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-[#1A2B4A] hover:text-[#3D6DB8] transition-colors"
-          >
+          <Link href="/formations" className="inline-flex items-center gap-2 text-sm font-semibold text-[#1A2B4A] hover:text-[#3D6DB8] transition-colors">
             Voir toutes les formations
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
