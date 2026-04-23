@@ -25,7 +25,6 @@ export default function Navbar() {
     { label: lang === 'fr' ? 'À propos' : 'About', href: '/a-propos' },
     { label: lang === 'fr' ? 'Cas clients' : 'Case studies', href: '/cas-clients' },
     { label: 'FAQ', href: '/faq' },
-    { label: 'Contact', href: '/contact' },
     { label: 'DISC', href: '/test-disc', special: true },
   ]
 
@@ -77,6 +76,14 @@ export default function Navbar() {
             </a>
           ))}
 
+          {/* CTA Contactez-moi */}
+          <a
+            href="/contact"
+            className={`text-sm font-semibold px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-sm bg-[#3D6DB8] text-white hover:bg-[#2D5A9E]`}
+          >
+            {lang === 'fr' ? 'Contactez-moi' : 'Contact'}
+          </a>
+
           {/* Language switcher */}
           <button
             onClick={() => setLang(lang === 'fr' ? 'en' : 'fr')}
@@ -117,6 +124,13 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
+          <a
+            href="/contact"
+            onClick={() => setMenuOpen(false)}
+            className="inline-flex items-center justify-center bg-[#3D6DB8] text-white font-semibold px-5 py-2.5 rounded-full text-sm"
+          >
+            {lang === 'fr' ? 'Contactez-moi' : 'Contact'}
+          </a>
           <button
             onClick={() => { setLang(lang === 'fr' ? 'en' : 'fr'); setMenuOpen(false) }}
             className="text-xs font-semibold text-white/60 border border-white/10 rounded-full px-2.5 py-1 w-fit"
