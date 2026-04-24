@@ -13,9 +13,9 @@ const translations = {
       contact: 'Contact',
     },
     hero: {
-      badge: 'Trainer & Consultant',
+      badge: 'Trainer, consultant & coach',
       headline: 'Transform your business by acting on what matters',
-      subtitle: 'From strategic diagnosis to concrete HR transformations — I help companies navigate their challenges by building lasting, engaging company cultures.',
+      subtitle: 'I train and coach managers and teams — in French and English. On the ground, not just in theory. Built with you, not pulled from a catalog.',
       cta: 'Get in touch',
       disc: 'Take the DISC Test',
       discTeaser: 'Discover your DISC profile',
@@ -77,7 +77,7 @@ const translations = {
         {
           role: 'Sports & Performance Coach',
           company: 'Independent — Innsbruck',
-          period: '2018 – 2021',
+          period: '2016 – 2021',
           description: 'Individual and group coaching combining performance methods with mental development techniques.',
         },
       ],
@@ -119,9 +119,9 @@ const translations = {
       contact: 'Contact',
     },
     hero: {
-      badge: 'Formateur & consultant',
+      badge: 'Formateur, consultant & coach',
       headline: 'Former des équipes qui changent vraiment',
-      subtitle: "Formateur consultant indépendant en Île-de-France. J'interviens sur le management, les RH et les soft skills. Chaque programme est construit sur votre contexte réel, pas tiré d'un catalogue.",
+      subtitle: "Je forme et j'accompagne managers et équipes — en français, en anglais. Sur le terrain, pas dans la théorie. Construit avec vous, pas tiré d'un catalogue.",
       cta: 'Me contacter',
       disc: 'Faire le test DISC',
       discTeaser: 'Découvrez votre profil DISC',
@@ -183,7 +183,7 @@ const translations = {
         {
           role: 'Coach sportif & performance',
           company: 'Indépendant — Innsbruck',
-          period: '2018 – 2021',
+          period: '2016 – 2021',
           description: 'Coaching individuel et collectif sur la performance et le développement mental. Autriche et Allemagne.',
         },
       ],
