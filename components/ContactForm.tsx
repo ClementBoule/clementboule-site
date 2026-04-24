@@ -1,5 +1,6 @@
 'use client'
-import { useState, FormEvent } from 'react'
+import { useState, useEffect, FormEvent } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 const TYPES = [
   { value: '', label: 'Type de demande…' },
@@ -19,6 +20,23 @@ export default function ContactForm() {
     message: '',
   })
   const [sent, setSent] = useState(false)
+  const [prefilled, setPrefilled] = useState(false)
+  const searchParams = useSearchParams()
+
+  // Pré-remplissage via query params (typiquement depuis MatchQuiz : /contact?type=...&topic=...&message=...)
+  useEffect(() => {
+    if (!searchParams) return
+    const type = searchParams.get('type') || ''
+    const message = searchParams.get('message') || ''
+    if (type || message) {
+      setFields((prev) => ({
+        ...prev,
+        type: type || prev.type,
+        message: message || prev.message,
+      }))
+      setPrefilled(!!(type || message))
+    }
+  }, [searchParams])
 
   const set = (k: keyof typeof fields) => (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -69,6 +87,26 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Bandeau si formulaire pré-rempli depuis MatchQuiz */}
+      {prefilled && (
+        <div
+          className="flex items-start gap-3 p-3.5 rounded-xl text-xs"
+          style={{
+            background: '#EEF4FF',
+            border: '1px solid #3D6DB833',
+            color: '#1A2B4A',
+          }}
+          role="status"
+        >
+          <svg className="w-4 h-4 shrink-0 mt-0.5" fill="none" stroke="#3D6DB8" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>
+            <strong>Contexte pré-rempli depuis le quiz.</strong> Complète juste tes coordonnées et envoie — le message contient déjà le format que tu as choisi.
+          </span>
+        </div>
+      )}
+
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-xs font-semibold text-[#1A2B4A] mb-1.5">
@@ -137,7 +175,7 @@ export default function ContactForm() {
         </label>
         <textarea
           required
-          rows={5}
+          rows={prefilled ? 7 : 5}
           placeholder="Décrivez votre contexte, vos enjeux et ce que vous cherchez à obtenir…"
           value={fields.message}
           onChange={set('message')}
