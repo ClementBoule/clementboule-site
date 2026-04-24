@@ -59,12 +59,12 @@ type Copy = {
 
 const COPY: Record<'fr' | 'en', Copy> = {
   fr: {
-    label: 'Trouve ton format',
-    title: 'En 3 clics, tu sais par où commencer',
-    subtitle: "Décris ton besoin, je te propose le format le plus adapté. Aucune inscription, aucun engagement.",
+    label: 'Trouvez votre format',
+    title: 'En 3 clics, vous savez par où commencer',
+    subtitle: "Décrivez votre besoin, je vous propose le format le plus adapté. Aucune inscription, aucun engagement.",
     steps: {
       audience: {
-        q: 'Qui veux-tu former ?',
+        q: 'Qui voulez-vous former ?',
         options: {
           codir: 'Mon CODIR',
           managers: 'Mes managers',
@@ -74,7 +74,7 @@ const COPY: Record<'fr' | 'en', Copy> = {
       },
       topic: { q: 'Sur quel sujet en priorité ?' },
       duration: {
-        q: 'Combien de temps tu peux y consacrer ?',
+        q: 'Combien de temps pouvez-vous y consacrer ?',
         options: {
           half: 'Demi-journée',
           day: '1 journée',
@@ -87,11 +87,11 @@ const COPY: Record<'fr' | 'en', Copy> = {
     back: 'Retour',
     result: {
       eyebrow: 'Ma recommandation',
-      headline: (t) => `${t} — c'est ce qui colle le mieux à ton contexte`,
-      summaryLabel: 'Ce que tu as choisi',
+      headline: (t) => `${t} — c'est ce qui colle le mieux à votre contexte`,
+      summaryLabel: 'Ce que vous avez choisi',
       primary: 'Cadrer ce projet en 30 min',
       secondary: 'Voir le détail de la formation',
-      fallback: 'Pas sûr ? Parle-moi de ton besoin directement',
+      fallback: 'Pas sûr ? Parlez-moi de votre besoin directement',
       restart: 'Recommencer le test',
       audienceLabel: 'Pour',
       durationLabel: 'Format',
@@ -105,7 +105,7 @@ const COPY: Record<'fr' | 'en', Copy> = {
       bodyAudience: 'Public à former',
       bodyTopic: 'Sujet prioritaire',
       bodyDuration: 'Format envisagé',
-      bodyOutro: "\nPeux-tu me recontacter pour cadrer ensemble ? Merci.",
+      bodyOutro: "\nPouvez-vous me recontacter pour cadrer ensemble ? Merci.",
     },
   },
   en: {
