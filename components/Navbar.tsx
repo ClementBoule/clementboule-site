@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { useLang } from './LanguageContext'
+import { CALENDLY_URL } from '../lib/cta-config'
 
 export default function Navbar() {
   const { lang, setLang, t } = useLang()
@@ -25,6 +26,7 @@ export default function Navbar() {
     { label: lang === 'fr' ? 'À propos' : 'About', href: '/a-propos' },
     { label: lang === 'fr' ? 'Cas clients' : 'Case studies', href: '/cas-clients' },
     { label: 'FAQ', href: '/faq' },
+    { label: lang === 'fr' ? 'Contact' : 'Contact', href: '/contact' },
     { label: 'DISC', href: '/test-disc', special: true },
   ]
 
@@ -76,12 +78,17 @@ export default function Navbar() {
             </a>
           ))}
 
-          {/* CTA Contactez-moi */}
+          {/* CTA — Réserver 30 min (Calendly) */}
           <a
-            href="/contact"
-            className={`text-sm font-semibold px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-sm bg-[#3D6DB8] text-white hover:bg-[#2D5A9E]`}
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`inline-flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-sm bg-[#3D6DB8] text-white hover:bg-[#2D5A9E]`}
           >
-            {lang === 'fr' ? 'Contactez-moi' : 'Contact'}
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            {lang === 'fr' ? 'Réserver 30 min' : 'Book 30 min'}
           </a>
 
           {/* Language switcher */}
@@ -125,11 +132,16 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="/contact"
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setMenuOpen(false)}
-            className="inline-flex items-center justify-center bg-[#3D6DB8] text-white font-semibold px-5 py-2.5 rounded-full text-sm"
+            className="inline-flex items-center justify-center gap-1.5 bg-[#3D6DB8] text-white font-semibold px-5 py-2.5 rounded-full text-sm"
           >
-            {lang === 'fr' ? 'Contactez-moi' : 'Contact'}
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            {lang === 'fr' ? 'Réserver 30 min' : 'Book 30 min'}
           </a>
           <button
             onClick={() => { setLang(lang === 'fr' ? 'en' : 'fr'); setMenuOpen(false) }}
@@ -141,4 +153,4 @@ export default function Navbar() {
       )}
     </nav>
   )
-}
+          }
