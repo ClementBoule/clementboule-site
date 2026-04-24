@@ -14,15 +14,15 @@ const FAQ_SECTIONS = [
     category: 'Mon approche',
     items: [
       {
-        q: "Tu proposes des formations financables OPCO ?",
+        q: "Vous proposez des formations financables OPCO ?",
         a: "Non. Je travaille en direct avec mes clients — pas de certification Qualiopi, pas de parcours OPCO. Ca me permet de construire des programmes vraiment sur-mesure, sans contrainte administrative, et de m'adapter en temps reel a vos equipes.",
       },
       {
-        q: "En quoi tu te differencies d'un organisme de formation classique ?",
+        q: "En quoi vous differenciez-vous d'un organisme de formation classique ?",
         a: "Je ne vends pas un catalogue. Chaque programme est concu a partir de vos enjeux reels. Je travaille seul — ce qui garantit une coherence totale entre le diagnostic, la conception et l'animation. Et je m'adapte en cours de session si la dynamique de groupe le demande.",
       },
       {
-        q: "Tu travailles avec quel type de clients ?",
+        q: "Vous travaillez avec quel type de clients ?",
         a: "Business schools et grandes ecoles parisiennes, PME, grandes entreprises, associations, institutions publiques. Ce qui varie, c'est le secteur — pas l'exigence. Je travaille en francais et en anglais.",
       },
     ],
@@ -35,11 +35,11 @@ const FAQ_SECTIONS = [
         a: "Une demi-journee (3h30) est le format minimum. La plupart de mes modules se deploient sur 1 a 2 jours. Pour le coaching individuel, je travaille sur des sequences de 3 a 6 seances.",
       },
       {
-        q: "Tu interviens en presentiel ou a distance ?",
+        q: "Vous intervenez en presentiel ou a distance ?",
         a: "Les deux. Le presentiel reste le format le plus efficace pour creer de la dynamique de groupe. Le distanciel fonctionne bien pour le coaching individuel et les modules de suivi.",
       },
       {
-        q: "Tu peux venir dans nos locaux ?",
+        q: "Pouvez-vous venir dans nos locaux ?",
         a: "Oui, je me deplace en Ile-de-France et dans toute la France selon les projets. Pour les interventions hors Paris, des frais de deplacement s'appliquent selon les conditions definies au devis.",
       },
       {
@@ -52,8 +52,8 @@ const FAQ_SECTIONS = [
     category: 'Tarifs & facturation',
     items: [
       {
-        q: "Quels sont tes tarifs ?",
-        a: "Je facture a la journee ou au module selon la nature du projet. Tous les devis sont sur-mesure — contacte-moi pour qu'on evalue ensemble ce qui correspond a ton besoin.",
+        q: "Quels sont vos tarifs ?",
+        a: "Je facture a la journee ou au module selon la nature du projet. Tous les devis sont sur-mesure — contactez-moi pour qu'on evalue ensemble ce qui correspond a votre besoin.",
       },
       {
         q: "Comment se passe la facturation ?",
@@ -73,7 +73,7 @@ const FAQ_SECTIONS = [
         a: "Le DISC est un outil d'analyse comportementale qui identifie 4 profils : Dominant, Influent, Stable, Consciencieux. Il est utilise en coaching et en formation pour ameliorer la communication, le management et la dynamique d'equipe. Le test sur le site est une version gratuite et indicative.",
       },
       {
-        q: "Tu peux animer des ateliers DISC en entreprise ?",
+        q: "Pouvez-vous animer des ateliers DISC en entreprise ?",
         a: "Oui, c'est une de mes specialites. Je propose des ateliers DISC de demi-journee ou d'une journee pour les equipes — ideal pour ameliorer la communication interne, prevenir les conflits et renforcer la cohesion.",
       },
     ],
