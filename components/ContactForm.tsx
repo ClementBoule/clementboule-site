@@ -102,7 +102,7 @@ export default function ContactForm() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <span>
-            <strong>Contexte pré-rempli depuis le quiz.</strong> Complète juste tes coordonnées et envoie — le message contient déjà le format que tu as choisi.
+            <strong>Contexte pré-rempli depuis le quiz.</strong> Complétez juste vos coordonnées et envoyez — le message contient déjà le format que vous avez choisi.
           </span>
         </div>
       )}
