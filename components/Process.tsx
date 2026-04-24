@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { useLang } from './LanguageContext'
+import { CALENDLY_URL } from '../lib/cta-config'
 
 // ─── Scroll-reveal hook ────────────────────────────────────────────────────────
 function useInView(threshold = 0.15) {
@@ -319,13 +320,24 @@ export default function Process() {
           }}
         >
           <a
-            href="/contact"
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#3D6DB8] text-white font-semibold px-7 py-3.5 rounded-full hover:bg-[#2D5A9E] hover:-translate-y-0.5 shadow-md hover:shadow-lg transition-all duration-200"
           >
-            {lang === 'fr' ? 'Démarrer par un appel de 30 min' : 'Start with a 30-min call'}
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
+            {lang === 'fr' ? 'Réserver 30 min' : 'Book 30 min'}
+          </a>
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-2 bg-white text-[#1A2B4A] font-semibold px-7 py-3.5 rounded-full border border-[#D1D9E2] hover:border-[#3D6DB8] hover:text-[#3D6DB8] hover:-translate-y-0.5 transition-all duration-200"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            {lang === 'fr' ? 'Ou m’écrire' : 'Or write to me'}
           </a>
           <p className="text-xs text-[#6B7E95]">
             {lang === 'fr' ? 'Sans engagement · Réponse sous 24h' : 'No commitment · Reply within 24h'}
@@ -335,4 +347,4 @@ export default function Process() {
       </div>
     </section>
   )
-}
+      }
