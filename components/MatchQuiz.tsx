@@ -1,7 +1,7 @@
 'use client'
 import { useState, useMemo, useEffect } from 'react'
 import { useLang } from './LanguageContext'
-import { formations } from './formations-data'
+import { formations, QUIZ_SLOT_RANK } from './formations-data'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // MatchQuiz — mini-quiz de pré-qualification (3 questions → recommandation)
@@ -164,24 +164,9 @@ const COPY: Record<'fr' | 'en', Copy> = {
 const AUDIENCE_ORDER: AudienceKey[] = ['codir', 'managers', 'teams', 'self']
 const DURATION_ORDER: DurationKey[] = ['half', 'day', 'twoThree', 'program']
 
-// Rang numérique des slots de durée (pour comparer proposé vs recommandé).
-const DURATION_RANK: Record<DurationKey, number> = {
-  half: 1,
-  day: 2,
-  twoThree: 3,
-  program: 4,
-}
-
-// Durée minimum recommandée par formation (dérivée de formations-data.ts).
-// Si le visiteur choisit un slot inférieur → warning soft (pas de blocage).
-const MIN_DURATION_BY_SLUG: Record<string, DurationKey> = {
-  'rh-marque-employeur': 'twoThree',     // 2,5 jours
-  'posture-professionnelle': 'twoThree', // 2 jours
-  'prevention-rps': 'twoThree',          // 2 jours
-  'strategie-entreprise': 'twoThree',    // 3 jours
-  'soft-skills': 'twoThree',             // 2 jours
-  'spine-up': 'program',                 // 3,5 jours étalés sur 3 mois
-}
+// La source de vérité du slot recommandé pour chaque formation est dans
+// formations-data.ts (champ format.quizSlot). On utilise QUIZ_SLOT_RANK
+// importé pour comparer "proposé vs recommandé" et déclencher le warning soft.
 
 // Persistance sessionStorage (scope onglet, RGPD-exempt : storage strictement
 // nécessaire au fonctionnement du service demandé par l'utilisateur).
@@ -352,12 +337,13 @@ export default function MatchQuiz() {
 
   const reco = useMemo(() => getRecommendation(answers), [answers])
 
-  // Warning durée : choisi < recommandé ?
+  // Warning durée : slot choisi < slot recommandé par la formation ?
+  // (recommandation lue depuis formations-data.ts → format.quizSlot)
   const durationWarning = useMemo(() => {
     if (!reco || !answers.duration) return null
-    const minKey = MIN_DURATION_BY_SLUG[reco.slug]
-    if (!minKey) return null
-    if (DURATION_RANK[answers.duration] < DURATION_RANK[minKey]) {
+    const recoSlot = reco.format.quizSlot
+    if (!recoSlot) return null
+    if (QUIZ_SLOT_RANK[answers.duration] < QUIZ_SLOT_RANK[recoSlot]) {
       return { officialFormat: reco.format.duration }
     }
     return null
