@@ -325,12 +325,6 @@ export default function Hero() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </a>
-                <a
-                  href="/formations"
-                  className="inline-flex items-center gap-2 text-[#3D6DB8] font-semibold px-5 py-3 rounded-full border border-[#3D6DB8]/30 hover:bg-[#3D6DB8]/6 hover:-translate-y-0.5 transition-all duration-200"
-                >
-                  Voir les formations
-                </a>
               </div>
             </FadeIn>
             <FadeIn direction="left" delay={540}>
