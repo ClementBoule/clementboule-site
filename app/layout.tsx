@@ -3,7 +3,7 @@ import './globals.css'
 import { LanguageProvider } from '@/components/LanguageContext'
 import HomeFab from '@/components/HomeFab'
 
-/* ─── Metadata optimisées SEO + GEO ─────────────────────────────────────── */
+/* ─── Metadata optimisées SEO + GEO ──────────────────────── */
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.clementboule.fr'),
 
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: '%s | Clément Boulé',
   },
   description:
-    'Formateur, consultant et coach en entreprise à Paris. J\'accompagne dirigeants et équipes en français et en anglais — business schools, grands groupes, PME. Spécialiste développement des compétences, management et stratégie.',
+    'Formateur consultant coach bilingue FR/EN à Paris. J\'accompagne dirigeants, managers et équipes en business schools, PME et grands groupes.',
 
   keywords: [
     // FR – core
@@ -85,7 +85,6 @@ export const metadata: Metadata = {
     canonical: 'https://www.clementboule.fr',
     languages: {
       'fr-FR': 'https://www.clementboule.fr',
-      'en-GB': 'https://www.clementboule.fr/en',
     },
   },
   robots: {
@@ -185,40 +184,105 @@ const jsonLd = {
       ],
     },
 
-    /* FAQ Schema (GEO gold) */
+    /* FAQ Schema (GEO gold) — synchronisé avec /faq */
     {
       '@type': 'FAQPage',
+      '@id': 'https://www.clementboule.fr/faq#faqpage',
       mainEntity: [
         {
           '@type': 'Question',
-          name: 'Qu\'est-ce qu\'un formateur consultant coach en entreprise ?',
+          name: 'Tu proposes des formations finançables OPCO ?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Un formateur consultant coach en entreprise est un professionnel qui combine trois rôles : il forme les équipes sur des compétences précises, conseille les dirigeants sur leur stratégie, et accompagne individuellement les managers et collaborateurs dans leur développement. Clément Boulé exerce ces trois missions, en français et en anglais, à Paris.',
+            text: "Non. Je travaille en direct avec mes clients — pas de certification Qualiopi, pas de parcours OPCO. Ça me permet de construire des programmes vraiment sur-mesure, sans contrainte administrative, et de m'adapter en temps réel à vos équipes.",
           },
         },
         {
           '@type': 'Question',
-          name: 'Clément Boulé intervient-il en business schools ?',
+          name: "En quoi tu te différencies d'un organisme de formation classique ?",
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Oui, Clément Boulé intervient régulièrement dans plusieurs business schools et grandes écoles à Paris, en tant que formateur et conférencier bilingue (français/anglais), sur des thématiques de management, leadership et développement des compétences.',
+            text: "Je ne vends pas un catalogue. Chaque programme est conçu à partir de vos enjeux réels. Je travaille seul — ce qui garantit une cohérence totale entre le diagnostic, la conception et l'animation. Et je m'adapte en cours de session si la dynamique de groupe le demande.",
           },
         },
         {
           '@type': 'Question',
-          name: 'Propose-t-il des formations en anglais ?',
+          name: 'Tu travailles avec quel type de clients ?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Oui, Clément Boulé propose l\'ensemble de ses formations, sessions de coaching et interventions en entreprise en français et en anglais. Il est formateur consultant bilingue basé à Paris.',
+            text: "Business schools et grandes écoles parisiennes, PME, grandes entreprises, associations, institutions publiques. Ce qui varie, c'est le secteur — pas l'exigence. Je travaille en français et en anglais.",
           },
         },
         {
           '@type': 'Question',
-          name: 'Comment contacter Clément Boulé pour une formation ou un coaching ?',
+          name: "Quelle est la durée minimale d'une intervention ?",
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Vous pouvez contacter Clément Boulé directement via le formulaire de contact sur son site clementboule.fr, ou via son profil LinkedIn et Malt. Il est basé à Paris et intervient en France et à l\'international.',
+            text: "Une demi-journée (3h30) est le format minimum. La plupart de mes modules se déploient sur 1 à 2 jours. Pour le coaching individuel, je travaille sur des séquences de 3 à 6 séances.",
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Tu interviens en présentiel ou à distance ?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Les deux. Le présentiel reste le format le plus efficace pour créer de la dynamique de groupe. Le distanciel fonctionne bien pour le coaching individuel et les modules de suivi.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Tu peux venir dans nos locaux ?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: "Oui, je me déplace en Île-de-France et dans toute la France selon les projets. Pour les interventions hors Paris, des frais de déplacement s'appliquent selon les conditions définies au devis.",
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Quel est le nombre de participants idéal ?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: "Pour les formations, entre 8 et 20 participants est l'optimum. En dessous, la dynamique de groupe est limitée. Au-delà, la personnalisation devient plus difficile. Pour le coaching, je travaille en individuel ou en binôme.",
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Quels sont tes tarifs ?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: "Je facture à la journée ou au module selon la nature du projet. Tous les devis sont sur-mesure — contacte-moi pour qu'on évalue ensemble ce qui correspond à ton besoin.",
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Comment se passe la facturation ?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: "Je suis auto-entrepreneur (SIRET disponible sur demande). Je facture après prestation avec délai de paiement à 30 jours. Un acompte peut être demandé pour les projets d'envergure.",
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Vous pouvez fournir un numéro SIRET pour la comptabilité ?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Oui, toutes les informations légales sont disponibles sur demande et apparaissent sur chaque facture.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: "C'est quoi le test DISC proposé sur le site ?",
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: "Le DISC est un outil d'analyse comportementale qui identifie 4 profils : Dominant, Influent, Stable, Consciencieux. Il est utilisé en coaching et en formation pour améliorer la communication, le management et la dynamique d'équipe. Le test sur le site est une version gratuite et indicative.",
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Tu peux animer des ateliers DISC en entreprise ?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: "Oui, c'est une de mes spécialités. Je propose des ateliers DISC de demi-journée ou d'une journée pour les équipes — idéal pour améliorer la communication interne, prévenir les conflits et renforcer la cohésion.",
           },
         },
       ],
@@ -243,6 +307,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        {/* Cloudflare Web Analytics — gratuit, RGPD-natif (cookieless, anonyme) */}
+        <script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "978174ed0d3a40eab4ab55b09079714a"}'
         />
       </head>
       <body>
