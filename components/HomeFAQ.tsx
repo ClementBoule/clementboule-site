@@ -4,11 +4,11 @@ import { useLang } from './LanguageContext'
 
 const FAQ_FR = [
   {
-    q: "Tu proposes des formations finançables OPCO ?",
-    a: "Non. Je travaille en direct avec mes clients — pas de certification Qualiopi, pas de parcours OPCO. Ça me permet de construire des programmes vraiment sur-mesure, sans contrainte administrative, et de m'adapter en temps réel. Si votre besoin est un catalogue standard financé, je ne suis probablement pas le bon interlocuteur.",
+    q: "Vous proposez des formations finançables OPCO ?",
+    a: "Non. Je travaille en direct avec mes clients — pas de certification Qualiopi, pas de parcours OPCO. Ça me permet de construire des programmes vraiment sur-mesure, sans contrainte administrative, et d'ajuster en cours de route. Si votre besoin est un catalogue standard financé, je ne suis probablement pas le bon interlocuteur.",
   },
   {
-    q: "Tu interviens en anglais ?",
+    q: "Vous intervenez en anglais ?",
     a: "Oui. Je suis bilingue FR / EN et j'anime régulièrement des formations, des coachings et des conférences en anglais — notamment pour des business schools et des équipes internationales.",
   },
   {
@@ -16,7 +16,7 @@ const FAQ_FR = [
     a: "Une demi-journée (3h30) est le format minimum pour créer une vraie dynamique de groupe. La plupart de mes modules se déploient sur 1 à 2 jours. Pour le coaching individuel, je travaille sur des séquences de 3 à 6 séances.",
   },
   {
-    q: "Tu travailles avec des grandes écoles ?",
+    q: "Vous travaillez avec des grandes écoles ?",
     a: "Oui, c'est une part importante de mon activité. J'interviens dans plusieurs business schools et grandes écoles parisiennes, sur des modules de management, leadership et développement des compétences.",
   },
   {
