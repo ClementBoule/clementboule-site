@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { formations, getFormation, getNextFormation, getPrevFormation } from '../../../components/formations-data'
+import { formations, getFormation, getNextFormation, getPrevFormation, QUIZ_SLOT_LABELS } from '../../../components/formations-data'
 
 // ─── Pré-génération statique des 6 slugs ──────────────────────────────────────
 export function generateStaticParams() {
@@ -284,16 +284,28 @@ export default async function FormationDetailPage({
               </p>
               <h2 className="text-2xl md:text-3xl font-bold text-[#1A2B4A] mb-6">Modalités pratiques</h2>
               <div className="space-y-4">
+                {/* Card Durée — slot quiz prominent (cohérent avec MatchQuiz)
+                    + précision en sous-titre. Le badge accent reprend le wording
+                    exact des 4 options du quiz : Demi-journée / 1 journée / 2 à 3 jours / Parcours étalé. */}
+                <div className="flex items-start gap-4 p-4 rounded-xl bg-white border border-[#1A2B4A]/8">
+                  <span className="text-[#3D6DB8] mt-0.5 flex-shrink-0">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </span>
+                  <div className="flex-1">
+                    <p className="text-xs text-[#6B7E95] uppercase tracking-widest font-semibold mb-2">Durée</p>
+                    <span
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold"
+                      style={{ background: f.bg, color: f.accent }}
+                    >
+                      {QUIZ_SLOT_LABELS[f.format.quizSlot]}
+                    </span>
+                    <p className="text-xs text-[#6B7E95] mt-1.5">{f.format.duration}</p>
+                  </div>
+                </div>
+
                 {[
-                  {
-                    label: 'Durée',
-                    value: f.format.duration,
-                    icon: (
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    ),
-                  },
                   {
                     label: 'Mode',
                     value: f.format.mode,
