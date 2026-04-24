@@ -414,9 +414,10 @@ export default function Hero() {
           <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
             <div className="space-y-5">
               <FadeIn direction="left" delay={80}>
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-none tracking-tight text-[#2D1A4A]">
+                {/* h2 (et non h1) pour éviter le doublon avec la couche pro — un seul h1 par page = bonne pratique SEO */}
+                <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-none tracking-tight text-[#2D1A4A]">
                   Clément Boulé
-                </h1>
+                </h2>
               </FadeIn>
               <FadeIn direction="left" delay={200}>
                 <p className="text-xl md:text-2xl font-semibold text-[#7B3DB8]">
@@ -453,7 +454,7 @@ export default function Hero() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-xs font-medium text-[#7B3DB8]/80 hover:text-[#7B3DB8] bg-[#7B3DB8]/8 hover:bg-[#7B3DB8]/14 px-3 py-1.5 rounded-full border border-[#7B3DB8]/20 hover:border-[#7B3DB8]/40 transition-colors"
                   >
-                    <img src="/logos/linkedin.png" alt="" style={{ height: '14px', width: 'auto', objectFit: 'contain' }} />
+                    <img src="/logos/linkedin.png" alt="LinkedIn" style={{ height: '14px', width: 'auto', objectFit: 'contain' }} />
                     +2 500 XP en accompagnement
                   </a>
                   <a
@@ -462,7 +463,7 @@ export default function Hero() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-xs font-medium text-[#B8843D]/80 hover:text-[#B8843D] bg-[#B8843D]/8 hover:bg-[#B8843D]/14 px-3 py-1.5 rounded-full border border-[#B8843D]/20 hover:border-[#B8843D]/40 transition-colors"
                   >
-                    <img src="/logos/malt.png" alt="" style={{ height: '14px', width: 'auto', objectFit: 'contain' }} />
+                    <img src="/logos/malt.png" alt="Malt" style={{ height: '14px', width: 'auto', objectFit: 'contain' }} />
                     Guilde des Aventuriers
                   </a>
                 </div>
