@@ -1,11 +1,9 @@
 'use client'
 
 // ─── Chiffres clés ────────────────────────────────────────────────────────────
-// Source : 25 participants × 15 sessions × 5 ans d'activité
 const STATS = [
   { value: '+1 800', label: 'participants formés' },
-  { value: '5 ans', label: "d'expérience terrain" },
-  { value: '15', label: 'sessions animées / an' },
+  { value: '10 ans', label: "d'accompagnement" },
   { value: 'FR / EN', label: 'Bilingue' },
 ]
 
@@ -19,7 +17,7 @@ const PILLARS = [
       </svg>
     ),
     title: 'Bilingue FR / EN',
-    desc: 'Formations et accompagnements en français et en anglais. Adapté aux équipes internationales ou aux contextes cross-culturels.',
+    desc: "Je forme en français et en anglais. Pratique pour les équipes internationales ou les contextes multiculturels.",
   },
   {
     icon: (
@@ -41,7 +39,7 @@ const PILLARS = [
       </svg>
     ),
     title: 'La posture avant le contenu',
-    desc: "Ce qui change durablement, c'est comment les personnes se positionnent — pas juste ce qu'elles savent. L'ancrage comportemental est au cœur de chaque intervention.",
+    desc: "Ce qui change vraiment, c'est la façon dont les gens se positionnent — pas juste ce qu'ils savent. C'est ça qui reste après la formation.",
   },
 ]
 
@@ -59,7 +57,7 @@ export default function Proof() {
       <div className="max-w-6xl mx-auto px-6">
 
         {/* Chiffres clés */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 mb-16 md:mb-20">
+        <div className="grid grid-cols-3 gap-6 md:gap-10 mb-16 md:mb-20">
           {STATS.map((s, i) => (
             <div
               key={s.label}
@@ -86,7 +84,7 @@ export default function Proof() {
             Pourquoi travailler ensemble
           </p>
           <h2 className="text-2xl md:text-3xl font-bold text-[#1A2B4A] max-w-xl mx-auto leading-tight">
-            Une approche qui change ce qui dure
+            Ce qui fait la différence
           </h2>
         </div>
 
