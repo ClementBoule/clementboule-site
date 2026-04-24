@@ -3,6 +3,27 @@
 // Utilisé par : components/Formations.tsx + app/formations/[slug]/page.tsx
 // ────────────────────────────────────────────────────────────────────────────
 
+// Slots de durée alignés avec les options du MatchQuiz (3e question).
+// La source de vérité du slot recommandé pour chaque formation est ICI
+// (champ format.quizSlot), réutilisée par le quiz pour calculer le warning.
+export type QuizSlot = 'half' | 'day' | 'twoThree' | 'program'
+
+export const QUIZ_SLOT_LABELS: Record<QuizSlot, string> = {
+  half: 'Demi-journée',
+  day: '1 journée',
+  twoThree: '2 à 3 jours',
+  program: 'Parcours étalé',
+}
+
+// Rang numérique des slots — utilisé pour comparer "format demandé" vs
+// "format recommandé" (ex: half=1 < twoThree=3 → warning).
+export const QUIZ_SLOT_RANK: Record<QuizSlot, number> = {
+  half: 1,
+  day: 2,
+  twoThree: 3,
+  program: 4,
+}
+
 export type FormationPhase = {
   step: string
   title: string
@@ -35,7 +56,8 @@ export type Formation = {
   workshops: FormationWorkshop[] // ateliers et exercices
   tools: string[] // outils & frameworks utilisés
   format: {
-    duration: string
+    quizSlot: QuizSlot // slot du quiz correspondant (ex: 'twoThree' = "2 à 3 jours")
+    duration: string // précision exacte (ex: "2,5 jours, modulable")
     mode: string // présentiel / distanciel / mixte
     groupSize: string
     pricing: string // "Sur devis" par défaut
@@ -101,6 +123,7 @@ export const formations: Formation[] = [
       'Templates de communication interne',
     ],
     format: {
+      quizSlot: 'twoThree',
       duration: '2,5 jours (modulable)',
       mode: 'Présentiel ou distanciel',
       groupSize: '8 à 15 participants',
@@ -163,6 +186,7 @@ export const formations: Formation[] = [
       "Cadre des \"5 postures de management\" (Mintzberg adapté)",
     ],
     format: {
+      quizSlot: 'twoThree',
       duration: '2 jours',
       mode: 'Présentiel uniquement (vidéo nécessaire)',
       groupSize: '6 à 10 participants',
@@ -225,6 +249,7 @@ export const formations: Formation[] = [
       'Cartographie des ressources internes (médecine du travail, EAP, CSE)',
     ],
     format: {
+      quizSlot: 'twoThree',
       duration: '2 jours',
       mode: 'Présentiel ou distanciel',
       groupSize: '8 à 12 participants',
@@ -288,6 +313,7 @@ export const formations: Formation[] = [
       'Business Model Canvas',
     ],
     format: {
+      quizSlot: 'twoThree',
       duration: '3 jours (modulable en séminaire)',
       mode: 'Présentiel recommandé',
       groupSize: 'COMEX (6-12 personnes) ou managers (10-15)',
@@ -350,6 +376,7 @@ export const formations: Formation[] = [
       'Roue des émotions (Plutchik)',
     ],
     format: {
+      quizSlot: 'twoThree',
       duration: '2 jours',
       mode: 'Présentiel ou distanciel',
       groupSize: '8 à 12 participants',
@@ -419,6 +446,7 @@ export const formations: Formation[] = [
       'Argumentaire STAR (Situation, Task, Action, Result)',
     ],
     format: {
+      quizSlot: 'program',
       duration: '3,5 jours étalés sur 3 mois',
       mode: 'Présentiel + suivi distanciel individuel',
       groupSize: '6 à 8 participants (cohorte fermée)',
