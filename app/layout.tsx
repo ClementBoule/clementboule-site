@@ -191,7 +191,7 @@ const jsonLd = {
       mainEntity: [
         {
           '@type': 'Question',
-          name: 'Tu proposes des formations finançables OPCO ?',
+          name: 'Vous proposez des formations finançables OPCO ?',
           acceptedAnswer: {
             '@type': 'Answer',
             text: "Non. Je travaille en direct avec mes clients — pas de certification Qualiopi, pas de parcours OPCO. Ça me permet de construire des programmes vraiment sur-mesure, sans contrainte administrative, et de m'adapter en temps réel à vos équipes.",
@@ -199,7 +199,7 @@ const jsonLd = {
         },
         {
           '@type': 'Question',
-          name: "En quoi tu te différencies d'un organisme de formation classique ?",
+          name: "En quoi vous différenciez-vous d'un organisme de formation classique ?",
           acceptedAnswer: {
             '@type': 'Answer',
             text: "Je ne vends pas un catalogue. Chaque programme est conçu à partir de vos enjeux réels. Je travaille seul — ce qui garantit une cohérence totale entre le diagnostic, la conception et l'animation. Et je m'adapte en cours de session si la dynamique de groupe le demande.",
@@ -207,7 +207,7 @@ const jsonLd = {
         },
         {
           '@type': 'Question',
-          name: 'Tu travailles avec quel type de clients ?',
+          name: 'Vous travaillez avec quel type de clients ?',
           acceptedAnswer: {
             '@type': 'Answer',
             text: "Business schools et grandes écoles parisiennes, PME, grandes entreprises, associations, institutions publiques. Ce qui varie, c'est le secteur — pas l'exigence. Je travaille en français et en anglais.",
@@ -223,7 +223,7 @@ const jsonLd = {
         },
         {
           '@type': 'Question',
-          name: 'Tu interviens en présentiel ou à distance ?',
+          name: 'Vous intervenez en présentiel ou à distance ?',
           acceptedAnswer: {
             '@type': 'Answer',
             text: 'Les deux. Le présentiel reste le format le plus efficace pour créer de la dynamique de groupe. Le distanciel fonctionne bien pour le coaching individuel et les modules de suivi.',
@@ -231,7 +231,7 @@ const jsonLd = {
         },
         {
           '@type': 'Question',
-          name: 'Tu peux venir dans nos locaux ?',
+          name: 'Pouvez-vous venir dans nos locaux ?',
           acceptedAnswer: {
             '@type': 'Answer',
             text: "Oui, je me déplace en Île-de-France et dans toute la France selon les projets. Pour les interventions hors Paris, des frais de déplacement s'appliquent selon les conditions définies au devis.",
@@ -247,10 +247,10 @@ const jsonLd = {
         },
         {
           '@type': 'Question',
-          name: 'Quels sont tes tarifs ?',
+          name: 'Quels sont vos tarifs ?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: "Je facture à la journée ou au module selon la nature du projet. Tous les devis sont sur-mesure — contacte-moi pour qu'on évalue ensemble ce qui correspond à ton besoin.",
+            text: "Je facture à la journée ou au module selon la nature du projet. Tous les devis sont sur-mesure — contactez-moi pour qu'on évalue ensemble ce qui correspond à votre besoin.",
           },
         },
         {
@@ -279,7 +279,7 @@ const jsonLd = {
         },
         {
           '@type': 'Question',
-          name: 'Tu peux animer des ateliers DISC en entreprise ?',
+          name: 'Pouvez-vous animer des ateliers DISC en entreprise ?',
           acceptedAnswer: {
             '@type': 'Answer',
             text: "Oui, c'est une de mes spécialités. Je propose des ateliers DISC de demi-journée ou d'une journée pour les équipes — idéal pour améliorer la communication interne, prévenir les conflits et renforcer la cohésion.",
