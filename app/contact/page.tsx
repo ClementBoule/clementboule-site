@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ContactForm from '@/components/ContactForm'
@@ -92,7 +93,12 @@ export default function Contact() {
               <p className="text-sm text-[#6B7E95] mb-6">
                 Remplissez le formulaire — votre client email s&apos;ouvrira avec tout pré-rempli.
               </p>
-              <ContactForm />
+              {/* Suspense requis : ContactForm utilise useSearchParams pour pre-remplir
+                  les champs depuis MatchQuiz (?type=...&message=...). Sans Suspense,
+                  Next.js 14 throws missing-suspense-with-csr-bailout au build. */}
+              <Suspense fallback={<div className="h-[420px] animate-pulse bg-[#F8FAFE] rounded-xl" />}>
+                <ContactForm />
+              </Suspense>
             </div>
 
           </div>
