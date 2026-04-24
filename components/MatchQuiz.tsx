@@ -30,7 +30,15 @@ type Copy = {
   steps: {
     audience: { q: string; options: Record<AudienceKey, string> }
     topic: { q: string }
-    duration: { q: string; options: Record<DurationKey, string> }
+    duration: {
+      q: string
+      options: Record<DurationKey, string>
+      // Sous-titre court par option — explicite ce que chaque slot signifie sur
+      // le marché B2B intra (atelier découverte / module focus / format standard /
+      // sur plusieurs mois). Évite que le visiteur cliquant "Demi-journée" pense
+      // qu'on lui livrera 2 jours en condensé.
+      optionsDesc?: Record<DurationKey, string>
+    }
   }
   progress: (current: number, total: number) => string
   back: string
@@ -81,6 +89,12 @@ const COPY: Record<'fr' | 'en', Copy> = {
           twoThree: '2 à 3 jours',
           program: 'Parcours étalé',
         },
+        optionsDesc: {
+          half: 'Atelier découverte',
+          day: 'Module focus',
+          twoThree: 'Format standard',
+          program: 'Sur plusieurs mois',
+        },
       },
     },
     progress: (c, t) => `Étape ${c} sur ${t}`,
@@ -97,7 +111,7 @@ const COPY: Record<'fr' | 'en', Copy> = {
       durationLabel: 'Format',
       warningTitle: 'À cadrer ensemble',
       warningBody: (official) =>
-        `Le format complet de cette formation est ${official}. Une version condensée reste possible, mais elle mérite un cadrage en amont pour ne rien sacrifier de l'efficacité.`,
+        `Le format complet de cette formation est ${official}. Une version condensée peut tout à fait être proposée — parlons-en pour cadrer ce qui correspond à votre besoin.`,
     },
     mailto: {
       subject: (t) => `[clementboule.fr] Projet formation — ${t}`,
@@ -131,6 +145,12 @@ const COPY: Record<'fr' | 'en', Copy> = {
           twoThree: '2 to 3 days',
           program: 'Extended program',
         },
+        optionsDesc: {
+          half: 'Discovery workshop',
+          day: 'Focus module',
+          twoThree: 'Standard format',
+          program: 'Over several months',
+        },
       },
     },
     progress: (c, t) => `Step ${c} of ${t}`,
@@ -147,7 +167,7 @@ const COPY: Record<'fr' | 'en', Copy> = {
       durationLabel: 'Format',
       warningTitle: "Let's frame it together",
       warningBody: (official) =>
-        `The full format for this training is ${official}. A condensed version remains possible but deserves upfront framing to preserve effectiveness.`,
+        `The full format for this training is ${official}. A condensed version is absolutely possible — let's talk to scope what fits your need.`,
     },
     mailto: {
       subject: (t) => `[clementboule.fr] Training project — ${t}`,
@@ -239,11 +259,15 @@ function getRecommendation(answers: Answers) {
 // ─── Primitive : chip button ─────────────────────────────────────────────────
 function Chip({
   label,
+  description,
   selected,
   accent,
   onClick,
 }: {
   label: string
+  /** Sous-titre optionnel sous le label (ex: "Atelier découverte" pour
+   *  qualifier l'option "Demi-journée" en étape 3 du quiz). */
+  description?: string
   selected: boolean
   accent?: string
   onClick: () => void
@@ -277,7 +301,15 @@ function Chip({
         el.style.transform = 'translateY(0)'
       }}
     >
-      {label}
+      <span className="block">{label}</span>
+      {description && (
+        <span
+          className="block text-[11px] font-normal mt-0.5"
+          style={{ opacity: selected ? 0.85 : 0.6 }}
+        >
+          {description}
+        </span>
+      )}
     </button>
   )
 }
@@ -472,6 +504,7 @@ export default function MatchQuiz() {
               <Chip
                 key={key}
                 label={copy.steps.duration.options[key]}
+                description={copy.steps.duration.optionsDesc?.[key]}
                 selected={answers.duration === key}
                 accent={currentAccent}
                 onClick={() => pickDuration(key)}
