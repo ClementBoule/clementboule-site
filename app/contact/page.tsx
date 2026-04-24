@@ -3,6 +3,7 @@ import { Suspense } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ContactForm from '@/components/ContactForm'
+import { CALENDLY_URL } from '@/lib/cta-config'
 
 export const metadata: Metadata = {
   title: 'Contact',
@@ -17,6 +18,26 @@ export default function Contact() {
 
       <section className="pt-32 pb-20 bg-gradient-to-br from-[#F5F7FB] via-[#EEF3FA] to-[#F5F0FB]">
         <div className="max-w-6xl mx-auto px-6">
+
+          {/* Bandeau — appel direct via Calendly */}
+          <div className="mb-10 bg-white rounded-2xl border border-[#3D6DB8]/15 shadow-sm p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <p className="text-sm font-semibold text-[#1A2B4A] mb-0.5">Vous préférez un appel direct ?</p>
+              <p className="text-sm text-[#6B7E95]">Réservez un créneau de 30 min — sinon, remplissez le formulaire ci-dessous.</p>
+            </div>
+            <a
+              href={CALENDLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-[#3D6DB8] text-white font-semibold px-5 py-2.5 rounded-full hover:bg-[#2D5A9E] shadow-sm hover:shadow-md transition-all duration-200 shrink-0"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              Réserver 30 min
+            </a>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-16 items-start">
 
             {/* Left — infos de contact */}
