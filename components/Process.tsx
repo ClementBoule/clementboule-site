@@ -61,15 +61,15 @@ const STEPS_FR = [
   },
   {
     number: '03',
-    title: 'Déploiement',
-    desc: "Les sessions se déroulent en présentiel ou à distance. Chaque module est adapté à vos équipes en temps réel.",
+    title: 'On démarre',
+    desc: "Les sessions se font en présentiel ou à distance. J'ajuste le contenu selon ce qui se passe vraiment dans le groupe.",
     badge: 'Présentiel / Distanciel',
     detail: 'France entière',
   },
   {
     number: '04',
-    title: 'Debriefing & suivi',
-    desc: "Un bilan post-formation avec indicateurs concrets. Je reste disponible pour ancrer les acquis dans la durée.",
+    title: 'Bilan & suivi',
+    desc: "Un bilan après la formation, avec des points concrets. Je reste joignable pour les questions qui arrivent dans les semaines qui suivent.",
     badge: 'Suivi inclus',
     detail: '3 mois d\'accompagnement',
   },
@@ -92,15 +92,15 @@ const STEPS_EN = [
   },
   {
     number: '03',
-    title: 'Delivery',
-    desc: "Sessions run in person or remotely. Each module is adapted to your teams in real time.",
+    title: 'We start',
+    desc: "Sessions run in person or remotely. I adjust the content based on what's actually happening in the group.",
     badge: 'In-person / Remote',
     detail: 'All of France',
   },
   {
     number: '04',
     title: 'Debrief & follow-up',
-    desc: "A post-training review with concrete indicators. I stay available to anchor the learnings over time.",
+    desc: "A post-training review with concrete points. I stay reachable for the questions that come up in the weeks that follow.",
     badge: 'Follow-up included',
     detail: '3 months support',
   },
@@ -232,7 +232,7 @@ function Connector({ inView, index }: { inView: boolean; index: number }) {
   )
 }
 
-// ─── Main component ────────────────────────────────────────────────────────────
+// ─── Main component ───────────────────────────────────────────────────────────
 export default function Process() {
   const { lang } = useLang()
   const steps = lang === 'fr' ? STEPS_FR : STEPS_EN
@@ -263,8 +263,8 @@ export default function Process() {
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-[#1A2B4A] leading-tight mb-4">
             {lang === 'fr'
-              ? "De l'intention à l'impact, en 4 étapes"
-              : 'From intention to impact, in 4 steps'}
+              ? "Comment on démarre, en 4 étapes"
+              : 'How we get started, in 4 steps'}
           </h2>
           <p className="text-sm text-[#6B7E95] leading-relaxed">
             {lang === 'fr'
