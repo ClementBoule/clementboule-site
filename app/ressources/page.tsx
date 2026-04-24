@@ -5,7 +5,7 @@ import FinalCTA from '@/components/FinalCTA'
 
 export const metadata: Metadata = {
   title: 'Ressources',
-  description: "Ressources gratuites de Clement Boule — test DISC, guides sur le management, le leadership et le developpement professionnel.",
+  description: "Ressources gratuites de Clément Boulé — test DISC, guides sur le management, le leadership et le développement professionnel.",
   alternates: { canonical: 'https://www.clementboule.fr/ressources' },
 }
 
@@ -13,7 +13,7 @@ const RESSOURCES = [
   {
     category: 'Outil interactif',
     title: 'Test DISC gratuit',
-    desc: "Decouvrez votre profil comportemental DISC en 10 minutes. Outil indicatif, sans inscription, disponible en francais.",
+    desc: "Découvrez votre profil comportemental DISC en 10 minutes. Outil indicatif, sans inscription, disponible en français.",
     cta: 'Faire le test',
     href: '/test-disc',
     tag: 'Gratuit',
@@ -21,41 +21,41 @@ const RESSOURCES = [
   },
   {
     category: 'Formation',
-    title: 'Les 6 thematiques de formation',
-    desc: "Decouvrez l'ensemble des modules proposes : RH, posture professionnelle, RPS, strategie, soft skills et Spine'Up.",
+    title: 'Les 6 thématiques de formation',
+    desc: "Découvrez l'ensemble des modules proposés : RH, posture professionnelle, RPS, stratégie, soft skills et Spine'Up.",
     cta: 'Voir les formations',
     href: '/formations',
     tag: 'Sur-mesure',
   },
   {
-    category: 'Presentation',
-    title: 'A propos de Clement Boule',
-    desc: "Parcours professionnel, valeurs, experience terrain. Tout ce qui compte pour evaluer si on peut travailler ensemble.",
+    category: 'Présentation',
+    title: 'À propos de Clément Boulé',
+    desc: "Parcours professionnel, valeurs, expérience terrain. Tout ce qui compte pour évaluer si on peut travailler ensemble.",
     cta: 'Lire le profil',
     href: '/a-propos',
     tag: 'Profil',
   },
   {
     category: 'FAQ',
-    title: 'Questions frequentes',
-    desc: "Tarifs, formats, logistique, DISC, facturation — toutes les reponses aux questions les plus courantes avant de demarrer.",
+    title: 'Questions fréquentes',
+    desc: "Tarifs, formats, logistique, DISC, facturation — toutes les réponses aux questions les plus courantes avant de démarrer.",
     cta: 'Lire la FAQ',
     href: '/faq',
     tag: 'Pratique',
   },
   {
-    category: 'Reference externe',
+    category: 'Référence externe',
     title: 'Profil LinkedIn',
-    desc: "Recommandations clients, historique professionnel complet, posts sur le management et le developpement professionnel.",
+    desc: "Recommandations clients, historique professionnel complet, posts sur le management et le développement professionnel.",
     cta: 'Voir LinkedIn',
     href: 'https://www.linkedin.com/in/cl%C3%A9ment-boul%C3%A9/',
     tag: 'Externe',
     external: true,
   },
   {
-    category: 'Reference externe',
+    category: 'Référence externe',
     title: 'Profil Malt',
-    desc: "Avis clients verifies, historique de missions, disponibilites et tarifs indicatifs sur la plateforme Malt.",
+    desc: "Avis clients vérifiés, historique de missions, disponibilités et tarifs indicatifs sur la plateforme Malt.",
     cta: 'Voir Malt',
     href: 'https://www.malt.fr/profile/clementboule',
     tag: 'Externe',
@@ -72,10 +72,10 @@ export default function Ressources() {
         <div className="max-w-3xl mx-auto px-6 text-center">
           <p className="text-xs font-semibold text-[#3D6DB8] uppercase tracking-widest mb-4">Ressources</p>
           <h1 className="text-4xl md:text-5xl font-bold text-[#1A2B4A] leading-tight mb-6">
-            Outils & references
+            Outils & références
           </h1>
           <p className="text-base text-[#6B7E95] leading-relaxed">
-            Tout ce qui peut vous aider a mieux comprendre mon approche et a decider si on travaille ensemble.
+            Tout ce qui peut vous aider à mieux comprendre mon approche et à décider si on travaille ensemble.
           </p>
         </div>
       </section>
