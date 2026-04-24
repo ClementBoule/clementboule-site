@@ -398,24 +398,27 @@ export default function MatchQuiz() {
     }, 180)
   }
 
-  // ─── Mailto builder ──────────────────────────────────────────────────────
-  const mailtoHref = useMemo(() => {
-    if (!reco || !answers.audience || !answers.duration) return '#'
+  // ─── CTA primaire builder (redirige vers /contact avec contexte pre-rempli)
+  // V2 : au lieu du mailto externe qui ouvrait le client mail natif,
+  // on reste dans le flow. ContactForm lit ces params via useSearchParams.
+  const ctaPrimaryHref = useMemo(() => {
+    if (!reco || !answers.audience || !answers.duration) return '/contact'
     const audienceLabel = copy.steps.audience.options[answers.audience]
     const durationLabel = copy.steps.duration.options[answers.duration]
-    const subject = encodeURIComponent(copy.mailto.subject(reco.title))
-    const body = encodeURIComponent(
-      [
-        copy.mailto.bodyIntro,
-        '',
-        `• ${copy.mailto.bodyAudience} : ${audienceLabel}`,
-        `• ${copy.mailto.bodyTopic} : ${reco.title}`,
-        `• ${copy.mailto.bodyDuration} : ${durationLabel}`,
-        '',
-        copy.mailto.bodyOutro,
-      ].join('\n')
-    )
-    return `mailto:hello@clementboule.com?subject=${subject}&body=${body}`
+    const message = [
+      copy.mailto.bodyIntro,
+      '',
+      `• ${copy.mailto.bodyAudience} : ${audienceLabel}`,
+      `• ${copy.mailto.bodyTopic} : ${reco.title}`,
+      `• ${copy.mailto.bodyDuration} : ${durationLabel}`,
+      '',
+      copy.mailto.bodyOutro,
+    ].join('\n')
+    const params = new URLSearchParams({
+      type: 'Formation',
+      message,
+    })
+    return `/contact?${params.toString()}`
   }, [reco, answers, copy])
 
   // ─── Rendu : header commun ───────────────────────────────────────────────
@@ -578,7 +581,7 @@ export default function MatchQuiz() {
           {/* CTA primaire + secondaire */}
           <div className="flex flex-col sm:flex-row gap-3">
             <a
-              href={mailtoHref}
+              href={ctaPrimaryHref}
               onClick={() =>
                 trackEvent('quiz_cta_primary_click', {
                   topic: reco.slug,
