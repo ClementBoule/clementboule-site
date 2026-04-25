@@ -9,9 +9,11 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://www.clementboule.fr/faq' },
 }
 
-const FAQ_SECTIONS = [
+const FAQ_SECTIONS: { category: string; color: string; rot: string; items: { q: string; a: string }[] }[] = [
   {
     category: 'Mon approche',
+    color: 'sarcelle',
+    rot: '-rotate-[0.4deg]',
     items: [
       {
         q: "Vous proposez des formations financables OPCO ?",
@@ -29,6 +31,8 @@ const FAQ_SECTIONS = [
   },
   {
     category: 'Formats & logistique',
+    color: 'terracotta',
+    rot: 'rotate-[0.4deg]',
     items: [
       {
         q: "Quelle est la duree minimale d'une intervention ?",
@@ -50,6 +54,8 @@ const FAQ_SECTIONS = [
   },
   {
     category: 'Tarifs & facturation',
+    color: 'cardinal',
+    rot: '-rotate-[0.3deg]',
     items: [
       {
         q: "Quels sont vos tarifs ?",
@@ -67,6 +73,8 @@ const FAQ_SECTIONS = [
   },
   {
     category: 'DISC',
+    color: 'sauge-deep',
+    rot: 'rotate-[0.5deg]',
     items: [
       {
         q: "C'est quoi le test DISC propose sur le site ?",
@@ -82,31 +90,45 @@ const FAQ_SECTIONS = [
 
 export default function FAQ() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-cb-sable">
       <Navbar />
-      <section className="pt-32 pb-16 bg-gradient-to-br from-[#F5F7FB] via-[#EEF3FA] to-[#F5F0FB]">
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <p className="text-xs font-semibold text-[#3D6DB8] uppercase tracking-widest mb-4">FAQ</p>
-          <h1 className="text-4xl md:text-5xl font-bold text-[#1A2B4A] leading-tight mb-6">
-            Questions frequentes
-          </h1>
-          <p className="text-base text-[#6B7E95] leading-relaxed">
-            Tout ce que vous voulez savoir avant de demarrer. Et si votre question n'est pas la, contactez-moi directement.
-          </p>
+
+      {/* Hero */}
+      <section className="pt-28 md:pt-32 pb-16 bg-cb-sable border-t-4 border-cb-encre">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-[2fr_1fr] gap-10 items-end">
+            <div>
+              <span className="inline-block font-marker text-cb-cardinal text-lg -rotate-2 mb-3">
+                ↓ FAQ
+              </span>
+              <h1 className="font-anton text-5xl md:text-7xl lg:text-8xl uppercase leading-[0.92] text-cb-encre">
+                Questions <span className="inline-block bg-cb-sarcelle text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">fréquentes</span>.
+              </h1>
+            </div>
+            <div className="text-base font-medium border-l-4 border-cb-cardinal pl-5 max-w-md text-cb-encre-soft">
+              Tout ce que vous voulez savoir avant de démarrer. Si votre question n&apos;est pas là, contactez-moi.
+            </div>
+          </div>
         </div>
       </section>
-      <section className="py-16 bg-white">
-        <div className="max-w-3xl mx-auto px-6 space-y-14">
+
+      {/* Sections FAQ en cards brutalist polychromes */}
+      <section className="py-16 md:py-20 bg-cb-creme border-t-4 border-cb-encre">
+        <div className="max-w-4xl mx-auto px-6 space-y-12">
           {FAQ_SECTIONS.map((section) => (
-            <div key={section.category}>
-              <h2 className="text-xs font-semibold text-[#3D6DB8] uppercase tracking-widest mb-6">
+            <div
+              key={section.category}
+              className={`bg-white border-[2.5px] border-cb-sauge-deep rounded-sm p-6 md:p-8 ${section.rot}`}
+              style={{ boxShadow: `8px 8px 0 var(--cb-${section.color})` }}
+            >
+              <span className={`inline-block font-anton text-xs uppercase tracking-wider px-2.5 py-1 mb-6 border-2 border-cb-sauge-deep rounded-sm bg-cb-sable text-cb-${section.color}`}>
                 {section.category}
-              </h2>
-              <div className="divide-y divide-[#1A2B4A]/8">
+              </span>
+              <div className="divide-y-2 divide-cb-sauge">
                 {section.items.map((item) => (
-                  <div key={item.q} className="py-6">
-                    <h3 className="text-base font-bold text-[#1A2B4A] mb-3">{item.q}</h3>
-                    <p className="text-sm text-[#6B7E95] leading-relaxed">{item.a}</p>
+                  <div key={item.q} className="py-5 first:pt-0 last:pb-0">
+                    <h3 className="font-anton text-lg md:text-xl uppercase leading-tight text-cb-encre mb-3">{item.q}</h3>
+                    <p className="text-sm md:text-base text-cb-encre-soft leading-relaxed">{item.a}</p>
                   </div>
                 ))}
               </div>
@@ -114,6 +136,7 @@ export default function FAQ() {
           ))}
         </div>
       </section>
+
       <FinalCTA />
       <Footer />
     </main>
