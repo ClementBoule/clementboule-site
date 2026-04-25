@@ -66,7 +66,7 @@ export default async function FormationDetailPage({
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-cb-sable">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -74,16 +74,16 @@ export default async function FormationDetailPage({
 
       {/* ─── HERO FORMATION ─── */}
       <section
-        className="relative pt-24 md:pt-28 pb-12 md:pb-16 overflow-hidden"
+        className="relative pt-28 md:pt-32 pb-12 md:pb-16 overflow-hidden border-t-4 border-cb-encre"
         style={{ backgroundColor: f.bg }}
       >
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <Link
             href="/formations"
-            className="inline-flex items-center gap-2 text-sm text-[#1A2B4A]/50 hover:text-[#1A2B4A] transition-colors mb-6"
+            className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-cb-encre-soft hover:text-cb-cardinal transition-colors mb-6"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
             Toutes les formations
           </Link>
@@ -91,51 +91,46 @@ export default async function FormationDetailPage({
           <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div>
               <span
-                className="inline-block text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-5"
-                style={{
-                  color: f.accent,
-                  backgroundColor: 'rgba(255,255,255,0.85)',
-                  border: `1px solid ${f.accent}33`,
-                }}
+                className="inline-block font-anton text-xs uppercase tracking-wider px-2.5 py-1 mb-5 border-2 border-cb-sauge-deep rounded-sm bg-cb-sable"
+                style={{ color: f.accent }}
               >
                 {f.tag}
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1A2B4A] leading-tight tracking-tight mb-5">
+              <h1 className="font-anton text-5xl md:text-6xl lg:text-7xl uppercase leading-[0.92] text-cb-encre mb-6">
                 {f.title}
               </h1>
-              <p className="text-lg text-[#4A5B70] leading-relaxed mb-8 max-w-xl">{f.intro}</p>
+              <p className="text-base md:text-lg text-cb-encre-soft leading-relaxed mb-8 max-w-xl border-l-4 border-cb-cardinal pl-5">
+                {f.intro}
+              </p>
               <div className="flex flex-wrap gap-3">
                 <a
-                  href="#contact"
-                  className="inline-flex items-center gap-2 text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:-translate-y-0.5 transition-all"
-                  style={{ backgroundColor: f.accent, boxShadow: `0 8px 24px ${f.accent}55` }}
+                  href="/contact"
+                  className="inline-flex items-center gap-2 text-cb-sable font-anton text-sm uppercase tracking-wider border-[2.5px] border-cb-encre px-5 py-3 rounded-sm hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all duration-200"
+                  style={{ backgroundColor: f.accent, boxShadow: '5px 5px 0 var(--cb-encre)' }}
                 >
-                  Demander un devis
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
+                  Demander un devis →
                 </a>
                 <a
                   href="#programme"
-                  className="inline-flex items-center gap-2 font-semibold px-6 py-3 rounded-full border-2 hover:-translate-y-0.5 transition-all"
-                  style={{ borderColor: `${f.accent}44`, color: f.accent }}
+                  className="inline-flex items-center gap-2 bg-cb-sable text-cb-encre font-anton text-sm uppercase tracking-wider border-[2.5px] border-cb-sauge-deep px-5 py-3 rounded-sm hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all duration-200"
+                  style={{ boxShadow: '5px 5px 0 var(--cb-sauge-deep)' }}
                 >
                   Voir le programme
                 </a>
               </div>
             </div>
 
+            {/* Image en frame brutalist creme */}
             <div className="relative flex justify-center md:justify-end">
-              <div className="relative w-full max-w-md aspect-[4/5]">
+              <div
+                className="relative w-full max-w-md aspect-[4/5] bg-cb-creme border-[2.5px] border-cb-sauge-deep rounded-sm overflow-hidden -rotate-[1deg]"
+                style={{ boxShadow: `10px 10px 0 ${f.accent}` }}
+              >
                 <Image
                   src={f.image}
                   alt={f.title}
                   fill
-                  className="object-contain object-center mix-blend-multiply"
-                  style={{
-                    maskImage: 'radial-gradient(ellipse 80% 80% at center, black 50%, transparent 95%)',
-                    WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at center, black 50%, transparent 95%)',
-                  }}
+                  className="object-contain object-center p-6"
                   priority
                   sizes="(max-width: 768px) 100vw, 500px"
                 />
@@ -146,45 +141,55 @@ export default async function FormationDetailPage({
       </section>
 
       {/* ─── POUR QUI + RÉSULTATS ─── */}
-      <section className="py-16 md:py-20">
+      <section className="py-16 md:py-20 bg-cb-sable border-t-4 border-cb-encre">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-10 md:gap-16">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-[#1A2B4A] mb-6 flex items-center gap-3">
-                <span className="inline-block w-10 h-0.5 rounded-full" style={{ backgroundColor: f.accent }} />
-                Pour qui ?
+          <div className="grid md:grid-cols-2 gap-8 md:gap-10">
+            <div
+              className="bg-white border-[2.5px] border-cb-sauge-deep rounded-sm p-6 md:p-8 -rotate-[0.3deg]"
+              style={{ boxShadow: `7px 7px 0 ${f.accent}` }}
+            >
+              <span className="inline-block font-marker text-cb-cardinal text-lg -rotate-2 mb-3">
+                Pour qui →
+              </span>
+              <h2 className="font-anton text-3xl md:text-4xl uppercase leading-[0.95] text-cb-encre mb-6">
+                Les profils visés
               </h2>
               <ul className="space-y-3">
                 {f.forWhom.map((p, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span
-                      className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5"
-                      style={{ backgroundColor: `${f.accent}15`, color: f.accent }}
+                      className="flex-shrink-0 w-6 h-6 border-2 border-cb-sauge-deep rounded-sm flex items-center justify-center mt-0.5 bg-cb-sable"
+                      style={{ color: f.accent }}
                     >
-                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                     </span>
-                    <span className="text-[#4A5B70] leading-relaxed">{p}</span>
+                    <span className="text-cb-encre-soft leading-relaxed">{p}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-[#1A2B4A] mb-6 flex items-center gap-3">
-                <span className="inline-block w-10 h-0.5 rounded-full" style={{ backgroundColor: f.accent }} />
+            <div
+              className="bg-white border-[2.5px] border-cb-sauge-deep rounded-sm p-6 md:p-8 rotate-[0.4deg]"
+              style={{ boxShadow: '7px 7px 0 var(--cb-cardinal)' }}
+            >
+              <span className="inline-block font-marker text-cb-cardinal text-lg -rotate-2 mb-3">
+                Résultats →
+              </span>
+              <h2 className="font-anton text-3xl md:text-4xl uppercase leading-[0.95] text-cb-encre mb-6">
                 Ce que vous repartirez avec
               </h2>
               <ul className="space-y-3">
                 {f.outcomes.map((o, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="flex-shrink-0 mt-1" style={{ color: f.accent }}>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    <span className="flex-shrink-0 mt-1 text-cb-cardinal">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
                     </span>
-                    <span className="text-[#4A5B70] leading-relaxed font-medium">{o}</span>
+                    <span className="text-cb-encre-soft leading-relaxed font-medium">{o}</span>
                   </li>
                 ))}
               </ul>
@@ -194,35 +199,40 @@ export default async function FormationDetailPage({
       </section>
 
       {/* ─── PROGRAMME ─── */}
-      <section id="programme" className="py-16 md:py-20" style={{ backgroundColor: f.bg + '50' }}>
+      <section id="programme" className="py-16 md:py-20 bg-cb-creme border-t-4 border-cb-encre">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-12">
-            <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: f.accent }}>
-              Programme détaillé
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1A2B4A]">
-              Une progression en {f.phases.length} {f.phases.length > 3 ? 'modules' : 'phases'}
+            <span className="inline-block font-marker text-cb-cardinal text-lg -rotate-2 mb-3">
+              Programme →
+            </span>
+            <h2 className="font-anton text-4xl md:text-5xl lg:text-6xl uppercase leading-[0.95] text-cb-encre">
+              Une progression en{' '}
+              <span className="inline-block bg-cb-sarcelle text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">
+                {f.phases.length}
+              </span>{' '}
+              {f.phases.length > 3 ? 'modules' : 'phases'}.
             </h2>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-5">
             {f.phases.map((p, i) => (
               <div
                 key={i}
-                className="flex flex-col md:flex-row gap-4 md:gap-6 bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#1A2B4A]/5"
+                className={`flex flex-col md:flex-row gap-4 md:gap-6 bg-white border-[2.5px] border-cb-sauge-deep rounded-sm p-6 md:p-8 ${i % 2 === 0 ? '-rotate-[0.3deg]' : 'rotate-[0.3deg]'}`}
+                style={{ boxShadow: `5px 5px 0 ${f.accent}` }}
               >
-                <div className="md:w-48 flex-shrink-0">
+                <div className="md:w-52 flex-shrink-0">
                   <span
-                    className="inline-block text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-2"
-                    style={{ color: f.accent, backgroundColor: `${f.accent}12` }}
+                    className="inline-block font-anton text-xs uppercase tracking-wider px-2.5 py-1 mb-2 border-2 border-cb-sauge-deep rounded-sm bg-cb-sable"
+                    style={{ color: f.accent }}
                   >
                     {p.step}
                   </span>
-                  {p.duration && <p className="text-xs text-[#6B7E95]">Durée : {p.duration}</p>}
+                  {p.duration && <p className="text-xs text-cb-encre-soft font-medium">Durée : {p.duration}</p>}
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-bold text-[#1A2B4A] mb-2">{p.title}</h3>
-                  <p className="text-sm text-[#4A5B70] leading-relaxed">{p.desc}</p>
+                  <h3 className="font-anton text-xl md:text-2xl uppercase leading-tight text-cb-encre mb-2">{p.title}</h3>
+                  <p className="text-sm md:text-base text-cb-encre-soft leading-relaxed">{p.desc}</p>
                 </div>
               </div>
             ))}
@@ -231,47 +241,62 @@ export default async function FormationDetailPage({
       </section>
 
       {/* ─── ATELIERS ─── */}
-      <section className="py-16 md:py-20">
+      <section className="py-16 md:py-20 bg-cb-sable border-t-4 border-cb-encre">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
-            <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: f.accent }}>
-              Ateliers & exercices
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1A2B4A]">Des mises en situation concrètes</h2>
+            <span className="inline-block font-marker text-cb-cardinal text-lg -rotate-2 mb-3">
+              Ateliers →
+            </span>
+            <h2 className="font-anton text-4xl md:text-5xl lg:text-6xl uppercase leading-[0.95] text-cb-encre">
+              Des mises en{' '}
+              <span className="inline-block bg-cb-terracotta text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">
+                situation
+              </span>{' '}
+              concrètes.
+            </h2>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {f.workshops.map((w, i) => (
-              <div
-                key={i}
-                className="p-6 rounded-2xl border-2 border-[#1A2B4A]/8 hover:border-transparent hover:shadow-lg transition-all bg-white"
-              >
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {f.workshops.map((w, i) => {
+              const rot = i % 3 === 0 ? '-rotate-[0.4deg]' : i % 3 === 1 ? 'rotate-[0.5deg]' : '-rotate-[0.3deg]'
+              return (
                 <div
-                  className="inline-flex items-center justify-center w-12 h-12 rounded-xl text-2xl mb-4"
-                  style={{ backgroundColor: `${f.accent}14` }}
+                  key={i}
+                  className={`bg-cb-creme border-[2.5px] border-cb-sauge-deep rounded-sm p-6 ${rot} hover:rotate-0 hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all duration-200`}
+                  style={{ boxShadow: `5px 5px 0 ${f.accent}` }}
                 >
-                  {w.icon}
+                  <div
+                    className="inline-flex items-center justify-center w-12 h-12 border-2 border-cb-sauge-deep rounded-sm text-2xl mb-4 bg-cb-sable"
+                  >
+                    {w.icon}
+                  </div>
+                  <h3 className="font-anton text-lg md:text-xl uppercase leading-tight text-cb-encre mb-2">{w.name}</h3>
+                  <p className="text-sm text-cb-encre-soft leading-relaxed">{w.desc}</p>
                 </div>
-                <h3 className="text-base font-bold text-[#1A2B4A] mb-2">{w.name}</h3>
-                <p className="text-sm text-[#6B7E95] leading-relaxed">{w.desc}</p>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
 
       {/* ─── OUTILS + FORMAT ─── */}
-      <section className="py-16 md:py-20 bg-[#F8FAFC]">
+      <section className="py-16 md:py-20 bg-cb-creme border-t-4 border-cb-encre">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-10 md:gap-16">
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: f.accent }}>
-                Outils & frameworks
-              </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-[#1A2B4A] mb-6">Les méthodes utilisées</h2>
-              <ul className="space-y-2">
+              <span className="inline-block font-marker text-cb-cardinal text-lg -rotate-2 mb-3">
+                Outils →
+              </span>
+              <h2 className="font-anton text-3xl md:text-4xl uppercase leading-[0.95] text-cb-encre mb-6">
+                Les méthodes utilisées
+              </h2>
+              <ul className="space-y-3">
                 {f.tools.map((t, i) => (
-                  <li key={i} className="text-sm text-[#4A5B70] px-4 py-3 rounded-xl bg-white border border-[#1A2B4A]/8">
+                  <li
+                    key={i}
+                    className={`text-sm md:text-base font-medium text-cb-encre px-4 py-3 bg-white border-[2.5px] border-cb-sauge-deep rounded-sm ${i % 2 === 0 ? '-rotate-[0.2deg]' : 'rotate-[0.2deg]'}`}
+                    style={{ boxShadow: '4px 4px 0 var(--cb-sauge)' }}
+                  >
                     {t}
                   </li>
                 ))}
@@ -279,29 +304,32 @@ export default async function FormationDetailPage({
             </div>
 
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: f.accent }}>
-                Format
-              </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-[#1A2B4A] mb-6">Modalités pratiques</h2>
+              <span className="inline-block font-marker text-cb-cardinal text-lg -rotate-2 mb-3">
+                Format →
+              </span>
+              <h2 className="font-anton text-3xl md:text-4xl uppercase leading-[0.95] text-cb-encre mb-6">
+                Modalités pratiques
+              </h2>
               <div className="space-y-4">
-                {/* Card Durée — slot quiz prominent (cohérent avec MatchQuiz)
-                    + précision en sous-titre. Le badge accent reprend le wording
-                    exact des 4 options du quiz : Demi-journée / 1 journée / 2 à 3 jours / Parcours étalé. */}
-                <div className="flex items-start gap-4 p-4 rounded-xl bg-white border border-[#1A2B4A]/8">
-                  <span className="text-[#3D6DB8] mt-0.5 flex-shrink-0">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                {/* Card Durée — slot quiz prominent */}
+                <div
+                  className="flex items-start gap-4 p-4 bg-white border-[2.5px] border-cb-sauge-deep rounded-sm -rotate-[0.3deg]"
+                  style={{ boxShadow: `5px 5px 0 ${f.accent}` }}
+                >
+                  <span className="mt-0.5 flex-shrink-0 w-10 h-10 bg-cb-sable border-2 border-cb-sauge-deep rounded-sm flex items-center justify-center" style={{ color: f.accent }}>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </span>
                   <div className="flex-1">
-                    <p className="text-xs text-[#6B7E95] uppercase tracking-widest font-semibold mb-2">Durée</p>
+                    <p className="font-anton text-xs uppercase tracking-widest text-cb-encre mb-2">Durée</p>
                     <span
-                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold"
-                      style={{ background: f.bg, color: f.accent }}
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 border-2 border-cb-sauge-deep rounded-sm bg-cb-sable font-anton text-xs uppercase tracking-wider"
+                      style={{ color: f.accent }}
                     >
                       {QUIZ_SLOT_LABELS[f.format.quizSlot]}
                     </span>
-                    <p className="text-xs text-[#6B7E95] mt-1.5">{f.format.duration}</p>
+                    <p className="text-xs text-cb-encre-soft mt-1.5 font-medium">{f.format.duration}</p>
                   </div>
                 </div>
 
@@ -309,37 +337,46 @@ export default async function FormationDetailPage({
                   {
                     label: 'Mode',
                     value: f.format.mode,
+                    rot: 'rotate-[0.3deg]',
                     icon: (
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
                     ),
                   },
                   {
                     label: 'Taille du groupe',
                     value: f.format.groupSize,
+                    rot: '-rotate-[0.3deg]',
                     icon: (
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
                     ),
                   },
                   {
                     label: 'Tarif',
                     value: f.format.pricing,
+                    rot: 'rotate-[0.4deg]',
                     icon: (
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z" />
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z" />
                       </svg>
                     ),
                   },
                 ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-4 p-4 rounded-xl bg-white border border-[#1A2B4A]/8">
-                    <span className="text-[#3D6DB8] mt-0.5 flex-shrink-0">{item.icon}</span>
+                  <div
+                    key={i}
+                    className={`flex items-start gap-4 p-4 bg-white border-[2.5px] border-cb-sauge-deep rounded-sm ${item.rot}`}
+                    style={{ boxShadow: '4px 4px 0 var(--cb-sauge)' }}
+                  >
+                    <span className="mt-0.5 flex-shrink-0 w-10 h-10 bg-cb-sable border-2 border-cb-sauge-deep rounded-sm flex items-center justify-center text-cb-sarcelle-deep">
+                      {item.icon}
+                    </span>
                     <div>
-                      <p className="text-xs text-[#6B7E95] uppercase tracking-widest font-semibold mb-1">{item.label}</p>
-                      <p className="text-sm font-medium text-[#1A2B4A]">{item.value}</p>
+                      <p className="font-anton text-xs uppercase tracking-widest text-cb-encre mb-1">{item.label}</p>
+                      <p className="text-sm font-medium text-cb-encre-soft">{item.value}</p>
                     </div>
                   </div>
                 ))}
@@ -349,97 +386,80 @@ export default async function FormationDetailPage({
         </div>
       </section>
 
-      {/* ─── CTA FINAL ─── */}
-      <section id="contact" className="py-16 md:py-20" style={{ backgroundColor: f.bg }}>
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1A2B4A] mb-4 leading-tight">On en parle ?</h2>
-          <p className="text-[#4A5B70] leading-relaxed mb-8 max-w-xl mx-auto">
-            Chaque formation est adaptée à votre contexte, vos enjeux et votre calendrier. Le devis est gratuit et vous repartez au minimum avec un cadre clarifié.
-          </p>
-          <Link
-            href="/#contact"
-            className="inline-flex items-center gap-2 text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:-translate-y-0.5 transition-all"
-            style={{ backgroundColor: f.accent, boxShadow: `0 10px 32px ${f.accent}55` }}
-          >
-            Discuter de votre besoin
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
-        </div>
-      </section>
-
-      {/* ─── CTA CONTACT DIRECT ─── */}
-      <section className="py-16 md:py-20 bg-gradient-to-br from-[#1A2B4A] to-[#2A4A7A]">
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <p className="text-xs font-semibold text-white/50 uppercase tracking-widest mb-4">Travaillons ensemble</p>
-          <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight mb-4">
-            Cette formation correspond à vos enjeux ?
+      {/* ─── CTA FINAL accent formation ─── */}
+      <section className="py-20 md:py-24 border-t-4 border-cb-encre relative overflow-hidden" style={{ backgroundColor: f.accent }}>
+        <div className="absolute inset-0 opacity-15" style={{
+          backgroundImage: 'repeating-linear-gradient(45deg, var(--cb-encre) 0, var(--cb-encre) 2px, transparent 2px, transparent 24px)',
+        }} />
+        <div className="relative max-w-4xl mx-auto px-6 text-center">
+          <span className="inline-block font-marker text-cb-rose text-lg -rotate-2 mb-3">
+            On en parle ?
+          </span>
+          <h2 className="font-anton text-4xl md:text-6xl lg:text-7xl uppercase leading-[0.95] text-cb-sable mb-6">
+            Cette formation correspond<br />
+            à <span className="inline-block bg-cb-encre text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">vos enjeux</span> ?
           </h2>
-          <p className="text-white/70 leading-relaxed mb-8 max-w-xl mx-auto">
-            Chaque programme est construit sur-mesure. Contactez-moi pour qu&apos;on échange sur vos objectifs,
-            votre équipe et le format le mieux adapté à votre contexte.
+          <p className="text-base md:text-lg text-cb-sable/90 leading-relaxed mb-8 max-w-2xl mx-auto font-medium">
+            Chaque programme est construit sur-mesure. Devis gratuit, premier échange sans engagement.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="mailto:hello@clementboule.com"
-              className="inline-flex items-center gap-2 bg-white text-[#1A2B4A] font-semibold px-7 py-3.5 rounded-full hover:bg-white/90 hover:-translate-y-0.5 transition-all shadow-lg"
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-cb-sable text-cb-encre font-anton text-base md:text-lg uppercase tracking-wider border-[2.5px] border-cb-encre px-7 py-3.5 rounded-sm hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all duration-200"
+              style={{ boxShadow: '6px 6px 0 var(--cb-encre)' }}
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              M&apos;écrire directement
-            </a>
+              Discuter de votre besoin →
+            </Link>
             <a
               href="https://calendly.com/clementboule"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-white/30 text-white font-semibold px-7 py-3.5 rounded-full hover:bg-white/10 hover:-translate-y-0.5 transition-all"
+              className="inline-flex items-center gap-2 bg-cb-encre text-cb-sable font-anton text-base md:text-lg uppercase tracking-wider border-[2.5px] border-cb-encre px-7 py-3.5 rounded-sm hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all duration-200"
+              style={{ boxShadow: '6px 6px 0 var(--cb-sable)' }}
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z" />
-              </svg>
-              Prendre un rendez-vous
+              Prendre RDV
             </a>
           </div>
         </div>
       </section>
 
       {/* ─── NAVIGATION PREV / NEXT ─── */}
-      <section className="py-12 border-t border-[#1A2B4A]/8">
+      <section className="py-12 bg-cb-sable border-t-4 border-cb-encre">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-4">
           <Link
             href={`/formations/${prev.slug}`}
-            className="group flex items-center gap-4 p-5 rounded-2xl border-2 border-[#1A2B4A]/8 hover:border-transparent hover:shadow-lg transition-all"
+            className="group flex items-center gap-4 p-5 bg-white border-[2.5px] border-cb-sauge-deep rounded-sm hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all -rotate-[0.3deg] hover:rotate-0"
+            style={{ boxShadow: '5px 5px 0 var(--cb-sauge)' }}
           >
-            <svg className="w-5 h-5 text-[#1A2B4A]/40 group-hover:text-[#1A2B4A] transition-colors flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            <svg className="w-5 h-5 text-cb-encre-soft group-hover:text-cb-cardinal transition-colors flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
             <div className="flex-1 min-w-0">
-              <p className="text-xs text-[#6B7E95] uppercase tracking-widest font-semibold mb-1">Formation précédente</p>
-              <p className="text-sm font-bold text-[#1A2B4A] truncate">{prev.title}</p>
+              <p className="font-anton text-xs uppercase tracking-widest text-cb-cardinal mb-1">← Précédente</p>
+              <p className="font-anton text-base uppercase leading-tight text-cb-encre truncate">{prev.title}</p>
             </div>
           </Link>
 
           <Link
             href={`/formations/${next.slug}`}
-            className="group flex items-center gap-4 p-5 rounded-2xl border-2 border-[#1A2B4A]/8 hover:border-transparent hover:shadow-lg transition-all md:justify-end md:text-right"
+            className="group flex items-center gap-4 p-5 bg-white border-[2.5px] border-cb-sauge-deep rounded-sm hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all md:justify-end md:text-right rotate-[0.3deg] hover:rotate-0"
+            style={{ boxShadow: '5px 5px 0 var(--cb-sauge)' }}
           >
             <div className="flex-1 min-w-0">
-              <p className="text-xs text-[#6B7E95] uppercase tracking-widest font-semibold mb-1">Formation suivante</p>
-              <p className="text-sm font-bold text-[#1A2B4A] truncate">{next.title}</p>
+              <p className="font-anton text-xs uppercase tracking-widest text-cb-cardinal mb-1">Suivante →</p>
+              <p className="font-anton text-base uppercase leading-tight text-cb-encre truncate">{next.title}</p>
             </div>
-            <svg className="w-5 h-5 text-[#1A2B4A]/40 group-hover:text-[#1A2B4A] transition-colors flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            <svg className="w-5 h-5 text-cb-encre-soft group-hover:text-cb-cardinal transition-colors flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
           </Link>
         </div>
-        <div className="max-w-6xl mx-auto px-6 mt-6 text-center">
-          <Link href="/formations" className="inline-flex items-center gap-2 text-sm font-semibold text-[#1A2B4A] hover:text-[#3D6DB8] transition-colors">
-            Voir toutes les formations
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
+        <div className="max-w-6xl mx-auto px-6 mt-8 text-center">
+          <Link
+            href="/formations"
+            className="inline-block font-anton text-base md:text-lg uppercase tracking-wider text-cb-encre border-b-[3px] border-cb-cardinal pb-1 hover:translate-y-[-2px] transition-transform"
+          >
+            Voir toutes les formations →
           </Link>
         </div>
       </section>
