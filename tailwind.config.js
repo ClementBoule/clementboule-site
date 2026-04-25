@@ -17,6 +17,7 @@ module.exports = {
           sauge: '#8BA88E',
           'sauge-deep': '#4F6A52',
           sable: '#FBF4DD',
+          creme: '#FCFAF2',
           encre: '#2A2A2A',
           'encre-soft': '#4A4A4A',
         },
