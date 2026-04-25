@@ -4,83 +4,67 @@ import { useLang } from './LanguageContext'
 export default function Footer() {
   const { t, lang } = useLang()
 
-  const links = [
+  const navLinks = [
     { label: lang === 'fr' ? 'Formations' : 'Training', href: '/formations' },
     { label: lang === 'fr' ? 'À propos' : 'About', href: '/a-propos' },
-    { label: lang === 'fr' ? 'Cas clients' : 'Case studies', href: '/cas-clients' },
+    { label: lang === 'fr' ? 'Cas clients' : 'Cases', href: '/cas-clients' },
     { label: 'FAQ', href: '/faq' },
     { label: lang === 'fr' ? 'Ressources' : 'Resources', href: '/ressources' },
-    { label: 'Contact', href: '/contact' },
+    { label: 'Test DISC', href: '/test-disc' },
   ]
 
   return (
-    <footer className="bg-[#1A2B4A] border-t border-white/6 py-14">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
-          {/* Brand */}
+    <footer className="bg-cb-encre text-cb-sable border-t-4 border-cb-encre py-14 md:py-16 px-6">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr_1fr] gap-10 mb-10">
           <div>
-            <p className="text-base font-bold bg-gradient-to-r from-white to-[#6B9ED4] bg-clip-text text-transparent mb-2">
-              Clément Boulé
-            </p>
-            <p className="text-xs text-white/40 leading-relaxed max-w-xs">
+            <div className="font-anton text-4xl md:text-6xl uppercase leading-[0.92]">
+              Clément<br />
+              <span className="text-cb-rose">Boulé.</span>
+            </div>
+            <p className="text-sm text-cb-sable/60 mt-4 max-w-xs leading-relaxed">
               {lang === 'fr'
-                ? 'Formateur, consultant et coach en entreprise. Paris, bilingue FR / EN.'
-                : 'Corporate trainer, consultant and coach. Paris, bilingual FR / EN.'}
+                ? 'Formateur, consultant, coach. Bilingue. Bonjour si vous voulez discuter sans formulaire.'
+                : 'Trainer, consultant, coach. Bilingual. Say hi if you want to talk without a form.'}
             </p>
           </div>
 
-          {/* Nav links */}
           <div>
-            <p className="text-xs font-semibold text-white/30 uppercase tracking-widest mb-4">
-              {lang === 'fr' ? 'Navigation' : 'Navigate'}
-            </p>
-            <div className="flex flex-col gap-2.5">
-              {links.map((l) => (
-                <a key={l.href} href={l.href} className="text-sm text-white/50 hover:text-white/80 transition-colors">
-                  {l.label}
-                </a>
+            <h4 className="font-anton text-base uppercase tracking-wider text-cb-rose mb-4">
+              {lang === 'fr' ? 'Navigation' : 'Navigation'}
+            </h4>
+            <ul className="space-y-2 text-sm text-cb-sable/70">
+              {navLinks.map((l) => (
+                <li key={l.href}>
+                  <a href={l.href} className="hover:text-cb-cardinal transition-colors">{l.label}</a>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <p className="text-xs font-semibold text-white/30 uppercase tracking-widest mb-4">
-              Contact
-            </p>
-            <div className="flex flex-col gap-2.5">
-              <a href="mailto:hello@clementboule.com" className="text-sm text-white/50 hover:text-[#6B9ED4] transition-colors">
-                hello@clementboule.com
-              </a>
-              <a
-                href="https://www.linkedin.com/in/cl%C3%A9ment-boul%C3%A9/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-white/50 hover:text-[#6B9ED4] transition-colors"
-              >
-                LinkedIn
-              </a>
-              <a
-                href="https://www.malt.fr/profile/clementboule"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-white/50 hover:text-[#6B9ED4] transition-colors"
-              >
-                Malt
-              </a>
-            </div>
+            <h4 className="font-anton text-base uppercase tracking-wider text-cb-rose mb-4">Contact</h4>
+            <ul className="space-y-2 text-sm text-cb-sable/70">
+              <li><a href="mailto:hello@clementboule.com" className="hover:text-cb-cardinal transition-colors">hello@clementboule.com</a></li>
+              <li>
+                <a href="https://www.linkedin.com/in/cl%C3%A9ment-boul%C3%A9/" target="_blank" rel="noopener noreferrer" className="hover:text-cb-cardinal transition-colors">LinkedIn →</a>
+              </li>
+              <li>
+                <a href="https://www.malt.fr/profile/clementboule" target="_blank" rel="noopener noreferrer" className="hover:text-cb-cardinal transition-colors">Malt →</a>
+              </li>
+              <li>
+                <a href="/contact" className="hover:text-cb-cardinal transition-colors">{lang === 'fr' ? 'Réserver un appel' : 'Book a call'}</a>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div className="border-t border-white/8 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/25">
-          <p>© {new Date().getFullYear()} Clément Boulé</p>
-          <div className="flex gap-6">
-            <a href="/mentions-legales" className="hover:text-white/50 transition-colors">
-              {t.footer.mentions}
-            </a>
-            <a href="/politique-de-confidentialite" className="hover:text-white/50 transition-colors">
-              {t.footer.privacy}
-            </a>
+        <div className="pt-6 border-t border-cb-sable/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-xs text-cb-sable/50">
+          <span>© {new Date().getFullYear()} Clément Boulé</span>
+          <div className="flex flex-wrap gap-5">
+            <a href="/mentions-legales" className="hover:text-cb-rose transition-colors">{t.footer.mentions}</a>
+            <a href="/politique-de-confidentialite" className="hover:text-cb-rose transition-colors">{t.footer.privacy}</a>
+            <span className="font-marker text-cb-rose">made with care, not with templates</span>
           </div>
         </div>
       </div>

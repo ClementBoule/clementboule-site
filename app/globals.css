@@ -1,108 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300..700&family=Permanent+Marker&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --navy-900: #0B1120;
-  --navy-800: #0F1A2E;
-  --navy-700: #162236;
-  --accent: #7C9CBF;
+  --cb-sarcelle: #1FB8B0;
+  --cb-sarcelle-deep: #0F7B75;
+  --cb-terracotta: #E85D2F;
+  --cb-cardinal: #C8102E;
+  --cb-rose: #FBC8D8;
+  --cb-sauge: #8BA88E;
+  --cb-sauge-deep: #4F6A52;
+  --cb-sable: #FBF4DD;
+  --cb-creme: #FCFAF2;
+  --cb-encre: #2A2A2A;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
+* { box-sizing: border-box; padding: 0; margin: 0; }
+html { scroll-behavior: smooth; }
 body {
-  background-color: var(--navy-900);
-  color: #E8EDF5;
-  font-family: 'Inter', sans-serif;
+  background-color: var(--cb-sable);
+  color: var(--cb-encre);
+  font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--cb-sable); }
+::-webkit-scrollbar-thumb { background: var(--cb-sauge); }
+::-webkit-scrollbar-thumb:hover { background: var(--cb-sauge-deep); }
+
+::selection { background: var(--cb-sarcelle); color: var(--cb-sable); }
+
+@keyframes cbFadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-::-webkit-scrollbar-track {
-  background: var(--navy-900);
-}
-::-webkit-scrollbar-thumb {
-  background: #2A4A6B;
-  border-radius: 3px;
+@keyframes cbTicker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
-/* Selection color */
-::selection {
-  background: rgba(124, 156, 191, 0.3);
-  color: #E8EDF5;
-}
-
-/* Smooth transitions globally */
-a, button {
-  transition: all 0.2s ease;
-}
-
-/* Focus styles */
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-/* ── Scroll Reveal animations ── */
-.reveal {
-  opacity: 0;
-  transform: translateY(36px);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.reveal-left {
-  opacity: 0;
-  transform: translateX(-40px);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.reveal-left.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.reveal-right {
-  opacity: 0;
-  transform: translateX(40px);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.reveal-right.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.reveal-scale {
-  opacity: 0;
-  transform: scale(0.92);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.reveal-scale.visible {
-  opacity: 1;
-  transform: scale(1);
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

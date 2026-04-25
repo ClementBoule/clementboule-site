@@ -315,7 +315,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           data-cf-beacon='{"token": "978174ed0d3a40eab4ab55b09079714a"}'
         />
       </head>
-      <body>
+      <body className="font-sans bg-cb-sable text-cb-encre antialiased">
         <LanguageProvider>{children}<HomeFab /></LanguageProvider>
       </body>
     </html>
