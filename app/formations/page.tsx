@@ -15,111 +15,108 @@ export const metadata: Metadata = {
   },
 }
 
+// Couleurs DA-C par slug, alignées sur Formations.tsx home
+const COLOR_MAP: Record<string, { shadow: string; accent: string }> = {
+  'rh-marque-employeur':     { shadow: 'var(--cb-sarcelle)',       accent: 'sarcelle' },
+  'posture-professionnelle': { shadow: 'var(--cb-terracotta)',     accent: 'terracotta' },
+  'prevention-rps':          { shadow: 'var(--cb-sarcelle-deep)',  accent: 'sarcelle-deep' },
+  'strategie-entreprise':    { shadow: 'var(--cb-cardinal)',       accent: 'cardinal' },
+  'soft-skills':             { shadow: 'var(--cb-terracotta)',     accent: 'terracotta' },
+  'spine-up':                { shadow: 'var(--cb-sauge-deep)',     accent: 'sauge-deep' },
+}
+
+const ROTATIONS = ['-rotate-[0.6deg]', 'rotate-[0.5deg]', '-rotate-[0.4deg]', 'rotate-[0.7deg]', '-rotate-[0.3deg]', 'rotate-[0.4deg]']
+
 // ─── Page liste ─────────────────────────────────────────────────────────────
 export default function FormationsIndexPage() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* ═══ HERO ═══ */}
-      <section className="relative pt-24 md:pt-28 pb-12 md:pb-16 bg-gradient-to-b from-[#F5F0FB] via-[#F1F4FA] to-white overflow-hidden">
-        <div className="max-w-5xl mx-auto px-6 text-center">
+    <div className="min-h-screen bg-cb-sable">
+      {/* Hero */}
+      <section className="relative pt-28 md:pt-32 pb-12 md:pb-16 bg-cb-sable border-t-4 border-cb-encre overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm text-[#1A2B4A]/50 hover:text-[#1A2B4A] transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-cb-encre-soft hover:text-cb-cardinal transition-colors mb-6"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
             Retour à l&apos;accueil
           </Link>
-          <p className="text-xs font-bold text-[#3D6DB8] uppercase tracking-widest mb-4">
-            Catalogue formations
-          </p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1A2B4A] leading-tight tracking-tight mb-5">
-            6 formations sur-mesure pour vos équipes
-          </h1>
-          <p className="text-lg text-[#4A5B70] leading-relaxed max-w-2xl mx-auto">
-            Chaque parcours est adapté à votre contexte, vos enjeux et votre calendrier. Formations animées en présentiel, distanciel ou hybride — de l&apos;individuel au collectif.
-          </p>
-        </div>
-      </section>
 
-      {/* ═══ GRID COMPLÈTE 6 FORMATIONS ═══ */}
-      <section className="py-12 md:py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-            {formations.map((f) => (
-              <Link
-                key={f.slug}
-                href={`/formations/${f.slug}`}
-                className="group relative flex flex-col overflow-hidden rounded-3xl border border-[#1A2B4A]/8 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-transparent transition-all duration-300"
-                style={{ backgroundColor: f.bg }}
-              >
-                <div className="absolute top-4 left-4 z-10">
-                  <span
-                    className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full backdrop-blur-sm"
-                    style={{
-                      color: f.accent,
-                      backgroundColor: 'rgba(255,255,255,0.85)',
-                      border: `1px solid ${f.accent}33`,
-                    }}
-                  >
-                    {f.tag}
-                  </span>
-                </div>
-                <div className="relative aspect-[4/3] w-full overflow-hidden flex items-center justify-center">
-                  <Image
-                    src={f.image}
-                    alt={f.title}
-                    fill
-                    className="object-contain object-center p-6 mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
-                    style={{
-                      maskImage: 'radial-gradient(ellipse 75% 75% at center, black 40%, transparent 90%)',
-                      WebkitMaskImage: 'radial-gradient(ellipse 75% 75% at center, black 40%, transparent 90%)',
-                    }}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                </div>
-                <div className="flex flex-col flex-1 p-6 pt-2 bg-white/70 backdrop-blur-sm">
-                  <h2 className="text-lg font-bold text-[#1A2B4A] leading-snug mb-2">{f.title}</h2>
-                  <p className="text-sm text-[#6B7E95] leading-relaxed mb-4 flex-1">{f.shortDescription}</p>
-                  <div
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors"
-                    style={{ color: f.accent }}
-                  >
-                    <span>Voir le détail</span>
-                    <svg
-                      className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </div>
-              </Link>
-            ))}
+          <div className="grid md:grid-cols-[2fr_1fr] gap-10 items-end mb-10">
+            <div>
+              <span className="inline-block font-marker text-cb-cardinal text-lg -rotate-2 mb-3">
+                ↓ Catalogue formations
+              </span>
+              <h1 className="font-anton text-5xl md:text-7xl lg:text-8xl uppercase leading-[0.92] text-cb-encre">
+                Six <span className="inline-block bg-cb-sarcelle text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">formations</span>.<br />
+                Sur-mesure.
+              </h1>
+            </div>
+            <div className="text-base font-medium border-l-4 border-cb-cardinal pl-5 max-w-md text-cb-encre-soft">
+              Chaque parcours est adapté à votre contexte, vos enjeux, votre calendrier. Présentiel, distanciel ou hybride. Individuel ou collectif.
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ═══ CTA FINAL ═══ */}
-      <section className="py-16 md:py-20 bg-gradient-to-b from-white to-[#F5F0FB]">
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1A2B4A] mb-4 leading-tight">
-            Besoin d&apos;une formation hybride ou sur-mesure ?
+      {/* Grille 6 cards brutalist */}
+      <section className="py-12 md:py-16 bg-cb-sable">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7">
+            {formations.map((f, i) => {
+              const c = COLOR_MAP[f.slug] || COLOR_MAP['rh-marque-employeur']
+              const rot = ROTATIONS[i % ROTATIONS.length]
+              return (
+                <Link
+                  key={f.slug}
+                  href={`/formations/${f.slug}`}
+                  className={`group relative bg-white border-[2.5px] border-cb-sauge-deep rounded flex flex-col transition-all duration-200 ${rot} hover:rotate-0 hover:translate-x-[-3px] hover:translate-y-[-3px]`}
+                  style={{ boxShadow: `7px 7px 0 ${c.shadow}` }}
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden border-b-[2.5px] border-cb-sauge-deep" style={{ backgroundColor: f.bg }}>
+                    <span className={`absolute top-3 left-3 z-10 inline-block px-2.5 py-1 font-anton text-xs uppercase tracking-wider border-2 border-cb-sauge-deep rounded-sm bg-cb-sable text-cb-${c.accent}`}>
+                      {f.tag}
+                    </span>
+                    <Image src={f.image} alt={f.title} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
+                  </div>
+                  <div className="p-5 md:p-6 flex flex-col flex-1">
+                    <h2 className="font-anton text-xl md:text-2xl uppercase leading-[1] mb-2 text-cb-encre">{f.title}</h2>
+                    <p className="text-sm text-cb-encre-soft leading-snug mb-4 flex-1">{f.shortDescription}</p>
+                    <span className="inline-flex items-center gap-1.5 font-anton text-xs uppercase tracking-widest text-cb-encre border-b-2 border-cb-sauge-deep self-start pb-1 group-hover:border-cb-cardinal transition-colors">
+                      Voir le programme →
+                    </span>
+                  </div>
+                </Link>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA final brutalist sarcelle saturé */}
+      <section className="py-20 md:py-24 bg-cb-sarcelle border-t-4 border-cb-encre relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20" style={{
+          backgroundImage: 'repeating-linear-gradient(45deg, var(--cb-sarcelle-deep) 0, var(--cb-sarcelle-deep) 2px, transparent 2px, transparent 24px)',
+        }} />
+        <div className="relative max-w-4xl mx-auto px-6 text-center">
+          <span className="inline-block font-marker text-cb-rose text-lg -rotate-2 mb-3">
+            Besoin d&apos;un mix sur-mesure ?
+          </span>
+          <h2 className="font-anton text-4xl md:text-6xl lg:text-7xl uppercase leading-[0.95] text-cb-sable mb-6">
+            Toutes les formations<br />
+            <span className="inline-block bg-cb-encre text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">peuvent</span> être combinées.
           </h2>
-          <p className="text-[#4A5B70] leading-relaxed mb-8 max-w-xl mx-auto">
-            Toutes les formations peuvent être combinées, adaptées ou redessinées autour de vos enjeux réels. Le premier échange est gratuit et sans engagement.
+          <p className="text-base md:text-lg text-cb-sable/90 leading-relaxed mb-8 max-w-2xl mx-auto font-medium">
+            Adaptées, redessinées autour de vos enjeux réels. Premier échange gratuit et sans engagement.
           </p>
           <Link
-            href="/#contact"
-            className="inline-flex items-center gap-2 text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:-translate-y-0.5 transition-all bg-[#1A2B4A] hover:bg-[#3D6DB8]"
+            href="/contact"
+            className="inline-flex items-center gap-2 bg-cb-cardinal text-cb-sable font-anton text-base md:text-lg uppercase tracking-wider border-[2.5px] border-cb-encre px-8 py-4 rounded-sm hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all duration-200"
+            style={{ boxShadow: '6px 6px 0 var(--cb-encre)' }}
           >
-            Discuter de votre besoin
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
+            Discuter de votre besoin →
           </Link>
         </div>
       </section>

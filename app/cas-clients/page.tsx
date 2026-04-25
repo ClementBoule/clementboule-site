@@ -22,6 +22,8 @@ const CAS = [
       "Adoption des outils DISC dans les projets étudiants",
       "Reconduction annuelle sur 3 promotions consécutives",
     ],
+    color: 'sarcelle',
+    rot: '-rotate-[0.4deg]',
   },
   {
     client: 'PME Île-de-France',
@@ -34,6 +36,8 @@ const CAS = [
       "Réduction significative des tensions d'équipe",
       "Montée en confiance mesurée à l'auto-évaluation finale",
     ],
+    color: 'terracotta',
+    rot: 'rotate-[0.5deg]',
   },
   {
     client: 'Association nationale',
@@ -46,6 +50,8 @@ const CAS = [
       "Démarche de signalement interne relancée après la formation",
       "Demande de reconduction sur deux autres sites",
     ],
+    color: 'sauge-deep',
+    rot: '-rotate-[0.3deg]',
   },
   {
     client: 'Groupe international',
@@ -58,58 +64,69 @@ const CAS = [
       "Mise en pratique immédiate lors d'un atelier de résolution de conflit en live",
       "Commande d'un module de suivi à 6 mois",
     ],
+    color: 'cardinal',
+    rot: 'rotate-[0.4deg]',
   },
 ]
 
 export default function CasClients() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-cb-sable">
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-[#F5F7FB] via-[#EEF3FA] to-[#F5F0FB]">
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <p className="text-xs font-semibold text-[#3D6DB8] uppercase tracking-widest mb-4">Cas clients</p>
-          <h1 className="text-4xl md:text-5xl font-bold text-[#1A2B4A] leading-tight mb-6">
-            Exemples de missions
-          </h1>
-          <p className="text-base text-[#6B7E95] leading-relaxed">
-            Des situations réelles, des approches sur-mesure, des résultats mesurables. Les noms des clients sont anonymisés.
-          </p>
+      <section className="pt-28 md:pt-32 pb-16 bg-cb-sable border-t-4 border-cb-encre">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-[2fr_1fr] gap-10 items-end">
+            <div>
+              <span className="inline-block font-marker text-cb-cardinal text-lg -rotate-2 mb-3">
+                ↓ Cas clients
+              </span>
+              <h1 className="font-anton text-5xl md:text-7xl lg:text-8xl uppercase leading-[0.92] text-cb-encre">
+                Exemples de <span className="inline-block bg-cb-terracotta text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">missions</span>.
+              </h1>
+            </div>
+            <div className="text-base font-medium border-l-4 border-cb-cardinal pl-5 max-w-md text-cb-encre-soft">
+              Des situations réelles, des approches sur-mesure, des résultats mesurables. Les noms des clients sont anonymisés.
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Cas */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-6 space-y-10">
+      {/* Cards cas en colonnes */}
+      <section className="py-16 md:py-20 bg-cb-creme border-t-4 border-cb-encre">
+        <div className="max-w-6xl mx-auto px-6 space-y-10">
           {CAS.map((cas, i) => (
             <React.Fragment key={i}>
-              <div className="bg-[#F5F7FB] rounded-2xl border border-[#1A2B4A]/6 p-8">
+              <article
+                className={`bg-white border-[2.5px] border-cb-sauge-deep rounded-sm p-6 md:p-8 ${cas.rot} hover:rotate-0 hover:translate-x-[-3px] hover:translate-y-[-3px] transition-all duration-200`}
+                style={{ boxShadow: `8px 8px 0 var(--cb-${cas.color})` }}
+              >
                 <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
                   <div>
-                    <span className="inline-block text-xs font-semibold text-[#3D6DB8] bg-[#3D6DB8]/8 px-3 py-1 rounded-full mb-2">
+                    <span className={`inline-block font-anton text-xs uppercase tracking-wider px-2.5 py-1 mb-3 border-2 border-cb-sauge-deep rounded-sm bg-cb-sable text-cb-${cas.color}`}>
                       {cas.tag}
                     </span>
-                    <h2 className="text-xl font-bold text-[#1A2B4A]">{cas.client}</h2>
-                    <p className="text-sm text-[#6B7E95]">{cas.sector}</p>
+                    <h2 className="font-anton text-2xl md:text-3xl uppercase leading-tight text-cb-encre">{cas.client}</h2>
+                    <p className="text-sm text-cb-encre-soft mt-1 font-medium">{cas.sector}</p>
                   </div>
                 </div>
-                <div className="grid md:grid-cols-3 gap-6">
+                <div className="grid md:grid-cols-3 gap-6 md:gap-8 pt-4 border-t-2 border-cb-sauge">
                   <div>
-                    <p className="text-xs font-semibold text-[#1A2B4A]/50 uppercase tracking-widest mb-2">Contexte</p>
-                    <p className="text-sm text-[#6B7E95] leading-relaxed">{cas.challenge}</p>
+                    <p className="font-anton text-xs uppercase tracking-widest text-cb-cardinal mb-2">Contexte</p>
+                    <p className="text-sm text-cb-encre-soft leading-relaxed">{cas.challenge}</p>
                   </div>
                   <div>
-                    <p className="text-xs font-semibold text-[#1A2B4A]/50 uppercase tracking-widest mb-2">Approche</p>
-                    <p className="text-sm text-[#6B7E95] leading-relaxed">{cas.approach}</p>
+                    <p className="font-anton text-xs uppercase tracking-widest text-cb-cardinal mb-2">Approche</p>
+                    <p className="text-sm text-cb-encre-soft leading-relaxed">{cas.approach}</p>
                   </div>
                   <div>
-                    <p className="text-xs font-semibold text-[#1A2B4A]/50 uppercase tracking-widest mb-2">Résultats</p>
-                    <ul className="space-y-1.5">
+                    <p className="font-anton text-xs uppercase tracking-widest text-cb-cardinal mb-2">Résultats</p>
+                    <ul className="space-y-2">
                       {cas.results.map((r, j) => (
-                        <li key={j} className="flex items-start gap-2 text-sm text-[#6B7E95]">
-                          <svg className="w-4 h-4 text-[#3D6DB8] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        <li key={j} className="flex items-start gap-2 text-sm text-cb-encre-soft leading-relaxed">
+                          <svg className={`w-4 h-4 text-cb-${cas.color} shrink-0 mt-0.5`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                           </svg>
                           {r}
                         </li>
@@ -117,21 +134,26 @@ export default function CasClients() {
                     </ul>
                   </div>
                 </div>
-              </div>
+              </article>
+
+              {/* CTA intermédiaire après cas 2 */}
               {i === 1 && (
-                <div className="bg-gradient-to-r from-[#3D6DB8]/8 to-[#3D6DB8]/4 rounded-2xl border border-[#3D6DB8]/15 p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div
+                  className="bg-cb-rose border-[2.5px] border-cb-sauge-deep rounded-sm p-6 flex flex-col sm:flex-row items-center justify-between gap-5 -rotate-[0.4deg]"
+                  style={{ boxShadow: '6px 6px 0 var(--cb-cardinal)' }}
+                >
                   <div>
-                    <p className="text-sm font-bold text-[#1A2B4A] mb-1">Une situation similaire dans votre organisation ?</p>
-                    <p className="text-sm text-[#6B7E95]">Formation, coaching, accompagnement sur-mesure — je réponds sous 24h.</p>
+                    <h3 className="font-anton text-xl md:text-2xl uppercase leading-tight text-cb-encre mb-1">
+                      Une situation similaire ?
+                    </h3>
+                    <p className="text-sm text-cb-encre-soft font-medium">Formation, coaching, accompagnement sur-mesure — réponse sous 24h.</p>
                   </div>
                   <a
                     href="/contact"
-                    className="shrink-0 inline-flex items-center gap-2 bg-[#3D6DB8] text-white font-semibold px-5 py-2.5 rounded-full hover:bg-[#2D5A9E] hover:-translate-y-0.5 shadow-md transition-all duration-200 text-sm"
+                    className="shrink-0 inline-flex items-center gap-2 bg-cb-sarcelle text-cb-sable font-anton text-sm uppercase tracking-wider border-[2.5px] border-cb-encre px-5 py-3 rounded-sm hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all duration-200"
+                    style={{ boxShadow: '4px 4px 0 var(--cb-encre)' }}
                   >
-                    Discutons-en
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
+                    Discutons-en →
                   </a>
                 </div>
               )}
