@@ -1,5 +1,5 @@
 # État du projet — clementboule.fr & ORBIT
-Dernière mise à jour : 24 avril 2026 — 19:15 (close 2026-04-24T19:15+02:00)
+Dernière mise à jour : 25 avril 2026 — 16:30 (close 2026-04-25T16:30+02:00)
 
 ## Site clementboule.fr — état actuel (main, déployé Vercel)
 
@@ -172,3 +172,46 @@ Les 6 déploiements Vercel sont READY (vérifiés via Vercel MCP, aucune erreur 
 2. **Sécurité Vercel (incident 21/04)** — ouvert depuis 4 jours. À traiter en priorité absolue au prochain OPEN.
 3. **Dette technique `CLAUDE.md` ligne 56** — ID Airtable corrompu, toujours pas corrigé. Besoin de la vraie valeur depuis l'UI Airtable.
 4. **ORBIT Apps Script** — script prêt dans outputs Cowork 22/04, non intégré dans Sheets Orbit 1.
+
+
+## Session 25/04 — UX post-CTA + bouton quiz dans navbar + nouveau prompt langage
+
+3 commits poussés sur main, déploiements Vercel READY (ContactForm, MatchQuiz) et BUILDING (Navbar — build local OK) :
+
+- `eaf4f29` feat(contact): humanize wording + post-send pop-up with Calendly + LinkedIn CTAs
+- `83d89f6` feat(matchquiz): add id="quiz" anchor for navbar deep-link
+- `fc78193` feat(navbar): add "Trouver mon format" button (deep-link to #quiz)
+
+### Détails livrés
+
+**ContactForm refondu en langage humain.** Tous les textes du formulaire passés au filtre anti-IA (placeholder textarea = « Dites-moi votre situation, ce qui coince, ce que vous voulez obtenir », labels = « Votre nom », « Entreprise (si pertinent) », « C'est pour quoi ? », bouton = « M'envoyer le message »).
+
+**Pop-up post-envoi.** Après soumission du formulaire (mailto), affichage d'un écran de confirmation avec wording honnête « Votre message est dans votre boîte mail / Pensez à cliquer sur Envoyer pour qu'il parte ». Deux CTAs croisés en dessous : « Réserver un appel » (Calendly) + « Suivez-moi sur LinkedIn ». Logique : on a capté un signal d'intention via le formulaire, on propose la montée en engagement (appel) et le faible engagement complémentaire (LinkedIn).
+
+**Pas de pop-up post-Calendly.** Le compte Calendly est sur essai gratuit Teams jusqu'au 9 mai 2026 (vérifié dans `/app/admin/billing`). Le redirect after booking est dispo pendant l'essai mais pas en Free. Pour rester aligné avec la règle « pas de système qui pousse à payer », on s'appuie sur le mail auto Calendly qui marche en Free aussi. Tâche reportée comme avenant possible si Clément choisit un plan payant plus tard.
+
+**Bouton « Trouver mon format » dans la navbar.** Ajout d'un bouton secondaire outline à côté du CTA Calendly primaire, desktop + mobile, qui pointe vers `/#quiz`. Section MatchQuiz a reçu `id="quiz"` pour ancre. Logique : circulation fluide depuis n'importe quelle page interne vers le quiz qui est dans la home.
+
+### Nouveau prompt langage humain dans préférences Clément
+
+Clément a copié dans ses préférences personnelles un long prompt « anti-langage IA » qui couvre toutes les productions, toutes les langues, tous les contextes. Patterns bannis : parallélismes négatifs « X, pas Y », tryptiques rythmiques, phrases nominales pour l'effet, em-dashes décoratifs, setup-punchline, mots béquilles (« vraiment », « concrètement »), vocabulaire consultant (« cadrer », « ancrer »), réassurance générique, adjectifs marketing en chaîne. Test simple : si je peux l'imaginer dit à voix haute par quelqu'un au téléphone, c'est bon ; si je l'imagine en sous-titre TED, je réécris.
+
+Cette règle prévaut sur toute autre règle de style — y compris pour copywriting site, slides commerciales, mails clients, doc technique. Pas de dérogation pour cause de « tonalité premium ».
+
+### Méthode technique cette session
+
+Sandbox bash dispo cette fois (pas comme la session du 24/04 soir). Clone + édition + build local OK avant push. Push fait via Chrome (CM6 contentEditable + execCommand insertText) car pas de credentials git dans le sandbox.
+
+Pour les gros fichiers (MatchQuiz 26 KB), passage du contenu via `JSON.stringify` Python puis injection en string littérale JS dans le tool javascript_exec. Marche jusqu'à ~30 KB sans souci.
+
+### Décision business notée
+
+Clément veut une refonte visuelle significative du site, autour des « aquarelles de la partie formation ». Bug repéré : pas de fichier `*aquarelle*` dans `public/`, et un commentaire `// Image principale (à remplacer par tes aquarelles)` dans `formations-data.ts:46` indique que les 6 PNG actuels (`public/illustrations/formations/*.png`) ne sont pas les aquarelles définitives. Avant de livrer un plan visuel, attendre que Clément précise si les aquarelles existent déjà (ailleurs), s'il les fait peindre, ou s'il les génère en IA.
+
+## Priorités au prochain OPEN
+
+1. **Plan d'élévation visuelle du site** — chantier majeur signalé par Clément. Cadrer une fois qu'il a tranché sur la source des aquarelles (déjà existantes, à peindre, à générer). Préserver Core Web Vitals + responsive PC/tablette/mobile.
+2. **Sécurité Vercel (incident 21/04)** — toujours ouvert, maintenant J+4. À traiter avant le chantier visuel.
+3. **Dette `CLAUDE.md` ligne 56** — ID Airtable corrompu, vraie valeur attendue de Clément.
+4. **ORBIT Apps Script** — script prêt dans outputs Cowork 22/04, non intégré.
+5. **Synchroniser `CLAUDE.md` avec les vraies stats** — il liste encore « 5 ans / 15 sessions par an / +1 800 participants » alors que le storytelling site est passé à « 10 ans » et que la stat « 15 sessions/an » a été retirée du site comme ambiguë. Cohérence à reprendre.
