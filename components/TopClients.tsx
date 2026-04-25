@@ -2,58 +2,44 @@
 
 import { useState } from 'react'
 import { useLang } from './LanguageContext'
-import ScrollReveal from './ScrollReveal'
 
-const clients: { name: string; logo: string | null; color: string; scale?: number }[] = [
-  { name: 'EMA', logo: '/logos/client-ema.png', color: '#000000', scale: 1.5 },
-  { name: 'Albert', logo: '/logos/client-albert.png', color: '#000000' },
-  { name: 'ISCOM', logo: '/logos/client-iscom.png', color: '#000000' },
-  { name: 'EDA RH', logo: '/logos/client-eda-rh.png', color: '#000000' },
-  { name: 'IHEDREA', logo: '/logos/client-ihedrea.png', color: '#000000' },
-  { name: 'Apprentis', logo: '/logos/client-apprentis.jpg', color: '#000000' },
-  { name: 'Sauvegarde', logo: '/logos/client-sauvegarde.png', color: '#000000' },
-  { name: 'Daan', logo: '/logos/client-daan.png', color: '#000000' },
+// ─── Données clients ─────────────────────────────────────────────────────────
+const CLIENTS: { name: string; logo: string | null; scale?: number; rot: string; shadowColor: string }[] = [
+  { name: 'EMA',        logo: '/logos/client-ema.png',        scale: 1.5, rot: '-rotate-[0.5deg]', shadowColor: 'var(--cb-sarcelle)' },
+  { name: 'Albert',     logo: '/logos/client-albert.png',                rot: 'rotate-[0.4deg]',  shadowColor: 'var(--cb-terracotta)' },
+  { name: 'ISCOM',      logo: '/logos/client-iscom.png',                 rot: '-rotate-[0.3deg]', shadowColor: 'var(--cb-sauge-deep)' },
+  { name: 'EDA RH',     logo: '/logos/client-eda-rh.png',                rot: 'rotate-[0.6deg]',  shadowColor: 'var(--cb-cardinal)' },
+  { name: 'IHEDREA',    logo: '/logos/client-ihedrea.png',               rot: '-rotate-[0.4deg]', shadowColor: 'var(--cb-sarcelle-deep)' },
+  { name: 'Apprentis',  logo: '/logos/client-apprentis.jpg',             rot: 'rotate-[0.3deg]',  shadowColor: 'var(--cb-terracotta)' },
+  { name: 'Sauvegarde', logo: '/logos/client-sauvegarde.png',            rot: '-rotate-[0.6deg]', shadowColor: 'var(--cb-sauge-deep)' },
+  { name: 'Daan',       logo: '/logos/client-daan.png',                  rot: 'rotate-[0.5deg]',  shadowColor: 'var(--cb-sarcelle)' },
 ]
 
-function ClientLogo({ name, logo, color, scale = 1 }: { name: string; logo: string | null; color: string; scale?: number }) {
+// ─── Card logo ───────────────────────────────────────────────────────────────
+function ClientLogo({
+  name, logo, scale = 1, rot, shadowColor,
+}: { name: string; logo: string | null; scale?: number; rot: string; shadowColor: string }) {
   const [hovered, setHovered] = useState(false)
-  // Sur mobile, on plafonne le scale à 1 pour tenir dans la carte
   const mobileScale = Math.min(scale, 1)
   return (
     <div
-      className="flex items-center justify-center h-28 sm:h-36 px-3 sm:px-6 rounded-2xl bg-white border-2 shadow-md transition-all duration-300 group relative overflow-hidden cursor-pointer min-w-0"
-      style={{
-        borderColor: hovered ? color : 'rgba(26,43,74,0.08)',
-        boxShadow: hovered ? `0 12px 32px ${color}25, 0 0 0 1px ${color}15` : '0 4px 6px -1px rgba(0,0,0,0.1)',
-        transform: hovered ? 'translateY(-4px) scale(1.02)' : 'none',
-        backgroundColor: hovered ? `${color}06` : '#ffffff',
-      }}
+      className={`relative bg-white border-[2.5px] border-cb-sauge-deep rounded flex items-center justify-center h-28 sm:h-36 px-3 sm:px-6 transition-all duration-200 ${rot} hover:rotate-0 hover:translate-x-[-3px] hover:translate-y-[-3px] cursor-default min-w-0 overflow-hidden`}
+      style={{ boxShadow: hovered ? `10px 10px 0 ${shadowColor}` : `5px 5px 0 ${shadowColor}` }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-transparent pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/20 to-white/50 pointer-events-none rounded-2xl" />
-      {hovered && (
-        <div
-          className="absolute inset-0 rounded-2xl pointer-events-none transition-opacity duration-300"
-          style={{ background: `radial-gradient(ellipse at center, ${color}12 0%, transparent 70%)` }}
-        />
-      )}
       {logo ? (
         <img
           src={logo}
           alt={name}
-          className="client-logo-img max-h-16 sm:max-h-24 max-w-full sm:max-w-[220px] object-contain relative z-10 drop-shadow-sm transition-transform duration-300"
+          className="client-logo-img max-h-16 sm:max-h-24 max-w-full sm:max-w-[220px] object-contain transition-transform duration-300"
           style={{
-            ['--scale-mobile' as any]: `${hovered ? mobileScale * 1.04 : mobileScale}`,
+            ['--scale-mobile' as any]: `${hovered ? mobileScale * 1.05 : mobileScale}`,
             ['--scale-desktop' as any]: `${hovered ? scale * 1.08 : scale}`,
           }}
         />
       ) : (
-        <span
-          className="text-sm font-bold transition-colors tracking-wide relative z-10 text-center leading-tight"
-          style={{ color: hovered ? color : 'rgba(74,91,112,0.7)', fontSize: '0.85rem' }}
-        >
+        <span className="font-anton text-base uppercase tracking-wider text-cb-encre">
           {name}
         </span>
       )}
@@ -61,26 +47,50 @@ function ClientLogo({ name, logo, color, scale = 1 }: { name: string; logo: stri
   )
 }
 
+// ─── Composant ───────────────────────────────────────────────────────────────
 export default function TopClients() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   return (
-    <section className="py-16 sm:py-20 bg-[#F5F7FB] overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <ScrollReveal className="text-center mb-10 sm:mb-12">
-          <p className="text-xs font-semibold text-[#3D6DB8] uppercase tracking-widest mb-3">
-            {t.topClients.label}
-          </p>
-          <p className="text-[#6B7E95] text-base max-w-md mx-auto leading-relaxed">
-            {t.topClients.subtitle}
-          </p>
-        </ScrollReveal>
-        <ScrollReveal delay={120}>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-5">
-            {clients.map((client) => (
-              <ClientLogo key={client.name} name={client.name} logo={client.logo} color={client.color} scale={client.scale ?? 1} />
-            ))}
+    <section className="bg-cb-sable py-20 md:py-28 px-6 relative overflow-hidden border-t-4 border-cb-encre">
+      <div className="max-w-7xl mx-auto">
+
+        {/* Header */}
+        <div className="grid md:grid-cols-[2fr_1fr] gap-10 items-end mb-14">
+          <div>
+            <span className="inline-block font-marker text-cb-cardinal text-lg -rotate-2 mb-3">
+              {lang === 'fr' ? '↓ Ils me font confiance' : '↓ They trust me'}
+            </span>
+            <h2 className="font-anton text-5xl md:text-6xl lg:text-7xl uppercase leading-[0.92] text-cb-encre">
+              {lang === 'fr' ? (
+                <>Quelques <span className="inline-block bg-cb-sauge text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">clients</span>.</>
+              ) : (
+                <>Some <span className="inline-block bg-cb-sauge text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">clients</span>.</>
+              )}
+            </h2>
           </div>
-        </ScrollReveal>
+          <div className="text-base font-medium border-l-4 border-cb-sarcelle pl-5 max-w-md text-cb-encre-soft">
+            {t.topClients.subtitle}
+          </div>
+        </div>
+
+        {/* Grille logos */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+          {CLIENTS.map((c, i) => (
+            <div
+              key={c.name}
+              style={{ animation: `cbFadeUp 0.5s ease both ${i * 60}ms` }}
+            >
+              <ClientLogo
+                name={c.name}
+                logo={c.logo}
+                scale={c.scale ?? 1}
+                rot={c.rot}
+                shadowColor={c.shadowColor}
+              />
+            </div>
+          ))}
+        </div>
+
       </div>
 
       <style jsx>{`
