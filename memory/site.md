@@ -1,5 +1,5 @@
 # État du projet — clementboule.fr & ORBIT
-Dernière mise à jour : 25 avril 2026 — 16:30 (close 2026-04-25T16:30+02:00)
+Dernière mise à jour : 25 avril 2026 — 19:30 (close 2026-04-25T19:30+02:00)
 
 ## Site clementboule.fr — état actuel (main, déployé Vercel)
 
@@ -215,3 +215,72 @@ Clément veut une refonte visuelle significative du site, autour des « aquarell
 3. **Dette `CLAUDE.md` ligne 56** — ID Airtable corrompu, vraie valeur attendue de Clément.
 4. **ORBIT Apps Script** — script prêt dans outputs Cowork 22/04, non intégré.
 5. **Synchroniser `CLAUDE.md` avec les vraies stats** — il liste encore « 5 ans / 15 sessions par an / +1 800 participants » alors que le storytelling site est passé à « 10 ans » et que la stat « 15 sessions/an » a été retirée du site comme ambiguë. Cohérence à reprendre.
+
+## Session 25/04 soir — REFONTE VISUELLE COMPLÈTE (DA-C sauge brutaliste atténué)
+
+PR #2 mergée sur main : `5751642 Merge pull request #2 from ClementBoule/redesign-da-c-sauge`. La home est entièrement refondue.
+
+### Direction artistique retenue (après ~15 itérations de mockups)
+
+**Palette C — Earth Saturée + sauge** (validée après comparaison de 6+ palettes différentes) :
+- `--cb-sarcelle: #1FB8B0` — primaire signature
+- `--cb-sarcelle-deep: #0F7B75` — accent profond
+- `--cb-terracotta: #E85D2F` — chaud signature
+- `--cb-cardinal: #C8102E` — accent fort
+- `--cb-rose: #FBC8D8` — pastel pour highlights
+- `--cb-sauge: #8BA88E` — structure (bordures, ombres)
+- `--cb-sauge-deep: #4F6A52` — structure foncée
+- `--cb-sable: #FBF4DD` — fond principal (papier crème)
+- `--cb-creme: #FCFAF2` — fond frame portrait gravure (validé)
+- `--cb-encre: #2A2A2A` — texte body
+
+**Typographie** : Anton (titres caps, signature BCO/EDA-RH), Space Grotesk (body), Permanent Marker (accents stylo)
+
+**Skin** : brutalisme atténué ~70% — bordures 2.5-3px, ombres décalées 7-10px en couleur, rotations subtiles -0.4deg sur cards, ticker marquee, caps lock H1/H2.
+
+### Composants refondus (13 commits sur la branche redesign-da-c-sauge)
+
+- `58cd768` tailwind.config.js — design tokens cb-* + fonts
+- `057d4ab` globals.css — palette CSS variables + import Google Fonts
+- `cec8539` layout.tsx — body bg-cb-sable text-cb-encre
+- `c1d35f6` Navbar — sauge brutaliste, CTAs néo-brutalist
+- `18ae623` Hero — Anton 156px caps, mot-clé terracotta highlighted, portrait frame
+- `76b50ed` Formations — 6 cards polychromes, micro-rotations
+- `42003da` Process — bloc fond sauge profond + bande corail traversante
+- `9f41b66` FinalCTA — bloc sarcelle saturé, aquarelle Spine'Up watermark
+- `1d2690c` Footer — logotype Anton « CLÉMENT BOULÉ. » géant
+- `4120d9f` token cb-creme #FCFAF2
+- `8b4b39b` --cb-creme variable CSS
+- `c8e4fb1` Hero portrait frame sauge-deep → creme (validé visuellement)
+- `c4b98fc` MatchQuiz section bg sable
+
+### Décisions clés
+
+- **Palette validée** : C Earth Saturée parmi 6 propositions (A Atelier cobalt, B Acid Pop fuchsia, C, D Bauhaus, E Y2K, F mono-rouge)
+- **Niveau brutalisme** : N°1 ~70% atténué
+- **Couleur structurante** : sauge `#8BA88E` pour remplacer le noir (refusé par Clément)
+- **Fond portrait gravure** : crème `#FCFAF2` (PNG opaque noir, validé après 3 tentatives)
+- **Typo** : Anton + Space Grotesk + Permanent Marker (référence BCO bettercallouss.com)
+- **Visuels existants conservés** : 6 aquarelles formations + 2 portraits gravure
+
+### Mockups produits (outputs Cowork — historique)
+
+- redesign-mockup-v1.html (rejet — trop éditorial calme)
+- redesign-mockup-v2.html (validé — direction bold-graphique)
+- redesign-palettes-comparison-1/-2.html (6 palettes)
+- redesign-brutalism-levels.html (3 niveaux)
+- redesign-N1-less-black.html / dark-replacements.html / pastels.html / P2-frames.html
+- redesign-portrait-frame-bg.html (validation finale crème)
+- prompts-midjourney-v1.md (assets MJ à générer)
+
+### Ce qui reste à faire au prochain OPEN
+
+1. **Étendre la DA-C aux pages internes** — `/contact`, `/a-propos`, `/faq`, `/cas-clients`, `/ressources`, `/test-disc`, slug formations. Encore en ancien skin bleu. Cohérence chromatique à propager.
+2. **Aquarelles MJ** à générer par Clément (hero banner 21:9, taches encre transparentes, torn paper edges)
+3. **Sécurité Vercel (incident 21/04)** — toujours flaggé, J+5
+4. **Dette CLAUDE.md ligne 56** — ID Airtable corrompu
+5. **ORBIT Apps Script** — script prêt outputs Cowork 22/04
+6. **Synchroniser CLAUDE.md** — stats obsolètes
+
+## Note protocole
+Session 25/04 soir : Refonte visuelle complète validée et mergée sur main en autonomie. 13 commits via PR #2. Preview Vercel validée par Clément avant merge.
