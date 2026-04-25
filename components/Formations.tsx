@@ -4,152 +4,72 @@ import Image from 'next/image'
 import { useLang } from './LanguageContext'
 import { formations } from './formations-data'
 
-// ─── Card formation ────────────────────────────────────────────────────────────
-function FormationCard({
-  slug,
-  tag,
-  accent,
-  bg,
-  image,
-  title,
-  shortDescription,
-  delay,
-}: {
-  slug: string
-  tag: string
-  accent: string
-  bg: string
-  image: string
-  title: string
-  shortDescription: string
-  delay: number
-}) {
-  return (
-    <Link
-      href={`/formations/${slug}`}
-      className="group relative flex flex-col overflow-hidden rounded-3xl bg-white border border-[#1A2B4A]/8 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-transparent transition-all duration-300"
-      style={{
-        backgroundColor: bg,
-        animation: `cbFadeUp 0.55s ease both`,
-        animationDelay: `${delay}ms`,
-      }}
-    >
-      {/* Tag */}
-      <div className="absolute top-4 left-4 z-10">
-        <span
-          className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full backdrop-blur-sm"
-          style={{
-            color: accent,
-            backgroundColor: 'rgba(255,255,255,0.85)',
-            border: `1px solid ${accent}33`,
-          }}
-        >
-          {tag}
-        </span>
-      </div>
-
-      {/* Illustration zone */}
-      <div className="relative aspect-[4/3] w-full overflow-hidden flex items-center justify-center">
-        <Image
-          src={image}
-          alt={title}
-          fill
-          className="object-contain object-center p-6 mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
-          style={{
-            maskImage: 'radial-gradient(ellipse 75% 75% at center, black 40%, transparent 90%)',
-            WebkitMaskImage: 'radial-gradient(ellipse 75% 75% at center, black 40%, transparent 90%)',
-          }}
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        />
-      </div>
-
-      {/* Texte */}
-      <div className="flex flex-col flex-1 p-6 pt-2 bg-white/70 backdrop-blur-sm">
-        <h3 className="text-lg font-bold text-[#1A2B4A] leading-snug mb-2">{title}</h3>
-        <p className="text-sm text-[#6B7E95] leading-relaxed mb-4 flex-1">{shortDescription}</p>
-        <div
-          className="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors"
-          style={{ color: accent }}
-        >
-          <span>En savoir plus</span>
-          <svg
-            className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M9 5l7 7-7 7" />
-          </svg>
-        </div>
-      </div>
-    </Link>
-  )
+const COLOR_MAP: Record<string, { bg: string; shadow: string; accent: string }> = {
+  'rh-marque-employeur':     { bg: 'rgba(31,184,176,0.10)',  shadow: 'var(--cb-sarcelle)',       accent: 'sarcelle' },
+  'posture-professionnelle': { bg: 'rgba(232,93,47,0.10)',   shadow: 'var(--cb-terracotta)',     accent: 'terracotta' },
+  'prevention-rps':          { bg: 'rgba(15,123,117,0.10)',  shadow: 'var(--cb-sarcelle-deep)',  accent: 'sarcelle-deep' },
+  'strategie-entreprise':    { bg: 'rgba(200,16,46,0.10)',   shadow: 'var(--cb-cardinal)',       accent: 'cardinal' },
+  'soft-skills':             { bg: 'rgba(232,93,47,0.10)',   shadow: 'var(--cb-terracotta)',     accent: 'terracotta' },
+  'spine-up':                { bg: 'rgba(139,168,142,0.20)', shadow: 'var(--cb-sauge-deep)',     accent: 'sauge-deep' },
 }
 
-// ─── Section Formations ────────────────────────────────────────────────────────
+const ROTATIONS = ['-rotate-[0.6deg]', 'rotate-[0.5deg]', '-rotate-[0.4deg]', 'rotate-[0.7deg]', '-rotate-[0.3deg]', 'rotate-[0.4deg]']
+
 export default function Formations() {
-  const { t } = useLang()
+  const { lang } = useLang()
 
   return (
-    <section
-      id="formations"
-      className="relative py-16 md:py-20 bg-gradient-to-b from-[#F5F0FB] via-[#F1F4FA] to-[#EBF0F8]"
-    >
-      <style>{`
-        @keyframes cbFadeUp {
-          from { opacity: 0; transform: translateY(24px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
-
-      <div className="max-w-6xl mx-auto px-6">
-        {/* Header */}
-        <div
-          className="mb-10 md:mb-14 text-center"
-          style={{ animation: 'cbFadeUp 0.5s ease both' }}
-        >
-          <p className="text-xs font-semibold text-[#3D6DB8] uppercase tracking-widest mb-3">
-            {t.formations.label}
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1A2B4A] leading-tight max-w-2xl mx-auto">
-            {t.formations.title}
-          </h2>
-          <p className="mt-4 text-[#6B7E95] max-w-xl mx-auto leading-relaxed">
-            {t.formations.subtitle}
-          </p>
+    <section className="bg-cb-sable py-20 md:py-28 px-6">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-[2fr_1fr] gap-10 items-end mb-14">
+          <div>
+            <span className="inline-block font-marker text-cb-cardinal text-lg -rotate-2 mb-3">
+              {lang === 'fr' ? 'Mes formations →' : 'My training programs →'}
+            </span>
+            <h2 className="font-anton text-5xl md:text-7xl lg:text-8xl uppercase leading-[0.92] text-cb-encre">
+              {lang === 'fr' ? (
+                <>Six entrées.<br />Une <span className="inline-block bg-cb-sauge text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">approche</span>.</>
+              ) : (
+                <>Six entries.<br />One <span className="inline-block bg-cb-sauge text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">approach</span>.</>
+              )}
+            </h2>
+          </div>
+          <div className="text-base font-medium border-l-4 border-cb-cardinal pl-5 max-w-md">
+            {lang === 'fr'
+              ? "Chaque programme est construit avec vous. Pas de catalogue rigide, jamais."
+              : "Every program is built with you. No rigid catalog, ever."}
+          </div>
         </div>
 
-        {/* Grid 1 / 2 / 3 colonnes */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-          {formations.map((f, i) => (
-            <FormationCard
-              key={f.slug}
-              slug={f.slug}
-              tag={f.tag}
-              accent={f.accent}
-              bg={f.bg}
-              image={f.image}
-              title={f.title}
-              shortDescription={f.shortDescription}
-              delay={i * 80}
-            />
-          ))}
-        </div>
-
-        {/* CTA centre : voir toutes les formations */}
-        <div
-          className="mt-12 text-center"
-          style={{ animation: 'cbFadeUp 0.5s ease both 500ms' }}
-        >
-          <Link
-            href="/formations"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-[#1A2B4A] hover:text-[#3D6DB8] transition-colors"
-          >
-            <span>Voir toutes les formations en détail</span>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7">
+          {formations.map((f, i) => {
+            const c = COLOR_MAP[f.slug] || COLOR_MAP['rh-marque-employeur']
+            const rot = ROTATIONS[i % ROTATIONS.length]
+            return (
+              <Link
+                key={f.slug}
+                href={`/formations/${f.slug}`}
+                className={`group relative bg-white border-[2.5px] border-cb-sauge-deep rounded flex flex-col transition-all duration-200 ${rot} hover:rotate-0 hover:translate-x-[-3px] hover:translate-y-[-3px]`}
+                style={{ boxShadow: `7px 7px 0 ${c.shadow}` }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = `12px 12px 0 ${c.shadow}` }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = `7px 7px 0 ${c.shadow}` }}
+              >
+                <div className="relative aspect-[4/3] overflow-hidden border-b-[2.5px] border-cb-sauge-deep" style={{ backgroundColor: c.bg }}>
+                  <span className={`absolute top-3 left-3 z-10 inline-block px-2.5 py-1 font-anton text-xs uppercase tracking-wider border-2 border-cb-sauge-deep rounded-sm bg-cb-sable text-cb-${c.accent}`}>
+                    {f.tag}
+                  </span>
+                  <Image src={f.image} alt={f.title} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
+                </div>
+                <div className="p-5 md:p-6 flex flex-col flex-1">
+                  <h3 className="font-anton text-xl md:text-2xl uppercase leading-[1] mb-2 text-cb-encre">{f.title}</h3>
+                  <p className="text-sm text-cb-encre-soft leading-snug mb-4 flex-1">{f.shortDescription}</p>
+                  <span className="inline-flex items-center gap-1.5 font-bold text-xs uppercase tracking-widest text-cb-encre border-b-2 border-cb-sauge-deep self-start pb-1 group-hover:border-cb-cardinal transition-colors">
+                    {lang === 'fr' ? 'Voir le programme →' : 'See program →'}
+                  </span>
+                </div>
+              </Link>
+            )
+          })}
         </div>
       </div>
     </section>
