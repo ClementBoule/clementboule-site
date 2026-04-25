@@ -54,47 +54,72 @@ export default function HomeFAQ() {
   const [open, setOpen] = useState<number | null>(null)
 
   return (
-    <section className="py-20 md:py-28 bg-white">
-      <div className="max-w-3xl mx-auto px-6">
+    <section className="bg-cb-creme py-20 md:py-28 px-6 relative overflow-hidden border-t-4 border-cb-encre">
+      <div className="max-w-4xl mx-auto">
+
+        {/* Header */}
         <div className="text-center mb-14">
-          <p className="text-xs font-semibold text-[#3D6DB8] uppercase tracking-widest mb-3">FAQ</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1A2B4A] leading-tight">
-            {lang === 'fr' ? 'Questions fréquentes' : 'Frequently asked questions'}
+          <span className="inline-block font-marker text-cb-cardinal text-lg -rotate-2 mb-3">
+            {lang === 'fr' ? 'Vos questions →' : 'Your questions →'}
+          </span>
+          <h2 className="font-anton text-5xl md:text-6xl lg:text-7xl uppercase leading-[0.92] text-cb-encre">
+            {lang === 'fr' ? (
+              <>Questions <span className="inline-block bg-cb-sarcelle text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">fréquentes</span>.</>
+            ) : (
+              <>Frequently <span className="inline-block bg-cb-sarcelle text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">asked</span>.</>
+            )}
           </h2>
         </div>
 
-        <div className="divide-y divide-[#1A2B4A]/8">
-          {faq.map((item, i) => (
-            <div key={i} className="py-5">
-              <button
-                className="w-full flex items-start justify-between gap-4 text-left group"
-                onClick={() => setOpen(open === i ? null : i)}
-                aria-expanded={open === i}
+        {/* Liste accordéons brutalist */}
+        <div className="space-y-4">
+          {faq.map((item, i) => {
+            const isOpen = open === i
+            return (
+              <div
+                key={i}
+                className={`bg-white border-[2.5px] border-cb-sauge-deep rounded transition-all duration-200 ${isOpen ? '' : 'hover:translate-x-[-2px] hover:translate-y-[-2px]'}`}
+                style={{
+                  boxShadow: isOpen ? `8px 8px 0 var(--cb-sarcelle)` : `5px 5px 0 var(--cb-sauge)`,
+                  animation: `cbFadeUp 0.5s ease both ${i * 70}ms`,
+                }}
               >
-                <span className={`text-base font-semibold transition-colors ${open === i ? 'text-[#3D6DB8]' : 'text-[#1A2B4A] group-hover:text-[#3D6DB8]'}`}>
-                  {item.q}
-                </span>
-                <svg
-                  className={`w-5 h-5 shrink-0 text-[#3D6DB8] mt-0.5 transition-transform duration-200 ${open === i ? 'rotate-180' : ''}`}
-                  fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                <button
+                  className="w-full flex items-start justify-between gap-4 text-left p-5 md:p-6 group"
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  aria-expanded={isOpen}
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {open === i && (
-                <p className="mt-3 text-sm text-[#6B7E95] leading-relaxed pr-8">
-                  {item.a}
-                </p>
-              )}
-            </div>
-          ))}
+                  <span className={`font-anton text-lg md:text-xl uppercase leading-tight ${isOpen ? 'text-cb-sarcelle-deep' : 'text-cb-encre group-hover:text-cb-sarcelle-deep'} transition-colors`}>
+                    {item.q}
+                  </span>
+                  <span className={`shrink-0 mt-1 w-8 h-8 border-2 border-cb-sauge-deep rounded-sm flex items-center justify-center font-anton text-lg transition-all ${isOpen ? 'bg-cb-sarcelle text-cb-sable rotate-45' : 'bg-cb-sable text-cb-encre'}`}>
+                    +
+                  </span>
+                </button>
+                {isOpen && (
+                  <div className="px-5 md:px-6 pb-5 md:pb-6 -mt-2">
+                    <div className="border-t-2 border-cb-sauge pt-4">
+                      <p className="text-sm md:text-base text-cb-encre-soft leading-relaxed">
+                        {item.a}
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )
+          })}
         </div>
 
-        <div className="mt-10 text-center">
-          <a href="/faq" className="text-sm font-semibold text-[#3D6DB8] hover:underline">
+        {/* CTA "voir toutes" */}
+        <div className="mt-12 text-center">
+          <a
+            href="/faq"
+            className="inline-block font-anton text-base md:text-lg uppercase tracking-wider text-cb-encre border-b-[3px] border-cb-cardinal pb-1 hover:translate-y-[-2px] transition-transform"
+          >
             {lang === 'fr' ? 'Voir toutes les questions →' : 'See all questions →'}
           </a>
         </div>
+
       </div>
     </section>
   )
