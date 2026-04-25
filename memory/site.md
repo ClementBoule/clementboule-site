@@ -284,3 +284,38 @@ PR #2 mergée sur main : `5751642 Merge pull request #2 from ClementBoule/redesi
 
 ## Note protocole
 Session 25/04 soir : Refonte visuelle complète validée et mergée sur main en autonomie. 13 commits via PR #2. Preview Vercel validée par Clément avant merge.
+
+## Plan d'extension DA-C aux pages internes (à reprendre au prochain OPEN)
+
+13 fichiers encore en ancien skin bleu après la refonte du 25/04 soir.
+
+**Composants home restants (4)** : Proof.tsx, TopClients.tsx, HomeFAQ.tsx, HomeFab.tsx
+**Pages internes (10)** : /contact, /a-propos, /faq, /cas-clients, /ressources, /test-disc (24 KB interactif), /formations (liste), /formations/[slug] (template), /mentions-legales, /politique-de-confidentialite
+
+### Plan en 5 phases
+
+**Phase 1 — Composants home restants (1h)** : Proof, TopClients, HomeFAQ, HomeFab. Risque très faible.
+
+**Phase 2 — Pages conversion (2-3h)** : /contact (30min), /a-propos (45min), /formations/[slug] template (1h), /formations liste (30min).
+
+**Phase 3 — Pages secondaires (1-2h)** : /faq, /cas-clients, /ressources, /mentions-legales, /politique-de-confidentialite.
+
+**Phase 4 — /test-disc (2-3h)** : le plus complexe. Mockup HTML séparé d'abord pour valider la direction avant de toucher le composant React 24 KB.
+
+**Phase 5 — Audit & polish (1h)** : test desktop/tablette/mobile, transitions, hex hardcodés oubliés.
+
+### Méthode
+
+Branche dédiée `redesign-da-c-pages-internes`. Vercel preview à chaque phase. Merge final sur main quand tout validé. Aucun risque pour la prod.
+
+### Effort total
+
+7-10 heures étalées sur 2-3 sessions.
+
+### Choix proposé à Clément (en attente)
+
+- A : phases 1+2 d'un coup (~3-4h) — home complète + pages conversion
+- B : phase 1 seule (~1h) — juste les composants home restants
+- C : tout d'un coup en plusieurs sessions (~7-10h)
+
+Clément a répondu **close** avant de choisir. À reprendre au prochain OPEN avec cette question en attente.
