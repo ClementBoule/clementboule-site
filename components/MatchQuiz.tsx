@@ -656,6 +656,7 @@ export default function MatchQuiz() {
 
   return (
     <section
+      id="quiz"
       className="py-20 md:py-28 relative overflow-hidden"
       style={{ background: 'linear-gradient(180deg, #F0F4FB 0%, #FFFFFF 100%)' }}
       aria-label={copy.title}
