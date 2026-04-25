@@ -106,7 +106,7 @@ export default function Hero() {
               transition: 'opacity 0.7s ease 0.15s, transform 0.7s ease 0.15s',
             }}
           >
-            <div className="relative bg-cb-sauge-deep border-[3px] border-cb-encre rounded shadow-[10px_10px_0_var(--cb-cardinal)] -rotate-[1.5deg]">
+            <div className="relative bg-cb-creme border-[3px] border-cb-encre rounded shadow-[10px_10px_0_var(--cb-cardinal)] -rotate-[1.5deg]">
               <span className="absolute -left-3 top-4 bg-cb-rose border-[2.5px] border-cb-encre px-3 py-1.5 font-anton uppercase text-sm tracking-wide -rotate-3 z-10 rounded-sm text-cb-encre">
                 {lang === 'fr' ? 'Depuis 2016' : 'Since 2016'}
               </span>
