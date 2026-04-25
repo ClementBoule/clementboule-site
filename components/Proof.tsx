@@ -1,105 +1,148 @@
 'use client'
+import { useLang } from './LanguageContext'
 
 // ─── Chiffres clés ────────────────────────────────────────────────────────────
-const STATS = [
-  { value: '+1 800', label: 'participants formés' },
-  { value: '10 ans', label: "d'accompagnement" },
-  { value: 'FR / EN', label: 'Bilingue' },
+const STATS_FR = [
+  { value: '+1 800', label: 'participants formés', color: 'sarcelle', rot: '-rotate-[0.6deg]' },
+  { value: '10 ans', label: "d'accompagnement", color: 'terracotta', rot: 'rotate-[0.4deg]' },
+  { value: 'FR / EN', label: 'bilingue', color: 'sauge-deep', rot: '-rotate-[0.3deg]' },
+]
+const STATS_EN = [
+  { value: '+1,800', label: 'people trained', color: 'sarcelle', rot: '-rotate-[0.6deg]' },
+  { value: '10 yrs', label: 'of coaching', color: 'terracotta', rot: 'rotate-[0.4deg]' },
+  { value: 'FR / EN', label: 'bilingual', color: 'sauge-deep', rot: '-rotate-[0.3deg]' },
 ]
 
-const PILLARS = [
+const PILLARS_FR = [
   {
-    icon: (
-      // Globe — portée internationale, bilinguisme
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8}
-          d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-      </svg>
-    ),
+    tag: '01',
     title: 'Bilingue FR / EN',
     desc: "Je forme en français et en anglais. Pratique pour les équipes internationales ou les contextes multiculturels.",
+    color: 'sarcelle',
+    shadow: 'var(--cb-sarcelle)',
+    rot: '-rotate-[0.5deg]',
   },
   {
-    icon: (
-      // Sliders — programme ajusté, sur-mesure
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8}
-          d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-      </svg>
-    ),
+    tag: '02',
     title: 'Conçu sur-mesure',
     desc: 'Pas de catalogue standard. Chaque programme est construit à partir de vos enjeux réels, de votre secteur et de vos équipes.',
+    color: 'terracotta',
+    shadow: 'var(--cb-terracotta)',
+    rot: 'rotate-[0.6deg]',
   },
   {
-    icon: (
-      // Bouclier-check — ancrage comportemental, intégrité de la posture
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8}
-          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-      </svg>
-    ),
+    tag: '03',
     title: 'La posture avant le contenu',
     desc: "Ce qui change vraiment, c'est la façon dont les gens se positionnent — pas juste ce qu'ils savent. C'est ça qui reste après la formation.",
+    color: 'sauge-deep',
+    shadow: 'var(--cb-sauge-deep)',
+    rot: '-rotate-[0.4deg]',
+  },
+]
+
+const PILLARS_EN = [
+  {
+    tag: '01',
+    title: 'Bilingual FR / EN',
+    desc: 'I train in French and English. Useful for international teams or multicultural contexts.',
+    color: 'sarcelle',
+    shadow: 'var(--cb-sarcelle)',
+    rot: '-rotate-[0.5deg]',
+  },
+  {
+    tag: '02',
+    title: 'Built for you',
+    desc: 'No standard catalog. Every program is built from your real challenges, your sector, and your teams.',
+    color: 'terracotta',
+    shadow: 'var(--cb-terracotta)',
+    rot: 'rotate-[0.6deg]',
+  },
+  {
+    tag: '03',
+    title: 'Posture before content',
+    desc: "What really changes is how people position themselves — not just what they know. That's what stays after the training.",
+    color: 'sauge-deep',
+    shadow: 'var(--cb-sauge-deep)',
+    rot: '-rotate-[0.4deg]',
   },
 ]
 
 // ─── Composant ──────────────────────────────────────────────────────────────
 export default function Proof() {
+  const { lang } = useLang()
+  const stats = lang === 'fr' ? STATS_FR : STATS_EN
+  const pillars = lang === 'fr' ? PILLARS_FR : PILLARS_EN
+
   return (
-    <section className="relative py-16 md:py-20 bg-white overflow-hidden">
-      <style>{`
-        @keyframes cbFadeUp2 {
-          from { opacity: 0; transform: translateY(20px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
+    <section className="bg-cb-creme py-20 md:py-28 px-6 relative overflow-hidden border-t-4 border-cb-encre">
+      <div className="max-w-7xl mx-auto">
 
-      <div className="max-w-6xl mx-auto px-6">
-
-        {/* Chiffres clés */}
-        <div className="grid grid-cols-3 gap-6 md:gap-10 mb-16 md:mb-20">
-          {STATS.map((s, i) => (
+        {/* Chiffres clés — Anton géants polychromes */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 mb-20 md:mb-24">
+          {stats.map((s, i) => (
             <div
               key={s.label}
-              className="text-center"
-              style={{ animation: `cbFadeUp2 0.5s ease both ${i * 80}ms` }}
+              className={`text-center ${s.rot}`}
+              style={{ animation: `cbFadeUp 0.6s ease both ${i * 100}ms` }}
             >
-              <div className="text-3xl md:text-4xl font-extrabold text-[#1A2B4A] mb-1 tracking-tight">
+              <div className={`font-anton text-6xl md:text-7xl lg:text-8xl uppercase leading-[0.9] mb-2 text-cb-${s.color}`}>
                 {s.value}
               </div>
-              <div className="text-sm text-[#6B7E95] leading-snug">{s.label}</div>
+              <div className="text-sm md:text-base font-medium text-cb-encre-soft uppercase tracking-widest">
+                {s.label}
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Séparateur */}
-        <div className="w-16 h-0.5 bg-[#3D6DB8]/30 mx-auto mb-14" />
-
-        {/* 3 piliers différenciants */}
-        <div
-          className="text-center mb-10"
-          style={{ animation: 'cbFadeUp2 0.5s ease both 320ms' }}
-        >
-          <p className="text-xs font-semibold text-[#3D6DB8] uppercase tracking-widest mb-3">
-            Pourquoi travailler ensemble
-          </p>
-          <h2 className="text-2xl md:text-3xl font-bold text-[#1A2B4A] max-w-xl mx-auto leading-tight">
-            Ce qui fait la différence
-          </h2>
+        {/* Bande sauge traversante */}
+        <div className="relative mb-14">
+          <div className="absolute top-1/2 left-0 right-0 h-1 bg-cb-sauge -translate-y-1/2 pointer-events-none" />
+          <div className="relative flex justify-center">
+            <span className="bg-cb-creme px-6 font-marker text-cb-cardinal text-lg -rotate-2">
+              {lang === 'fr' ? 'Pourquoi travailler ensemble →' : 'Why work together →'}
+            </span>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {PILLARS.map((p, i) => (
+        {/* Headline */}
+        <div className="grid md:grid-cols-[2fr_1fr] gap-10 items-end mb-14">
+          <h2 className="font-anton text-5xl md:text-6xl lg:text-7xl uppercase leading-[0.92] text-cb-encre">
+            {lang === 'fr' ? (
+              <>Ce qui fait la <span className="inline-block bg-cb-terracotta text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">différence</span>.</>
+            ) : (
+              <>What makes the <span className="inline-block bg-cb-terracotta text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">difference</span>.</>
+            )}
+          </h2>
+          <div className="text-base font-medium border-l-4 border-cb-cardinal pl-5 max-w-md text-cb-encre-soft">
+            {lang === 'fr'
+              ? 'Trois marqueurs clairs. Aucune promesse vague.'
+              : 'Three clear markers. No vague promises.'}
+          </div>
+        </div>
+
+        {/* 3 piliers — cards brutalist */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-7 md:gap-8">
+          {pillars.map((p, i) => (
             <div
               key={p.title}
-              className="group relative p-7 rounded-2xl border border-[#1A2B4A]/8 bg-[#F8FAFE] hover:bg-white hover:shadow-lg hover:border-[#3D6DB8]/20 transition-all duration-300"
-              style={{ animation: `cbFadeUp2 0.55s ease both ${400 + i * 90}ms` }}
+              className={`group relative bg-white border-[2.5px] border-cb-sauge-deep rounded p-7 md:p-8 transition-all duration-200 ${p.rot} hover:rotate-0 hover:translate-x-[-3px] hover:translate-y-[-3px]`}
+              style={{
+                boxShadow: `7px 7px 0 ${p.shadow}`,
+                animation: `cbFadeUp 0.55s ease both ${300 + i * 90}ms`,
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = `12px 12px 0 ${p.shadow}` }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = `7px 7px 0 ${p.shadow}` }}
             >
-              <div className="w-11 h-11 rounded-xl bg-[#3D6DB8]/10 flex items-center justify-center text-[#3D6DB8] mb-5 group-hover:bg-[#3D6DB8] group-hover:text-white transition-colors duration-300">
-                {p.icon}
-              </div>
-              <h3 className="text-base font-bold text-[#1A2B4A] mb-2">{p.title}</h3>
-              <p className="text-sm text-[#6B7E95] leading-relaxed">{p.desc}</p>
+              <span className={`inline-block font-anton text-xs uppercase tracking-wider px-2.5 py-1 mb-5 border-2 border-cb-sauge-deep rounded-sm bg-cb-sable text-cb-${p.color}`}>
+                {p.tag}
+              </span>
+              <h3 className="font-anton text-2xl md:text-3xl uppercase leading-[1] mb-3 text-cb-encre">
+                {p.title}
+              </h3>
+              <p className="text-sm md:text-base text-cb-encre-soft leading-relaxed">
+                {p.desc}
+              </p>
             </div>
           ))}
         </div>
@@ -107,4 +150,4 @@ export default function Proof() {
       </div>
     </section>
   )
-        }
+}
