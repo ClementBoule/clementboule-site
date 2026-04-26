@@ -442,10 +442,10 @@ export default function MatchQuiz() {
   // ─── Rendu : header commun ───────────────────────────────────────────────
   const header = (
     <div className="text-center max-w-2xl mx-auto mb-10">
-      <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: currentAccent }}>
-        {copy.label}
-      </p>
-      <h2 className="text-3xl md:text-4xl font-bold text-cb-encre leading-tight mb-4">
+      <span className="inline-block font-marker text-cb-cardinal text-lg -rotate-2 mb-3">
+        ↓ {copy.label}
+      </span>
+      <h2 className="font-anton text-4xl md:text-5xl lg:text-6xl uppercase leading-[0.95] text-cb-encre mb-4">
         {copy.title}
       </h2>
       <p className="text-sm md:text-base text-cb-encre-soft leading-relaxed">{copy.subtitle}</p>
@@ -457,7 +457,7 @@ export default function MatchQuiz() {
     if (step === 0) {
       return (
         <>
-          <h3 className="text-lg font-semibold text-cb-encre mb-6 text-center">
+          <h3 className="font-anton text-2xl md:text-3xl uppercase leading-tight text-cb-encre mb-6 text-center">
             {copy.steps.audience.q}
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto">
@@ -476,7 +476,7 @@ export default function MatchQuiz() {
     if (step === 1) {
       return (
         <>
-          <h3 className="text-lg font-semibold text-cb-encre mb-6 text-center">
+          <h3 className="font-anton text-2xl md:text-3xl uppercase leading-tight text-cb-encre mb-6 text-center">
             {copy.steps.topic.q}
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 max-w-4xl mx-auto">
@@ -496,7 +496,7 @@ export default function MatchQuiz() {
     if (step === 2) {
       return (
         <>
-          <h3 className="text-lg font-semibold text-cb-encre mb-6 text-center">
+          <h3 className="font-anton text-2xl md:text-3xl uppercase leading-tight text-cb-encre mb-6 text-center">
             {copy.steps.duration.q}
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto">
@@ -536,7 +536,7 @@ export default function MatchQuiz() {
           <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: reco.accent }}>
             {copy.result.eyebrow}
           </p>
-          <h3 className="text-2xl md:text-3xl font-bold text-cb-encre leading-tight mb-5">
+          <h3 className="font-anton text-3xl md:text-4xl lg:text-5xl uppercase leading-tight text-cb-encre mb-5">
             {copy.result.headline(reco.title)}
           </h3>
 

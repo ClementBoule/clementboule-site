@@ -123,7 +123,7 @@ export default async function FormationDetailPage({
             {/* Image en frame brutalist creme */}
             <div className="relative flex justify-center md:justify-end">
               <div
-                className="relative w-full max-w-md aspect-[4/5] bg-cb-creme border-[2.5px] border-cb-sauge-deep rounded-sm overflow-hidden -rotate-[1deg]"
+                className="relative w-full max-w-md aspect-[3/2] bg-cb-creme border-[2.5px] border-cb-sauge-deep rounded-sm overflow-hidden -rotate-[1deg]"
                 style={{ boxShadow: `10px 10px 0 ${f.accent}` }}
               >
                 <Image
