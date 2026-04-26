@@ -90,7 +90,7 @@ export default function DiscTest() {
       .map(q => ({ ...q, options: shuffleOptions(q.options) }))
   }, [dominant])
 
-  // ─── Phase 2 Scoring — determine sub-profile ─────────────────────────
+  // ─── Phase 2 Scoring, determine sub-profile ─────────────────────────
 
   const computeSubProfile = (): SubProfileKey => {
     const subScores: Partial<Record<SubProfileKey, number>> = {}
@@ -487,7 +487,7 @@ export default function DiscTest() {
   }
 
   // ═══════════════════════════════════════════════════════════════════════
-  // PHASE 2 — Questions complémentaires
+  // PHASE 2, Questions complémentaires
   // ═══════════════════════════════════════════════════════════════════════
 
   if (step === 'phase2') {
@@ -606,7 +606,7 @@ export default function DiscTest() {
   }
 
   // ═══════════════════════════════════════════════════════════════════════
-  // RESULTS — Phase 1 (avec cartographie teasing) ou Final (après Phase 2)
+  // RESULTS, Phase 1 (avec cartographie teasing) ou Final (après Phase 2)
   // ═══════════════════════════════════════════════════════════════════════
 
   const isFinal = step === 'results-final'
@@ -739,7 +739,7 @@ export default function DiscTest() {
               className="inline-flex items-center gap-2 text-white font-bold px-8 py-3.5 rounded-xl transition-all hover:-translate-y-0.5"
               style={{ backgroundColor: color.main, boxShadow: `0 4px 20px ${color.main}45` }}
             >
-              Affiner mon profil — Phase 2
+              Affiner mon profil, Phase 2
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
@@ -835,7 +835,7 @@ export default function DiscTest() {
             <p className="text-gray-700 text-sm leading-relaxed italic">&ldquo;{openAnswer.trim()}&rdquo;</p>
             <p className="text-xs text-gray-400 mt-4 flex items-center gap-1">
               <span>🔒</span>
-              <span>Cette réponse n'est pas conservée — elle disparaîtra à la fermeture de cette page.</span>
+              <span>Cette réponse n'est pas conservée, elle disparaîtra à la fermeture de cette page.</span>
             </p>
           </div>
         )}

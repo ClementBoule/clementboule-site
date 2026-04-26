@@ -17,15 +17,15 @@ const FAQ_SECTIONS: { category: string; color: string; rot: string; items: { q: 
     items: [
       {
         q: "Vous proposez des formations financables OPCO ?",
-        a: "Non. Je travaille en direct avec mes clients — pas de certification Qualiopi, pas de parcours OPCO. Ca me permet de construire des programmes vraiment sur-mesure, sans contrainte administrative, et de m'adapter en temps reel a vos equipes.",
+        a: "Non. Je travaille en direct avec mes clients, pas de certification Qualiopi, pas de parcours OPCO. Ca me permet de construire des programmes vraiment sur-mesure, sans contrainte administrative, et de m'adapter en temps reel a vos equipes.",
       },
       {
         q: "En quoi vous differenciez-vous d'un organisme de formation classique ?",
-        a: "Je ne vends pas un catalogue. Chaque programme est concu a partir de vos enjeux reels. Je travaille seul — ce qui garantit une coherence totale entre le diagnostic, la conception et l'animation. Et je m'adapte en cours de session si la dynamique de groupe le demande.",
+        a: "Je ne vends pas un catalogue. Chaque programme est concu a partir de vos enjeux reels. Je travaille seul, ce qui garantit une coherence totale entre le diagnostic, la conception et l'animation. Et je m'adapte en cours de session si la dynamique de groupe le demande.",
       },
       {
         q: "Vous travaillez avec quel type de clients ?",
-        a: "Business schools et grandes ecoles parisiennes, PME, grandes entreprises, associations, institutions publiques. Ce qui varie, c'est le secteur — pas l'exigence. Je travaille en francais et en anglais.",
+        a: "Business schools et grandes ecoles parisiennes, PME, grandes entreprises, associations, institutions publiques. Ce qui varie, c'est le secteur, pas l'exigence. Je travaille en francais et en anglais.",
       },
     ],
   },
@@ -59,11 +59,11 @@ const FAQ_SECTIONS: { category: string; color: string; rot: string; items: { q: 
     items: [
       {
         q: "Quels sont vos tarifs ?",
-        a: "Je facture a la journee ou au module selon la nature du projet. Tous les devis sont sur-mesure — contactez-moi pour qu'on evalue ensemble ce qui correspond a votre besoin.",
+        a: "Je facture a la journee ou au module selon la nature du projet. Tous les devis sont sur-mesure, contactez-moi pour qu'on evalue ensemble ce qui correspond a votre besoin.",
       },
       {
         q: "Comment se passe la facturation ?",
-        a: "Je suis auto-entrepreneur (SIRET disponible sur demande). Je facture apres prestation avec delai de paiement a 30 jours. Un acompte peut etre demande pour les projets d'envergure.",
+        a: "Je facture apres prestation avec delai de paiement a 30 jours. Un acompte peut etre demande pour les projets d'envergure. SIRET et statut juridique en mentions legales.",
       },
       {
         q: "Vous pouvez fournir un numero SIRET pour la comptabilite ?",
@@ -82,7 +82,7 @@ const FAQ_SECTIONS: { category: string; color: string; rot: string; items: { q: 
       },
       {
         q: "Pouvez-vous animer des ateliers DISC en entreprise ?",
-        a: "Oui, c'est une de mes specialites. Je propose des ateliers DISC de demi-journee ou d'une journee pour les equipes — ideal pour ameliorer la communication interne, prevenir les conflits et renforcer la cohesion.",
+        a: "Oui, c'est une de mes specialites. Je propose des ateliers DISC de demi-journee ou d'une journee pour les equipes, ideal pour ameliorer la communication interne, prevenir les conflits et renforcer la cohesion.",
       },
     ],
   },

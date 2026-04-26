@@ -85,7 +85,7 @@ export default function Image() {
             fontFamily: 'Arial, sans-serif',
             display: 'flex',
           }}>
-            en français et en anglais — Paris
+            en français et en anglais, Paris
           </div>
 
           {/* Tags */}

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 /**
- * HomeFab — Bouton flottant de retour à l'accueil (DA-C brutalist)
+ * HomeFab, Bouton flottant de retour à l'accueil (DA-C brutalist)
  * - Visible uniquement sur mobile et tablette (md:hidden)
  * - Apparaît après scroll > 300px (inutile en haut de page)
  * - Position bottom-left, mirrore le FAB mage (bottom-right)

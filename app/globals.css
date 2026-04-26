@@ -49,3 +49,12 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Formation cards hover - shadow grandit au hover (compatible Server Components via CSS var --accent) */
+.cb-formation-card {
+  box-shadow: 7px 7px 0 var(--accent, var(--cb-sauge));
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.cb-formation-card:hover {
+  box-shadow: 12px 12px 0 var(--accent, var(--cb-sauge));
+}

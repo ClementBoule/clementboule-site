@@ -49,10 +49,8 @@ export default function Formations() {
               <Link
                 key={f.slug}
                 href={`/formations/${f.slug}`}
-                className={`group relative bg-white border-[2.5px] border-cb-sauge-deep rounded flex flex-col transition-all duration-200 ${rot} hover:rotate-0 hover:translate-x-[-3px] hover:translate-y-[-3px]`}
-                style={{ boxShadow: `7px 7px 0 ${c.shadow}` }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = `12px 12px 0 ${c.shadow}` }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = `7px 7px 0 ${c.shadow}` }}
+                className={`group cb-formation-card relative bg-white border-[2.5px] border-cb-sauge-deep rounded flex flex-col ${rot} hover:rotate-0 hover:translate-x-[-3px] hover:translate-y-[-3px]`}
+                style={{ ['--accent' as any]: c.shadow }}
               >
                 <div className="relative aspect-[4/3] overflow-hidden border-b-[2.5px] border-cb-sauge-deep" style={{ backgroundColor: c.bg }}>
                   <span className={`absolute top-3 left-3 z-10 inline-block px-2.5 py-1 font-anton text-xs uppercase tracking-wider border-2 border-cb-sauge-deep rounded-sm bg-cb-sable text-cb-${c.accent}`}>

@@ -1,7 +1,7 @@
 // ─── DISC DATA MODEL ────────────────────────────────────────────────────────
 // Contient : types, couleurs, 4 profils principaux, 15 sous-profils,
 //            questions Phase 1 & Phase 2, messages "Akinator", blend texts
-// Source sous-profils : Assessments 24x7 — Cartographie des 15 principaux
+// Source sous-profils : Assessments 24x7, Cartographie des 15 principaux
 //                       styles comportementaux (V1, 06/04/2022)
 
 export type ProfileKey = 'D' | 'I' | 'S' | 'C'
@@ -32,7 +32,7 @@ export interface SubProfile {
   // Position sur la cartographie (angle en degrés, distance du centre 0-1)
   mapPosition: { angle: number; radius: number }
   traits: string[]
-  // Message "Akinator" — bulle de dialogue personnalisée
+  // Message "Akinator", bulle de dialogue personnalisée
   akinatorMessage: string
   // Situations pro concrètes que ce profil vit au quotidien
   dailyInsight: string
@@ -53,7 +53,7 @@ export const subProfiles: Record<SubProfileKey, SubProfile> = {
       "Organisé avec un plan d'action séquencé",
       "Peut exprimer ouvertement son mécontentement envers les non-contributeurs",
     ],
-    akinatorMessage: "Vous êtes celui qui, en réunion, a déjà la solution en tête pendant que les autres posent encore le problème — mais vous savez aussi la vendre avec finesse. Le souci ? Quand votre collègue « touche-à-tout » débarque avec une idée non structurée, vous sentez monter cette impatience... Parlons-en ?",
+    akinatorMessage: "Vous êtes celui qui, en réunion, a déjà la solution en tête pendant que les autres posent encore le problème, mais vous savez aussi la vendre avec finesse. Le souci ? Quand votre collègue « touche-à-tout » débarque avec une idée non structurée, vous sentez monter cette impatience... Parlons-en ?",
     dailyInsight: "Vous passez probablement vos journées à transformer des visions floues en plans concrets, tout en gérant la frustration face aux collègues qui ne suivent pas le rythme.",
   },
   investigateur: {
@@ -117,7 +117,7 @@ export const subProfiles: Record<SubProfileKey, SubProfile> = {
       "Le contrôle est important, peut se défendre si mis au défi",
       "Grandes attentes envers les autres, très critique si déçu",
     ],
-    akinatorMessage: "Vous êtes le genre à avoir 3 projets en parallèle, tous sous contrôle. Votre patron adore vos résultats mais s'inquiète de votre « capacité à déléguer ». Vous, vous vous dites : « Si je délègue, ça sera mal fait. » On connaît ce schéma — et on sait comment en sortir.",
+    akinatorMessage: "Vous êtes le genre à avoir 3 projets en parallèle, tous sous contrôle. Votre patron adore vos résultats mais s'inquiète de votre « capacité à déléguer ». Vous, vous vous dites : « Si je délègue, ça sera mal fait. » On connaît ce schéma, et on sait comment en sortir.",
     dailyInsight: "Indépendant et productif, vous excellez en solo mais le management d'équipe vous confronte à vos limites de patience.",
   },
 
@@ -135,8 +135,8 @@ export const subProfiles: Record<SubProfileKey, SubProfile> = {
       "Forte capacité de persuasion, peut donner le sentiment de manipulation",
       "Peut chercher à intimider et ignorer les décisions des autres",
     ],
-    akinatorMessage: "Vous êtes celui ou celle qui transforme un simple brief en aventure collective. Votre énergie est contagieuse — mais certains collègues trouvent que vous « en faites trop » ou que vous « manipulez l'ambiance ». Ce n'est pas ça. C'est juste que votre cerveau voit les leviers relationnels que les autres ne voient pas. Discutons de comment canaliser ça.",
-    dailyInsight: "Votre talent naturel pour influencer et motiver est votre superpower — mais il peut être perçu comme de la manipulation par les profils plus analytiques.",
+    akinatorMessage: "Vous êtes celui ou celle qui transforme un simple brief en aventure collective. Votre énergie est contagieuse, mais certains collègues trouvent que vous « en faites trop » ou que vous « manipulez l'ambiance ». Ce n'est pas ça. C'est juste que votre cerveau voit les leviers relationnels que les autres ne voient pas. Discutons de comment canaliser ça.",
+    dailyInsight: "Votre talent naturel pour influencer et motiver est votre superpower, mais il peut être perçu comme de la manipulation par les profils plus analytiques.",
   },
   influenceur: {
     key: 'influenceur',
@@ -201,7 +201,7 @@ export const subProfiles: Record<SubProfileKey, SubProfile> = {
       "Aime rendre service et prendre en charge pour les autres",
       "Fuit les conflits et évite les personnes très affirmées",
     ],
-    akinatorMessage: "Vous êtes le ciment invisible de votre équipe. Sans vous, tout s'effondrerait — mais personne ne le réalise vraiment. Quand un conflit éclate entre deux collègues, c'est vous qui faites la navette diplomatique. Le problème : vous avez du mal à dire « non » et votre charge mentale explose. On connaît cette dynamique — et il y a des solutions concrètes.",
+    akinatorMessage: "Vous êtes le ciment invisible de votre équipe. Sans vous, tout s'effondrerait, mais personne ne le réalise vraiment. Quand un conflit éclate entre deux collègues, c'est vous qui faites la navette diplomatique. Le problème : vous avez du mal à dire « non » et votre charge mentale explose. On connaît cette dynamique, et il y a des solutions concrètes.",
     dailyInsight: "Vous maintenez l'harmonie du groupe au prix de votre propre énergie et de vos propres besoins.",
   },
   planificateur: {
@@ -268,7 +268,7 @@ export const subProfiles: Record<SubProfileKey, SubProfile> = {
       "Grande efficacité, attend reconnaissance et récompense",
     ],
     akinatorMessage: "Vous êtes un perfectionniste d'action : vous voulez que ce soit parfait ET terminé dans les délais. Résultat ? Vous finissez souvent par tout refaire vous-même parce que « c'est plus rapide que d'expliquer ». Votre équipe se sent dépossédée, et vous, vous êtes épuisé(e). Ce cercle vicieux, on peut le casser ensemble.",
-    dailyInsight: "Vous combinez exigence de qualité et sens des résultats — mais la délégation reste votre talon d'Achille.",
+    dailyInsight: "Vous combinez exigence de qualité et sens des résultats, mais la délégation reste votre talon d'Achille.",
   },
   technicien: {
     key: 'technicien',
@@ -296,22 +296,22 @@ export const subProfileMapping: Record<string, SubProfileKey[]> = {
   // Cohérence stricte : chaque combinaison X-Y ne contient que des sous-profils
   // dont zone.dominant === X. Garantit que le sous-profil identifié est toujours
   // dans le quadrant visuel du dominant DISC réel.
-  // Dominant D — zone rouge
+  // Dominant D, zone rouge
   'D-C': ['evaluateur'],
   'D-I': ['explorateur'],
   'D-S': ['producteur', 'competiteur'],
   'D-D': ['competiteur'],
-  // Dominant I — zone jaune
+  // Dominant I, zone jaune
   'I-D': ['inspirateur'],
   'I-S': ['promoteur'],
   'I-C': ['influenceur'],
   'I-I': ['influenceur'],
-  // Dominant S — zone verte
+  // Dominant S, zone verte
   'S-I': ['coach', 'pacificateur'],
   'S-C': ['planificateur'],
   'S-D': ['pacificateur'],
   'S-S': ['pacificateur'],
-  // Dominant C — zone bleue
+  // Dominant C, zone bleue
   'C-D': ['investigateur', 'concretiseur'],
   'C-I': ['factuel', 'technicien'],
   'C-S': ['formaliste'],
@@ -412,10 +412,10 @@ export const questionsPhase1 = [
     { label: "Présentez les arguments factuels pour résoudre le désaccord objectivement", profile: 'C' as ProfileKey },
   ]},
   { id: 16, text: "Votre rapport au changement en entreprise :", options: [
-    { label: "Vous l'initiez vous-même — le statu quo vous frustre rapidement", profile: 'D' as ProfileKey },
+    { label: "Vous l'initiez vous-même, le statu quo vous frustre rapidement", profile: 'D' as ProfileKey },
     { label: "Vous l'adoptez avec enthousiasme si la vision derrière est claire", profile: 'I' as ProfileKey },
     { label: "Vous l'acceptez progressivement, à condition d'être accompagné(e)", profile: 'S' as ProfileKey },
-    { label: "Vous l'évaluez rigoureusement avant d'y adhérer — risques et bénéfices inclus", profile: 'C' as ProfileKey },
+    { label: "Vous l'évaluez rigoureusement avant d'y adhérer, risques et bénéfices inclus", profile: 'C' as ProfileKey },
   ]},
   { id: 17, text: "Pour vous, un bon manager c'est avant tout quelqu'un qui :", options: [
     { label: "Fixe un cap clair et fait confiance à son équipe pour y arriver", profile: 'D' as ProfileKey },
@@ -430,7 +430,7 @@ export const questionsPhase1 = [
     { label: "Avoir produit un travail rigoureux, sans erreur, bien documenté", profile: 'C' as ProfileKey },
   ]},
   { id: 19, text: "Sur un projet nouveau, votre première action naturelle est de :", options: [
-    { label: "Fixer les grandes lignes et vous lancer — vous affinerez en chemin", profile: 'D' as ProfileKey },
+    { label: "Fixer les grandes lignes et vous lancer, vous affinerez en chemin", profile: 'D' as ProfileKey },
     { label: "Rassembler les personnes clés et construire l'élan collectif", profile: 'I' as ProfileKey },
     { label: "Clarifier les rôles, les étapes et le planning avant de démarrer", profile: 'S' as ProfileKey },
     { label: "Documenter les exigences, risques et critères de succès en détail", profile: 'C' as ProfileKey },
@@ -471,7 +471,7 @@ export const questionsPhase2: Phase2Question[] = [
       { label: "Créer un plan d'action structuré avec des étapes claires", favors: ['evaluateur', 'planificateur', 'formaliste'] },
       { label: "Identifier les personnes clés à impliquer et les mobiliser", favors: ['coach', 'promoteur', 'inspirateur'] },
       { label: "Analyser en profondeur le sujet avant de commencer", favors: ['investigateur', 'factuel', 'technicien'] },
-      { label: "Foncer et ajuster en chemin — l'action prime", favors: ['competiteur', 'producteur', 'explorateur'] },
+      { label: "Foncer et ajuster en chemin, l'action prime", favors: ['competiteur', 'producteur', 'explorateur'] },
     ],
   },
   {
@@ -491,7 +491,7 @@ export const questionsPhase2: Phase2Question[] = [
     forDominants: ['D', 'I', 'S', 'C'],
     options: [
       { label: "Je délègue facilement si la personne est compétente", favors: ['inspirateur', 'influenceur', 'evaluateur'] },
-      { label: "Je préfère faire moi-même — c'est plus rapide et mieux fait", favors: ['producteur', 'concretiseur', 'technicien'] },
+      { label: "Je préfère faire moi-même, c'est plus rapide et mieux fait", favors: ['producteur', 'concretiseur', 'technicien'] },
       { label: "Je délègue en accompagnant étroitement la personne", favors: ['coach', 'planificateur', 'formaliste'] },
       { label: "Je délègue et je contrôle le résultat final", favors: ['competiteur', 'investigateur', 'factuel'] },
     ],
@@ -503,7 +503,7 @@ export const questionsPhase2: Phase2Question[] = [
     options: [
       { label: "Ma capacité à transformer une idée en plan concret et actionnable", favors: ['evaluateur', 'concretiseur', 'planificateur'] },
       { label: "Mon talent pour convaincre et embarquer les autres", favors: ['inspirateur', 'influenceur', 'promoteur'] },
-      { label: "Ma fiabilité — on sait qu'avec moi, ce sera fait et bien fait", favors: ['pacificateur', 'formaliste', 'producteur'] },
+      { label: "Ma fiabilité, on sait qu'avec moi, ce sera fait et bien fait", favors: ['pacificateur', 'formaliste', 'producteur'] },
       { label: "Mon expertise technique et ma rigueur intellectuelle", favors: ['technicien', 'investigateur', 'factuel'] },
     ],
   },
@@ -514,10 +514,10 @@ export const questionsPhase2: Phase2Question[] = [
     text: "Dans un projet d'équipe, votre rôle naturel est plutôt :",
     forDominants: ['D', 'I'],
     options: [
-      { label: "Le stratège — je conçois le plan et j'orchestre l'exécution", favors: ['evaluateur', 'investigateur'] },
-      { label: "Le challenger — je pousse l'équipe vers des objectifs ambitieux", favors: ['competiteur', 'producteur'] },
-      { label: "Le catalyseur — je crée l'énergie et l'envie de se dépasser", favors: ['inspirateur', 'influenceur'] },
-      { label: "L'innovateur — je vois des connexions que les autres ne voient pas", favors: ['explorateur', 'technicien'] },
+      { label: "Le stratège, je conçois le plan et j'orchestre l'exécution", favors: ['evaluateur', 'investigateur'] },
+      { label: "Le challenger, je pousse l'équipe vers des objectifs ambitieux", favors: ['competiteur', 'producteur'] },
+      { label: "Le catalyseur, je crée l'énergie et l'envie de se dépasser", favors: ['inspirateur', 'influenceur'] },
+      { label: "L'innovateur, je vois des connexions que les autres ne voient pas", favors: ['explorateur', 'technicien'] },
     ],
   },
   {
@@ -597,10 +597,10 @@ export const questionsPhase2: Phase2Question[] = [
     text: "Votre rapport à l'expertise et à l'apprentissage :",
     forDominants: ['C', 'S'],
     options: [
-      { label: "Je suis un expert profond — je creuse un sujet jusqu'au bout", favors: ['technicien', 'investigateur'] },
-      { label: "Je suis un généraliste rigoureux — je maîtrise les fondamentaux de chaque sujet", favors: ['factuel', 'formaliste'] },
-      { label: "J'apprends en faisant — la théorie m'ennuie sans la pratique", favors: ['concretiseur', 'producteur', 'explorateur'] },
-      { label: "J'apprends en transmettant — enseigner me force à structurer", favors: ['coach', 'evaluateur', 'planificateur'] },
+      { label: "Je suis un expert profond, je creuse un sujet jusqu'au bout", favors: ['technicien', 'investigateur'] },
+      { label: "Je suis un généraliste rigoureux, je maîtrise les fondamentaux de chaque sujet", favors: ['factuel', 'formaliste'] },
+      { label: "J'apprends en faisant, la théorie m'ennuie sans la pratique", favors: ['concretiseur', 'producteur', 'explorateur'] },
+      { label: "J'apprends en transmettant, enseigner me force à structurer", favors: ['coach', 'evaluateur', 'planificateur'] },
     ],
   },
 ]
@@ -611,7 +611,7 @@ export const profiles: Record<ProfileKey, {
   name: string; letter: ProfileKey; tagline: string
   paragraphs: TextSegment[][]
   strengths: string[]; growth: string[]; famous: string[]
-  // Message Phase 1 — version courte avant Phase 2
+  // Message Phase 1, version courte avant Phase 2
   teaser: string
 }> = {
   D: {
@@ -619,7 +619,7 @@ export const profiles: Record<ProfileKey, {
     teaser: "Vous foncez, vous décidez, vous menez. Mais quel type de leader êtes-vous exactement ?",
     paragraphs: [
       [
-        { text: "Vous êtes un profil Dominant — un leader né qui " },
+        { text: "Vous êtes un profil Dominant, un leader né qui " },
         { text: "avance à toute vitesse vers ses objectifs", tag: 'D' },
         { text: ". Votre première impulsion face à tout défi est de " },
         { text: "prendre les choses en main et d'agir sans hésitation", tag: 'D' },
@@ -657,7 +657,7 @@ export const profiles: Record<ProfileKey, {
     teaser: "Vous connectez, vous motivez, vous fédérez. Mais de quelle manière influencez-vous vraiment ?",
     paragraphs: [
       [
-        { text: "Vous êtes un profil Influent — le catalyseur social de tout groupe. " },
+        { text: "Vous êtes un profil Influent, le catalyseur social de tout groupe. " },
         { text: "Votre énergie est contagieuse, votre enthousiasme communicatif", tag: 'I' },
         { text: ", et " },
         { text: "votre capacité à connecter avec les autres est un don rare", tag: 'I' },
@@ -695,7 +695,7 @@ export const profiles: Record<ProfileKey, {
     teaser: "Vous soutenez, vous stabilisez, vous construisez dans la durée. Mais quel est votre mode d'accompagnement ?",
     paragraphs: [
       [
-        { text: "Vous êtes un profil Stable — " },
+        { text: "Vous êtes un profil Stable, " },
         { text: "l'ancre indispensable de tout collectif qui fonctionne", tag: 'S' },
         { text: ". " },
         { text: "Votre calme face à la tempête, votre loyauté sans faille", tag: 'S' },
@@ -733,7 +733,7 @@ export const profiles: Record<ProfileKey, {
     teaser: "Vous analysez, vous structurez, vous garantissez la qualité. Mais quel est votre style d'expertise ?",
     paragraphs: [
       [
-        { text: "Vous êtes un profil Consciencieux — " },
+        { text: "Vous êtes un profil Consciencieux, " },
         { text: "l'architecte de la précision dans tout ce que vous entreprendrez", tag: 'C' },
         { text: ". " },
         { text: "Votre cerveau est naturellement câblé pour détecter les incohérences, anticiper les problèmes", tag: 'C' },
@@ -748,7 +748,7 @@ export const profiles: Record<ProfileKey, {
         { text: "vraiment comprendre avant d'agir", tag: 'C' },
         { text: ", ce qui vous permet d'éviter des erreurs coûteuses que d'autres commettent par précipitation. " },
         { text: "Votre analyse approfondie est un atout stratégique", tag: 'C' },
-        { text: " — surtout dans des contextes à forts enjeux." },
+        { text: ", surtout dans des contextes à forts enjeux." },
       ],
       [
         { text: "Votre défi principal est de trouver le bon équilibre entre " },
@@ -771,26 +771,26 @@ export const profiles: Record<ProfileKey, {
 // ─── BLEND TEXTS ──────────────────────────────────────────────────────────
 
 export const blendTexts: Partial<Record<string, string>> = {
-  'D-I': "Votre dynamisme décisionnel se teinte d'un vrai sens du collectif — vous savez autant décider que fédérer.",
-  'D-S': "Votre force motrice est tempérée par une conscience des équipes — vous visez l'impact sans sacrifier la cohésion.",
-  'D-C': "Votre orientation résultats s'appuie sur un sens de la rigueur — vous décidez vite, mais sur des bases solides.",
-  'I-D': "Votre énergie relationnelle porte une vraie détermination — vous inspirez, et vous passez à l'action.",
-  'I-S': "Votre enthousiasme naturel est ancré dans une vraie stabilité — vous motivez tout en créant un environnement sécurisant.",
-  'I-C': "Votre créativité communicante coexiste avec un sens du détail — vous avez le flair ET la rigueur.",
-  'S-D': "Votre fiabilité naturelle s'accompagne d'une vraie force décisionnelle — vous construisez dans la durée avec des objectifs clairs.",
-  'S-I': "Votre soutien chaleureux se double d'un vrai enthousiasme — vous créez des liens profonds ET vous motivez.",
-  'S-C': "Votre constance et votre rigueur font de vous un collaborateur fiable et précis — la combinaison idéale pour les projets exigeants.",
-  'C-D': "Votre précision analytique est activée par un sens de l'urgence — vous analysez vite et décidez sur des bases solides.",
-  'C-I': "Votre rigueur est portée par une vraie connexion humaine — vous savez rendre le complexe accessible et engageant.",
-  'C-S': "Votre expertise est ancrée dans une vraie loyauté — vous livrez un travail de qualité tout en prenant soin des relations.",
+  'D-I': "Votre dynamisme décisionnel se teinte d'un vrai sens du collectif, vous savez autant décider que fédérer.",
+  'D-S': "Votre force motrice est tempérée par une conscience des équipes, vous visez l'impact sans sacrifier la cohésion.",
+  'D-C': "Votre orientation résultats s'appuie sur un sens de la rigueur, vous décidez vite, mais sur des bases solides.",
+  'I-D': "Votre énergie relationnelle porte une vraie détermination, vous inspirez, et vous passez à l'action.",
+  'I-S': "Votre enthousiasme naturel est ancré dans une vraie stabilité, vous motivez tout en créant un environnement sécurisant.",
+  'I-C': "Votre créativité communicante coexiste avec un sens du détail, vous avez le flair ET la rigueur.",
+  'S-D': "Votre fiabilité naturelle s'accompagne d'une vraie force décisionnelle, vous construisez dans la durée avec des objectifs clairs.",
+  'S-I': "Votre soutien chaleureux se double d'un vrai enthousiasme, vous créez des liens profonds ET vous motivez.",
+  'S-C': "Votre constance et votre rigueur font de vous un collaborateur fiable et précis, la combinaison idéale pour les projets exigeants.",
+  'C-D': "Votre précision analytique est activée par un sens de l'urgence, vous analysez vite et décidez sur des bases solides.",
+  'C-I': "Votre rigueur est portée par une vraie connexion humaine, vous savez rendre le complexe accessible et engageant.",
+  'C-S': "Votre expertise est ancrée dans une vraie loyauté, vous livrez un travail de qualité tout en prenant soin des relations.",
 }
 
 // ─── MESSAGES AKINATOR PAR PROFIL DOMINANT ─────────────────────────────────
 // Utilisés en Phase 1 (avant Phase 2) pour la bulle du mage
 
 export const akinatorByDominant: Record<ProfileKey, string> = {
-  D: "Alors comme ça, vous êtes le genre à décider en 3 secondes pendant que les autres font encore le tour de table ? Je vois ce profil tous les jours en formation. Votre force, c'est l'action. Votre angle mort ? Les gens que vous laissez derrière dans le virage. On peut travailler là-dessus — si vous avez 5 minutes (je sais que vous n'en avez que 2).",
-  I: "Vous êtes l'énergie de la salle, celui ou celle qui relance la conversation quand ça s'enlise. Tout le monde vous apprécie... mais quand il faut rester 2 heures seul(e) sur un rapport Excel, c'est un autre combat. Je connais bien ce profil — et je sais comment transformer votre talent relationnel en résultats concrets.",
-  S: "Vous êtes le pilier silencieux de votre équipe. Celui ou celle sur qui tout repose — mais que personne ne voit vraiment. Quand un conflit éclate, c'est vous qui faites tampon. Quand quelqu'un démissionne, c'est vous qui tenez le fort. Le problème ? Vous ne savez pas dire non. Et ça vous coûte cher. Parlons-en.",
-  C: "Votre boîte mail est triée, vos fichiers sont nommés, et vous avez repéré 3 erreurs dans ce test (oui, j'exagère — mais à peine). Vous êtes l'expert que tout le monde consulte en dernier recours. Le défi ? Apprendre à communiquer votre analyse aux gens pressés sans qu'ils décrochent à la diapo 2.",
+  D: "Alors comme ça, vous êtes le genre à décider en 3 secondes pendant que les autres font encore le tour de table ? Je vois ce profil tous les jours en formation. Votre force, c'est l'action. Votre angle mort ? Les gens que vous laissez derrière dans le virage. On peut travailler là-dessus, si vous avez 5 minutes (je sais que vous n'en avez que 2).",
+  I: "Vous êtes l'énergie de la salle, celui ou celle qui relance la conversation quand ça s'enlise. Tout le monde vous apprécie... mais quand il faut rester 2 heures seul(e) sur un rapport Excel, c'est un autre combat. Je connais bien ce profil, et je sais comment transformer votre talent relationnel en résultats concrets.",
+  S: "Vous êtes le pilier silencieux de votre équipe. Celui ou celle sur qui tout repose, mais que personne ne voit vraiment. Quand un conflit éclate, c'est vous qui faites tampon. Quand quelqu'un démissionne, c'est vous qui tenez le fort. Le problème ? Vous ne savez pas dire non. Et ça vous coûte cher. Parlons-en.",
+  C: "Votre boîte mail est triée, vos fichiers sont nommés, et vous avez repéré 3 erreurs dans ce test (oui, j'exagère, mais à peine). Vous êtes l'expert que tout le monde consulte en dernier recours. Le défi ? Apprendre à communiquer votre analyse aux gens pressés sans qu'ils décrochent à la diapo 2.",
 }

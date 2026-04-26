@@ -4,11 +4,11 @@ import { useLang } from './LanguageContext'
 import { formations, QUIZ_SLOT_RANK } from './formations-data'
 
 // ─────────────────────────────────────────────────────────────────────────────
-// MatchQuiz — mini-quiz de pré-qualification (3 questions → recommandation)
+// MatchQuiz, mini-quiz de pré-qualification (3 questions → recommandation)
 // Objectif CRO : convertir un visiteur passif en lead qualifié en 30 secondes.
 // Mécanique : 3 choix chips → card de recommandation avec CTA mailto pré-rempli.
 //
-// V1.1 — ajouts :
+// V1.1, ajouts :
 //   1. Warning soft si durée choisie < durée recommandée (pas de blocage).
 //   2. Persistance sessionStorage (RGPD-exempt art. 82 LIL, pas de cookie).
 //   3. Instrumentation analytics multi-vendor (Plausible / Umami / GTM dataLayer).
@@ -33,7 +33,7 @@ type Copy = {
     duration: {
       q: string
       options: Record<DurationKey, string>
-      // Sous-titre court par option — explicite ce que chaque slot signifie sur
+      // Sous-titre court par option, explicite ce que chaque slot signifie sur
       // le marché B2B intra (atelier découverte / module focus / format standard /
       // sur plusieurs mois). Évite que le visiteur cliquant "Demi-journée" pense
       // qu'on lui livrera 2 jours en condensé.
@@ -101,7 +101,7 @@ const COPY: Record<'fr' | 'en', Copy> = {
     back: 'Retour',
     result: {
       eyebrow: 'Ma proposition',
-      headline: (t) => `${t} — ça correspond à ce que vous décrivez.`,
+      headline: (t) => `${t}, ça correspond à ce que vous décrivez.`,
       summaryLabel: 'Votre contexte',
       primary: 'En parler avec moi',
       secondary: 'Voir le programme',
@@ -111,10 +111,10 @@ const COPY: Record<'fr' | 'en', Copy> = {
       durationLabel: 'Format',
       warningTitle: 'On peut adapter',
       warningBody: (official) =>
-        `Le format complet, c'est plutôt ${official}. On peut le condenser si c'est mieux pour vous — il suffit d'en parler.`,
+        `Le format complet, c'est plutôt ${official}. On peut le condenser si c'est mieux pour vous, il suffit d'en parler.`,
     },
     mailto: {
-      subject: (t) => `${t} — projet de formation`,
+      subject: (t) => `${t}, projet de formation`,
       bodyIntro: "Bonjour Clément,\n\nJ'ai utilisé le quiz sur votre site. Voici mon contexte :",
       bodyAudience: 'À former',
       bodyTopic: 'Sujet',
@@ -157,7 +157,7 @@ const COPY: Record<'fr' | 'en', Copy> = {
     back: 'Back',
     result: {
       eyebrow: 'My suggestion',
-      headline: (t) => `${t} — this matches what you described.`,
+      headline: (t) => `${t}, this matches what you described.`,
       summaryLabel: 'Your context',
       primary: "Let's talk",
       secondary: 'See the full program',
@@ -167,10 +167,10 @@ const COPY: Record<'fr' | 'en', Copy> = {
       durationLabel: 'Format',
       warningTitle: 'We can adjust',
       warningBody: (official) =>
-        `The full format is usually ${official}. We can shorten it if that works better for you — just let me know.`,
+        `The full format is usually ${official}. We can shorten it if that works better for you, just let me know.`,
     },
     mailto: {
-      subject: (t) => `${t} — training project`,
+      subject: (t) => `${t}, training project`,
       bodyIntro: "Hi Clément,\n\nI used the quiz on your site. Here's my context:",
       bodyAudience: 'To train',
       bodyTopic: 'Topic',
@@ -272,7 +272,7 @@ function Chip({
   accent?: string
   onClick: () => void
 }) {
-  const activeAccent = accent ?? '#3D6DB8'
+  const activeAccent = accent ?? 'var(--cb-sarcelle)'
   return (
     <button
       type="button"
@@ -280,11 +280,11 @@ function Chip({
       className="group relative text-left px-5 py-4 rounded-xl border text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
       style={{
         background: selected ? activeAccent : '#FFFFFF',
-        color: selected ? '#FFFFFF' : '#1A2B4A',
-        borderColor: selected ? activeAccent : 'rgba(26,43,74,0.12)',
+        color: selected ? 'var(--cb-sable)' : 'var(--cb-encre)',
+        borderColor: selected ? activeAccent : 'var(--cb-sauge)',
         boxShadow: selected
-          ? `0 6px 18px ${activeAccent}33, 0 1px 2px rgba(0,0,0,0.04)`
-          : '0 1px 2px rgba(0,0,0,0.03)',
+          ? `4px 4px 0 ${activeAccent}`
+          : '0 1px 2px rgba(0,0,0,0.05)',
         // @ts-expect-error focus ring color via CSS variable
         '--tw-ring-color': `${activeAccent}66`,
       }}
@@ -297,7 +297,7 @@ function Chip({
       onMouseLeave={(e) => {
         if (selected) return
         const el = e.currentTarget as HTMLElement
-        el.style.borderColor = 'rgba(26,43,74,0.12)'
+        el.style.borderColor = 'var(--cb-sauge)'
         el.style.transform = 'translateY(0)'
       }}
     >
@@ -325,7 +325,7 @@ function ProgressDots({ step, total, accent }: { step: number; total: number; ac
           style={{
             width: i === step ? 24 : 8,
             height: 4,
-            background: i <= step ? accent : 'rgba(26,43,74,0.15)',
+            background: i <= step ? accent : 'var(--cb-sauge)',
           }}
         />
       ))}
@@ -363,8 +363,8 @@ export default function MatchQuiz() {
   }, [step, answers, hydrated])
 
   const currentAccent = useMemo(() => {
-    if (!answers.topic) return '#3D6DB8'
-    return formations.find((f) => f.slug === answers.topic)?.accent ?? '#3D6DB8'
+    if (!answers.topic) return 'var(--cb-sarcelle)'
+    return formations.find((f) => f.slug === answers.topic)?.accent ?? 'var(--cb-sarcelle)'
   }, [answers.topic])
 
   const reco = useMemo(() => getRecommendation(answers), [answers])
@@ -445,10 +445,10 @@ export default function MatchQuiz() {
       <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: currentAccent }}>
         {copy.label}
       </p>
-      <h2 className="text-3xl md:text-4xl font-bold text-[#1A2B4A] leading-tight mb-4">
+      <h2 className="text-3xl md:text-4xl font-bold text-cb-encre leading-tight mb-4">
         {copy.title}
       </h2>
-      <p className="text-sm md:text-base text-[#6B7E95] leading-relaxed">{copy.subtitle}</p>
+      <p className="text-sm md:text-base text-cb-encre-soft leading-relaxed">{copy.subtitle}</p>
     </div>
   )
 
@@ -457,7 +457,7 @@ export default function MatchQuiz() {
     if (step === 0) {
       return (
         <>
-          <h3 className="text-lg font-semibold text-[#1A2B4A] mb-6 text-center">
+          <h3 className="text-lg font-semibold text-cb-encre mb-6 text-center">
             {copy.steps.audience.q}
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto">
@@ -476,7 +476,7 @@ export default function MatchQuiz() {
     if (step === 1) {
       return (
         <>
-          <h3 className="text-lg font-semibold text-[#1A2B4A] mb-6 text-center">
+          <h3 className="text-lg font-semibold text-cb-encre mb-6 text-center">
             {copy.steps.topic.q}
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 max-w-4xl mx-auto">
@@ -496,7 +496,7 @@ export default function MatchQuiz() {
     if (step === 2) {
       return (
         <>
-          <h3 className="text-lg font-semibold text-[#1A2B4A] mb-6 text-center">
+          <h3 className="text-lg font-semibold text-cb-encre mb-6 text-center">
             {copy.steps.duration.q}
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto">
@@ -528,7 +528,7 @@ export default function MatchQuiz() {
         <div
           className="rounded-2xl p-7 md:p-9"
           style={{
-            background: '#FFFFFF',
+            background: 'var(--cb-sable)',
             border: `1px solid ${reco.accent}33`,
             boxShadow: `0 10px 32px ${reco.accent}1F, 0 1px 4px rgba(0,0,0,0.04)`,
           }}
@@ -536,29 +536,29 @@ export default function MatchQuiz() {
           <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: reco.accent }}>
             {copy.result.eyebrow}
           </p>
-          <h3 className="text-2xl md:text-3xl font-bold text-[#1A2B4A] leading-tight mb-5">
+          <h3 className="text-2xl md:text-3xl font-bold text-cb-encre leading-tight mb-5">
             {copy.result.headline(reco.title)}
           </h3>
 
           {/* Résumé des choix */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
             <div className="rounded-xl p-4" style={{ background: reco.bg }}>
-              <p className="text-[10px] font-semibold uppercase tracking-wider text-[#6B7E95] mb-1">
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-cb-encre-soft mb-1">
                 {copy.result.audienceLabel}
               </p>
-              <p className="text-sm font-semibold text-[#1A2B4A]">{audienceLabel}</p>
+              <p className="text-sm font-semibold text-cb-encre">{audienceLabel}</p>
             </div>
             <div className="rounded-xl p-4" style={{ background: reco.bg }}>
-              <p className="text-[10px] font-semibold uppercase tracking-wider text-[#6B7E95] mb-1">
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-cb-encre-soft mb-1">
                 {copy.result.durationLabel}
               </p>
-              <p className="text-sm font-semibold text-[#1A2B4A]">{durationLabel}</p>
+              <p className="text-sm font-semibold text-cb-encre">{durationLabel}</p>
             </div>
             <div className="rounded-xl p-4" style={{ background: reco.bg }}>
-              <p className="text-[10px] font-semibold uppercase tracking-wider text-[#6B7E95] mb-1">
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-cb-encre-soft mb-1">
                 {reco.tag}
               </p>
-              <p className="text-sm font-semibold text-[#1A2B4A]">{reco.format.duration}</p>
+              <p className="text-sm font-semibold text-cb-encre">{reco.format.duration}</p>
             </div>
           </div>
 
@@ -587,10 +587,10 @@ export default function MatchQuiz() {
                 />
               </svg>
               <div>
-                <p className="text-sm font-semibold text-[#1A2B4A] mb-1">
+                <p className="text-sm font-semibold text-cb-encre mb-1">
                   {copy.result.warningTitle}
                 </p>
-                <p className="text-xs text-[#6B7E95] leading-relaxed">
+                <p className="text-xs text-cb-encre-soft leading-relaxed">
                   {copy.result.warningBody(durationWarning.officialFormat)}
                 </p>
               </div>
@@ -625,7 +625,7 @@ export default function MatchQuiz() {
               style={{
                 color: reco.accent,
                 borderColor: `${reco.accent}66`,
-                background: '#FFFFFF',
+                background: 'var(--cb-sable)',
               }}
             >
               {copy.result.secondary}
@@ -633,18 +633,18 @@ export default function MatchQuiz() {
           </div>
 
           {/* Fallback + restart */}
-          <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-[#6B7E95]">
+          <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-cb-encre-soft">
             <a
               href="/contact"
               onClick={() => trackEvent('quiz_fallback_click')}
-              className="hover:text-[#1A2B4A] underline underline-offset-2"
+              className="hover:text-cb-encre underline underline-offset-2"
             >
               {copy.result.fallback}
             </a>
             <button
               type="button"
               onClick={reset}
-              className="hover:text-[#1A2B4A] underline underline-offset-2 text-left sm:text-right"
+              className="hover:text-cb-encre underline underline-offset-2 text-left sm:text-right"
             >
               {copy.result.restart}
             </button>
@@ -687,12 +687,12 @@ export default function MatchQuiz() {
               type="button"
               onClick={goBack}
               disabled={step === 0}
-              className="text-xs font-medium text-[#6B7E95] hover:text-[#1A2B4A] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+              className="text-xs font-medium text-cb-encre-soft hover:text-cb-encre disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
             >
               ← {copy.back}
             </button>
             <div className="flex items-center gap-3">
-              <span className="text-xs font-medium text-[#6B7E95]">
+              <span className="text-xs font-medium text-cb-encre-soft">
                 {copy.progress(step + 1, 3)}
               </span>
               <ProgressDots step={step} total={3} accent={currentAccent} />

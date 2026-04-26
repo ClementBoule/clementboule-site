@@ -15,7 +15,7 @@ const translations = {
     hero: {
       badge: 'Trainer, consultant & coach',
       headline: 'Transform your business by acting on what matters',
-      subtitle: 'I train and coach managers and teams — in French and English. On the ground, not just in theory. Built with you, not pulled from a catalog.',
+      subtitle: 'I train and coach managers and teams, in French and English. On the ground, not just in theory. Built with you, not pulled from a catalog.',
       cta: 'Get in touch',
       disc: 'Take the DISC Test',
       discTeaser: 'Discover your DISC profile',
@@ -47,7 +47,7 @@ const translations = {
           description: 'Active listening, non-violent communication, conflict management. The human skills that truly make the difference.',
         },
         {
-          title: "Spine'Up — Managerial Leadership",
+          title: "Spine'Up, Managerial Leadership",
           description: "A structured program to develop the managerial posture of your employees. Build the right stance to lead with impact and grow your career with clarity and confidence.",
         },
       ],
@@ -76,7 +76,7 @@ const translations = {
         },
         {
           role: 'Sports & Performance Coach',
-          company: 'Independent — Innsbruck',
+          company: 'Independent, Innsbruck',
           period: '2016 – 2021',
           description: 'Individual and group coaching combining performance methods with mental development techniques.',
         },
@@ -121,7 +121,7 @@ const translations = {
     hero: {
       badge: 'Formateur, consultant & coach',
       headline: 'Former des équipes qui changent vraiment',
-      subtitle: "Je forme et j'accompagne managers et équipes — en français, en anglais. Sur le terrain, pas dans la théorie. Construit avec vous, pas tiré d'un catalogue.",
+      subtitle: "Je forme et j'accompagne managers et équipes, en français, en anglais. Sur le terrain, pas dans la théorie. Construit avec vous, pas tiré d'un catalogue.",
       cta: 'Me contacter',
       disc: 'Faire le test DISC',
       discTeaser: 'Découvrez votre profil DISC',
@@ -153,7 +153,7 @@ const translations = {
           description: "Écoute, communication, conflits. Les compétences qu'on sous-estime jusqu'au jour où elles font vraiment la différence.",
         },
         {
-          title: "Spine'Up — leadership managérial",
+          title: "Spine'Up, leadership managérial",
           description: "Un parcours pour les managers qui veulent trouver leur posture sans se dénaturer. Concret, progressif, et ça reste après la formation.",
         },
       ],
@@ -164,7 +164,7 @@ const translations = {
     },
     cv: {
       label: 'Parcours',
-      title: "10 ans de formation et de coaching, en France et à l'international",
+      title: "8 ans de formation et de coaching, en France et à l'international",
       experienceLabel: 'Expériences',
       educationLabel: 'Formation',
       experiences: [
@@ -182,7 +182,7 @@ const translations = {
         },
         {
           role: 'Coach sportif & performance',
-          company: 'Indépendant — Innsbruck',
+          company: 'Indépendant, Innsbruck',
           period: '2016 – 2021',
           description: 'Coaching individuel et collectif sur la performance et le développement mental. Autriche et Allemagne.',
         },

@@ -17,6 +17,41 @@ export default function Hero() {
       id="hero"
       className="relative bg-cb-sable text-cb-encre py-16 md:py-24 px-6 overflow-hidden"
     >
+      <style jsx>{`
+        .hero-portrait-wrap {
+          position: relative;
+          isolation: isolate;
+        }
+        .hero-glow {
+          position: absolute;
+          inset: -16px;
+          z-index: -1;
+          border-radius: 8px;
+          opacity: 0;
+          filter: blur(24px);
+          pointer-events: none;
+        }
+        .hero-glow.g1 { background: var(--cb-sarcelle); }
+        .hero-glow.g2 { background: var(--cb-terracotta); }
+        .hero-glow.g3 { background: var(--cb-sauge); }
+        .hero-portrait-wrap:hover .hero-glow {
+          animation: heroGlowPulse 2.7s ease-in-out infinite;
+        }
+        .hero-portrait-wrap:hover .hero-glow.g1 { animation-delay: 0s; }
+        .hero-portrait-wrap:hover .hero-glow.g2 { animation-delay: -0.9s; }
+        .hero-portrait-wrap:hover .hero-glow.g3 { animation-delay: -1.8s; }
+        @keyframes heroGlowPulse {
+          0%, 100% { opacity: 0; }
+          50% { opacity: 0.65; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-portrait-wrap:hover .hero-glow {
+            animation: none;
+            opacity: 0.4;
+          }
+        }
+      `}</style>
+
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-[1.5fr_1fr] gap-10 md:gap-16 items-center">
           <div
@@ -28,7 +63,7 @@ export default function Hero() {
             }}
           >
             <span className="inline-block font-marker text-cb-cardinal text-lg -rotate-2">
-              {lang === 'fr' ? 'Bilingue · Paris · 10 ans →' : 'Bilingual · Paris · 10 years →'}
+              {lang === 'fr' ? 'Bilingue · Paris · 8 ans →' : 'Bilingual · Paris · 8 years →'}
             </span>
 
             <h1 className="font-anton text-5xl sm:text-6xl md:text-7xl lg:text-[9.5rem] leading-[0.92] uppercase tracking-tight text-cb-encre">
@@ -55,16 +90,21 @@ export default function Hero() {
               )}
             </h1>
 
+            {/* Signature rose discrète sous le H1 */}
+            <span className="inline-block font-marker text-cb-cardinal bg-cb-rose px-3 py-1 -rotate-2 rounded-sm text-base">
+              made with care, not with templates
+            </span>
+
             <p className="text-base md:text-lg max-w-xl font-medium leading-relaxed">
               {lang === 'fr' ? (
                 <>
-                  10 ans à accompagner managers, équipes et dirigeants. Sur le management, les RH, les soft skills.{' '}
+                  8 ans à accompagner managers, équipes et dirigeants. Sur le management, les RH, les soft skills.{' '}
                   <strong className="bg-cb-rose px-1.5 rounded-sm font-semibold">Pas de catalogue.</strong>{' '}
                   Chaque programme est construit avec vous.
                 </>
               ) : (
                 <>
-                  10 years supporting managers, teams and leaders. On management, HR, soft skills.{' '}
+                  8 years supporting managers, teams and leaders. On management, HR, soft skills.{' '}
                   <strong className="bg-cb-rose px-1.5 rounded-sm font-semibold">No catalog.</strong>{' '}
                   Each program is built with you.
                 </>
@@ -106,9 +146,12 @@ export default function Hero() {
               transition: 'opacity 0.7s ease 0.15s, transform 0.7s ease 0.15s',
             }}
           >
-            <div className="relative bg-cb-creme border-[3px] border-cb-encre rounded shadow-[10px_10px_0_var(--cb-cardinal)] -rotate-[1.5deg]">
+            <div className="hero-portrait-wrap relative bg-cb-creme border-[3px] border-cb-encre rounded shadow-[10px_10px_0_var(--cb-cardinal)] -rotate-[1.5deg]">
+              <div className="hero-glow g1" />
+              <div className="hero-glow g2" />
+              <div className="hero-glow g3" />
               <span className="absolute -left-3 top-4 bg-cb-rose border-[2.5px] border-cb-encre px-3 py-1.5 font-anton uppercase text-sm tracking-wide -rotate-3 z-10 rounded-sm text-cb-encre">
-                {lang === 'fr' ? 'Depuis 2016' : 'Since 2016'}
+                {lang === 'fr' ? 'Depuis 2018' : 'Since 2018'}
               </span>
               <span className="absolute -right-3 -bottom-4 bg-cb-terracotta text-cb-sable border-[2.5px] border-cb-encre px-3 py-2 font-marker text-base rotate-3 z-10 rounded-sm leading-none text-center">
                 {lang === 'fr' ? 'En chair' : 'In flesh'}
@@ -119,10 +162,10 @@ export default function Hero() {
               </span>
               <Image
                 src="/clement-illustration.png"
-                alt="Clément Boulé — illustration portrait"
+                alt="Clément Boulé, illustration portrait"
                 width={520}
                 height={520}
-                className="w-full h-auto block"
+                className="w-full h-auto block relative z-[1]"
                 priority
               />
             </div>

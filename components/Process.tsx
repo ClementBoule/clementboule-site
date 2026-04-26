@@ -4,16 +4,16 @@ import { useLang } from './LanguageContext'
 import { CALENDLY_URL } from '../lib/cta-config'
 
 const STEPS_FR = [
-  { num: '01', title: 'Échange de cadrage', desc: 'Un appel de 30 minutes pour comprendre votre contexte, vos enjeux et ce que vous voulez changer.', badge: '30 min' },
-  { num: '02', title: 'Diagnostic & propo', desc: "J'analyse vos besoins et vous propose un programme sur-mesure : format, durée, objectifs mesurables.", badge: '2-3 jours' },
-  { num: '03', title: 'On démarre', desc: "Présentiel ou distanciel. J'ajuste le contenu selon ce qui se passe vraiment dans le groupe.", badge: 'France entière' },
+  { num: '01', title: 'Échange de cadrage', desc: 'Un appel de 30 minutes pour comprendre votre contexte, vos enjeux, ce que vous voulez changer.', badge: '30 min' },
+  { num: '02', title: 'Diagnostic & propo', desc: "J'analyse vos besoins, je vous propose un programme sur-mesure : format, durée, objectifs mesurables.", badge: 'Définir ensemble' },
+  { num: '03', title: 'On démarre', desc: "Présentiel ou distanciel. J'ajuste le contenu selon ce qui se passe vraiment dans le groupe.", badge: 'Union Européenne' },
   { num: '04', title: 'Bilan & suivi', desc: "Bilan après la formation. Je reste joignable pour les questions des semaines suivantes.", badge: 'Suivi inclus' },
 ]
 
 const STEPS_EN = [
-  { num: '01', title: 'Discovery call', desc: '30 minutes to understand your context, your challenges, and what you want to change.', badge: '30 min' },
-  { num: '02', title: 'Diagnosis & proposal', desc: 'I analyze your needs and propose a tailored program: format, duration, measurable goals.', badge: '2-3 days' },
-  { num: '03', title: 'We start', desc: "In-person or remote. I adjust the content based on what's really happening in the group.", badge: 'France-wide' },
+  { num: '01', title: 'Discovery call', desc: '30 minutes to understand your context, your challenges, what you want to change.', badge: '30 min' },
+  { num: '02', title: 'Diagnosis & proposal', desc: 'I analyze your needs, I propose a tailored program: format, duration, measurable goals.', badge: 'Together' },
+  { num: '03', title: 'We start', desc: "In-person or remote. I adjust the content based on what's really happening in the group.", badge: 'European Union' },
   { num: '04', title: 'Debrief & follow-up', desc: 'Debrief after training. I stay reachable for questions in the following weeks.', badge: 'Included' },
 ]
 
@@ -77,11 +77,21 @@ export default function Process() {
           ))}
         </div>
         <div className="mt-12 flex flex-wrap gap-3 justify-center md:justify-start">
+          {/* CTA primaire : composer mon format vers MatchQuiz */}
+          <a
+            href="/#quiz"
+            className="inline-flex items-center gap-2 bg-cb-sarcelle text-cb-sable font-bold uppercase tracking-wider text-xs px-6 py-3.5 border-[2.5px] border-cb-sable rounded shadow-[4px_4px_0_var(--cb-rose)] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[6px_6px_0_var(--cb-rose)] transition-all duration-150"
+          >
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7l-3 3m0 0l-3-3m3 3V8" />
+            </svg>
+            {lang === 'fr' ? 'Composer mon format' : 'Compose my format'}
+          </a>
           <a
             href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-cb-sable text-cb-encre font-bold uppercase tracking-wider text-xs px-6 py-3.5 border-2 border-cb-sable rounded shadow-[4px_4px_0_var(--cb-rose)] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[6px_6px_0_var(--cb-rose)] transition-all duration-150"
+            className="inline-flex items-center gap-2 bg-cb-sable text-cb-encre font-bold uppercase tracking-wider text-xs px-6 py-3.5 border-2 border-cb-sable rounded hover:translate-x-[-1px] hover:translate-y-[-1px] transition-all duration-150"
           >
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />

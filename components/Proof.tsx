@@ -4,12 +4,12 @@ import { useLang } from './LanguageContext'
 // ─── Chiffres clés ────────────────────────────────────────────────────────────
 const STATS_FR = [
   { value: '+1 800', label: 'participants formés', color: 'sarcelle', rot: '-rotate-[0.6deg]' },
-  { value: '10 ans', label: "d'accompagnement", color: 'terracotta', rot: 'rotate-[0.4deg]' },
+  { value: '8 ans', label: "d'accompagnement", color: 'terracotta', rot: 'rotate-[0.4deg]' },
   { value: 'FR / EN', label: 'bilingue', color: 'sauge-deep', rot: '-rotate-[0.3deg]' },
 ]
 const STATS_EN = [
   { value: '+1,800', label: 'people trained', color: 'sarcelle', rot: '-rotate-[0.6deg]' },
-  { value: '10 yrs', label: 'of coaching', color: 'terracotta', rot: 'rotate-[0.4deg]' },
+  { value: '8 yrs', label: 'of coaching', color: 'terracotta', rot: 'rotate-[0.4deg]' },
   { value: 'FR / EN', label: 'bilingual', color: 'sauge-deep', rot: '-rotate-[0.3deg]' },
 ]
 
@@ -33,7 +33,7 @@ const PILLARS_FR = [
   {
     tag: '03',
     title: 'La posture avant le contenu',
-    desc: "Ce qui change vraiment, c'est la façon dont les gens se positionnent — pas juste ce qu'ils savent. C'est ça qui reste après la formation.",
+    desc: "Ce qui change vraiment, c'est la façon dont les gens se positionnent, pas juste ce qu'ils savent. C'est ça qui reste après la formation.",
     color: 'sauge-deep',
     shadow: 'var(--cb-sauge-deep)',
     rot: '-rotate-[0.4deg]',
@@ -60,7 +60,7 @@ const PILLARS_EN = [
   {
     tag: '03',
     title: 'Posture before content',
-    desc: "What really changes is how people position themselves — not just what they know. That's what stays after the training.",
+    desc: "What really changes is how people position themselves, not just what they know. That's what stays after the training.",
     color: 'sauge-deep',
     shadow: 'var(--cb-sauge-deep)',
     rot: '-rotate-[0.4deg]',
@@ -77,7 +77,7 @@ export default function Proof() {
     <section className="bg-cb-creme py-20 md:py-28 px-6 relative overflow-hidden border-t-4 border-cb-encre">
       <div className="max-w-7xl mx-auto">
 
-        {/* Chiffres clés — Anton géants polychromes */}
+        {/* Chiffres clés, Anton géants polychromes */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 mb-20 md:mb-24">
           {stats.map((s, i) => (
             <div
@@ -121,7 +121,7 @@ export default function Proof() {
           </div>
         </div>
 
-        {/* 3 piliers — cards brutalist */}
+        {/* 3 piliers, cards brutalist */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-7 md:gap-8">
           {pillars.map((p, i) => (
             <div
