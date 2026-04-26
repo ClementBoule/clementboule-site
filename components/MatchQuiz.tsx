@@ -14,7 +14,7 @@ import { formations, QUIZ_SLOT_RANK } from './formations-data'
 //   3. Instrumentation analytics multi-vendor (Plausible / Umami / GTM dataLayer).
 // ─────────────────────────────────────────────────────────────────────────────
 
-type AudienceKey = 'codir' | 'managers' | 'teams' | 'self'
+type AudienceKey = 'apprentices' | 'codir' | 'managers' | 'teams' | 'self'
 type DurationKey = 'half' | 'day' | 'twoThree' | 'program'
 
 type Answers = {
@@ -74,6 +74,7 @@ const COPY: Record<'fr' | 'en', Copy> = {
       audience: {
         q: 'Vous formez qui ?',
         options: {
+          apprentices: 'Mes apprentis / alternants',
           codir: 'Mon CODIR',
           managers: 'Mes managers',
           teams: 'Mes équipes',
@@ -130,6 +131,7 @@ const COPY: Record<'fr' | 'en', Copy> = {
       audience: {
         q: 'Who do you want to train?',
         options: {
+          apprentices: 'My apprentices / interns',
           codir: 'My executive team',
           managers: 'My managers',
           teams: 'My teams',
@@ -181,7 +183,7 @@ const COPY: Record<'fr' | 'en', Copy> = {
 }
 
 // ─── Constantes ──────────────────────────────────────────────────────────────
-const AUDIENCE_ORDER: AudienceKey[] = ['codir', 'managers', 'teams', 'self']
+const AUDIENCE_ORDER: AudienceKey[] = ['apprentices', 'codir', 'managers', 'teams', 'self']
 const DURATION_ORDER: DurationKey[] = ['half', 'day', 'twoThree', 'program']
 
 // La source de vérité du slot recommandé pour chaque formation est dans
