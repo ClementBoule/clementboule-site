@@ -42,24 +42,25 @@ export default function DiscContactSection({
     .join(', ')
   const defaultMessage = `Bonjour Clément,\n\nJe viens de faire le test DISC sur votre site. Mon profil dominant est ${profile.name}${sp ? ` (sous-profil : ${sp.name})` : ''} (${scoresSummary}).\n\nJ'aimerais en savoir plus sur comment appliquer ces résultats dans mon contexte professionnel.\n\nCordialement,`
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('sending')
     try {
-      const res = await fetch('https://formspree.io/f/hello@clementboule.com', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name,
-          email,
-          message: message || defaultMessage,
-          _subject: `[DISC ${profile.letter}${sp ? ` · ${sp.name}` : ''}] Nouveau profil à accompagner`,
-          _disc_profile: profile.name,
-          _disc_subprofile: sp?.name || 'Phase 1 uniquement',
-          _disc_scores: scoresSummary,
-        }),
-      })
-      setStatus(res.ok ? 'success' : 'error')
+      const subjectLine = `[DISC ${profile.letter}${sp ? ` · ${sp.name}` : ''}] Nouveau profil à accompagner`
+      const fullBody = [
+        `Nom : ${name}`,
+        `Email : ${email}`,
+        '',
+        `Profil dominant : ${profile.name}${sp ? ` (sous-profil : ${sp.name})` : ''}`,
+        `Scores : ${scoresSummary}`,
+        '',
+        '— Message —',
+        message || defaultMessage,
+      ].join('\n')
+      const subject = encodeURIComponent(subjectLine)
+      const body = encodeURIComponent(fullBody)
+      window.location.href = `mailto:hello@clementboule.com?subject=${subject}&body=${body}`
+      setStatus('success')
     } catch {
       setStatus('error')
     }

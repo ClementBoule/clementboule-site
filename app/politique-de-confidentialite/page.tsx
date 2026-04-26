@@ -180,6 +180,21 @@ export default function PolitiqueConfidentialite() {
             </p>
           </article>
 
+          <article
+            className="bg-white border-[2.5px] border-cb-sauge-deep rounded-sm p-6 md:p-8"
+            style={{ boxShadow: '6px 6px 0 var(--cb-sauge)' }}
+          >
+            <h2 className="font-anton text-xl md:text-2xl uppercase leading-tight text-cb-encre mb-4">
+              10. Stockage local côté navigateur
+            </h2>
+            <p className="text-base text-cb-encre-soft leading-relaxed text-pretty">
+              Pour mémoriser votre préférence de langue (français ou anglais), le site utilise <code className="bg-cb-sable px-1.5 py-0.5 rounded-sm border border-cb-sauge text-sm font-mono">localStorage</code> sous la clé <code className="bg-cb-sable px-1.5 py-0.5 rounded-sm border border-cb-sauge text-sm font-mono">lang</code>. Cette donnée reste sur votre machine, n&apos;est jamais transmise à un serveur, et relève de l&apos;exemption « strictement nécessaire au confort d&apos;utilisation » prévue à l&apos;article 82 LIL (recommandation CNIL 2020).
+            </p>
+            <p className="text-base text-cb-encre-soft leading-relaxed text-pretty mt-3">
+              Vous pouvez la supprimer à tout moment depuis les outils de votre navigateur (Inspecter → Application → Stockage local).
+            </p>
+          </article>
+
         </div>
       </section>
 

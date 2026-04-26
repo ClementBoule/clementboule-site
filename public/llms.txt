@@ -9,7 +9,7 @@ Je travaille en direct, sans certification Qualiopi ni parcours OPCO. Chaque pro
 - [Accueil](https://www.clementboule.fr/) : Présentation, preuves, catalogue des 6 formations, quiz de matching, processus d'intervention
 - [À propos](https://www.clementboule.fr/a-propos) : Parcours professionnel, formations, certifications et valeurs de Clément Boulé
 - [Catalogue formations](https://www.clementboule.fr/formations) : Vue d'ensemble des 6 programmes
-- [Cas clients](https://www.clementboule.fr/cas-clients) : 4 cas réels d'interventions (business school, PME Île-de-France, association nationale, groupe international)
+- [Cas clients](https://www.clementboule.fr/cas-clients) : page en cours de finalisation
 - [FAQ](https://www.clementboule.fr/faq) : Réponses aux questions fréquentes sur l'approche, les formats, les tarifs, le DISC
 - [Contact](https://www.clementboule.fr/contact) : Formulaire et coordonnées
 - [Test DISC gratuit](https://www.clementboule.fr/test-disc) : Diagnostic comportemental interactif

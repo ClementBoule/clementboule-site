@@ -191,15 +191,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr" className="scroll-smooth">
       <head>
-        {/* Cookiebot */}
-        <script
-          id="Cookiebot"
-          src="https://consent.cookiebot.com/uc.js"
-          data-cbid="01e8cd7c-a1d4-412c-b51c-978a792e85f9"
-          data-blockingmode="auto"
-          type="text/javascript"
-          async
-        />
         {/* Schema.org JSON-LD */}
         <script
           type="application/ld+json"
