@@ -88,10 +88,117 @@ const FAQ_SECTIONS: { category: string; color: string; rot: string; items: { q: 
   },
 ]
 
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://www.clementboule.fr/faq#faqpage',
+  mainEntity: [{
+  '@type': 'Question',
+  name: 'Vous proposez des formations finançables OPCO ?',
+  acceptedAnswer: {
+    '@type': 'Answer',
+    text: "Non. Je travaille en direct avec mes clients, pas de certification Qualiopi, pas de parcours OPCO. Ça me permet de construire des programmes vraiment sur-mesure, sans contrainte administrative, et de m'adapter en temps réel à vos équipes.",
+  },
+},
+{
+  '@type': 'Question',
+  name: "En quoi vous différenciez-vous d'un organisme de formation classique ?",
+  acceptedAnswer: {
+    '@type': 'Answer',
+    text: "Je ne vends pas un catalogue. Chaque programme est conçu à partir de vos enjeux réels. Je travaille seul, ce qui garantit une cohérence totale entre le diagnostic, la conception et l'animation. Et je m'adapte en cours de session si la dynamique de groupe le demande.",
+  },
+},
+{
+  '@type': 'Question',
+  name: 'Vous travaillez avec quel type de clients ?',
+  acceptedAnswer: {
+    '@type': 'Answer',
+    text: "Business schools et grandes écoles parisiennes, PME, grandes entreprises, associations, institutions publiques. Ce qui varie, c'est le secteur, pas l'exigence. Je travaille en français et en anglais.",
+  },
+},
+{
+  '@type': 'Question',
+  name: "Quelle est la durée minimale d'une intervention ?",
+  acceptedAnswer: {
+    '@type': 'Answer',
+    text: "Une demi-journée (3h30) est le format minimum. La plupart de mes modules se déploient sur 1 à 2 jours. Pour le coaching individuel, je travaille sur des séquences de 3 à 6 séances.",
+  },
+},
+{
+  '@type': 'Question',
+  name: 'Vous intervenez en présentiel ou à distance ?',
+  acceptedAnswer: {
+    '@type': 'Answer',
+    text: 'Les deux. Le présentiel reste le format le plus efficace pour créer de la dynamique de groupe. Le distanciel fonctionne bien pour le coaching individuel et les modules de suivi.',
+  },
+},
+{
+  '@type': 'Question',
+  name: 'Pouvez-vous venir dans nos locaux ?',
+  acceptedAnswer: {
+    '@type': 'Answer',
+    text: "Oui, je me déplace en Île-de-France et dans toute la France selon les projets. Pour les interventions hors Paris, des frais de déplacement s'appliquent selon les conditions définies au devis.",
+  },
+},
+{
+  '@type': 'Question',
+  name: 'Quel est le nombre de participants idéal ?',
+  acceptedAnswer: {
+    '@type': 'Answer',
+    text: "Pour les formations, entre 8 et 20 participants est l'optimum. En dessous, la dynamique de groupe est limitée. Au-delà, la personnalisation devient plus difficile. Pour le coaching, je travaille en individuel ou en binôme.",
+  },
+},
+{
+  '@type': 'Question',
+  name: 'Quels sont vos tarifs ?',
+  acceptedAnswer: {
+    '@type': 'Answer',
+    text: "Je facture à la journée ou au module selon la nature du projet. Tous les devis sont sur-mesure, contactez-moi pour qu'on évalue ensemble ce qui correspond à votre besoin.",
+  },
+},
+{
+  '@type': 'Question',
+  name: 'Comment se passe la facturation ?',
+  acceptedAnswer: {
+    '@type': 'Answer',
+    text: "Je facture après prestation avec délai de paiement à 30 jours. Un acompte peut être demandé pour les projets d'envergure. SIRET et statut juridique en mentions légales.",
+  },
+},
+{
+  '@type': 'Question',
+  name: 'Vous pouvez fournir un numéro SIRET pour la comptabilité ?',
+  acceptedAnswer: {
+    '@type': 'Answer',
+    text: 'Oui, toutes les informations légales sont disponibles sur demande et apparaissent sur chaque facture.',
+  },
+},
+{
+  '@type': 'Question',
+  name: "C'est quoi le test DISC proposé sur le site ?",
+  acceptedAnswer: {
+    '@type': 'Answer',
+    text: "Le DISC est un outil d'analyse comportementale qui identifie 4 profils : Dominant, Influent, Stable, Consciencieux. Il est utilisé en coaching et en formation pour améliorer la communication, le management et la dynamique d'équipe. Le test sur le site est une version gratuite et indicative.",
+  },
+},
+{
+  '@type': 'Question',
+  name: 'Pouvez-vous animer des ateliers DISC en entreprise ?',
+  acceptedAnswer: {
+    '@type': 'Answer',
+    text: "Oui, c'est une de mes spécialités. Je propose des ateliers DISC de demi-journée ou d'une journée pour les équipes, idéal pour améliorer la communication interne, prévenir les conflits et renforcer la cohésion.",
+  },
+},
+  ],
+}
+
 export default function FAQ() {
   return (
     <main className="min-h-screen bg-cb-sable">
       <Navbar />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
       {/* Hero */}
       <section className="pt-28 md:pt-32 pb-16 bg-cb-sable border-t-4 border-cb-encre">
