@@ -1,7 +1,29 @@
 import type { Metadata } from 'next'
+import { Anton, Space_Grotesk, Permanent_Marker } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider } from '@/components/LanguageContext'
 import HomeFab from '@/components/HomeFab'
+
+// Self-host des Google Fonts via next/font (servies depuis clementboule.fr).
+// Évite le transfert d'IP visiteur vers fonts.googleapis.com (cf. arrêt LG Munich 20/01/2022).
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-space-grotesk',
+})
+const anton = Anton({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: '400',
+  variable: '--font-anton',
+})
+const permanentMarker = Permanent_Marker({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: '400',
+  variable: '--font-marker',
+})
 
 /* ─── Metadata optimisées SEO + GEO ──────────────────────── */
 export const metadata: Metadata = {
@@ -189,7 +211,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className="scroll-smooth">
+    <html lang="fr" className={`scroll-smooth ${spaceGrotesk.variable} ${anton.variable} ${permanentMarker.variable}`}>
       <head>
         {/* Schema.org JSON-LD */}
         <script

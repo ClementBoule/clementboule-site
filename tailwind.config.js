@@ -25,9 +25,9 @@ module.exports = {
         slate: { 50: '#F8FAFC' },
       },
       fontFamily: {
-        sans: ['"Space Grotesk"', 'Inter', 'system-ui', 'sans-serif'],
-        anton: ['Anton', 'Arial Black', 'sans-serif'],
-        marker: ['"Permanent Marker"', 'cursive'],
+        sans: ['var(--font-space-grotesk)', 'Inter', 'system-ui', 'sans-serif'],
+        anton: ['var(--font-anton)', 'Arial Black', 'sans-serif'],
+        marker: ['var(--font-marker)', 'cursive'],
       },
     },
   },
