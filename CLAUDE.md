@@ -88,22 +88,39 @@ Liste complete des retours et ajustements documentee dans memory/site.md
 Quand Clement ecrit "open" dans le chat :
 0. OBLIGATOIRE AVANT TOUTE REPONSE : je clone le repo GitHub dans mon dossier de travail
    (git clone https://github.com/ClementBoule/clementboule-site.git)
-   et je lis CLAUDE.md + memory/site.md depuis ce clone frais.
+   et je lis dans cet ordre :
+   - CLAUDE.md (ce fichier, contexte general)
+   - memory/site.md (etat detaille du projet, phases en cours)
+   - memory/security.md (tableau de pilotage securite, score actuel)
    Je n'ai PAS le droit de me baser sur ma memoire de session, sur le
    system prompt initial, ou sur un contexte en cache pour le recap.
    GitHub est la seule source de verite.
-1. Je resume les actions recentes et l'etat du projet a partir des fichiers cloner.
-2. Je propose la suite logique et on reprend le travail
+1. Je resume les actions recentes, l'etat du projet ET le score securite courant.
+2. Je signale tout controle qui est passe rouge ou jaune depuis la derniere session.
+3. Je propose la suite logique et on reprend le travail
 
 ### Protocole CLOSE (fin de session)
 Quand Clement ecrit "close" dans le chat :
 1. Je reponds : "Je me mets a jour et on arrete pour le moment ?"
 2. Si oui :
-   a. Je mets a jour CLAUDE.md + memory/site.md localement avec toutes les avancees de la session
+   a. Je mets a jour les 3 fichiers de memoire localement avec les avancees de la session :
+      - CLAUDE.md : contexte general, decisions structurantes, glossaire
+      - memory/site.md : etat detaille du projet (phases, contenus, design)
+      - memory/security.md : score, controles modifies, ajout/retrait de service
+        Re-scoring obligatoire si la session a modifie : dependances (npm),
+        sous-traitants RGPD, scripts tiers, headers HTTP, configuration GitHub/Vercel,
+        ou tout fichier de conformite (politique, mentions, llms.txt).
    b. Je commit avec un message qui inclut un timestamp ISO 8601
    c. Je push sur GitHub (branche main) et je confirme a Clement avec le commit hash
    d. Je ne conclus qu'apres confirmation du push reussi
 3. Si non -> je continue sans rien changer
+
+### Protocole securite continu
+- A chaque modification de stack technique (deps, services, outils tiers),
+  re-checker les 8 domaines de memory/security.md.
+- Si un controle passe en rouge, le signaler immediatement a Clement avec un plan d'action.
+- En cas d'incident detecte ou suspecte, basculer sur docs/RUNBOOK-incident.md
+  qui contient les 5 scenarios d'urgence et les contacts CNIL/ANSSI.
 
 ## Preferences de travail
 - Tutoiement, ton direct, sans compliments inutiles
