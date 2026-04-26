@@ -598,17 +598,17 @@ export default function DiscMap({
                 className="w-2.5 h-2.5 rounded-full flex-shrink-0"
                 style={{ backgroundColor: DISC_COLORS[hoveredData.zone.dominant].main }}
               />
-              <span className="text-xs font-bold text-gray-900 leading-tight">
+              <span className="text-xs font-bold text-cb-encre leading-tight">
                 {hoveredData.name}
               </span>
             </div>
-            <p className="text-[10px] text-gray-500 leading-snug mb-1.5">
+            <p className="text-[10px] text-cb-encre-soft leading-snug mb-1.5">
               {hoveredData.nameEn}
             </p>
             {/* Premiers traits */}
             <div className="space-y-0.5">
               {hoveredData.traits.slice(0, 2).map((trait, i) => (
-                <p key={i} className="text-[10px] text-gray-600 leading-snug flex gap-1">
+                <p key={i} className="text-[10px] text-cb-encre-soft leading-snug flex gap-1">
                   <span className="text-gray-300 flex-shrink-0">•</span>
                   <span>{trait}</span>
                 </p>
@@ -650,7 +650,7 @@ export default function DiscMap({
               />
               <span
                 className={`text-xs font-semibold whitespace-nowrap ${
-                  isMain ? 'text-gray-900' : isSec ? 'text-gray-600' : 'text-gray-400'
+                  isMain ? 'text-cb-encre' : isSec ? 'text-cb-encre-soft' : 'text-cb-encre-soft/70'
                 }`}
               >
                 {q.label} · {pctVal}%
@@ -663,12 +663,12 @@ export default function DiscMap({
       {/* Info sous-profil identifié */}
       {sp && (
         <div className="text-center mt-2 px-4">
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-cb-encre-soft">
             Sous-profil identifié :{' '}
             <span className="font-bold" style={{ color: mainColor }}>
               {sp.name}
             </span>
-            <span className="text-gray-400 ml-1">({sp.nameEn})</span>
+            <span className="text-cb-encre-soft/70 ml-1">({sp.nameEn})</span>
           </p>
         </div>
       )}

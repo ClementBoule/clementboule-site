@@ -114,15 +114,15 @@ export default function DiscContactSection({
               </div>
 
               {/* Bulle de dialogue */}
-              <div className="relative bg-white rounded-2xl p-5 shadow-sm border border-gray-100 max-w-md">
+              <div className="relative bg-white rounded-2xl p-5 shadow-sm border border-cb-sauge max-w-md">
                 {/* Triangle de la bulle pointant vers le portrait */}
                 <div
-                  className="absolute -top-2 left-8 w-4 h-4 bg-white border-l border-t border-gray-100 rotate-45"
+                  className="absolute -top-2 left-8 w-4 h-4 bg-white border-l border-t border-cb-sauge rotate-45"
                 />
-                <p className="text-sm text-gray-700 leading-relaxed relative z-10">
+                <p className="text-sm text-cb-encre leading-relaxed relative z-10">
                   {bubbleMessage}
                 </p>
-                <p className="text-xs text-gray-400 mt-3 font-medium">
+                <p className="text-xs text-cb-encre-soft/70 mt-3 font-medium">
                  , Clément Boulé, Formateur & Consultant
                 </p>
               </div>
@@ -130,10 +130,10 @@ export default function DiscContactSection({
 
             {/* ─── Colonne droite : Formulaire ─── */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-1">
+              <h3 className="text-lg font-bold text-cb-encre mb-1">
                 Parlons de votre profil
               </h3>
-              <p className="text-sm text-gray-500 mb-5">
+              <p className="text-sm text-cb-encre-soft mb-5">
                 Séance individuelle ou atelier d'équipe, je vous recontacte sous 24h.
               </p>
 
@@ -148,7 +148,7 @@ export default function DiscContactSection({
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-cb-encre-soft uppercase tracking-wider mb-1.5">
                       Nom
                     </label>
                     <input
@@ -157,13 +157,13 @@ export default function DiscContactSection({
                       value={name}
                       onChange={e => setName(e.target.value)}
                       placeholder="Votre nom"
-                      className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 focus:outline-none transition-colors"
+                      className="w-full border-2 border-cb-sauge rounded-xl px-4 py-3 text-sm text-cb-encre focus:outline-none transition-colors"
                       onFocus={e => e.target.style.borderColor = color.main}
                       onBlur={e => e.target.style.borderColor = '#E5E7EB'}
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-cb-encre-soft uppercase tracking-wider mb-1.5">
                       Email
                     </label>
                     <input
@@ -172,20 +172,20 @@ export default function DiscContactSection({
                       value={email}
                       onChange={e => setEmail(e.target.value)}
                       placeholder="votre@email.com"
-                      className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 focus:outline-none transition-colors"
+                      className="w-full border-2 border-cb-sauge rounded-xl px-4 py-3 text-sm text-cb-encre focus:outline-none transition-colors"
                       onFocus={e => e.target.style.borderColor = color.main}
                       onBlur={e => e.target.style.borderColor = '#E5E7EB'}
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-cb-encre-soft uppercase tracking-wider mb-1.5">
                       Message
                     </label>
                     <textarea
                       value={message}
                       onChange={e => setMessage(e.target.value)}
                       placeholder={defaultMessage}
-                      className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 resize-none focus:outline-none transition-colors leading-relaxed"
+                      className="w-full border-2 border-cb-sauge rounded-xl px-4 py-3 text-sm text-cb-encre resize-none focus:outline-none transition-colors leading-relaxed"
                       style={{ minHeight: 120 }}
                       onFocus={e => e.target.style.borderColor = color.main}
                       onBlur={e => e.target.style.borderColor = '#E5E7EB'}
@@ -222,7 +222,7 @@ export default function DiscContactSection({
                     )}
                   </button>
 
-                  <p className="text-xs text-gray-400 text-center">
+                  <p className="text-xs text-cb-encre-soft/70 text-center">
                     🔒 Vos données sont envoyées uniquement à Clément Boulé. Aucune donnée n'est stockée sur ce site.
                   </p>
                 </form>
