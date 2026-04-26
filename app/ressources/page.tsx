@@ -5,7 +5,7 @@ import FinalCTA from '@/components/FinalCTA'
 
 export const metadata: Metadata = {
   title: 'Ressources',
-  description: "Ressources gratuites de Clément Boulé — test DISC, guides sur le management, le leadership et le développement professionnel.",
+  description: "Ressources gratuites de Clément Boulé, test DISC, guides sur le management, le leadership et le développement professionnel.",
   alternates: { canonical: 'https://www.clementboule.fr/ressources' },
 }
 
@@ -38,7 +38,7 @@ const RESSOURCES = [
   {
     category: 'FAQ',
     title: 'Questions fréquentes',
-    desc: "Tarifs, formats, logistique, DISC, facturation — toutes les réponses aux questions les plus courantes avant de démarrer.",
+    desc: "Tarifs, formats, logistique, DISC, facturation, toutes les réponses aux questions les plus courantes avant de démarrer.",
     cta: 'Lire la FAQ',
     href: '/faq',
     tag: 'Pratique',

@@ -7,7 +7,7 @@ import { CALENDLY_URL } from '@/lib/cta-config'
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: "Contactez Clément Boulé — formateur consultant coach en entreprise à Paris. Réponse sous 24h.",
+  description: "Contactez Clément Boulé, formateur consultant coach en entreprise à Paris. Réponse sous 24h.",
   alternates: { canonical: 'https://www.clementboule.fr/contact' },
 }
 
@@ -26,7 +26,7 @@ const INFOS = [
   },
   {
     label: 'Localisation',
-    value: 'Paris, Île-de-France — déplacements France entière',
+    value: 'Paris, Île-de-France, déplacements France entière',
     color: 'terracotta',
     rot: 'rotate-[0.4deg]',
     icon: (
@@ -80,7 +80,7 @@ export default function Contact() {
               </h1>
             </div>
             <div className="text-base font-medium border-l-4 border-cb-cardinal pl-5 max-w-md text-cb-encre-soft">
-              Décrivez votre besoin en quelques lignes — je vous réponds par email sous 24h.
+              Décrivez votre besoin en quelques lignes, je vous réponds par email sous 24h.
             </div>
           </div>
 
@@ -93,7 +93,7 @@ export default function Contact() {
               <h2 className="font-anton text-xl md:text-2xl uppercase leading-tight text-cb-encre mb-1">
                 Vous préférez un appel ?
               </h2>
-              <p className="text-sm text-cb-encre-soft">Réservez un créneau de 30 min — sinon le formulaire ci-dessous.</p>
+              <p className="text-sm text-cb-encre-soft">Réservez un créneau de 30 min, sinon le formulaire ci-dessous.</p>
             </div>
             <a
               href={CALENDLY_URL}
@@ -108,7 +108,7 @@ export default function Contact() {
 
           <div className="grid md:grid-cols-[1fr_1.2fr] gap-10 lg:gap-16 items-start">
 
-            {/* Left — infos contact en cards brutalist */}
+            {/* Left, infos contact en cards brutalist */}
             <div className="space-y-5">
               {INFOS.map((info) => (
                 <div
@@ -139,7 +139,7 @@ export default function Contact() {
               ))}
             </div>
 
-            {/* Right — formulaire brutalist */}
+            {/* Right, formulaire brutalist */}
             <div
               className="bg-cb-creme border-[2.5px] border-cb-sauge-deep rounded-sm p-6 md:p-8"
               style={{ boxShadow: '8px 8px 0 var(--cb-sarcelle)' }}
@@ -148,7 +148,7 @@ export default function Contact() {
                 Envoyer un message
               </h2>
               <p className="text-sm text-cb-encre-soft mb-6">
-                Remplissez le formulaire — votre client email s&apos;ouvrira avec tout pré-rempli.
+                Remplissez le formulaire, votre client email s&apos;ouvrira avec tout pré-rempli.
               </p>
               <Suspense fallback={<div className="h-[420px] animate-pulse bg-cb-sable rounded-sm border-2 border-cb-sauge" />}>
                 <ContactForm />

@@ -55,12 +55,13 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
+          {/* CTA primaire mis en valeur : sarcelle saturé, ombre cardinal */}
           <a
             href="/#quiz"
-            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.06em] px-4 py-2 border-2 border-cb-sauge-deep text-cb-sauge-deep bg-cb-sable rounded hover:bg-cb-sauge hover:text-cb-sable transition-all duration-150 shadow-[3px_3px_0_var(--cb-sauge)] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[4px_4px_0_var(--cb-sauge)]"
+            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.06em] px-4 py-2 border-[2.5px] border-cb-encre bg-cb-sarcelle text-cb-sable rounded hover:bg-cb-sarcelle-deep transition-all duration-150 shadow-[4px_4px_0_var(--cb-cardinal)] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[6px_6px_0_var(--cb-cardinal)]"
           >
-            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7l-3 3m0 0l-3-3m3 3V8" />
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7l-3 3m0 0l-3-3m3 3V8" />
             </svg>
             {lang === 'fr' ? 'Trouver mon format' : 'Find my format'}
           </a>
@@ -68,7 +69,7 @@ export default function Navbar() {
             href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.06em] px-4 py-2 border-2 border-cb-encre bg-cb-encre text-cb-sable rounded hover:bg-cb-sauge-deep hover:border-cb-sauge-deep transition-all duration-150 shadow-[3px_3px_0_var(--cb-sarcelle)] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[4px_4px_0_var(--cb-sarcelle)]"
+            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.06em] px-4 py-2 border-2 border-cb-encre bg-cb-encre text-cb-sable rounded hover:bg-cb-sauge-deep hover:border-cb-sauge-deep transition-all duration-150"
           >
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -113,7 +114,7 @@ export default function Navbar() {
           <a
             href="/#quiz"
             onClick={() => setMenuOpen(false)}
-            className="inline-flex items-center justify-center gap-1.5 border-2 border-cb-sauge-deep text-cb-sauge-deep font-bold uppercase tracking-wider px-5 py-2.5 rounded text-xs"
+            className="inline-flex items-center justify-center gap-1.5 border-[2.5px] border-cb-encre bg-cb-sarcelle text-cb-sable font-bold uppercase tracking-wider px-5 py-2.5 rounded text-xs shadow-[4px_4px_0_var(--cb-cardinal)]"
           >
             {lang === 'fr' ? 'Trouver mon format' : 'Find my format'}
           </a>

@@ -380,7 +380,7 @@ export default function DiscMap({
           )
         })}
 
-        {/* ═══ LAYER 8 : Sous-profils — 15 points positionnés ═══ */}
+        {/* ═══ LAYER 8 : Sous-profils, 15 points positionnés ═══ */}
         {ALL_SP_KEYS.map(spKey => {
           const spData = subProfiles[spKey]
           const { angle, radius } = spData.mapPosition
@@ -400,7 +400,7 @@ export default function DiscMap({
           // Opacité
           const dotOpacity = isIdentified ? 1 : isInDominantQ ? 0.9 : 0.3
 
-          // Position du label (décalage intelligent — écarté du point pour éviter les chevauchements)
+          // Position du label (décalage intelligent, écarté du point pour éviter les chevauchements)
           const labelAngle = normAngle(angle)
           // Decalages agrandis pour eviter chevauchements entre sous-profils du meme quadrant
           let labelDx = 0
@@ -504,7 +504,7 @@ export default function DiscMap({
                 </text>
               )}
 
-              {/* Sous-profils verrouillés : pas de "?" — juste le point grisé suffit */}
+              {/* Sous-profils verrouillés : pas de "?", juste le point grisé suffit */}
             </g>
           )
         })}

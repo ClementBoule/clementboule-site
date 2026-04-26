@@ -1,5 +1,5 @@
 // ────────────────────────────────────────────────────────────────────────────
-// FORMATIONS — données centralisées
+// FORMATIONS, données centralisées
 // Utilisé par : components/Formations.tsx + app/formations/[slug]/page.tsx
 // ────────────────────────────────────────────────────────────────────────────
 
@@ -15,7 +15,7 @@ export const QUIZ_SLOT_LABELS: Record<QuizSlot, string> = {
   program: 'Parcours étalé',
 }
 
-// Rang numérique des slots — utilisé pour comparer "format demandé" vs
+// Rang numérique des slots, utilisé pour comparer "format demandé" vs
 // "format recommandé" (ex: half=1 < twoThree=3 → warning).
 export const QUIZ_SLOT_RANK: Record<QuizSlot, number> = {
   half: 1,
@@ -385,7 +385,7 @@ export const formations: Formation[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════════════
-  // 6. SPINE'UP — LEADERSHIP MANAGÉRIAL
+  // 6. SPINE'UP, LEADERSHIP MANAGÉRIAL
   // ═══════════════════════════════════════════════════════════════════════
   {
     slug: 'spine-up',
@@ -393,7 +393,7 @@ export const formations: Formation[] = [
     accent: '#0F766E',
     bg: '#ECF6F4',
     image: '/illustrations/formations/spine-up.png',
-    title: "Spine'Up — leadership managérial",
+    title: "Spine'Up, leadership managérial",
     shortDescription: "Un parcours pour les managers qui veulent trouver leur posture sans se dénaturer. Concret, progressif, et ça reste après la formation.",
     intro: "Spine'Up est un parcours de développement managérial que j'ai construit à partir de ce que je vois en entreprise : des managers compétents qui ne savent pas comment occuper leur place. Pas un problème de compétences. Un problème de posture. Ce programme travaille exactement là-dessus.",
     forWhom: [

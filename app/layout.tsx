@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     siteName: 'Clément Boulé',
     title: 'Clément Boulé | Formateur Consultant Coach – Paris, Bilingue',
     description:
-      'Formateur, consultant et coach en entreprise à Paris. J\'accompagne dirigeants et équipes en français et en anglais — business schools, grands groupes, PME.',
+      'Formateur, consultant et coach en entreprise à Paris. J\'accompagne dirigeants et équipes en français et en anglais, business schools, grands groupes, PME.',
   },
 
   /* ── Twitter / X Card ── */
@@ -184,7 +184,7 @@ const jsonLd = {
       ],
     },
 
-    /* FAQ Schema (GEO gold) — synchronisé avec /faq */
+    /* FAQ Schema (GEO gold), synchronisé avec /faq */
     {
       '@type': 'FAQPage',
       '@id': 'https://www.clementboule.fr/faq#faqpage',
@@ -194,7 +194,7 @@ const jsonLd = {
           name: 'Vous proposez des formations finançables OPCO ?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: "Non. Je travaille en direct avec mes clients — pas de certification Qualiopi, pas de parcours OPCO. Ça me permet de construire des programmes vraiment sur-mesure, sans contrainte administrative, et de m'adapter en temps réel à vos équipes.",
+            text: "Non. Je travaille en direct avec mes clients, pas de certification Qualiopi, pas de parcours OPCO. Ça me permet de construire des programmes vraiment sur-mesure, sans contrainte administrative, et de m'adapter en temps réel à vos équipes.",
           },
         },
         {
@@ -202,7 +202,7 @@ const jsonLd = {
           name: "En quoi vous différenciez-vous d'un organisme de formation classique ?",
           acceptedAnswer: {
             '@type': 'Answer',
-            text: "Je ne vends pas un catalogue. Chaque programme est conçu à partir de vos enjeux réels. Je travaille seul — ce qui garantit une cohérence totale entre le diagnostic, la conception et l'animation. Et je m'adapte en cours de session si la dynamique de groupe le demande.",
+            text: "Je ne vends pas un catalogue. Chaque programme est conçu à partir de vos enjeux réels. Je travaille seul, ce qui garantit une cohérence totale entre le diagnostic, la conception et l'animation. Et je m'adapte en cours de session si la dynamique de groupe le demande.",
           },
         },
         {
@@ -210,7 +210,7 @@ const jsonLd = {
           name: 'Vous travaillez avec quel type de clients ?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: "Business schools et grandes écoles parisiennes, PME, grandes entreprises, associations, institutions publiques. Ce qui varie, c'est le secteur — pas l'exigence. Je travaille en français et en anglais.",
+            text: "Business schools et grandes écoles parisiennes, PME, grandes entreprises, associations, institutions publiques. Ce qui varie, c'est le secteur, pas l'exigence. Je travaille en français et en anglais.",
           },
         },
         {
@@ -250,7 +250,7 @@ const jsonLd = {
           name: 'Quels sont vos tarifs ?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: "Je facture à la journée ou au module selon la nature du projet. Tous les devis sont sur-mesure — contactez-moi pour qu'on évalue ensemble ce qui correspond à votre besoin.",
+            text: "Je facture à la journée ou au module selon la nature du projet. Tous les devis sont sur-mesure, contactez-moi pour qu'on évalue ensemble ce qui correspond à votre besoin.",
           },
         },
         {
@@ -258,7 +258,7 @@ const jsonLd = {
           name: 'Comment se passe la facturation ?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: "Je suis auto-entrepreneur (SIRET disponible sur demande). Je facture après prestation avec délai de paiement à 30 jours. Un acompte peut être demandé pour les projets d'envergure.",
+            text: "Je facture après prestation avec délai de paiement à 30 jours. Un acompte peut être demandé pour les projets d'envergure. SIRET et statut juridique en mentions légales.",
           },
         },
         {
@@ -282,7 +282,7 @@ const jsonLd = {
           name: 'Pouvez-vous animer des ateliers DISC en entreprise ?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: "Oui, c'est une de mes spécialités. Je propose des ateliers DISC de demi-journée ou d'une journée pour les équipes — idéal pour améliorer la communication interne, prévenir les conflits et renforcer la cohésion.",
+            text: "Oui, c'est une de mes spécialités. Je propose des ateliers DISC de demi-journée ou d'une journée pour les équipes, idéal pour améliorer la communication interne, prévenir les conflits et renforcer la cohésion.",
           },
         },
       ],
@@ -308,7 +308,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* Cloudflare Web Analytics — gratuit, RGPD-natif (cookieless, anonyme) */}
+        {/* Cloudflare Web Analytics, gratuit, RGPD-natif (cookieless, anonyme) */}
         <script
           defer
           src="https://static.cloudflareinsights.com/beacon.min.js"

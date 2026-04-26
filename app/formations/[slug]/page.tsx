@@ -19,10 +19,10 @@ export async function generateMetadata({
   const f = getFormation(slug)
   if (!f) return { title: 'Formation introuvable' }
   return {
-    title: `${f.title} — Formation Clément Boulé`,
+    title: `${f.title}, Formation Clément Boulé`,
     description: f.shortDescription,
     openGraph: {
-      title: `${f.title} — Formation`,
+      title: `${f.title}, Formation`,
       description: f.shortDescription,
       images: [{ url: f.image, width: 1200, height: 630, alt: f.title }],
     },
@@ -311,7 +311,7 @@ export default async function FormationDetailPage({
                 Modalités pratiques
               </h2>
               <div className="space-y-4">
-                {/* Card Durée — slot quiz prominent */}
+                {/* Card Durée, slot quiz prominent */}
                 <div
                   className="flex items-start gap-4 p-4 bg-white border-[2.5px] border-cb-sauge-deep rounded-sm -rotate-[0.3deg]"
                   style={{ boxShadow: `5px 5px 0 ${f.accent}` }}

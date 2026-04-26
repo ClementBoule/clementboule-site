@@ -5,11 +5,11 @@ import { useLang } from './LanguageContext'
 const FAQ_FR = [
   {
     q: "Vous proposez des formations finançables OPCO ?",
-    a: "Non. Je travaille en direct avec mes clients — pas de certification Qualiopi, pas de parcours OPCO. Ça me permet de construire des programmes vraiment sur-mesure, sans contrainte administrative, et d'ajuster en cours de route. Si votre besoin est un catalogue standard financé, je ne suis probablement pas le bon interlocuteur.",
+    a: "Non. Je travaille en direct avec mes clients, pas de certification Qualiopi, pas de parcours OPCO. Ça me permet de construire des programmes vraiment sur-mesure, sans contrainte administrative, et d'ajuster en cours de route. Si votre besoin est un catalogue standard financé, je ne suis probablement pas le bon interlocuteur.",
   },
   {
     q: "Vous intervenez en anglais ?",
-    a: "Oui. Je suis bilingue FR / EN et j'anime régulièrement des formations, des coachings et des conférences en anglais — notamment pour des business schools et des équipes internationales.",
+    a: "Oui. Je suis bilingue FR / EN et j'anime régulièrement des formations, des coachings et des conférences en anglais, notamment pour des business schools et des équipes internationales.",
   },
   {
     q: "Quelle est la durée minimale d'une intervention ?",
@@ -21,18 +21,18 @@ const FAQ_FR = [
   },
   {
     q: "Comment se passe la facturation ?",
-    a: "Je suis auto-entrepreneur. Je facture à la journée ou au module selon le projet. Tout est défini et validé dans un devis avant toute intervention.",
+    a: "Je facture à la journée ou au module selon le projet. Tout est défini et validé dans un devis avant toute intervention. Statut juridique précisé en mentions légales.",
   },
 ]
 
 const FAQ_EN = [
   {
     q: "Do you offer government-funded training programs?",
-    a: "No. I work directly with my clients — no Qualiopi certification, no subsidized programs. This allows me to build truly tailored programs, without administrative constraints, and to adapt in real time. If your need is a standard funded catalog, I'm probably not the right fit.",
+    a: "No. I work directly with my clients, no Qualiopi certification, no subsidized programs. This allows me to build truly tailored programs, without administrative constraints, and to adapt in real time. If your need is a standard funded catalog, I'm probably not the right fit.",
   },
   {
     q: "Do you train in English?",
-    a: "Yes. I'm bilingual FR / EN and I regularly deliver training, coaching, and talks in English — especially for business schools and international teams.",
+    a: "Yes. I'm bilingual FR / EN and I regularly deliver training, coaching, and talks in English, especially for business schools and international teams.",
   },
   {
     q: "What is the minimum duration of an engagement?",
@@ -44,7 +44,7 @@ const FAQ_EN = [
   },
   {
     q: "How does billing work?",
-    a: "I operate as a self-employed consultant. I bill per day or per module depending on the project. Everything is defined and validated in a quote before any engagement.",
+    a: "I bill per day or per module depending on the project. Everything is defined and validated in a quote before any engagement.",
   },
 ]
 

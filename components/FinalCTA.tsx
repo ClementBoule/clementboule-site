@@ -63,6 +63,12 @@ export default function FinalCTA() {
           </a>
         </div>
       </div>
+    <span
+        className="absolute bottom-4 right-4 font-marker text-cb-rose text-sm -rotate-3 opacity-90 pointer-events-none"
+        aria-hidden="true"
+      >
+        made with care, not with templates
+      </span>
     </section>
   )
 }

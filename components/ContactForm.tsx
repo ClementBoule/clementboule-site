@@ -47,7 +47,7 @@ export default function ContactForm() {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
     const subject = encodeURIComponent(
-      `[clementboule.fr] ${fields.type || 'Contact'} — ${fields.nom}`
+      `[clementboule.fr] ${fields.type || 'Contact'}, ${fields.nom}`
     )
     const body = encodeURIComponent(
       [

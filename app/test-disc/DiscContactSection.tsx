@@ -90,7 +90,7 @@ export default function DiscContactSection({
                        Pour l'instant on utilise l'illustration line drawing existante */}
                   <Image
                     src="/clement-illustration.png"
-                    alt="Clément Boulé — Consultant DISC"
+                    alt="Clément Boulé, Consultant DISC"
                     fill
                     className="object-cover object-top"
                   />
@@ -123,7 +123,7 @@ export default function DiscContactSection({
                   {bubbleMessage}
                 </p>
                 <p className="text-xs text-gray-400 mt-3 font-medium">
-                  — Clément Boulé, Formateur & Consultant
+                 , Clément Boulé, Formateur & Consultant
                 </p>
               </div>
             </div>
@@ -134,7 +134,7 @@ export default function DiscContactSection({
                 Parlons de votre profil
               </h3>
               <p className="text-sm text-gray-500 mb-5">
-                Séance individuelle ou atelier d'équipe — je vous recontacte sous 24h.
+                Séance individuelle ou atelier d'équipe, je vous recontacte sous 24h.
               </p>
 
               {status === 'success' ? (

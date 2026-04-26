@@ -5,13 +5,13 @@ import FinalCTA from '@/components/FinalCTA'
 
 export const metadata: Metadata = {
   title: 'À propos',
-  description: "Clément Boulé — formateur, consultant et coach en entreprise à Paris. Bilingue FR/EN, 10 ans d'accompagnement, +1 800 participants formés.",
+  description: "Clément Boulé, formateur, consultant et coach en entreprise à Paris. Bilingue FR/EN, 8 ans d'accompagnement, +1 800 participants formés.",
   alternates: { canonical: 'https://www.clementboule.fr/a-propos' },
 }
 
 const STATS = [
   { value: '+1 800', label: 'participants formés', color: 'sarcelle', rot: '-rotate-[0.5deg]' },
-  { value: '10 ans', label: "d'accompagnement", color: 'terracotta', rot: 'rotate-[0.4deg]' },
+  { value: '8 ans', label: "d'accompagnement", color: 'terracotta', rot: 'rotate-[0.4deg]' },
   { value: 'FR / EN', label: 'bilingue', color: 'sauge-deep', rot: '-rotate-[0.3deg]' },
 ]
 
@@ -36,7 +36,7 @@ const EXPERIENCES = [
   },
   {
     role: 'Coach sportif & performance',
-    company: 'Indépendant — Innsbruck',
+    company: 'Indépendant, Innsbruck',
     period: '2016 – 2021',
     desc: "Coaching individuel et collectif sur la performance et le développement mental. Autriche et Allemagne.",
     logo: '/logos/exp-crossfit.png',
@@ -48,7 +48,7 @@ const EXPERIENCES = [
 const EDUCATION = [
   { degree: 'Certification management du changement', school: 'ESSEC', year: '2026', logo: '/logos/edu-essec.jpg' },
   { degree: "La méthode Agile pour accompagner le changement", school: 'Excellence Formation', year: '2024', logo: '/logos/edu-excellens.png' },
-  { degree: 'BPJEPS AF — VAE', school: 'Académie de Normandie', year: '2021', logo: '/logos/edu-normandie.png' },
+  { degree: 'BPJEPS AF, VAE', school: 'Académie de Normandie', year: '2021', logo: '/logos/edu-normandie.png' },
   { degree: 'Master 2 Intercultural Behavior Management', school: 'MCI Innsbruck', year: '2018', logo: '/logos/edu-mci.png' },
   { degree: 'Master 1 PGE International Business', school: 'Rennes School of Business', year: '2017', logo: '/logos/edu-rennes-sb.jpg' },
 ]
@@ -68,12 +68,15 @@ export default function APropos() {
               <span className="inline-block font-marker text-cb-cardinal text-lg -rotate-2 mb-3">
                 ↓ À propos
               </span>
-              <h1 className="font-anton text-5xl md:text-6xl lg:text-7xl uppercase leading-[0.92] text-cb-encre mb-6">
+              <h1 className="font-anton text-5xl md:text-6xl lg:text-7xl uppercase leading-[0.92] text-cb-encre mb-4">
                 Formateur, consultant<br />
                 et <span className="inline-block bg-cb-sarcelle text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">coach</span>.
               </h1>
+              <span className="inline-block font-marker text-cb-cardinal text-base -rotate-1 mb-6">
+                made with care, not with templates
+              </span>
               <p className="text-base md:text-lg text-cb-encre-soft leading-relaxed mb-4 border-l-4 border-cb-cardinal pl-5">
-                Je suis Clément Boulé, 32 ans, basé à Paris. J&apos;accompagne managers, équipes et dirigeants depuis dix ans — d&apos;abord comme coach sportif, aujourd&apos;hui comme formateur. En français comme en anglais.
+                Je suis Clément Boulé, 32 ans, basé à Paris. J&apos;accompagne managers, équipes et dirigeants depuis dix ans, d&apos;abord comme coach sportif, aujourd&apos;hui comme formateur. En français comme en anglais.
               </p>
               <p className="text-base text-cb-encre-soft leading-relaxed mb-8">
                 Pas de catalogue tout fait. Je construis chaque programme à partir de votre quotidien, avec un objectif simple : que ça change vraiment quelque chose après la formation, pas juste pendant.
@@ -101,7 +104,7 @@ export default function APropos() {
                 className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-cb-creme border-[2.5px] border-cb-sauge-deep rounded-sm overflow-hidden -rotate-[1deg]"
                 style={{ boxShadow: '10px 10px 0 var(--cb-sarcelle)' }}
               >
-                <img src="/clement.jpg" alt="Clément Boulé — formateur consultant coach Paris" className="w-full h-full object-cover" />
+                <img src="/clement.jpg" alt="Clément Boulé, formateur consultant coach Paris" className="w-full h-full object-cover" />
               </div>
             </div>
           </div>
