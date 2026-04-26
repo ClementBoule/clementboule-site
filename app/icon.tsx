@@ -11,24 +11,25 @@ export default function Icon() {
         style={{
           width: 32,
           height: 32,
-          borderRadius: 8,
-          background: '#1A2B4A',
+          background: '#2A2A2A',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          border: '2px solid #1FB8B0',
+          borderRadius: 4,
         }}
       >
         <span
           style={{
-            color: 'white',
-            fontSize: 14,
-            fontWeight: 700,
-            letterSpacing: '-0.5px',
-            fontFamily: 'Georgia, serif',
-            marginTop: 1,
+            color: '#FBF4DD',
+            fontSize: 18,
+            fontWeight: 900,
+            letterSpacing: '-1px',
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            textTransform: 'uppercase',
           }}
         >
-          CB
+          cb
         </span>
       </div>
     ),

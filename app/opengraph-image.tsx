@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-export const alt = 'Clément Boulé – Formateur Consultant Coach à Paris'
+export const alt = 'Clément Boulé — Formateur Consultant Coach à Paris'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -13,18 +13,29 @@ export default function Image() {
           width: 1200,
           height: 630,
           display: 'flex',
-          background: '#1A2B4A',
+          background: '#FBF4DD',
           position: 'relative',
         }}
       >
-        {/* Barre accent gauche dorée */}
+        {/* Bordure encre haut */}
         <div style={{
           position: 'absolute',
-          left: 80,
-          top: 80,
-          bottom: 80,
-          width: 4,
-          background: '#C4A064',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 6,
+          background: '#2A2A2A',
+          display: 'flex',
+        }} />
+
+        {/* Bandeau cardinal qui traverse */}
+        <div style={{
+          position: 'absolute',
+          top: 110,
+          left: 0,
+          right: 0,
+          height: 4,
+          background: '#C8102E',
           display: 'flex',
         }} />
 
@@ -32,73 +43,76 @@ export default function Image() {
         <div style={{
           display: 'flex',
           flexDirection: 'column',
-          paddingLeft: 120,
-          paddingTop: 130,
+          paddingLeft: 80,
+          paddingTop: 160,
           flex: 1,
         }}>
-          {/* Nom */}
+          {/* Eyebrow marker */}
           <div style={{
-            fontSize: 72,
-            fontWeight: 700,
-            color: 'white',
+            fontSize: 26,
+            color: '#C8102E',
             fontFamily: 'Georgia, serif',
-            letterSpacing: '-1px',
+            fontStyle: 'italic',
+            transform: 'rotate(-2deg)',
             display: 'flex',
+            marginBottom: 18,
           }}>
-            Clément Boulé
+            ↓ Formateur, consultant, coach
           </div>
 
-          {/* Séparateur doré */}
+          {/* Nom géant Anton-style */}
           <div style={{
-            width: 420,
-            height: 3,
-            background: '#C4A064',
-            marginTop: 12,
-            marginBottom: 20,
+            fontSize: 110,
+            fontWeight: 900,
+            color: '#2A2A2A',
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            letterSpacing: '-3px',
+            textTransform: 'uppercase',
+            lineHeight: 0.92,
             display: 'flex',
-          }} />
-
-          {/* Tagline */}
-          <div style={{
-            fontSize: 28,
-            color: '#C4A064',
-            fontFamily: 'Arial, sans-serif',
-            display: 'flex',
+            flexDirection: 'column',
           }}>
-            Formateur · Consultant · Coach
+            <span style={{ display: 'flex' }}>Clément</span>
+            <span style={{ display: 'flex', alignItems: 'center' }}>
+              <span style={{
+                background: '#1FB8B0',
+                color: '#FBF4DD',
+                padding: '0 18px',
+                transform: 'rotate(-1deg)',
+                display: 'flex',
+                marginRight: 10,
+              }}>
+                Boulé.
+              </span>
+            </span>
           </div>
 
           {/* Sous-titre */}
           <div style={{
-            fontSize: 22,
-            color: '#C8D2E6',
-            marginTop: 16,
-            fontFamily: 'Arial, sans-serif',
+            fontSize: 30,
+            color: '#4A4A4A',
+            marginTop: 32,
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            fontWeight: 500,
             display: 'flex',
+            borderLeft: '4px solid #C8102E',
+            paddingLeft: 20,
           }}>
-            Développement des compétences, management et leadership
-          </div>
-          <div style={{
-            fontSize: 22,
-            color: '#C8D2E6',
-            marginTop: 6,
-            fontFamily: 'Arial, sans-serif',
-            display: 'flex',
-          }}>
-            en français et en anglais, Paris
+            8 ans, bilingue FR/EN. Programmes sur-mesure, jamais de catalogue.
           </div>
 
-          {/* Tags */}
-          <div style={{ display: 'flex', gap: 14, marginTop: 60 }}>
-            {['Business Schools', 'Grands groupes', 'PME', 'Bilingue FR/EN'].map((tag) => (
+          {/* Tags brutalist */}
+          <div style={{ display: 'flex', gap: 12, marginTop: 40 }}>
+            {['BUSINESS SCHOOLS', 'GRANDS GROUPES', 'PME', 'BILINGUE'].map((tag) => (
               <div key={tag} style={{
-                background: '#28406A',
-                color: 'white',
-                padding: '8px 20px',
-                borderRadius: 6,
-                fontSize: 20,
-                fontFamily: 'Arial, sans-serif',
-                fontWeight: 600,
+                background: '#FCFAF2',
+                color: '#2A2A2A',
+                padding: '10px 20px',
+                border: '2.5px solid #4F6A52',
+                fontSize: 18,
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                fontWeight: 700,
+                letterSpacing: '1px',
                 display: 'flex',
               }}>
                 {tag}
@@ -107,40 +121,58 @@ export default function Image() {
           </div>
         </div>
 
-        {/* Monogramme CB + URL bas droite */}
+        {/* URL bas droite */}
         <div style={{
           position: 'absolute',
           right: 80,
-          bottom: 80,
+          bottom: 50,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-end',
-          gap: 10,
+          gap: 8,
         }}>
+          {/* Monogramme cb sarcelle */}
           <div style={{
             width: 90,
-            height: 70,
-            background: '#28406A',
-            borderRadius: 10,
+            height: 90,
+            background: '#2A2A2A',
+            border: '4px solid #1FB8B0',
+            borderRadius: 8,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: 'white',
-            fontSize: 38,
-            fontWeight: 700,
-            fontFamily: 'Georgia, serif',
+            color: '#FBF4DD',
+            fontSize: 50,
+            fontWeight: 900,
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            letterSpacing: '-3px',
+            textTransform: 'uppercase',
           }}>
-            CB
+            cb
           </div>
           <div style={{
-            color: '#96AAD2',
-            fontSize: 20,
-            fontFamily: 'Arial, sans-serif',
+            color: '#4A4A4A',
+            fontSize: 22,
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            fontWeight: 700,
+            letterSpacing: '1px',
             display: 'flex',
+            marginTop: 6,
           }}>
             clementboule.fr
           </div>
         </div>
+
+        {/* Bandeau encre bas */}
+        <div style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: 6,
+          background: '#2A2A2A',
+          display: 'flex',
+        }} />
       </div>
     ),
     { ...size }

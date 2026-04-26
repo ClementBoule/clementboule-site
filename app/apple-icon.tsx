@@ -11,23 +11,25 @@ export default function AppleIcon() {
         style={{
           width: 180,
           height: 180,
-          borderRadius: 40,
-          background: '#1A2B4A',
+          background: '#2A2A2A',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          border: '8px solid #1FB8B0',
+          borderRadius: 24,
         }}
       >
         <span
           style={{
-            color: 'white',
-            fontSize: 80,
-            fontWeight: 700,
-            letterSpacing: '-3px',
-            fontFamily: 'Georgia, serif',
+            color: '#FBF4DD',
+            fontSize: 90,
+            fontWeight: 900,
+            letterSpacing: '-4px',
+            fontFamily: 'Helvetica, Arial, sans-serif',
+            textTransform: 'uppercase',
           }}
         >
-          CB
+          cb
         </span>
       </div>
     ),

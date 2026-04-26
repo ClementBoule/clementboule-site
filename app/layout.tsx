@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: '%s | Clément Boulé',
   },
   description:
-    'Formateur consultant coach bilingue FR/EN à Paris. J\'accompagne dirigeants, managers et équipes en business schools, PME et grands groupes.',
+    'Formateur, consultant et coach à Paris. 8 ans, bilingue FR/EN. Programmes sur-mesure, jamais de catalogue : managers, équipes et dirigeants en PME, grands groupes, business schools.',
 
   keywords: [
     // FR – core
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     siteName: 'Clément Boulé',
     title: 'Clément Boulé | Formateur Consultant Coach – Paris, Bilingue',
     description:
-      'Formateur, consultant et coach en entreprise à Paris. J\'accompagne dirigeants et équipes en français et en anglais, business schools, grands groupes, PME.',
+      'Formateur, consultant et coach à Paris. 8 ans, bilingue FR/EN. Programmes sur-mesure, jamais de catalogue : managers, équipes et dirigeants en PME, grands groupes, business schools.',
   },
 
   /* ── Twitter / X Card ── */
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Clément Boulé | Formateur Consultant Coach – Paris',
     description:
-      'Formateur bilingue, consultant et coach en entreprise à Paris. Business schools, grands groupes, PME.',
+      'Formateur, consultant et coach à Paris. 8 ans, bilingue FR/EN. Sur-mesure, pas de catalogue.',
     creator: '@clementboule',
   },
 
