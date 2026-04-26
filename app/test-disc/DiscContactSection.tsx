@@ -134,7 +134,7 @@ export default function DiscContactSection({
                 Parlons de votre profil
               </h3>
               <p className="text-sm text-cb-encre-soft mb-5">
-                Séance individuelle ou atelier d'équipe, je vous recontacte sous 24h.
+                Séance individuelle ou atelier d'équipe, je vous recontacte sous 24 à 48 heures.
               </p>
 
               {status === 'success' ? (

@@ -448,7 +448,7 @@ export default function MatchQuiz() {
       <h2 className="font-anton text-4xl md:text-5xl lg:text-6xl uppercase leading-[0.95] text-cb-encre mb-4">
         {copy.title}
       </h2>
-      <p className="text-sm md:text-base text-cb-encre-soft leading-relaxed">{copy.subtitle}</p>
+      <p className="text-sm md:text-base text-cb-encre-soft leading-relaxed text-pretty">{copy.subtitle}</p>
     </div>
   )
 
@@ -590,7 +590,7 @@ export default function MatchQuiz() {
                 <p className="text-sm font-semibold text-cb-encre mb-1">
                   {copy.result.warningTitle}
                 </p>
-                <p className="text-xs text-cb-encre-soft leading-relaxed">
+                <p className="text-xs text-cb-encre-soft leading-relaxed text-pretty">
                   {copy.result.warningBody(durationWarning.officialFormat)}
                 </p>
               </div>

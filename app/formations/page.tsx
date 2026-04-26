@@ -83,7 +83,7 @@ export default function FormationsIndexPage() {
                   </div>
                   <div className="p-5 md:p-6 flex flex-col flex-1">
                     <h2 className="font-anton text-xl md:text-2xl uppercase leading-[1] mb-2 text-cb-encre">{f.title}</h2>
-                    <p className="text-sm text-cb-encre-soft leading-snug mb-4 flex-1">{f.shortDescription}</p>
+                    <p className="text-sm text-cb-encre-soft leading-snug text-pretty mb-4 flex-1">{f.shortDescription}</p>
                     <span className="inline-flex items-center gap-1.5 font-anton text-xs uppercase tracking-widest text-cb-encre border-b-2 border-cb-sauge-deep self-start pb-1 group-hover:border-cb-cardinal transition-colors">
                       Voir le programme →
                     </span>
@@ -108,7 +108,7 @@ export default function FormationsIndexPage() {
             Toutes les formations<br />
             <span className="inline-block bg-cb-encre text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">peuvent</span> être combinées.
           </h2>
-          <p className="text-base md:text-lg text-cb-sable/90 leading-relaxed mb-8 max-w-2xl mx-auto font-medium">
+          <p className="text-base md:text-lg text-cb-sable/90 leading-relaxed text-pretty mb-8 max-w-2xl mx-auto font-medium">
             Adaptées, redessinées autour de vos enjeux réels. Premier échange gratuit et sans engagement.
           </p>
           <Link

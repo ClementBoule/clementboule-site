@@ -99,7 +99,7 @@ export default async function FormationDetailPage({
               <h1 className="font-anton text-5xl md:text-6xl lg:text-7xl uppercase leading-[0.92] text-cb-encre mb-6">
                 {f.title}
               </h1>
-              <p className="text-base md:text-lg text-cb-encre-soft leading-relaxed mb-8 max-w-xl border-l-4 border-cb-cardinal pl-5">
+              <p className="text-base md:text-lg text-cb-encre-soft leading-relaxed text-pretty mb-8 max-w-xl border-l-4 border-cb-cardinal pl-5">
                 {f.intro}
               </p>
               <div className="flex flex-wrap gap-3">
@@ -165,7 +165,7 @@ export default async function FormationDetailPage({
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                     </span>
-                    <span className="text-cb-encre-soft leading-relaxed">{p}</span>
+                    <span className="text-cb-encre-soft leading-relaxed text-pretty">{p}</span>
                   </li>
                 ))}
               </ul>
@@ -189,7 +189,7 @@ export default async function FormationDetailPage({
                         <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
                     </span>
-                    <span className="text-cb-encre-soft leading-relaxed font-medium">{o}</span>
+                    <span className="text-cb-encre-soft leading-relaxed text-pretty font-medium">{o}</span>
                   </li>
                 ))}
               </ul>
@@ -232,7 +232,7 @@ export default async function FormationDetailPage({
                 </div>
                 <div className="flex-1">
                   <h3 className="font-anton text-xl md:text-2xl uppercase leading-tight text-cb-encre mb-2">{p.title}</h3>
-                  <p className="text-sm md:text-base text-cb-encre-soft leading-relaxed">{p.desc}</p>
+                  <p className="text-sm md:text-base text-cb-encre-soft leading-relaxed text-pretty">{p.desc}</p>
                 </div>
               </div>
             ))}
@@ -271,7 +271,7 @@ export default async function FormationDetailPage({
                     {w.icon}
                   </div>
                   <h3 className="font-anton text-lg md:text-xl uppercase leading-tight text-cb-encre mb-2">{w.name}</h3>
-                  <p className="text-sm text-cb-encre-soft leading-relaxed">{w.desc}</p>
+                  <p className="text-sm text-cb-encre-soft leading-relaxed text-pretty">{w.desc}</p>
                 </div>
               )
             })}
@@ -399,7 +399,7 @@ export default async function FormationDetailPage({
             Cette formation correspond<br />
             à <span className="inline-block bg-cb-encre text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">vos enjeux</span> ?
           </h2>
-          <p className="text-base md:text-lg text-cb-sable/90 leading-relaxed mb-8 max-w-2xl mx-auto font-medium">
+          <p className="text-base md:text-lg text-cb-sable/90 leading-relaxed text-pretty mb-8 max-w-2xl mx-auto font-medium">
             Chaque programme est construit sur-mesure. Devis gratuit, premier échange sans engagement.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

@@ -139,7 +139,7 @@ export default function Ressources() {
                 <h2 className="font-anton text-xl md:text-2xl uppercase leading-tight text-cb-encre mb-3">
                   {r.title}
                 </h2>
-                <p className="text-sm text-cb-encre-soft leading-relaxed mb-5 flex-1">
+                <p className="text-sm text-cb-encre-soft leading-relaxed text-pretty mb-5 flex-1">
                   {r.desc}
                 </p>
                 <span className={`inline-flex items-center gap-1.5 font-anton text-xs uppercase tracking-widest text-cb-${r.color} border-b-2 border-cb-sauge-deep self-start pb-1 group-hover:border-cb-cardinal transition-colors`}>

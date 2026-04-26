@@ -99,7 +99,7 @@ export default function HomeFAQ() {
                 {isOpen && (
                   <div className="px-5 md:px-6 pb-5 md:pb-6 -mt-2">
                     <div className="border-t-2 border-cb-sauge pt-4">
-                      <p className="text-sm md:text-base text-cb-encre-soft leading-relaxed">
+                      <p className="text-sm md:text-base text-cb-encre-soft leading-relaxed text-pretty">
                         {item.a}
                       </p>
                     </div>

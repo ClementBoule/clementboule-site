@@ -235,7 +235,7 @@ export default function FAQ() {
                 {section.items.map((item) => (
                   <div key={item.q} className="py-5 first:pt-0 last:pb-0">
                     <h3 className="font-anton text-lg md:text-xl uppercase leading-tight text-cb-encre mb-3">{item.q}</h3>
-                    <p className="text-sm md:text-base text-cb-encre-soft leading-relaxed">{item.a}</p>
+                    <p className="text-sm md:text-base text-cb-encre-soft leading-relaxed text-pretty">{item.a}</p>
                   </div>
                 ))}
               </div>

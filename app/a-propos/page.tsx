@@ -75,10 +75,10 @@ export default function APropos() {
               <span className="inline-block font-marker text-cb-cardinal text-base -rotate-1 mb-6">
                 made with care, not with templates
               </span>
-              <p className="text-base md:text-lg text-cb-encre-soft leading-relaxed mb-4 border-l-4 border-cb-cardinal pl-5">
+              <p className="text-base md:text-lg text-cb-encre-soft leading-relaxed text-pretty mb-4 border-l-4 border-cb-cardinal pl-5">
                 Je suis Clément Boulé, 32 ans, basé à Paris. J&apos;accompagne managers, équipes et dirigeants depuis dix ans, d&apos;abord comme coach sportif, aujourd&apos;hui comme formateur. En français comme en anglais.
               </p>
-              <p className="text-base text-cb-encre-soft leading-relaxed mb-8">
+              <p className="text-base text-cb-encre-soft leading-relaxed text-pretty mb-8">
                 Pas de catalogue tout fait. Je construis chaque programme à partir de votre quotidien, avec un objectif simple : que ça change vraiment quelque chose après la formation, pas juste pendant.
               </p>
               <div className="flex flex-wrap gap-3">
@@ -157,7 +157,7 @@ export default function APropos() {
                         <p className={`font-anton text-xs uppercase tracking-widest text-cb-${exp.color} mb-1`}>{exp.period}</p>
                         <h3 className="font-anton text-lg md:text-xl uppercase leading-tight text-cb-encre">{exp.role}</h3>
                         <p className="text-sm text-cb-encre-soft mb-2 font-medium">{exp.company}</p>
-                        <p className="text-sm text-cb-encre-soft leading-relaxed">{exp.desc}</p>
+                        <p className="text-sm text-cb-encre-soft leading-relaxed text-pretty">{exp.desc}</p>
                       </div>
                     </div>
                   </div>
@@ -185,7 +185,7 @@ export default function APropos() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="font-anton text-xs uppercase tracking-widest text-cb-cardinal mb-0.5">{edu.year}</p>
-                      <h3 className="text-sm font-bold text-cb-encre leading-snug">{edu.degree}</h3>
+                      <h3 className="text-sm font-bold text-cb-encre leading-snug text-pretty">{edu.degree}</h3>
                       <p className="text-xs text-cb-encre-soft mt-0.5">{edu.school}</p>
                     </div>
                   </div>

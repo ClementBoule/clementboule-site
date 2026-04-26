@@ -140,7 +140,7 @@ export default function Proof() {
               <h3 className="font-anton text-2xl md:text-3xl uppercase leading-[1] mb-3 text-cb-encre">
                 {p.title}
               </h3>
-              <p className="text-sm md:text-base text-cb-encre-soft leading-relaxed">
+              <p className="text-sm md:text-base text-cb-encre-soft leading-relaxed text-pretty">
                 {p.desc}
               </p>
             </div>

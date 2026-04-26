@@ -22,7 +22,7 @@ export default function Footer() {
               Clément<br />
               <span className="text-cb-rose">Boulé.</span>
             </div>
-            <p className="text-sm text-cb-sable/60 mt-4 max-w-xs leading-relaxed">
+            <p className="text-sm text-cb-sable/60 mt-4 max-w-xs leading-relaxed text-pretty">
               {lang === 'fr'
                 ? 'Formateur, consultant, coach. Bilingue. Bonjour si vous voulez discuter sans formulaire.'
                 : 'Trainer, consultant, coach. Bilingual. Say hi if you want to talk without a form.'}

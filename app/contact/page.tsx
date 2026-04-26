@@ -7,7 +7,7 @@ import { CALENDLY_URL } from '@/lib/cta-config'
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: "Contactez Clément Boulé, formateur consultant coach en entreprise à Paris. Réponse sous 24h.",
+  description: "Contactez Clément Boulé, formateur consultant coach en entreprise à Paris. Réponse sous 24 à 48 heures.",
   alternates: { canonical: 'https://www.clementboule.fr/contact' },
 }
 
@@ -38,7 +38,7 @@ const INFOS = [
   },
   {
     label: 'Délai de réponse',
-    value: 'Sous 24h en semaine',
+    value: '24 à 48 heures',
     color: 'sauge-deep',
     rot: '-rotate-[0.3deg]',
     icon: (
@@ -80,7 +80,7 @@ export default function Contact() {
               </h1>
             </div>
             <div className="text-base font-medium border-l-4 border-cb-cardinal pl-5 max-w-md text-cb-encre-soft">
-              Décrivez votre besoin en quelques lignes, je vous réponds par email sous 24h.
+              Décrivez votre besoin en quelques lignes, je vous réponds par email sous 24 à 48 heures.
             </div>
           </div>
 
@@ -132,7 +132,7 @@ export default function Contact() {
                         <a href="https://www.malt.fr/profile/clementboule" target="_blank" rel="noopener noreferrer" className="border-b-2 border-cb-cardinal hover:text-cb-cardinal pb-0.5">Malt</a>
                       </div>
                     ) : (
-                      <p className="text-sm font-medium text-cb-encre leading-snug">{info.value}</p>
+                      <p className="text-sm font-medium text-cb-encre leading-snug text-pretty">{info.value}</p>
                     )}
                   </div>
                 </div>

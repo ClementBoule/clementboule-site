@@ -71,7 +71,7 @@ export default function Process() {
             >
               <div className="font-anton text-7xl md:text-8xl text-cb-rose leading-none mb-3">{s.num}</div>
               <h3 className="font-anton text-xl uppercase mb-2.5 leading-tight">{s.title}</h3>
-              <p className="text-sm text-cb-sable/80 leading-snug mb-4">{s.desc}</p>
+              <p className="text-sm text-cb-sable/80 leading-snug text-pretty mb-4">{s.desc}</p>
               <span className="inline-block px-2.5 py-1 border-2 border-cb-rose text-cb-rose font-bold text-[10px] uppercase tracking-widest rounded-sm">{s.badge}</span>
             </div>
           ))}

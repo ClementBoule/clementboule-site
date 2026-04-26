@@ -95,7 +95,7 @@ export default function Hero() {
               made with care, not with templates
             </span>
 
-            <p className="text-base md:text-lg max-w-xl font-medium leading-relaxed">
+            <p className="text-base md:text-lg max-w-xl font-medium leading-relaxed text-pretty">
               {lang === 'fr' ? (
                 <>
                   8 ans à accompagner managers, équipes et dirigeants. Sur le management, les RH, les soft skills.{' '}

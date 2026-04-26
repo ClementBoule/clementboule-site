@@ -60,7 +60,7 @@ export default function Formations() {
                 </div>
                 <div className="p-5 md:p-6 flex flex-col flex-1">
                   <h3 className="font-anton text-xl md:text-2xl uppercase leading-[1] mb-2 text-cb-encre">{f.title}</h3>
-                  <p className="text-sm text-cb-encre-soft leading-snug mb-4 flex-1">{f.shortDescription}</p>
+                  <p className="text-sm text-cb-encre-soft leading-snug text-pretty mb-4 flex-1">{f.shortDescription}</p>
                   <span className="inline-flex items-center gap-1.5 font-bold text-xs uppercase tracking-widest text-cb-encre border-b-2 border-cb-sauge-deep self-start pb-1 group-hover:border-cb-cardinal transition-colors">
                     {lang === 'fr' ? 'Voir le programme →' : 'See program →'}
                   </span>

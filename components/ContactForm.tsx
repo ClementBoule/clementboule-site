@@ -84,8 +84,8 @@ export default function ContactForm() {
           <h3 className="font-anton text-2xl md:text-3xl uppercase leading-[1] text-cb-encre">
             Votre message est <span className="inline-block bg-cb-sarcelle text-cb-sable px-2 -rotate-1 rounded-sm">parti</span>.
           </h3>
-          <p className="text-sm text-cb-encre-soft leading-relaxed">
-            Pensez à cliquer sur Envoyer dans votre boîte mail. Je vous réponds sous 24h en semaine.
+          <p className="text-sm text-cb-encre-soft leading-relaxed text-pretty">
+            Pensez à cliquer sur Envoyer dans votre boîte mail. Je vous réponds 24 à 48 heures.
           </p>
         </div>
         <div className="w-full max-w-sm pt-4 border-t-2 border-cb-sauge">
@@ -182,7 +182,7 @@ export default function ContactForm() {
           </label>
           <input
             type="text"
-            placeholder="Nom de votre boîte"
+            placeholder="Nom de votre entreprise / structure"
             value={fields.entreprise}
             onChange={set('entreprise')}
             className={inputClass}
