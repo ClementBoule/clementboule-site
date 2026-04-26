@@ -123,7 +123,7 @@ export default function Hero() {
               </a>
               <a
                 href="/#quiz"
-                className="inline-flex items-center gap-2 bg-cb-sable text-cb-sauge-deep font-bold uppercase tracking-wider text-xs px-6 py-3.5 border-2 border-cb-sauge-deep rounded shadow-[4px_4px_0_var(--cb-sauge)] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[6px_6px_0_var(--cb-sauge)] transition-all duration-150"
+                className="inline-flex items-center gap-2 bg-cb-sarcelle text-cb-sable font-bold uppercase tracking-wider text-xs px-6 py-3.5 border-[2.5px] border-cb-encre rounded shadow-[4px_4px_0_var(--cb-cardinal)] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[6px_6px_0_var(--cb-cardinal)] hover:bg-cb-sarcelle-deep transition-all duration-150"
               >
                 {lang === 'fr' ? 'Trouver mon format' : 'Find my format'}
               </a>
