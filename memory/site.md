@@ -1,5 +1,5 @@
 # État du projet — clementboule.fr & ORBIT
-Dernière mise à jour : 26 avril 2026 — 09:40 (close 2026-04-26T09:40+02:00)
+Dernière mise à jour : 26 avril 2026 — 12:05 (close 2026-04-26T12:05+02:00)
 
 ## Site clementboule.fr — état actuel (main)
 
@@ -23,6 +23,21 @@ Dernière mise à jour : 26 avril 2026 — 09:40 (close 2026-04-26T09:40+02:00)
 - **PR #4 mergée** (25/04, commit f4c6954) : Pages internes (ContactForm, /contact, /a-propos, /formations, /formations/[slug], /cas-clients, /faq)
 - **PR #5 mergée** (26/04, commit 01b6a9d) : 12 retours (stats 8 ans, Hero glow + signature, Navbar CTA, Process badges/CTA, mentions légales LCEN, politique confidentialité RGPD, /cas-clients en chantier, hover formations, MatchQuiz tokens, signature dispersée, em-dashes)
 - **PR #6 mergée** (26/04, commit 58fea03) : /ressources + /test-disc en DA-C (cards brutalist polychromes, 106 remplacements gray-* → cb-*)
+- **Audit sécurité v1** (26/04, commit 156ed62) : Next.js 14.2.3 → 14.2.35 (CVE critical fix), Cookiebot retiré, Formspree → mailto, llms.txt corrigé, headers HTTP sécurité (CSP/X-Frame/etc dans next.config.js), webmanifest DA-C, politique §10 localStorage
+- **Audit sécurité v2** (26/04, commit 772c6ee) : Self-host Google Fonts via next/font/google, EXIF strippé clement.jpg (-4.7 Mo), docs/RUNBOOK-incident.md créé (5 scénarios), memory/security.md créé (tableau pilotable)
+- **Protocoles MAJ** (26/04, commit 663c848) : OPEN/CLOSE intègrent memory/security.md, ajout protocole sécurité continu
+
+## Sécurité — score courant
+
+**Score : A−** (au 26/04/2026 v3, après commit 772c6ee + 2FA GitHub/Vercel + Dependabot)
+
+| Métrique | Valeur |
+|----------|--------|
+| Contrôles OK | 23 / 31 |
+| À surveiller | 8 |
+| Action requise | 0 |
+
+Tableau détaillé et historique : `memory/security.md`. Runbook incident : `docs/RUNBOOK-incident.md`.
 
 ## Direction artistique DA-C en place
 
@@ -56,7 +71,7 @@ Dernière mise à jour : 26 avril 2026 — 09:40 (close 2026-04-26T09:40+02:00)
 - Photos : aquarelles définitives Midjourney à intégrer dans `public/illustrations/formations/` (déjà générées par Clément avec ses prompts, à uploader)
 - Card de reco MatchQuiz : signature « made with care » en bas (optionnel, micro-touche finale)
 - ORBIT : Calendrier dans Sheets « Orbit 1 » (Apps Script)
-- Sécurité Vercel : audit env vars (incident global 21/04, Clément non compromis, 2FA active)
+- Sécurité : 5 jaunes à durcir manuellement quand Clément a 30 min (cf. `memory/security.md`) — 2FA Calendly/LinkedIn/Malt, audit hooks Vercel, monitoring uptime, backup local, routage email
 
 ## Note protocole
 Repo `ClementBoule/clementboule-site` est PUBLIC. Aucune donnée privée de Clément (adresse, SIRET, téléphone, secrets) ne doit être stockée dans le repo. Ces infos sont à redemander en début de session quand on en a besoin (notamment pour les mentions légales).

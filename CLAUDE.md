@@ -11,7 +11,7 @@ Site vitrine B2B pour convertir des DRH, managers et dirigeants PME en clients d
 |------|--------|
 | Repo GitHub | ClementBoule/clementboule-site (PUBLIC) |
 | Deploiement | Vercel (auto sur push main) |
-| Stack | Next.js 14.2.3 App Router, Tailwind CSS, TypeScript |
+| Stack | Next.js 14.2.35 App Router, Tailwind CSS, TypeScript |
 | Domaine | clementboule.fr |
 | Direction artistique | DA-C sauge brutaliste attenuee (refonte 25/04/2026) |
 
@@ -81,6 +81,18 @@ Refonte des pages internes : ContactForm, /contact, /a-propos, /formations, /for
 
 ### Phase 3 (a venir - prochaine session)
 Liste complete des retours et ajustements documentee dans memory/site.md
+
+## Audit securite - phase 6 livree (26/04/2026)
+
+3 commits successifs sur main :
+- 156ed62 : Patch CVE Next 14.2.35, retire Cookiebot, Formspree -> mailto, headers HTTP, llms.txt, webmanifest, politique LIL §10
+- 772c6ee : Self-host Google Fonts (next/font), strip EXIF clement.jpg, docs/RUNBOOK-incident.md, memory/security.md
+- 663c848 : CLAUDE.md OPEN/CLOSE integrent memory/security.md + protocole securite continu
+
+Score securite final session : A- (23/31 controles OK, 8 a surveiller, 0 rouge).
+Detail dans memory/security.md, plan incident dans docs/RUNBOOK-incident.md.
+
+Cookiebot abonnement = inutile (politique zero-cookie respectee). Formspree = supprime (mailto only). Tous fixes appliques en autonomie sauf 2FA Calendly/LinkedIn/Malt + monitoring uptime + backup local (manuel cote Clement).
 
 ## Protocoles de session
 

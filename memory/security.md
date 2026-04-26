@@ -4,16 +4,18 @@
 > Maintenu à jour à chaque modif de stack ou audit.
 > Référentiels : NIST CSF 2.0 · ANSSI TPE/PME · OWASP · CNIL.
 
-## État au 26 avril 2026 (v2)
+## État au 26 avril 2026 (v3 · close)
 
 **Score global : A−**
 
 | Métrique | Valeur |
 |----------|--------|
-| Contrôles OK | 22 / 31 |
+| Contrôles OK | 23 / 31 |
 | À surveiller | 8 |
-| Action requise | 1 |
-| Δ depuis v1 | +5 verts (2FA GitHub, 2FA Vercel, Dependabot, self-host fonts, EXIF strippé) |
+| Action requise | 0 |
+| Δ depuis v2 | runbook incident commit (passe en vert), CLAUDE.md intègre security.md dans OPEN/CLOSE |
+
+> Note : score reste A− et non A car 8 contrôles jaunes restent ouverts (2FA Calendly/LinkedIn/Malt, audit hooks Vercel, monitoring uptime, backup local, routage email, branch protection, PAT en attente d'expiration, CVE résiduelles Next 15.x). Le palier A demande ≤3 jaunes.
 
 ## Contrôles par domaine
 
@@ -77,7 +79,7 @@
 | Statut | Contrôle | Source / preuve |
 |:------:|----------|-----------------|
 | 🟢 | Notifications déploiement Vercel par email | configuration par défaut |
-| 🔴 | Plan de réponse incident formalisé | **`docs/RUNBOOK-incident.md` créé 26/04/2026** — passe en 🟢 dès commit |
+| 🟢 | Plan de réponse incident formalisé | `docs/RUNBOOK-incident.md` (5 scénarios + contacts CNIL/ANSSI) |
 | 🟡 | Monitoring uptime externe (UptimeRobot gratuit possible) | non configuré |
 
 ### 8. Sauvegarde & continuité
@@ -104,6 +106,7 @@
 |------|---------|---|
 | 2026-04-26 v1 | Audit initial post-fixes Phase 5 | 23/34 OK · score B+ |
 | 2026-04-26 v2 | + 2FA GitHub/Vercel + Dependabot + self-host fonts + EXIF strippé + runbook incident | 22/31 OK · score A− |
+| 2026-04-26 v3 | Runbook commit + protocoles OPEN/CLOSE intègrent security.md | 23/31 OK · score A− · 0 rouge |
 
 ## Glossaire des statuts
 
