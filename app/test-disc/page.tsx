@@ -217,14 +217,14 @@ export default function DiscTest() {
     return (
       <div className="min-h-screen bg-white flex flex-col">
         <style>{ANIM_CSS}</style>
-        <nav className="px-6 py-5 flex items-center justify-between border-b border-gray-100">
-          <Link href="/" className="text-gray-400 hover:text-gray-700 text-sm flex items-center gap-2 transition-colors">
+        <nav className="px-6 py-5 flex items-center justify-between border-b border-cb-sauge">
+          <Link href="/" className="text-cb-encre-soft/70 hover:text-cb-encre text-sm flex items-center gap-2 transition-colors">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
             Retour au site
           </Link>
-          <span className="text-xs text-gray-400 font-medium">Test DISC · Gratuit & Confidentiel</span>
+          <span className="text-xs text-cb-encre-soft/70 font-medium">Test DISC · Gratuit & Confidentiel</span>
         </nav>
         <div className="flex-1 flex items-center justify-center px-6 py-16">
           <div className="max-w-2xl w-full text-center">
@@ -246,7 +246,7 @@ export default function DiscTest() {
                 </div>
               ))}
             </div>
-            <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 leading-tight" style={{ animation: 'fadeUp 0.5s ease 380ms both' }}>
+            <h1 className="text-4xl md:text-5xl font-black text-cb-encre mb-4 leading-tight" style={{ animation: 'fadeUp 0.5s ease 380ms both' }}>
               Quel est votre profil{' '}
               <span
                 className="text-transparent bg-clip-text"
@@ -256,7 +256,7 @@ export default function DiscTest() {
               </span>
               &nbsp;?
             </h1>
-            <p className="text-lg text-gray-500 leading-relaxed mb-10 max-w-xl mx-auto" style={{ animation: 'fadeUp 0.5s ease 480ms both' }}>
+            <p className="text-lg text-cb-encre-soft leading-relaxed mb-10 max-w-xl mx-auto" style={{ animation: 'fadeUp 0.5s ease 480ms both' }}>
               20 questions pour découvrir votre style comportemental dominant, puis une analyse approfondie en 15 sous-profils pour aller plus loin.
             </p>
             <div className="flex flex-wrap justify-center gap-3 mb-10" style={{ animation: 'fadeUp 0.5s ease 560ms both' }}>
@@ -266,7 +266,7 @@ export default function DiscTest() {
                 { icon: '✓', text: 'Gratuit, sans inscription' },
                 { icon: '🎯', text: '15 sous-profils' },
               ].map(({ icon, text }) => (
-                <div key={text} className="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-full px-4 py-2 text-sm text-gray-600">
+                <div key={text} className="flex items-center gap-2 bg-cb-creme border border-cb-sauge rounded-full px-4 py-2 text-sm text-cb-encre-soft">
                   <span>{icon}</span>
                   <span className="font-medium">{text}</span>
                 </div>
@@ -286,7 +286,7 @@ export default function DiscTest() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </button>
-            <p className="text-xs text-gray-400 mt-6 leading-relaxed">
+            <p className="text-xs text-cb-encre-soft/70 mt-6 leading-relaxed">
               Basé sur le modèle DISC de William Moulton Marston · Fourni à titre indicatif
             </p>
           </div>
@@ -303,26 +303,26 @@ export default function DiscTest() {
     const q = shuffled[current]
     const progressPct = ((current + 1) / questionsPhase1.length) * 100
     return (
-      <div className="min-h-screen bg-gray-50 flex flex-col">
+      <div className="min-h-screen bg-cb-creme flex flex-col">
         <style>{ANIM_CSS}</style>
-        <nav className="bg-white border-b border-gray-100 px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="text-gray-400 hover:text-gray-700 text-sm flex items-center gap-2 transition-colors">
+        <nav className="bg-white border-b border-cb-sauge px-6 py-4 flex items-center justify-between">
+          <Link href="/" className="text-cb-encre-soft/70 hover:text-cb-encre text-sm flex items-center gap-2 transition-colors">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
             Accueil
           </Link>
           <div className="flex items-center gap-3">
-            <span className="text-xs text-gray-400 font-medium">Phase 1</span>
-            <span className="text-sm font-bold text-gray-800">
+            <span className="text-xs text-cb-encre-soft/70 font-medium">Phase 1</span>
+            <span className="text-sm font-bold text-cb-encre">
               {current + 1}
-              <span className="text-gray-400 font-normal"> / {questionsPhase1.length}</span>
+              <span className="text-cb-encre-soft/70 font-normal"> / {questionsPhase1.length}</span>
             </span>
           </div>
         </nav>
         <div className="bg-white px-6 pt-3 pb-5 border-b border-gray-50">
           <div className="max-w-2xl mx-auto">
-            <div className="relative h-3 bg-gray-100 rounded-full overflow-hidden mb-3">
+            <div className="relative h-3 bg-cb-sable rounded-full overflow-hidden mb-3">
               <div
                 className="h-full rounded-full"
                 style={{
@@ -350,11 +350,11 @@ export default function DiscTest() {
         </div>
         <div className="flex-1 flex items-start justify-center px-6 py-8 md:py-12">
           <div className="max-w-2xl w-full space-y-5">
-            <div key={current} className="bg-white rounded-2xl p-7 md:p-9 shadow-sm border border-gray-100" style={{ animation: 'slideIn 0.28s ease both' }}>
-              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
+            <div key={current} className="bg-white rounded-2xl p-7 md:p-9 shadow-sm border border-cb-sauge" style={{ animation: 'slideIn 0.28s ease both' }}>
+              <p className="text-xs font-bold text-cb-encre-soft/70 uppercase tracking-widest mb-4">
                 Question {current + 1} sur {questionsPhase1.length}
               </p>
-              <h2 className="text-xl md:text-2xl font-bold text-gray-900 leading-snug">
+              <h2 className="text-xl md:text-2xl font-bold text-cb-encre leading-snug">
                 {q.text}
               </h2>
             </div>
@@ -417,20 +417,20 @@ export default function DiscTest() {
   if (step === 'open') {
     const color = DISC_COLORS[dominant]
     return (
-      <div className="min-h-screen bg-gray-50 flex flex-col">
+      <div className="min-h-screen bg-cb-creme flex flex-col">
         <style>{ANIM_CSS}</style>
-        <nav className="bg-white border-b border-gray-100 px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="text-gray-400 hover:text-gray-700 text-sm flex items-center gap-2 transition-colors">
+        <nav className="bg-white border-b border-cb-sauge px-6 py-4 flex items-center justify-between">
+          <Link href="/" className="text-cb-encre-soft/70 hover:text-cb-encre text-sm flex items-center gap-2 transition-colors">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
             Accueil
           </Link>
-          <span className="text-xs font-medium text-gray-400">Phase 1 terminée ✓</span>
+          <span className="text-xs font-medium text-cb-encre-soft/70">Phase 1 terminée ✓</span>
         </nav>
         <div className="flex-1 flex items-center justify-center px-6 py-12">
           <div className="max-w-2xl w-full space-y-6">
-            <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-cb-sauge">
               <div className="flex items-center gap-3 mb-4">
                 <div
                   className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-black text-white flex-shrink-0"
@@ -438,14 +438,14 @@ export default function DiscTest() {
                 >
                   ?
                 </div>
-                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">
+                <p className="text-xs font-bold text-cb-encre-soft/70 uppercase tracking-widest">
                   Question ouverte · Facultative
                 </p>
               </div>
-              <h2 className="text-xl md:text-2xl font-bold text-gray-900 leading-snug mb-2">
+              <h2 className="text-xl md:text-2xl font-bold text-cb-encre leading-snug mb-2">
                 Quel est le plus grand défi de management ou de collaboration que vous traversez en ce moment ?
               </h2>
-              <p className="text-sm text-gray-400 mb-6 flex items-center gap-1.5">
+              <p className="text-sm text-cb-encre-soft/70 mb-6 flex items-center gap-1.5">
                 <span>🔒</span>
                 <span>Non conservé · utilisé uniquement pour contextualiser votre résultat dans cette page</span>
               </p>
@@ -453,7 +453,7 @@ export default function DiscTest() {
                 value={openAnswer}
                 onChange={(e) => setOpenAnswer(e.target.value)}
                 placeholder="Ex : je manage une équipe en pleine croissance, nous traversons une restructuration, j'ai du mal à déléguer…"
-                className="w-full border-2 border-gray-200 rounded-xl p-4 text-sm text-gray-700 resize-none focus:outline-none transition-colors leading-relaxed"
+                className="w-full border-2 border-cb-sauge rounded-xl p-4 text-sm text-cb-encre resize-none focus:outline-none transition-colors leading-relaxed"
                 style={{ minHeight: 110 }}
                 onFocus={(e) => e.target.style.borderColor = color.main}
                 onBlur={(e) => e.target.style.borderColor = '#E5E7EB'}
@@ -462,7 +462,7 @@ export default function DiscTest() {
             <div className="flex gap-3 justify-end">
               <button
                 onClick={() => setStep('results-phase1')}
-                className="text-sm text-gray-400 hover:text-gray-600 px-5 py-3 rounded-xl border border-gray-200 hover:border-gray-300 transition-all"
+                className="text-sm text-cb-encre-soft/70 hover:text-cb-encre-soft px-5 py-3 rounded-xl border border-cb-sauge hover:border-cb-sauge-deep transition-all"
               >
                 Passer cette étape
               </button>
@@ -503,10 +503,10 @@ export default function DiscTest() {
     const color = DISC_COLORS[dominant]
 
     return (
-      <div className="min-h-screen bg-gray-50 flex flex-col">
+      <div className="min-h-screen bg-cb-creme flex flex-col">
         <style>{ANIM_CSS}</style>
-        <nav className="bg-white border-b border-gray-100 px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="text-gray-400 hover:text-gray-700 text-sm flex items-center gap-2 transition-colors">
+        <nav className="bg-white border-b border-cb-sauge px-6 py-4 flex items-center justify-between">
+          <Link href="/" className="text-cb-encre-soft/70 hover:text-cb-encre text-sm flex items-center gap-2 transition-colors">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
@@ -519,15 +519,15 @@ export default function DiscTest() {
             >
               Phase 2
             </span>
-            <span className="text-sm font-bold text-gray-800">
+            <span className="text-sm font-bold text-cb-encre">
               {phase2Current + 1}
-              <span className="text-gray-400 font-normal"> / {phase2Questions.length}</span>
+              <span className="text-cb-encre-soft/70 font-normal"> / {phase2Questions.length}</span>
             </span>
           </div>
         </nav>
         <div className="bg-white px-6 pt-3 pb-5 border-b border-gray-50">
           <div className="max-w-2xl mx-auto">
-            <div className="relative h-3 bg-gray-100 rounded-full overflow-hidden">
+            <div className="relative h-3 bg-cb-sable rounded-full overflow-hidden">
               <div
                 className="h-full rounded-full transition-all duration-500"
                 style={{
@@ -540,7 +540,7 @@ export default function DiscTest() {
         </div>
         <div className="flex-1 flex items-start justify-center px-6 py-8 md:py-12">
           <div className="max-w-2xl w-full space-y-5">
-            <div key={phase2Current} className="bg-white rounded-2xl p-7 md:p-9 shadow-sm border border-gray-100" style={{ animation: 'slideIn 0.28s ease both' }}>
+            <div key={phase2Current} className="bg-white rounded-2xl p-7 md:p-9 shadow-sm border border-cb-sauge" style={{ animation: 'slideIn 0.28s ease both' }}>
               <div className="flex items-center gap-2 mb-4">
                 <span
                   className="text-xs font-bold px-2 py-0.5 rounded-full text-white"
@@ -548,11 +548,11 @@ export default function DiscTest() {
                 >
                   Affinage
                 </span>
-                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">
+                <p className="text-xs font-bold text-cb-encre-soft/70 uppercase tracking-widest">
                   Question {phase2Current + 1} sur {phase2Questions.length}
                 </p>
               </div>
-              <h2 className="text-xl md:text-2xl font-bold text-gray-900 leading-snug">
+              <h2 className="text-xl md:text-2xl font-bold text-cb-encre leading-snug">
                 {q.text}
               </h2>
             </div>
@@ -618,7 +618,7 @@ export default function DiscTest() {
   const sp = identifiedSubProfile ? subProfiles[identifiedSubProfile] : null
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-cb-creme">
       <style>{ANIM_CSS}</style>
 
       {/* ─── Hero Header ─── */}
@@ -686,13 +686,13 @@ export default function DiscTest() {
       <div className="max-w-3xl mx-auto px-6 -mt-6 pb-16 space-y-6">
 
         {/* ─── Cartographie DISC ─── */}
-        <div className="bg-white rounded-2xl p-7 shadow-xl border border-gray-100" style={{ animation: 'fadeUp 0.5s ease 100ms both' }}>
-          <h2 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+        <div className="bg-white rounded-2xl p-7 shadow-xl border border-cb-sauge" style={{ animation: 'fadeUp 0.5s ease 100ms both' }}>
+          <h2 className="text-xs font-bold text-cb-encre-soft/70 uppercase tracking-wider mb-2">
             Votre position sur la cartographie DISC
           </h2>
           {!isFinal && (
-            <p className="text-sm text-gray-500 mb-4">
-              Les <span className="font-bold text-gray-400">?</span> représentent des sous-profils que vous pouvez débloquer en Phase 2.
+            <p className="text-sm text-cb-encre-soft mb-4">
+              Les <span className="font-bold text-cb-encre-soft/70">?</span> représentent des sous-profils que vous pouvez débloquer en Phase 2.
             </p>
           )}
           <DiscMap
@@ -728,10 +728,10 @@ export default function DiscTest() {
                 ))}
               </div>
             </div>
-            <p className="text-gray-900 text-lg font-bold">
+            <p className="text-cb-encre text-lg font-bold">
               Découvrez votre sous-profil parmi les 15 styles comportementaux
             </p>
-            <p className="text-gray-500 text-sm max-w-md mx-auto leading-relaxed">
+            <p className="text-cb-encre-soft text-sm max-w-md mx-auto leading-relaxed">
               {phase2Questions.length} questions supplémentaires pour affiner votre profil {profile.name} et identifier votre style comportemental précis.
             </p>
             <button
@@ -749,7 +749,7 @@ export default function DiscTest() {
 
         {/* ─── Sous-profil détaillé (après Phase 2) ─── */}
         {isFinal && sp && (
-          <div className="bg-white rounded-2xl p-7 shadow-sm border border-gray-100" style={{ animation: 'fadeUp 0.5s ease 160ms both' }}>
+          <div className="bg-white rounded-2xl p-7 shadow-sm border border-cb-sauge" style={{ animation: 'fadeUp 0.5s ease 160ms both' }}>
             <div className="flex items-center gap-3 mb-5">
               <div
                 className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-black text-white"
@@ -758,13 +758,13 @@ export default function DiscTest() {
                 {profile.letter}
               </div>
               <div>
-                <h2 className="text-lg font-bold text-gray-900">{sp.name}</h2>
-                <p className="text-xs text-gray-400">{sp.nameEn}</p>
+                <h2 className="text-lg font-bold text-cb-encre">{sp.name}</h2>
+                <p className="text-xs text-cb-encre-soft/70">{sp.nameEn}</p>
               </div>
             </div>
             <ul className="space-y-3 mb-5">
               {sp.traits.map((trait, i) => (
-                <li key={i} className="flex items-start gap-3 text-sm text-gray-700">
+                <li key={i} className="flex items-start gap-3 text-sm text-cb-encre">
                   <span className="w-2 h-2 rounded-full mt-1.5 flex-shrink-0" style={{ backgroundColor: color.main }} />
                   {trait}
                 </li>
@@ -774,14 +774,14 @@ export default function DiscTest() {
               className="rounded-xl p-4 text-sm leading-relaxed"
               style={{ backgroundColor: color.bg, border: `1px solid ${color.main}22` }}
             >
-              <p className="text-gray-600 italic">{sp.dailyInsight}</p>
+              <p className="text-cb-encre-soft italic">{sp.dailyInsight}</p>
             </div>
           </div>
         )}
 
         {/* ─── Score distribution ─── */}
-        <div className="bg-white rounded-2xl p-7 shadow-sm border border-gray-100" style={{ animation: 'fadeUp 0.5s ease 200ms both' }}>
-          <h2 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-6">Répartition de vos scores</h2>
+        <div className="bg-white rounded-2xl p-7 shadow-sm border border-cb-sauge" style={{ animation: 'fadeUp 0.5s ease 200ms both' }}>
+          <h2 className="text-xs font-bold text-cb-encre-soft/70 uppercase tracking-wider mb-6">Répartition de vos scores</h2>
           <div className="space-y-5">
             {(Object.keys(profiles) as ProfileKey[]).sort((a, b) => scores[b] - scores[a]).map(k => {
               const pct = Math.round((scores[k] / total) * 100)
@@ -798,13 +798,13 @@ export default function DiscTest() {
                         {k}
                       </div>
                       <div>
-                        <span className="text-sm font-bold text-gray-900">{p.name}</span>
-                        <span className="text-xs text-gray-400 ml-2">· {p.tagline}</span>
+                        <span className="text-sm font-bold text-cb-encre">{p.name}</span>
+                        <span className="text-xs text-cb-encre-soft/70 ml-2">· {p.tagline}</span>
                       </div>
                     </div>
                     <span className="text-xl font-black tabular-nums" style={{ color: c.main }}>{pct}%</span>
                   </div>
-                  <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
+                  <div className="h-3 bg-cb-sable rounded-full overflow-hidden">
                     <div className="h-full rounded-full transition-all duration-700" style={{ width: mounted ? `${pct}%` : '0%', backgroundColor: c.main }} />
                   </div>
                 </div>
@@ -819,7 +819,7 @@ export default function DiscTest() {
               <span className="font-bold" style={{ color: DISC_COLORS[secondary].main }}>
                 Dimension secondaire notable ({secondary} · {secondaryPct}%) :
               </span>
-              <span className="text-gray-600 ml-1">
+              <span className="text-cb-encre-soft ml-1">
                 {blendSentence || `Votre profil ${secondary} vient nuancer et enrichir votre dominante ${dominant}.`}
               </span>
             </div>
@@ -828,12 +828,12 @@ export default function DiscTest() {
 
         {/* ─── Contexte ouvert ─── */}
         {openAnswer.trim() && (
-          <div className="bg-white rounded-2xl p-7 shadow-sm border border-gray-100" style={{ animation: 'fadeUp 0.5s ease 320ms both' }}>
-            <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+          <div className="bg-white rounded-2xl p-7 shadow-sm border border-cb-sauge" style={{ animation: 'fadeUp 0.5s ease 320ms both' }}>
+            <p className="text-xs font-bold text-cb-encre-soft/70 uppercase tracking-wider mb-3 flex items-center gap-2">
               <span>💬</span> Votre contexte
             </p>
-            <p className="text-gray-700 text-sm leading-relaxed italic">&ldquo;{openAnswer.trim()}&rdquo;</p>
-            <p className="text-xs text-gray-400 mt-4 flex items-center gap-1">
+            <p className="text-cb-encre text-sm leading-relaxed italic">&ldquo;{openAnswer.trim()}&rdquo;</p>
+            <p className="text-xs text-cb-encre-soft/70 mt-4 flex items-center gap-1">
               <span>🔒</span>
               <span>Cette réponse n'est pas conservée, elle disparaîtra à la fermeture de cette page.</span>
             </p>
@@ -841,8 +841,8 @@ export default function DiscTest() {
         )}
 
         {/* ─── Description détaillée avec surlignage ─── */}
-        <div className="bg-white rounded-2xl p-7 shadow-sm border border-gray-100" style={{ animation: 'fadeUp 0.5s ease 380ms both' }}>
-          <h2 className="text-sm font-bold text-gray-900 flex items-center gap-2 mb-5">
+        <div className="bg-white rounded-2xl p-7 shadow-sm border border-cb-sauge" style={{ animation: 'fadeUp 0.5s ease 380ms both' }}>
+          <h2 className="text-sm font-bold text-cb-encre flex items-center gap-2 mb-5">
             <span
               className="w-6 h-6 rounded-lg flex items-center justify-center text-xs font-black text-white"
               style={{ backgroundColor: color.main }}
@@ -852,7 +852,7 @@ export default function DiscTest() {
             Votre profil en détail
           </h2>
           <div className="space-y-1 mb-4">
-            <div className="flex flex-wrap gap-2 text-xs text-gray-400">
+            <div className="flex flex-wrap gap-2 text-xs text-cb-encre-soft/70">
               {(Object.keys(DISC_COLORS) as ProfileKey[]).map(k => (
                 <span key={k} className="flex items-center gap-1">
                   <span
@@ -867,7 +867,7 @@ export default function DiscTest() {
           </div>
           <div className="space-y-5">
             {profile.paragraphs.map((para, i) => (
-              <p key={i} className="text-gray-600 leading-relaxed text-[15px]">
+              <p key={i} className="text-cb-encre-soft leading-relaxed text-[15px]">
                 {renderSegments(para, scores, total)}
               </p>
             ))}
@@ -876,28 +876,28 @@ export default function DiscTest() {
 
         {/* ─── Forces & Développement ─── */}
         <div className="grid sm:grid-cols-2 gap-5" style={{ animation: 'fadeUp 0.5s ease 460ms both' }}>
-          <div className="bg-white rounded-2xl p-7 shadow-sm border border-gray-100">
-            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-5 flex items-center gap-2">
+          <div className="bg-white rounded-2xl p-7 shadow-sm border border-cb-sauge">
+            <h3 className="text-xs font-bold text-cb-encre-soft/70 uppercase tracking-wider mb-5 flex items-center gap-2">
               <span className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] text-white font-bold" style={{ backgroundColor: color.main }}>✓</span>
               Vos forces
             </h3>
             <ul className="space-y-3">
               {profile.strengths.map(s => (
-                <li key={s} className="flex items-start gap-3 text-sm text-gray-700">
+                <li key={s} className="flex items-start gap-3 text-sm text-cb-encre">
                   <span className="w-2 h-2 rounded-full mt-1.5 flex-shrink-0" style={{ backgroundColor: color.main }} />
                   {s}
                 </li>
               ))}
             </ul>
           </div>
-          <div className="bg-white rounded-2xl p-7 shadow-sm border border-gray-100">
-            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-5 flex items-center gap-2">
-              <span className="w-5 h-5 rounded-full bg-gray-200 flex items-center justify-center text-[10px] text-gray-600 font-bold">↑</span>
+          <div className="bg-white rounded-2xl p-7 shadow-sm border border-cb-sauge">
+            <h3 className="text-xs font-bold text-cb-encre-soft/70 uppercase tracking-wider mb-5 flex items-center gap-2">
+              <span className="w-5 h-5 rounded-full bg-gray-200 flex items-center justify-center text-[10px] text-cb-encre-soft font-bold">↑</span>
               Axes de développement
             </h3>
             <ul className="space-y-3">
               {profile.growth.map(g => (
-                <li key={g} className="flex items-start gap-3 text-sm text-gray-700">
+                <li key={g} className="flex items-start gap-3 text-sm text-cb-encre">
                   <span className="w-2 h-2 rounded-full mt-1.5 bg-gray-300 flex-shrink-0" />
                   {g}
                 </li>
@@ -907,8 +907,8 @@ export default function DiscTest() {
         </div>
 
         {/* ─── Profils célèbres ─── */}
-        <div className="bg-white rounded-2xl p-7 shadow-sm border border-gray-100" style={{ animation: 'fadeUp 0.5s ease 540ms both' }}>
-          <p className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-4">Profils similaires célèbres</p>
+        <div className="bg-white rounded-2xl p-7 shadow-sm border border-cb-sauge" style={{ animation: 'fadeUp 0.5s ease 540ms both' }}>
+          <p className="text-xs text-cb-encre-soft/70 uppercase tracking-wider font-bold mb-4">Profils similaires célèbres</p>
           <div className="flex flex-wrap gap-2">
             {profile.famous.map(f => (
               <span
@@ -933,7 +933,7 @@ export default function DiscTest() {
         </div>
 
         {/* ─── Disclaimer ─── */}
-        <p className="text-center text-xs text-gray-400 leading-relaxed">
+        <p className="text-center text-xs text-cb-encre-soft/70 leading-relaxed">
           Ce test est basé sur le modèle DISC de William Moulton Marston.<br />
           Cartographie des 15 sous-profils inspirée d'Assessments 24x7.<br />
           Il est fourni à titre indicatif et ne remplace pas un bilan professionnel certifié.

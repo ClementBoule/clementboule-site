@@ -5,124 +5,145 @@ import FinalCTA from '@/components/FinalCTA'
 
 export const metadata: Metadata = {
   title: 'Ressources',
-  description: "Ressources gratuites de Clément Boulé, test DISC, guides sur le management, le leadership et le développement professionnel.",
+  description: "Ressources gratuites de Clément Boulé : test DISC, formations, profils externes, références utiles.",
   alternates: { canonical: 'https://www.clementboule.fr/ressources' },
 }
 
-const RESSOURCES = [
+const RESSOURCES: {
+  category: string
+  title: string
+  desc: string
+  cta: string
+  href: string
+  tag: string
+  color: string
+  rot: string
+  external?: boolean
+  highlight?: boolean
+}[] = [
   {
     category: 'Outil interactif',
     title: 'Test DISC gratuit',
-    desc: "Découvrez votre profil comportemental DISC en 10 minutes. Outil indicatif, sans inscription, disponible en français.",
-    cta: 'Faire le test',
+    desc: "Découvrez votre profil comportemental DISC en 10 minutes. Indicatif, sans inscription.",
+    cta: 'Faire le test →',
     href: '/test-disc',
     tag: 'Gratuit',
+    color: 'sarcelle',
+    rot: '-rotate-[0.5deg]',
     highlight: true,
   },
   {
     category: 'Formation',
-    title: 'Les 6 thématiques de formation',
-    desc: "Découvrez l'ensemble des modules proposés : RH, posture professionnelle, RPS, stratégie, soft skills et Spine'Up.",
-    cta: 'Voir les formations',
+    title: 'Les 6 thématiques',
+    desc: "L'ensemble des modules proposés : RH, posture professionnelle, RPS, stratégie, soft skills, Spine'Up.",
+    cta: 'Voir les formations →',
     href: '/formations',
     tag: 'Sur-mesure',
+    color: 'terracotta',
+    rot: 'rotate-[0.4deg]',
   },
   {
-    category: 'Présentation',
-    title: 'À propos de Clément Boulé',
-    desc: "Parcours professionnel, valeurs, expérience terrain. Tout ce qui compte pour évaluer si on peut travailler ensemble.",
-    cta: 'Lire le profil',
+    category: 'Profil',
+    title: 'À propos de Clément',
+    desc: "Parcours, valeurs, expérience terrain. Tout ce qui compte pour évaluer si on peut travailler ensemble.",
+    cta: 'Lire le profil →',
     href: '/a-propos',
     tag: 'Profil',
+    color: 'sauge-deep',
+    rot: '-rotate-[0.3deg]',
   },
   {
     category: 'FAQ',
     title: 'Questions fréquentes',
-    desc: "Tarifs, formats, logistique, DISC, facturation, toutes les réponses aux questions les plus courantes avant de démarrer.",
-    cta: 'Lire la FAQ',
+    desc: "Tarifs, formats, logistique, DISC, facturation, toutes les réponses avant de démarrer.",
+    cta: 'Lire la FAQ →',
     href: '/faq',
     tag: 'Pratique',
+    color: 'cardinal',
+    rot: 'rotate-[0.5deg]',
   },
   {
-    category: 'Référence externe',
+    category: 'Lien externe',
     title: 'Profil LinkedIn',
-    desc: "Recommandations clients, historique professionnel complet, posts sur le management et le développement professionnel.",
-    cta: 'Voir LinkedIn',
+    desc: "Recommandations clients, historique professionnel, posts sur le management et le développement.",
+    cta: 'Voir LinkedIn →',
     href: 'https://www.linkedin.com/in/cl%C3%A9ment-boul%C3%A9/',
     tag: 'Externe',
+    color: 'sarcelle-deep',
+    rot: '-rotate-[0.4deg]',
     external: true,
   },
   {
-    category: 'Référence externe',
+    category: 'Lien externe',
     title: 'Profil Malt',
-    desc: "Avis clients vérifiés, historique de missions, disponibilités et tarifs indicatifs sur la plateforme Malt.",
-    cta: 'Voir Malt',
+    desc: "Avis clients vérifiés, historique de missions, disponibilités et tarifs indicatifs sur Malt.",
+    cta: 'Voir Malt →',
     href: 'https://www.malt.fr/profile/clementboule',
     tag: 'Externe',
+    color: 'terracotta',
+    rot: 'rotate-[0.3deg]',
     external: true,
   },
 ]
 
 export default function Ressources() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-cb-sable">
       <Navbar />
 
-      <section className="pt-32 pb-16 bg-gradient-to-br from-[#F5F7FB] via-[#EEF3FA] to-[#F5F0FB]">
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <p className="text-xs font-semibold text-[#3D6DB8] uppercase tracking-widest mb-4">Ressources</p>
-          <h1 className="text-4xl md:text-5xl font-bold text-[#1A2B4A] leading-tight mb-6">
-            Outils & références
-          </h1>
-          <p className="text-base text-[#6B7E95] leading-relaxed">
-            Tout ce qui peut vous aider à mieux comprendre mon approche et à décider si on travaille ensemble.
-          </p>
+      {/* Hero */}
+      <section className="pt-28 md:pt-32 pb-12 md:pb-16 bg-cb-sable border-t-4 border-cb-encre">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-[2fr_1fr] gap-10 items-end">
+            <div>
+              <span className="inline-block font-marker text-cb-cardinal text-lg -rotate-2 mb-3">
+                ↓ Ressources
+              </span>
+              <h1 className="font-anton text-5xl md:text-7xl lg:text-8xl uppercase leading-[0.92] text-cb-encre">
+                Outils &amp; <span className="inline-block bg-cb-sarcelle text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">références</span>.
+              </h1>
+            </div>
+            <div className="text-base font-medium border-l-4 border-cb-cardinal pl-5 max-w-md text-cb-encre-soft">
+              Tout ce qui peut vous aider à mieux comprendre mon approche et à décider si on travaille ensemble.
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="py-16 bg-white">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Cards brutalist polychromes */}
+      <section className="py-12 md:py-16 bg-cb-creme border-t-4 border-cb-encre">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7">
             {RESSOURCES.map((r) => (
               <a
                 key={r.title}
                 href={r.href}
                 target={r.external ? '_blank' : undefined}
                 rel={r.external ? 'noopener noreferrer' : undefined}
-                className={`group flex flex-col p-7 rounded-2xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
-                  r.highlight
-                    ? 'bg-[#3D6DB8] border-[#3D6DB8] text-white'
-                    : 'bg-[#F5F7FB] border-[#1A2B4A]/6 hover:bg-white hover:border-[#3D6DB8]/20'
-                }`}
+                className={`group cb-formation-card flex flex-col bg-white border-[2.5px] border-cb-sauge-deep rounded-sm p-6 md:p-7 ${r.rot} hover:rotate-0 hover:translate-x-[-3px] hover:translate-y-[-3px]`}
+                style={{ ['--accent' as any]: `var(--cb-${r.color})` }}
               >
                 <div className="flex items-start justify-between mb-4">
-                  <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
-                    r.highlight
-                      ? 'bg-white/20 text-white'
-                      : 'bg-[#3D6DB8]/10 text-[#3D6DB8]'
-                  }`}>
+                  <span className={`inline-block font-anton text-xs uppercase tracking-wider px-2.5 py-1 border-2 border-cb-sauge-deep rounded-sm bg-cb-sable text-cb-${r.color}`}>
                     {r.tag}
                   </span>
                   {r.external && (
-                    <svg className={`w-4 h-4 ${r.highlight ? 'text-white/60' : 'text-[#6B7E95]'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    <svg className="w-4 h-4 text-cb-encre-soft" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
                   )}
                 </div>
-                <p className={`text-xs font-semibold uppercase tracking-widest mb-2 ${r.highlight ? 'text-white/60' : 'text-[#6B7E95]'}`}>
+                <p className="font-anton text-xs uppercase tracking-widest text-cb-encre-soft mb-2">
                   {r.category}
                 </p>
-                <h2 className={`text-base font-bold mb-3 ${r.highlight ? 'text-white' : 'text-[#1A2B4A]'}`}>
+                <h2 className="font-anton text-xl md:text-2xl uppercase leading-tight text-cb-encre mb-3">
                   {r.title}
                 </h2>
-                <p className={`text-sm leading-relaxed flex-1 mb-5 ${r.highlight ? 'text-white/80' : 'text-[#6B7E95]'}`}>
+                <p className="text-sm text-cb-encre-soft leading-relaxed mb-5 flex-1">
                   {r.desc}
                 </p>
-                <span className={`text-sm font-semibold inline-flex items-center gap-1 ${r.highlight ? 'text-white' : 'text-[#3D6DB8]'}`}>
+                <span className={`inline-flex items-center gap-1.5 font-anton text-xs uppercase tracking-widest text-cb-${r.color} border-b-2 border-cb-sauge-deep self-start pb-1 group-hover:border-cb-cardinal transition-colors`}>
                   {r.cta}
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
                 </span>
               </a>
             ))}
