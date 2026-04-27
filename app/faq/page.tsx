@@ -17,15 +17,15 @@ const FAQ_SECTIONS: { category: string; color: string; rot: string; items: { q: 
     items: [
       {
         q: "Vous proposez des formations financables OPCO ?",
-        a: "Non. Je travaille en direct avec mes clients, pas de certification Qualiopi, pas de parcours OPCO. Ca me permet de construire des programmes vraiment sur-mesure, sans contrainte administrative, et de m'adapter en temps reel a vos equipes.",
+        a: "Non. Je travaille en direct avec mes clients, sans Qualiopi ni OPCO. Ca me permet de construire des programmes adaptes a votre contexte, sans contrainte administrative, et de m'adapter en temps reel a vos equipes.",
       },
       {
         q: "En quoi vous differenciez-vous d'un organisme de formation classique ?",
-        a: "Je ne vends pas un catalogue. Chaque programme est concu a partir de vos enjeux reels. Je travaille seul, ce qui garantit une coherence totale entre le diagnostic, la conception et l'animation. Et je m'adapte en cours de session si la dynamique de groupe le demande.",
+        a: "Je ne vends pas un catalogue. Chaque programme est concu a partir de votre situation. Je travaille seul, ce qui assure la coherence entre le diagnostic, la conception et l'animation. Et je m'adapte en cours de session si la dynamique de groupe le demande.",
       },
       {
         q: "Vous travaillez avec quel type de clients ?",
-        a: "Business schools et grandes ecoles parisiennes, PME, grandes entreprises, associations, institutions publiques. Ce qui varie, c'est le secteur, pas l'exigence. Je travaille en francais et en anglais.",
+        a: "Business schools et grandes ecoles parisiennes, PME, grandes entreprises, associations, institutions publiques. Le secteur change selon les missions, le niveau d'exigence reste le meme. Je travaille en francais et en anglais.",
       },
     ],
   },
@@ -36,7 +36,7 @@ const FAQ_SECTIONS: { category: string; color: string; rot: string; items: { q: 
     items: [
       {
         q: "Quelle est la duree minimale d'une intervention ?",
-        a: "Une demi-journee (3h30) est le format minimum. La plupart de mes modules se deploient sur 1 a 2 jours. Pour le coaching individuel, je travaille sur des sequences de 3 a 6 seances.",
+        a: "Une demi-journee (3h30) est le format minimum. La plupart de mes modules durent 1 a 2 jours. Pour le coaching individuel, je travaille sur des sequences de 3 a 6 seances.",
       },
       {
         q: "Vous intervenez en presentiel ou a distance ?",
@@ -59,7 +59,7 @@ const FAQ_SECTIONS: { category: string; color: string; rot: string; items: { q: 
     items: [
       {
         q: "Quels sont vos tarifs ?",
-        a: "Je facture a la journee ou au module selon la nature du projet. Tous les devis sont sur-mesure, contactez-moi pour qu'on evalue ensemble ce qui correspond a votre besoin.",
+        a: "Je facture a la journee ou au module selon la nature du projet. Chaque devis est etabli apres un echange, contactez-moi pour qu'on evalue ensemble ce qui correspond a votre besoin.",
       },
       {
         q: "Comment se passe la facturation ?",
@@ -82,7 +82,7 @@ const FAQ_SECTIONS: { category: string; color: string; rot: string; items: { q: 
       },
       {
         q: "Pouvez-vous animer des ateliers DISC en entreprise ?",
-        a: "Oui, c'est une de mes specialites. Je propose des ateliers DISC de demi-journee ou d'une journee pour les equipes, ideal pour ameliorer la communication interne, prevenir les conflits et renforcer la cohesion.",
+        a: "Oui, c'est une de mes specialites. Je propose des ateliers DISC de demi-journee ou d'une journee pour les equipes, utile pour ameliorer la communication interne, prevenir les conflits et renforcer la cohesion.",
       },
     ],
   },
@@ -97,7 +97,7 @@ const faqJsonLd = {
   name: 'Vous proposez des formations finançables OPCO ?',
   acceptedAnswer: {
     '@type': 'Answer',
-    text: "Non. Je travaille en direct avec mes clients, pas de certification Qualiopi, pas de parcours OPCO. Ça me permet de construire des programmes vraiment sur-mesure, sans contrainte administrative, et de m'adapter en temps réel à vos équipes.",
+    text: "Non. Je travaille en direct avec mes clients, sans Qualiopi ni OPCO. Ça me permet de construire des programmes adaptés à votre contexte, sans contrainte administrative, et de m'adapter en temps réel à vos équipes.",
   },
 },
 {
@@ -105,7 +105,7 @@ const faqJsonLd = {
   name: "En quoi vous différenciez-vous d'un organisme de formation classique ?",
   acceptedAnswer: {
     '@type': 'Answer',
-    text: "Je ne vends pas un catalogue. Chaque programme est conçu à partir de vos enjeux réels. Je travaille seul, ce qui garantit une cohérence totale entre le diagnostic, la conception et l'animation. Et je m'adapte en cours de session si la dynamique de groupe le demande.",
+    text: "Je ne vends pas un catalogue. Chaque programme est conçu à partir de votre situation. Je travaille seul, ce qui assure la cohérence entre le diagnostic, la conception et l'animation. Et je m'adapte en cours de session si la dynamique de groupe le demande.",
   },
 },
 {
@@ -113,7 +113,7 @@ const faqJsonLd = {
   name: 'Vous travaillez avec quel type de clients ?',
   acceptedAnswer: {
     '@type': 'Answer',
-    text: "Business schools et grandes écoles parisiennes, PME, grandes entreprises, associations, institutions publiques. Ce qui varie, c'est le secteur, pas l'exigence. Je travaille en français et en anglais.",
+    text: "Business schools et grandes écoles parisiennes, PME, grandes entreprises, associations, institutions publiques. Le secteur change selon les missions, le niveau d'exigence reste le même. Je travaille en français et en anglais.",
   },
 },
 {
@@ -121,7 +121,7 @@ const faqJsonLd = {
   name: "Quelle est la durée minimale d'une intervention ?",
   acceptedAnswer: {
     '@type': 'Answer',
-    text: "Une demi-journée (3h30) est le format minimum. La plupart de mes modules se déploient sur 1 à 2 jours. Pour le coaching individuel, je travaille sur des séquences de 3 à 6 séances.",
+    text: "Une demi-journée (3h30) est le format minimum. La plupart de mes modules durent 1 à 2 jours. Pour le coaching individuel, je travaille sur des séquences de 3 à 6 séances.",
   },
 },
 {
@@ -153,7 +153,7 @@ const faqJsonLd = {
   name: 'Quels sont vos tarifs ?',
   acceptedAnswer: {
     '@type': 'Answer',
-    text: "Je facture à la journée ou au module selon la nature du projet. Tous les devis sont sur-mesure, contactez-moi pour qu'on évalue ensemble ce qui correspond à votre besoin.",
+    text: "Je facture à la journée ou au module selon la nature du projet. Chaque devis est établi après un échange, contactez-moi pour qu'on évalue ensemble ce qui correspond à votre besoin.",
   },
 },
 {
@@ -185,7 +185,7 @@ const faqJsonLd = {
   name: 'Pouvez-vous animer des ateliers DISC en entreprise ?',
   acceptedAnswer: {
     '@type': 'Answer',
-    text: "Oui, c'est une de mes spécialités. Je propose des ateliers DISC de demi-journée ou d'une journée pour les équipes, idéal pour améliorer la communication interne, prévenir les conflits et renforcer la cohésion.",
+    text: "Oui, c'est une de mes spécialités. Je propose des ateliers DISC de demi-journée ou d'une journée pour les équipes, utile pour améliorer la communication interne, prévenir les conflits et renforcer la cohésion.",
   },
 },
   ],

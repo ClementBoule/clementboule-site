@@ -38,7 +38,7 @@ const RESSOURCES: {
     desc: "L'ensemble des modules proposés : RH, posture professionnelle, RPS, stratégie, soft skills, Spine'Up.",
     cta: 'Voir les formations →',
     href: '/formations',
-    tag: 'Sur-mesure',
+    tag: 'Avec vous',
     color: 'terracotta',
     rot: 'rotate-[0.4deg]',
   },
