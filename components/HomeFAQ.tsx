@@ -5,7 +5,7 @@ import { useLang } from './LanguageContext'
 const FAQ_FR = [
   {
     q: "Vous proposez des formations finançables OPCO ?",
-    a: "Non. Je travaille en direct avec mes clients, pas de certification Qualiopi, pas de parcours OPCO. Ça me permet de construire des programmes vraiment sur-mesure, sans contrainte administrative, et d'ajuster en cours de route. Si votre besoin est un catalogue standard financé, je ne suis probablement pas le bon interlocuteur.",
+    a: "Non. Je travaille en direct avec mes clients, sans Qualiopi ni OPCO. Ça me permet de construire des programmes adaptés à votre contexte, sans contrainte administrative, et d'ajuster en cours de route. Si votre besoin est un catalogue standard financé, je ne suis probablement pas le bon interlocuteur.",
   },
   {
     q: "Vous intervenez en anglais ?",
@@ -13,11 +13,11 @@ const FAQ_FR = [
   },
   {
     q: "Quelle est la durée minimale d'une intervention ?",
-    a: "Une demi-journée (3h30) est le format minimum pour créer une vraie dynamique de groupe. La plupart de mes modules se déploient sur 1 à 2 jours. Pour le coaching individuel, je travaille sur des séquences de 3 à 6 séances.",
+    a: "Une demi-journée (3h30) est le minimum pour créer une dynamique de groupe utile. La plupart de mes modules durent 1 à 2 jours. Pour le coaching individuel, je travaille sur des séquences de 3 à 6 séances.",
   },
   {
     q: "Vous travaillez avec des grandes écoles ?",
-    a: "Oui, c'est une part importante de mon activité. J'interviens dans plusieurs business schools et grandes écoles parisiennes, sur des modules de management, leadership et développement des compétences.",
+    a: "Oui, c'est une part importante de mon activité. J'interviens dans plusieurs business schools et grandes écoles parisiennes, sur du management et du développement des compétences.",
   },
   {
     q: "Comment se passe la facturation ?",
@@ -28,7 +28,7 @@ const FAQ_FR = [
 const FAQ_EN = [
   {
     q: "Do you offer government-funded training programs?",
-    a: "No. I work directly with my clients, no Qualiopi certification, no subsidized programs. This allows me to build truly tailored programs, without administrative constraints, and to adapt in real time. If your need is a standard funded catalog, I'm probably not the right fit.",
+    a: "No. I work directly with my clients, without Qualiopi certification or OPCO funding. It lets me build programs adapted to your context, without administrative constraints, and adjust as we go. If you need a standard funded catalog, I'm probably not the right fit.",
   },
   {
     q: "Do you train in English?",
@@ -36,11 +36,11 @@ const FAQ_EN = [
   },
   {
     q: "What is the minimum duration of an engagement?",
-    a: "A half-day (3.5h) is the minimum format to create real group dynamics. Most of my modules run over 1 to 2 days. For individual coaching, I work in sequences of 3 to 6 sessions.",
+    a: "A half-day (3.5h) is the minimum to create a useful group dynamic. Most of my modules last 1 to 2 days. For individual coaching, I work in sequences of 3 to 6 sessions.",
   },
   {
     q: "Do you work with business schools?",
-    a: "Yes, it's a significant part of my activity. I deliver programs in several Parisian business schools and grandes écoles, covering management, leadership, and skills development.",
+    a: "Yes, it's a significant part of my activity. I deliver programs in several Parisian business schools and grandes écoles, on management and skills development.",
   },
   {
     q: "How does billing work?",

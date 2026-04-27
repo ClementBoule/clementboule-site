@@ -69,7 +69,7 @@ const COPY: Record<'fr' | 'en', Copy> = {
   fr: {
     label: 'Vous cherchez quel format ?',
     title: 'On trouve ce qui vous va, en 3 clics',
-    subtitle: "Trois questions rapides. Si la proposition vous parle, on en discute. Sinon vous repartez, sans rien donner.",
+    subtitle: "Trois questions rapides. À la fin, je vous propose un format. Si ça vous parle, on en discute.",
     steps: {
       audience: {
         q: 'Vous formez qui ?',
@@ -126,7 +126,7 @@ const COPY: Record<'fr' | 'en', Copy> = {
   en: {
     label: 'What format are you looking for?',
     title: 'Find what fits, in 3 clicks',
-    subtitle: 'Three quick questions. If my suggestion fits, we can talk. If not, no strings attached.',
+    subtitle: 'Three quick questions. At the end, I suggest a format. If it works for you, we can talk.',
     steps: {
       audience: {
         q: 'Who do you want to train?',

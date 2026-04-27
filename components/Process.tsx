@@ -4,16 +4,16 @@ import { useLang } from './LanguageContext'
 import { CALENDLY_URL } from '../lib/cta-config'
 
 const STEPS_FR = [
-  { num: '01', title: 'Échange de cadrage', desc: 'Un appel de 30 minutes pour comprendre votre contexte, vos enjeux, ce que vous voulez changer.', badge: '30 min' },
-  { num: '02', title: 'Diagnostic & propo', desc: "J'analyse vos besoins, je vous propose un programme sur-mesure : format, durée, objectifs mesurables.", badge: 'Définir ensemble' },
-  { num: '03', title: 'On démarre', desc: "Présentiel ou distanciel. J'ajuste le contenu selon ce qui se passe vraiment dans le groupe.", badge: 'Union Européenne' },
+  { num: '01', title: 'Échange de cadrage', desc: 'Un appel de 30 minutes pour comprendre votre contexte et ce que vous voulez changer.', badge: '30 min' },
+  { num: '02', title: 'Diagnostic & propo', desc: "J'analyse vos besoins et je vous propose un programme construit pour vous, avec format, durée et objectifs.", badge: 'Définir ensemble' },
+  { num: '03', title: 'On démarre', desc: "Présentiel ou distanciel. J'ajuste le contenu en cours de route, selon ce qui remonte du groupe.", badge: 'Adapté en cours' },
   { num: '04', title: 'Bilan & suivi', desc: "Bilan après la formation. Je reste joignable pour les questions des semaines suivantes.", badge: 'Suivi inclus' },
 ]
 
 const STEPS_EN = [
-  { num: '01', title: 'Discovery call', desc: '30 minutes to understand your context, your challenges, what you want to change.', badge: '30 min' },
-  { num: '02', title: 'Diagnosis & proposal', desc: 'I analyze your needs, I propose a tailored program: format, duration, measurable goals.', badge: 'Together' },
-  { num: '03', title: 'We start', desc: "In-person or remote. I adjust the content based on what's really happening in the group.", badge: 'European Union' },
+  { num: '01', title: 'Discovery call', desc: '30 minutes to understand your context and what you want to change.', badge: '30 min' },
+  { num: '02', title: 'Diagnosis & proposal', desc: 'I analyze your needs and propose a program built for you, with format, duration and goals.', badge: 'Together' },
+  { num: '03', title: 'We start', desc: "In-person or remote. I adjust the content as we go, based on what comes up in the group.", badge: 'Adapted as we go' },
   { num: '04', title: 'Debrief & follow-up', desc: 'Debrief after training. I stay reachable for questions in the following weeks.', badge: 'Included' },
 ]
 
@@ -46,16 +46,16 @@ export default function Process() {
             </span>
             <h2 className="font-anton text-5xl md:text-7xl lg:text-8xl uppercase leading-[0.92] text-cb-sable">
               {lang === 'fr' ? (
-                <>Quatre étapes.<br />Pas une <span className="inline-block bg-cb-rose text-cb-encre px-3 py-0.5 -rotate-1 rounded-sm">de plus</span>.</>
+                <>Quatre étapes <span className="inline-block bg-cb-rose text-cb-encre px-3 py-0.5 -rotate-1 rounded-sm">pour démarrer</span>.</>
               ) : (
-                <>Four steps.<br />Not <span className="inline-block bg-cb-rose text-cb-encre px-3 py-0.5 -rotate-1 rounded-sm">one more</span>.</>
+                <>Four steps <span className="inline-block bg-cb-rose text-cb-encre px-3 py-0.5 -rotate-1 rounded-sm">to start</span>.</>
               )}
             </h2>
           </div>
           <div className="text-base font-medium border-l-4 border-cb-rose pl-5 max-w-md text-cb-sable/80">
             {lang === 'fr'
-              ? "Du premier appel au bilan, je suis votre seul interlocuteur. Pas d'intermédiaire, pas de relais."
-              : "From the first call to the debrief, I'm your only contact. No intermediaries, no handoffs."}
+              ? "Du premier appel au bilan, vous avez un seul interlocuteur, c'est moi."
+              : "From the first call to the debrief, you have one contact, that's me."}
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">

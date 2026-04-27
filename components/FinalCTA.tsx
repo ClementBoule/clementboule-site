@@ -19,7 +19,7 @@ export default function FinalCTA() {
       <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-cb-rose border-4 border-cb-encre" />
       <div className="relative max-w-4xl mx-auto text-center">
         <span className="inline-block font-marker text-cb-encre text-2xl -rotate-2 mb-5">
-          {lang === 'fr' ? "Passons à l'action →" : "Let's get started →"}
+          {lang === 'fr' ? 'On démarre →' : 'We start →'}
         </span>
         <h2 className="font-anton text-5xl sm:text-6xl md:text-7xl lg:text-[8.5rem] uppercase leading-[0.95] mb-7 text-cb-encre">
           {lang === 'fr' ? (
@@ -27,21 +27,21 @@ export default function FinalCTA() {
               <span className="inline-block bg-cb-rose text-cb-encre px-4 py-0.5 border-[3px] border-cb-encre rounded-sm">
                 tête
               </span>
-              {' '}?<br />Parlons-en.
+              {' '}?<br />On en parle.
             </>
           ) : (
             <>Got a project<br />in{' '}
               <span className="inline-block bg-cb-rose text-cb-encre px-4 py-0.5 border-[3px] border-cb-encre rounded-sm">
                 mind
               </span>
-              {' '}?<br />Let&apos;s talk.
+              {' '}?<br />Tell me about it.
             </>
           )}
         </h2>
         <p className="text-lg md:text-xl font-medium max-w-2xl mx-auto mb-10 text-cb-encre">
           {lang === 'fr'
-            ? "Pas de formulaire interminable. Un échange direct pour voir si on peut construire quelque chose ensemble."
-            : "No endless forms. A direct conversation to see if we can build something together."}
+            ? "Pas besoin de remplir un formulaire long. On peut juste parler, voir si on peut construire quelque chose ensemble."
+            : "No long form to fill. We can just talk, see if we can build something together."}
         </p>
         <div className="flex flex-wrap gap-4 justify-center">
           <a
