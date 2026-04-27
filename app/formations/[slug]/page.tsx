@@ -251,8 +251,7 @@ export default async function FormationDetailPage({
               Des mises en{' '}
               <span className="inline-block bg-cb-terracotta text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">
                 situation
-              </span>{' '}
-              concrètes.
+              </span>.
             </h2>
           </div>
 
@@ -400,7 +399,7 @@ export default async function FormationDetailPage({
             à <span className="inline-block bg-cb-encre text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">vos enjeux</span> ?
           </h2>
           <p className="text-base md:text-lg text-cb-sable/90 leading-relaxed text-pretty mb-8 max-w-2xl mx-auto font-medium">
-            Chaque programme est construit sur-mesure. Devis gratuit, premier échange sans engagement.
+            Chaque programme est construit avec vous. Devis gratuit, premier échange sans engagement.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link

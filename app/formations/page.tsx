@@ -7,10 +7,10 @@ import { formations } from '../../components/formations-data'
 export const metadata: Metadata = {
   title: 'Formations, Clément Boulé, consultant & formateur',
   description:
-    'Catalogue complet des 6 formations : RH & marque employeur, posture professionnelle, prévention RPS, stratégie d\'entreprise, soft skills, Spine Up. Sur-mesure pour équipes.',
+    'Les 6 formations de Clément Boulé en management, RH, soft skills et stratégie. Programmes construits avec chaque client, pour managers et dirigeants.',
   openGraph: {
     title: 'Formations, Clément Boulé',
-    description: 'Catalogue complet des formations sur-mesure.',
+    description: 'Les 6 formations construites avec chaque client.',
     type: 'website',
   },
 }
@@ -50,12 +50,12 @@ export default function FormationsIndexPage() {
                 ↓ Catalogue formations
               </span>
               <h1 className="font-anton text-5xl md:text-7xl lg:text-8xl uppercase leading-[0.92] text-cb-encre">
-                Six <span className="inline-block bg-cb-sarcelle text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">formations</span>.<br />
-                Sur-mesure.
+                Six formations,<br />
+                <span className="inline-block bg-cb-sarcelle text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">construites</span> avec vous.
               </h1>
             </div>
             <div className="text-base font-medium border-l-4 border-cb-cardinal pl-5 max-w-md text-cb-encre-soft">
-              Chaque parcours est adapté à votre contexte, vos enjeux, votre calendrier. Présentiel, distanciel ou hybride. Individuel ou collectif.
+              Chaque parcours est adapté à votre contexte et à votre calendrier. Présentiel, distanciel ou hybride, en individuel ou en collectif.
             </div>
           </div>
         </div>
@@ -102,14 +102,14 @@ export default function FormationsIndexPage() {
         }} />
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           <span className="inline-block font-marker text-cb-rose text-lg -rotate-2 mb-3">
-            Besoin d&apos;un mix sur-mesure ?
+            Besoin d&apos;un mix construit pour vous ?
           </span>
           <h2 className="font-anton text-4xl md:text-6xl lg:text-7xl uppercase leading-[0.95] text-cb-sable mb-6">
             Toutes les formations<br />
             <span className="inline-block bg-cb-encre text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">peuvent</span> être combinées.
           </h2>
           <p className="text-base md:text-lg text-cb-sable/90 leading-relaxed text-pretty mb-8 max-w-2xl mx-auto font-medium">
-            Adaptées, redessinées autour de vos enjeux réels. Premier échange gratuit et sans engagement.
+            Les modules sont adaptés autour de votre contexte. Premier échange gratuit et sans engagement.
           </p>
           <Link
             href="/contact"
