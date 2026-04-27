@@ -103,7 +103,7 @@
 
 Pour tout incident, dans les 7 jours :
 
-1. Rédiger un **post-mortem** : `docs/post-mortems/YYYY-MM-DD-<sujet>.md`
+1. Rédiger un **post-mortem** : `memory/post-mortems/YYYY-MM-DD-<sujet>.md`
 2. Format : timeline factuelle, root cause, actions correctives, ce qui aurait évité l'incident
 3. Mettre à jour ce runbook si l'incident a révélé un trou dans la procédure
 4. Re-scorer le dashboard sécurité (`memory/security.md`)

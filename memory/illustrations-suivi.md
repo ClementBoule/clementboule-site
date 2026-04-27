@@ -2,7 +2,7 @@
 
 > Dernière mise à jour : 17 avril 2026
 > Deadline : **16 mai 2026** (fin des abonnements Leonardo AI + Midjourney)
-> Référence : \`07-KIT-ILLUSTRATIONS-V2.md\` (sur GitHub) pour les prompts et le workflow détaillé
+> Référence : \`illustrations-kit.md\` (sur GitHub) pour les prompts et le workflow détaillé
 
 ---
 
@@ -88,7 +88,7 @@ Le personnage garde un trait artistique constant (médium à définir après cal
 ## 5. Catalogue des 22 illustrations (production)
 
 > Ne commence qu'après validation du style. Priorité ★★★ d'abord.
-> Prompts détaillés dans \`07-KIT-ILLUSTRATIONS-V2.md\` (section 6).
+> Prompts détaillés dans \`illustrations-kit.md\` (section 6).
 
 | # | Code | Pose / Section | Ambiance | Priorité | Statut |
 |---|---|---|---|---|---|

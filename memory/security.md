@@ -79,7 +79,7 @@
 | Statut | Contrôle | Source / preuve |
 |:------:|----------|-----------------|
 | 🟢 | Notifications déploiement Vercel par email | configuration par défaut |
-| 🟢 | Plan de réponse incident formalisé | `docs/RUNBOOK-incident.md` (5 scénarios + contacts CNIL/ANSSI) |
+| 🟢 | Plan de réponse incident formalisé | `memory/RUNBOOK-incident.md` (5 scénarios + contacts CNIL/ANSSI) |
 | 🟡 | Monitoring uptime externe (UptimeRobot gratuit possible) | non configuré |
 
 ### 8. Sauvegarde & continuité
@@ -117,5 +117,5 @@
 ## Lien avec les autres docs
 
 - [`memory/site.md`](./site.md) — état général du projet (DA-C, contenus, phases)
-- [`docs/RUNBOOK-incident.md`](../docs/RUNBOOK-incident.md) — plan de réponse incident détaillé
+- [`memory/RUNBOOK-incident.md`](./RUNBOOK-incident.md) — plan de réponse incident détaillé
 - [`AUDIT-clementboule.fr-2026-04-26.md`](../AUDIT-clementboule.fr-2026-04-26.md) — rapport d'audit fondateur (rédigé en local, pas dans le repo)

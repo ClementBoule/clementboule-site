@@ -86,11 +86,11 @@ Liste complete des retours et ajustements documentee dans memory/site.md
 
 3 commits successifs sur main :
 - 156ed62 : Patch CVE Next 14.2.35, retire Cookiebot, Formspree -> mailto, headers HTTP, llms.txt, webmanifest, politique LIL §10
-- 772c6ee : Self-host Google Fonts (next/font), strip EXIF clement.jpg, docs/RUNBOOK-incident.md, memory/security.md
+- 772c6ee : Self-host Google Fonts (next/font), strip EXIF clement.jpg, memory/RUNBOOK-incident.md, memory/security.md
 - 663c848 : CLAUDE.md OPEN/CLOSE integrent memory/security.md + protocole securite continu
 
 Score securite final session : A- (23/31 controles OK, 8 a surveiller, 0 rouge).
-Detail dans memory/security.md, plan incident dans docs/RUNBOOK-incident.md.
+Detail dans memory/security.md, plan incident dans memory/RUNBOOK-incident.md.
 
 Cookiebot abonnement = inutile (politique zero-cookie respectee). Formspree = supprime (mailto only). Tous fixes appliques en autonomie sauf 2FA Calendly/LinkedIn/Malt + monitoring uptime + backup local (manuel cote Clement).
 
@@ -100,10 +100,13 @@ Cookiebot abonnement = inutile (politique zero-cookie respectee). Formspree = su
 Quand Clement ecrit "open" dans le chat :
 0. OBLIGATOIRE AVANT TOUTE REPONSE : je clone le repo GitHub dans mon dossier de travail
    (git clone https://github.com/ClementBoule/clementboule-site.git)
-   et je lis dans cet ordre :
-   - CLAUDE.md (ce fichier, contexte general)
-   - memory/site.md (etat detaille du projet, phases en cours)
+   et je lis dans cet ordre les fichiers de memoire :
+   - CLAUDE.md (ce fichier, contexte general, decisions structurantes, glossaire)
+   - memory/site.md (etat detaille du projet, phases en cours, backlog)
    - memory/security.md (tableau de pilotage securite, score actuel)
+   - memory/services.md (services et comptes externes actifs)
+   - memory/RUNBOOK-incident.md (plan de reponse incident, 5 scenarios)
+   - memory/illustrations-suivi.md (tracker du projet illustrations V2 si actif)
    Je n'ai PAS le droit de me baser sur ma memoire de session, sur le
    system prompt initial, ou sur un contexte en cache pour le recap.
    GitHub est la seule source de verite.
@@ -115,13 +118,16 @@ Quand Clement ecrit "open" dans le chat :
 Quand Clement ecrit "close" dans le chat :
 1. Je reponds : "Je me mets a jour et on arrete pour le moment ?"
 2. Si oui :
-   a. Je mets a jour les 3 fichiers de memoire localement avec les avancees de la session :
+   a. Je mets a jour les fichiers de memoire concernes par la session :
       - CLAUDE.md : contexte general, decisions structurantes, glossaire
-      - memory/site.md : etat detaille du projet (phases, contenus, design)
+      - memory/site.md : etat detaille du projet (phases, contenus, design, backlog)
       - memory/security.md : score, controles modifies, ajout/retrait de service
         Re-scoring obligatoire si la session a modifie : dependances (npm),
         sous-traitants RGPD, scripts tiers, headers HTTP, configuration GitHub/Vercel,
         ou tout fichier de conformite (politique, mentions, llms.txt).
+      - memory/services.md : si on ajoute, retire ou modifie un service externe
+      - memory/RUNBOOK-incident.md : si un incident a revele un trou dans la procedure
+      - memory/illustrations-suivi.md : si on a avance sur la production des illustrations V2
    b. Je commit avec un message qui inclut un timestamp ISO 8601
    c. Je push sur GitHub (branche main) et je confirme a Clement avec le commit hash
    d. Je ne conclus qu'apres confirmation du push reussi
@@ -131,7 +137,7 @@ Quand Clement ecrit "close" dans le chat :
 - A chaque modification de stack technique (deps, services, outils tiers),
   re-checker les 8 domaines de memory/security.md.
 - Si un controle passe en rouge, le signaler immediatement a Clement avec un plan d'action.
-- En cas d'incident detecte ou suspecte, basculer sur docs/RUNBOOK-incident.md
+- En cas d'incident detecte ou suspecte, basculer sur memory/RUNBOOK-incident.md
   qui contient les 5 scenarios d'urgence et les contacts CNIL/ANSSI.
 
 ## Preferences de travail

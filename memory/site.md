@@ -37,7 +37,7 @@ Dernière mise à jour : 26 avril 2026 — 12:05 (close 2026-04-26T12:05+02:00)
 | À surveiller | 8 |
 | Action requise | 0 |
 
-Tableau détaillé et historique : `memory/security.md`. Runbook incident : `docs/RUNBOOK-incident.md`.
+Tableau détaillé et historique : `memory/security.md`. Runbook incident : `memory/RUNBOOK-incident.md`.
 
 ## Direction artistique DA-C en place
 
@@ -72,6 +72,57 @@ Tableau détaillé et historique : `memory/security.md`. Runbook incident : `doc
 - Card de reco MatchQuiz : signature « made with care » en bas (optionnel, micro-touche finale)
 - ORBIT : Calendrier dans Sheets « Orbit 1 » (Apps Script)
 - Sécurité : 5 jaunes à durcir manuellement quand Clément a 30 min (cf. `memory/security.md`) — 2FA Calendly/LinkedIn/Malt, audit hooks Vercel, monitoring uptime, backup local, routage email
+
+
+
+## Backlog priorise
+
+> Items extraits de l'ancien `docs/03-BACKLOG.md` et `docs/plan-site.md`,
+> filtres pour ne garder que ce qui n'est pas deja livre. A jour 27/04/2026.
+
+### Priorite haute (impact / effort favorable)
+
+| ID | Action | Statut |
+|----|--------|--------|
+| BL-01 | Recolter 3 vrais temoignages clients verbatims, integrer dans `Testimonials.tsx` (composant existe en attente) | A faire |
+| BL-02 | Mini cas client par formation (page detail), 1-2 paragraphes, sans inventer | A faire |
+| BL-03 | Audit Lighthouse Core Web Vitals + corrections bloquantes | A faire |
+| BL-04 | Audit accessibilite WCAG 2.1 AA (contrastes, clavier, ARIA) | A faire |
+| BL-05 | README.md du repo GitHub (actuellement absent) | A faire |
+
+### Priorite moyenne
+
+| ID | Action | Statut |
+|----|--------|--------|
+| BL-06 | Landing page dediee Spine'Up (formation signature) | A faire |
+| BL-07 | Sitemap.xml + robots.txt (JSON-LD complet deja livre) | A faire |
+| BL-08 | Verifier le contenu EN des pages (apres purge IA Lots 1-5, version FR a jour, EN a verifier en passe complete) | A faire |
+
+### Priorite basse / nice-to-have
+
+| ID | Action | Statut |
+|----|--------|--------|
+| BL-09 | Section blog (SEO long-tail, autorite) | Non commence |
+| BL-10 | Page A propos enrichie en storytelling | Partiel (page actuelle OK mais peut grossir) |
+| BL-11 | Refacto DRY : centraliser `EXPERIENCES` (a-propos vs LanguageContext, dette identifiee Lot 3) | A faire |
+
+### Items livres recemment (avril 2026)
+
+- Refonte DA-C complete (PR #2 a #6, commits 73cd886 a 58fea03)
+- Audit securite phase 6 (commits 156ed62, 772c6ee, 663c848)
+- Headers HTTP CSP/HSTS/X-Frame (next.config.js)
+- Self-host Google Fonts via next/font/google
+- EXIF strippe sur clement.jpg
+- Cookiebot retire (politique zero-cookie)
+- Formspree retire (formulaire en mailto)
+- Pages detail formations (`/formations/[slug]`) avec JSON-LD Course
+- Mentions legales LCEN, politique RGPD
+- Calendly integre (lien externe, pas de widget JS)
+- Section differenciation home (composant `Proof.tsx` avec 3 piliers)
+- Cloudflare Web Analytics RGPD-natif
+- Bug carousel formations corrige (Formations.tsx en grille)
+- Purge langage IA complete site (8 commits, ~85 reecritures, voir derniers commits)
+- Cleanup ressources non utilisees (29 logos orphelins, 6 composants dead code, -890 KB)
 
 ## Note protocole
 Repo `ClementBoule/clementboule-site` est PUBLIC. Aucune donnée privée de Clément (adresse, SIRET, téléphone, secrets) ne doit être stockée dans le repo. Ces infos sont à redemander en début de session quand on en a besoin (notamment pour les mentions légales).
