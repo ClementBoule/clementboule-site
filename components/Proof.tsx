@@ -17,15 +17,15 @@ const PILLARS_FR = [
   {
     tag: '01',
     title: 'Bilingue FR / EN',
-    desc: "Je forme en français et en anglais. Pratique pour les équipes internationales ou les contextes multiculturels.",
+    desc: "Je forme en français et en anglais. Ça aide quand vos équipes sont internationales ou multilingues.",
     color: 'sarcelle',
     shadow: 'var(--cb-sarcelle)',
     rot: '-rotate-[0.5deg]',
   },
   {
     tag: '02',
-    title: 'Conçu sur-mesure',
-    desc: 'Pas de catalogue standard. Chaque programme est construit à partir de vos enjeux réels, de votre secteur et de vos équipes.',
+    title: 'Construit avec vous',
+    desc: "Je n'ai pas de programme standard à dérouler. Pour chaque mission, je pars de votre situation et de ce que vivent vos équipes.",
     color: 'terracotta',
     shadow: 'var(--cb-terracotta)',
     rot: 'rotate-[0.6deg]',
@@ -33,7 +33,7 @@ const PILLARS_FR = [
   {
     tag: '03',
     title: 'La posture avant le contenu',
-    desc: "Ce qui change vraiment, c'est la façon dont les gens se positionnent, pas juste ce qu'ils savent. C'est ça qui reste après la formation.",
+    desc: "La façon dont les gens se positionnent change plus de choses que ce qu'ils savent. Et c'est ce qui dure, longtemps après la formation.",
     color: 'sauge-deep',
     shadow: 'var(--cb-sauge-deep)',
     rot: '-rotate-[0.4deg]',
@@ -44,15 +44,15 @@ const PILLARS_EN = [
   {
     tag: '01',
     title: 'Bilingual FR / EN',
-    desc: 'I train in French and English. Useful for international teams or multicultural contexts.',
+    desc: 'I train in French and English. That helps when your teams are international or multilingual.',
     color: 'sarcelle',
     shadow: 'var(--cb-sarcelle)',
     rot: '-rotate-[0.5deg]',
   },
   {
     tag: '02',
-    title: 'Built for you',
-    desc: 'No standard catalog. Every program is built from your real challenges, your sector, and your teams.',
+    title: 'Built with you',
+    desc: "I don't have a standard program to roll out. For each engagement, I start from your situation and what your teams actually live through.",
     color: 'terracotta',
     shadow: 'var(--cb-terracotta)',
     rot: 'rotate-[0.6deg]',
@@ -60,7 +60,7 @@ const PILLARS_EN = [
   {
     tag: '03',
     title: 'Posture before content',
-    desc: "What really changes is how people position themselves, not just what they know. That's what stays after the training.",
+    desc: "How people position themselves changes more than what they know. And it's what lasts, long after the training is done.",
     color: 'sauge-deep',
     shadow: 'var(--cb-sauge-deep)',
     rot: '-rotate-[0.4deg]',
@@ -109,15 +109,15 @@ export default function Proof() {
         <div className="grid md:grid-cols-[2fr_1fr] gap-10 items-end mb-14">
           <h2 className="font-anton text-5xl md:text-6xl lg:text-7xl uppercase leading-[0.92] text-cb-encre">
             {lang === 'fr' ? (
-              <>Ce qui fait la <span className="inline-block bg-cb-terracotta text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">différence</span>.</>
+              <>Ce que je fais <span className="inline-block bg-cb-terracotta text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">différemment</span>.</>
             ) : (
-              <>What makes the <span className="inline-block bg-cb-terracotta text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">difference</span>.</>
+              <>What I do <span className="inline-block bg-cb-terracotta text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">differently</span>.</>
             )}
           </h2>
           <div className="text-base font-medium border-l-4 border-cb-cardinal pl-5 max-w-md text-cb-encre-soft">
             {lang === 'fr'
-              ? 'Trois marqueurs clairs. Aucune promesse vague.'
-              : 'Three clear markers. No vague promises.'}
+              ? 'Voici trois éléments qui structurent ma façon de travailler.'
+              : 'Three things that shape how I work.'}
           </div>
         </div>
 

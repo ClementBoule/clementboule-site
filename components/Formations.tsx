@@ -28,16 +28,16 @@ export default function Formations() {
             </span>
             <h2 className="font-anton text-5xl md:text-7xl lg:text-8xl uppercase leading-[0.92] text-cb-encre">
               {lang === 'fr' ? (
-                <>Six entrées.<br />Une <span className="inline-block bg-cb-sauge text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">approche</span>.</>
+                <>Six formations,<br /><span className="inline-block bg-cb-sauge text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">construites</span> avec vous.</>
               ) : (
-                <>Six entries.<br />One <span className="inline-block bg-cb-sauge text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">approach</span>.</>
+                <>Six programs,<br /><span className="inline-block bg-cb-sauge text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">built</span> with you.</>
               )}
             </h2>
           </div>
           <div className="text-base font-medium border-l-4 border-cb-cardinal pl-5 max-w-md">
             {lang === 'fr'
-              ? "Chaque programme est construit avec vous. Pas de catalogue rigide, jamais."
-              : "Every program is built with you. No rigid catalog, ever."}
+              ? "Pour chaque mission, je construis le programme à partir de votre contexte."
+              : "For each engagement, I build the program from your context."}
           </div>
         </div>
 

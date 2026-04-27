@@ -98,15 +98,13 @@ export default function Hero() {
             <p className="text-base md:text-lg max-w-xl font-medium leading-relaxed text-pretty">
               {lang === 'fr' ? (
                 <>
-                  8 ans à accompagner managers, équipes et dirigeants. Sur le management, les RH, les soft skills.{' '}
-                  <strong className="bg-cb-rose px-1.5 rounded-sm font-semibold">Pas de catalogue.</strong>{' '}
-                  Chaque programme est construit avec vous.
+                  Ça fait 8 ans que je forme et accompagne en entreprise. Sur le management, les soft skills, les RH et la stratégie.{' '}
+                  <strong className="bg-cb-rose px-1.5 rounded-sm font-semibold">Pour chaque mission, le programme est construit avec vous.</strong>
                 </>
               ) : (
                 <>
-                  8 years supporting managers, teams and leaders. On management, HR, soft skills.{' '}
-                  <strong className="bg-cb-rose px-1.5 rounded-sm font-semibold">No catalog.</strong>{' '}
-                  Each program is built with you.
+                  It's been 8 years that I've been training and coaching in companies. On management, soft skills, HR and strategy.{' '}
+                  <strong className="bg-cb-rose px-1.5 rounded-sm font-semibold">For each engagement, the program is built with you.</strong>
                 </>
               )}
             </p>
@@ -116,7 +114,7 @@ export default function Hero() {
                 href="/contact"
                 className="inline-flex items-center gap-2 bg-cb-encre text-cb-sable font-bold uppercase tracking-wider text-xs px-6 py-3.5 border-2 border-cb-encre rounded shadow-[4px_4px_0_var(--cb-sauge)] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[6px_6px_0_var(--cb-sauge)] transition-all duration-150"
               >
-                {lang === 'fr' ? 'Discutons de votre projet' : "Let's talk"}
+                {lang === 'fr' ? 'Parler de votre projet' : 'Tell me about your project'}
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>

@@ -78,7 +78,7 @@ export const formations: Formation[] = [
     bg: '#EEF3FA',
     image: '/illustrations/formations/rh-marque-employeur.png',
     title: 'RH & marque employeur',
-    shortDescription: "Aligner ce que vous vivez en interne avec ce que vous montrez à l'extérieur. Vos collaborateurs deviennent vos meilleurs ambassadeurs.",
+    shortDescription: "Travailler l'écart entre ce que vous promettez à l'extérieur et ce que vivent vos équipes. Pour que vos collaborateurs en parlent parce qu'ils y croient.",
     intro: "La marque employeur, c'est rarement un problème de communication. C'est un problème d'alignement. Ce que vous promettez à l'extérieur doit coller avec ce que vivent vos équipes au quotidien. Cette formation travaille exactement sur cet écart.",
     forWhom: [
       "DRH et responsables marque employeur qui veulent aller au-delà des affiches",
@@ -141,7 +141,7 @@ export const formations: Formation[] = [
     bg: '#F3EEFA',
     image: '/illustrations/formations/posture-professionnelle.png',
     title: 'Posture professionnelle',
-    shortDescription: "Corps, voix, regard. Ce que vous dégagez avant même d'ouvrir la bouche. Les leviers d'un impact qui dure.",
+    shortDescription: "Avant même que vous parliez, votre posture a déjà dit quelque chose. On travaille la voix, le regard et la façon dont vous occupez l'espace.",
     intro: "Avant même d'ouvrir la bouche, vous avez déjà dit quelque chose. Cette formation travaille sur ce que vous dégagez : le corps, la voix, le regard. Pas pour jouer un rôle, mais pour être pleinement à votre place.",
     forWhom: [
       "Managers nouvellement nommés qui veulent asseoir leur légitimité sans forcer",
@@ -204,7 +204,7 @@ export const formations: Formation[] = [
     bg: '#EFF8F2',
     image: '/illustrations/formations/prevention-rps.png',
     title: 'Prévention des RPS',
-    shortDescription: "Voir les signaux avant la crise. Un format concret pour les managers en première ligne, pas pour les experts RH.",
+    shortDescription: "Apprendre à repérer les signaux avant qu'une crise n'arrive. Le format est pensé pour les managers de proximité plutôt que pour les experts RH.",
     intro: "Les RPS ne débarquent pas du jour au lendemain. Les signaux étaient là avant. Cette formation apprend aux managers à les lire et à agir tôt, avant l'arrêt maladie ou le départ. Cadre INRS, méthode terrain.",
     forWhom: [
       "Managers de proximité avec des équipes sous pression",
@@ -267,7 +267,7 @@ export const formations: Formation[] = [
     bg: '#FAF4EB',
     image: '/illustrations/formations/strategie-entreprise.png',
     title: "Stratégie d'entreprise",
-    shortDescription: "Du diagnostic à l'exécution. Savoir où aller, pourquoi, et comment embarquer tout le monde sans perdre la moitié en route.",
+    shortDescription: "Construire une stratégie qui tient au-delà du papier. Savoir où aller, pourquoi, et comment embarquer les équipes sans en perdre la moitié en route.",
     intro: "La plupart des stratégies sont bonnes sur le papier. Là où ça coince, c'est à l'exécution. Cette formation donne aux dirigeants et managers les outils pour construire une stratégie que les équipes comprennent, qui se pilote vraiment et qui résiste au terrain.",
     forWhom: [
       "Dirigeants et CODIR en phase de structuration ou de pivot",
@@ -331,7 +331,7 @@ export const formations: Formation[] = [
     bg: '#FAEDED',
     image: '/illustrations/formations/soft-skills.png',
     title: 'Soft Skills',
-    shortDescription: "Écoute, communication, conflits. Les compétences qu'on sous-estime jusqu'au jour où elles font vraiment la différence.",
+    shortDescription: "Écouter, communiquer, gérer un désaccord sans casser la relation. Ces compétences sont souvent sous-estimées, jusqu'au moment où elles deviennent décisives.",
     intro: "Ce sont les compétences absentes des fiches de poste mais présentes dans chaque décision de recrutement. L'écoute, la communication, la gestion des conflits. Cette formation les rend concrètes et praticables dès le lendemain.",
     forWhom: [
       "Managers transversaux ou matriciels qui gèrent sans autorité hiérarchique",
@@ -394,7 +394,7 @@ export const formations: Formation[] = [
     bg: '#ECF6F4',
     image: '/illustrations/formations/spine-up.png',
     title: "Spine'Up, leadership managérial",
-    shortDescription: "Un parcours pour les managers qui veulent trouver leur posture sans se dénaturer. Concret, progressif, et ça reste après la formation.",
+    shortDescription: "Un parcours pour les managers qui veulent trouver leur posture sans devenir quelqu'un d'autre. Étalé sur trois mois, parce qu'on n'apprend pas à se tenir en deux jours.",
     intro: "Spine'Up est un parcours de développement managérial que j'ai construit à partir de ce que je vois en entreprise : des managers compétents qui ne savent pas comment occuper leur place. Pas un problème de compétences. Un problème de posture. Ce programme travaille exactement là-dessus.",
     forWhom: [
       "Managers en prise de poste qui veulent partir du bon pied",
