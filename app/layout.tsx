@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     template: '%s | Clément Boulé',
   },
   description:
-    'Formateur, consultant et coach à Paris. 8 ans, bilingue FR/EN. Programmes sur-mesure, jamais de catalogue : managers, équipes et dirigeants en PME, grands groupes, business schools.',
+    "Clément Boulé, formateur consultant coach à Paris. Bilingue FR/EN, 8 ans d'expérience, +1 800 personnes formées en entreprise et en école.",
 
   keywords: [
     // FR – core
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     siteName: 'Clément Boulé',
     title: 'Clément Boulé | Formateur Consultant Coach – Paris, Bilingue',
     description:
-      'Formateur, consultant et coach à Paris. 8 ans, bilingue FR/EN. Programmes sur-mesure, jamais de catalogue : managers, équipes et dirigeants en PME, grands groupes, business schools.',
+      "Clément Boulé, formateur consultant coach à Paris. Bilingue FR/EN, 8 ans d'expérience, +1 800 personnes formées en entreprise et en école.",
   },
 
   /* ── Twitter / X Card ── */
@@ -88,7 +88,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Clément Boulé | Formateur Consultant Coach – Paris',
     description:
-      'Formateur, consultant et coach à Paris. 8 ans, bilingue FR/EN. Sur-mesure, pas de catalogue.',
+      "Formateur consultant coach à Paris, bilingue FR/EN. 8 ans, +1 800 personnes formées.",
     creator: '@clementboule',
   },
 
@@ -137,7 +137,7 @@ const jsonLd = {
       alternateName: 'Clement Boule',
       jobTitle: 'Formateur Consultant Coach en entreprise',
       description:
-        'Formateur, consultant et coach professionnel bilingue français-anglais basé à Paris. Clément Boulé intervient en entreprises, grands groupes, PME et business schools pour développer les compétences managériales, le leadership et la stratégie.',
+        "Clément Boulé est formateur consultant coach à Paris. Il accompagne managers et dirigeants depuis 8 ans, en français comme en anglais, en entreprise et en business school.",
       url: 'https://www.clementboule.fr',
       image: 'https://www.clementboule.fr/clement.jpg',
       sameAs: [
@@ -175,7 +175,7 @@ const jsonLd = {
       provider: { '@id': 'https://www.clementboule.fr/#person' },
       url: 'https://www.clementboule.fr',
       description:
-        'Formations en entreprise, coaching individuel et conseil stratégique en français et en anglais à Paris. Interventions en business schools, grands groupes et PME.',
+        "Formations en entreprise et coaching individuel à Paris, en français et en anglais. Interventions en entreprise comme en business school.",
       areaServed: [
         { '@type': 'City', name: 'Paris' },
         { '@type': 'Country', name: 'France' },

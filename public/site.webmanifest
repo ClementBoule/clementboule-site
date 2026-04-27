@@ -1,14 +1,26 @@
 {
   "name": "Clément Boulé | Formateur Consultant Coach",
   "short_name": "Clément Boulé",
-  "description": "Formateur, consultant et coach en entreprise à Paris, bilingue français-anglais.",
+  "description": "Formateur consultant coach à Paris, bilingue français-anglais. 8 ans d'expérience.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FBF4DD",
   "theme_color": "#2A2A2A",
   "icons": [
-    { "src": "/icon-192x192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/icon-512x512.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
   ]
 }
