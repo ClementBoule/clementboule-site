@@ -31,6 +31,8 @@ Ces infos doivent etre demandees a Clement en debut de session quand on en a bes
 - ScrollReveal supprime : remplace par CSS keyframes natifs (cbFadeUp) - plus fiable, meilleur SEO
 - DA-C tokens cb-* dans tailwind.config.js (sarcelle, sarcelle-deep, terracotta, cardinal, rose, sauge, sauge-deep, sable, creme, encre, encre-soft)
 - Statut auto-entrepreneur cache du site visiteur (Hero, About, Footer) mais OBLIGATOIRE dans /mentions-legales (LCEN art. 6)
+- Langage humain pas IA: tous les patterns IA sont bannis du site (tryptiques, parallelismes negatifs, em-dashes decoratifs, setup-punchline, mots bequilles, jargon consultant). Voir memory/copywriting.md pour le detail.
+- Exception assumee: signature de marque "made with care, not with templates" conservee a 4 emplacements (Hero, /a-propos, FinalCTA, Footer). Seule exception au protocole anti-langage-IA.
 
 ## Chiffres reels valides
 | Stat | Valeur | Source |
@@ -166,3 +168,6 @@ Quand Clement ecrit "close" dans le chat :
 | DA-C | Direction artistique sauge brutaliste attenuee (refonte 25/04/2026) |
 | cb-* | Prefixe des design tokens Tailwind (cb-sarcelle, cb-sauge, cb-sable, cb-creme...) |
 | LCEN | Loi pour la confiance dans l'economie numerique - impose mentions legales editeur |
+| Purge IA | Protocole de retrait de tous les patterns d'ecriture IA (cf memory/copywriting.md) |
+| Tryptique | Liste de 3 elements pour faire joli (banni sauf si enumeration metier reelle) |
+| Memory protocol | Source unique de verite dans memory/, lue en debut de session via OPEN |

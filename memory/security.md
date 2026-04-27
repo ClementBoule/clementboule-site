@@ -4,7 +4,7 @@
 > Maintenu à jour à chaque modif de stack ou audit.
 > Référentiels : NIST CSF 2.0 · ANSSI TPE/PME · OWASP · CNIL.
 
-## État au 26 avril 2026 (v3 · close)
+## État au 27 avril 2026 (v4 · close)
 
 **Score global : A−**
 
@@ -13,7 +13,7 @@
 | Contrôles OK | 23 / 31 |
 | À surveiller | 8 |
 | Action requise | 0 |
-| Δ depuis v2 | runbook incident commit (passe en vert), CLAUDE.md intègre security.md dans OPEN/CLOSE |
+| Δ depuis v3 | consolidation docs/ -> memory/ (R3), cleanup ressources -890 KB (R1+R2), purge langage IA complète (8 lots). Aucune modif stack/services/conformité. |
 
 > Note : score reste A− et non A car 8 contrôles jaunes restent ouverts (2FA Calendly/LinkedIn/Malt, audit hooks Vercel, monitoring uptime, backup local, routage email, branch protection, PAT en attente d'expiration, CVE résiduelles Next 15.x). Le palier A demande ≤3 jaunes.
 
@@ -107,6 +107,7 @@
 | 2026-04-26 v1 | Audit initial post-fixes Phase 5 | 23/34 OK · score B+ |
 | 2026-04-26 v2 | + 2FA GitHub/Vercel + Dependabot + self-host fonts + EXIF strippé + runbook incident | 22/31 OK · score A− |
 | 2026-04-26 v3 | Runbook commit + protocoles OPEN/CLOSE intègrent security.md | 23/31 OK · score A− · 0 rouge |
+| 2026-04-27 v4 | Consolidation memory/ + cleanup ressources non utilisées + purge langage IA. Aucune modif sécurité opérationnelle. | 23/31 OK · score A− · 0 rouge |
 
 ## Glossaire des statuts
 

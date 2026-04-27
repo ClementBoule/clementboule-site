@@ -1,5 +1,5 @@
 # État du projet — clementboule.fr & ORBIT
-Dernière mise à jour : 26 avril 2026 — 12:05 (close 2026-04-26T12:05+02:00)
+Dernière mise à jour : 27 avril 2026 — 11:30 (close 2026-04-27T11:30+02:00)
 
 ## Site clementboule.fr — état actuel (main)
 
@@ -74,6 +74,73 @@ Tableau détaillé et historique : `memory/security.md`. Runbook incident : `mem
 - Sécurité : 5 jaunes à durcir manuellement quand Clément a 30 min (cf. `memory/security.md`) — 2FA Calendly/LinkedIn/Malt, audit hooks Vercel, monitoring uptime, backup local, routage email
 
 
+
+
+
+## Session 2026-04-27 — purge langage IA + cleanup repo
+
+10 commits successifs sur `main`, `27bb7cb` -> `303a7de`.
+
+### Phase SEO (commit `27bb7cb`)
+Refonte meta description racine, OG, Twitter Card, JSON-LD Person,
+JSON-LD Service, webmanifest. Retrait des tryptiques rythmiques
+(« managers, équipes et dirigeants »), des parallélismes négatifs
+(« sur-mesure, jamais de catalogue »), du setup-punchline, et de
+l'adjectif marketing « sur-mesure ». Description racine alignée sur
+4 domaines (management, soft skills, RH, stratégie).
+
+### Lots 1 à 5 — purge langage IA (8 commits)
+- **Lot 1** (`a0a132a`) : Hero, Proof, Formations.tsx, formations-data
+  shortDescriptions (6).
+- **Lot 2A** (`fca54a0`) : LanguageContext cleanup (-128 lignes de dead
+  code mort) + 1 réécriture cv.experiences[0].
+- **Lot 2B** (`9f4cc16`) : Process, HomeFAQ, FinalCTA, Footer, MatchQuiz.
+- **Lot 3** (`9e83ad8`) : a-propos, contact, ContactForm. Correction
+  factuelle critique : « depuis dix ans » -> « depuis huit ans »
+  (interdiction explicite dans CLAUDE.md, vérification grep zéro
+  occurrence résiduelle).
+- **Lot 4A** (`ac9f69b`) : pages formations (liste + détail).
+- **Lots 4B-4G** (`0c3ea97`) : data des 6 formations (intro, forWhom,
+  outcomes, phases, workshops, tools). Bug factuel corrigé sur Process
+  STEPS[2] : badge « Union Européenne » sans rapport avec l'étape ->
+  « Adapté en cours ».
+- **Lot 5** (`e95880b`) : FAQ (12 remplacements + JSON-LD synchronisé)
+  + ressources (1 tag).
+
+Total purge IA : ~85 réécritures, 1 correction factuelle critique.
+
+### Cleanup repo (commits `fced914` et `303a7de`)
+
+**Cleanup ressources non utilisées** (commit `fced914`) :
+- 29 logos orphelins supprimés sur 45 -> 16 conservés (-872 KB).
+- 6 composants dead code supprimés (CV.tsx, ScrollReveal.tsx,
+  components/ui/{Button,Container,Section,SectionHeader}.tsx).
+- Section cv.* du LanguageContext retirée (dead code transitif).
+- Total libéré : ~890 KB, -616 lignes.
+
+**Consolidation docs/ -> memory/** (commit `303a7de`) :
+- Suppression complète du dossier docs/ (8 fichiers, dont 6 obsolètes).
+- Migration de RUNBOOK-incident.md, 07-KIT-ILLUSTRATIONS-V2.md,
+  08-SUIVI-ILLUSTRATIONS.md vers memory/ (git mv préserve l'historique).
+- Création de memory/services.md (refonte de docs/04-SERVICES-COMPTES.md
+  mise à jour : Resend retiré, Cloudflare Web Analytics ajouté, Calendly
+  intégré, abonnements Leonardo/Midjourney avec dates).
+- Backlog consolidé dans memory/site.md (items extraits de docs/03 et
+  docs/plan-site.md, filtrés pour ne garder que ce qui n'est pas livré).
+- Protocoles OPEN/CLOSE de CLAUDE.md élargis aux 6 fichiers memory/.
+
+### Nouveau fichier de référence
+`memory/copywriting.md` créé pour documenter le protocole de purge IA
+(patterns à bannir, patterns acceptés, test téléphone, exception slogan,
+cohérence factuelle stricte). Référence pour toute future production
+de contenu.
+
+### Score sécurité (re-check)
+
+Score inchangé : **A−** (23/31 contrôles OK, 8 jaunes, 0 rouge).
+Aucune modif sur dépendances npm, sous-traitants RGPD, scripts tiers,
+headers HTTP, configuration GitHub/Vercel ou fichiers de conformité.
+Cf `memory/security.md` v4 pour le détail.
 
 ## Backlog priorise
 
