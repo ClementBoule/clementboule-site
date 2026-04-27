@@ -79,17 +79,17 @@ export const formations: Formation[] = [
     image: '/illustrations/formations/rh-marque-employeur.png',
     title: 'RH & marque employeur',
     shortDescription: "Travailler l'écart entre ce que vous promettez à l'extérieur et ce que vivent vos équipes. Pour que vos collaborateurs en parlent parce qu'ils y croient.",
-    intro: "La marque employeur, c'est rarement un problème de communication. C'est un problème d'alignement. Ce que vous promettez à l'extérieur doit coller avec ce que vivent vos équipes au quotidien. Cette formation travaille exactement sur cet écart.",
+    intro: "La marque employeur, c'est rarement un problème de communication. C'est un problème d'alignement. Ce que vous promettez à l'extérieur doit coller avec ce que vivent vos équipes au quotidien. Cette formation travaille sur cet écart.",
     forWhom: [
       "DRH et responsables marque employeur qui veulent aller au-delà des affiches",
       "Dirigeants de PME qui peinent à recruter malgré une bonne réputation terrain",
       "Managers qui veulent fidéliser leurs équipes sans forcément augmenter les salaires",
     ],
     outcomes: [
-      "Mettre le doigt sur l'écart entre ce que vous affichez et ce que vos équipes vivent vraiment",
+      "Mettre le doigt sur l'écart entre ce que vous affichez et ce que vos équipes vivent au quotidien",
       "Construire une promesse employeur qui tient la route face à vos propres collaborateurs",
-      "Outiller vos managers pour qu'ils deviennent des relais crédibles, pas des porte-paroles forcés",
-      "Mesurer ce qui change concrètement sur l'attractivité et la fidélisation",
+      "Outiller vos managers pour qu'ils deviennent des relais crédibles auprès des candidats et des équipes",
+      "Mesurer ce qui change sur l'attractivité et la fidélisation",
     ],
     phases: [
       {
@@ -114,7 +114,7 @@ export const formations: Formation[] = [
     workshops: [
       { icon: '🎯', name: 'Atelier EVP', desc: "Co-construction de la promesse employeur en 3h." },
       { icon: '🪞', name: 'Audit culturel', desc: "Cartographie de la culture vécue vs affichée." },
-      { icon: '📣', name: 'Employee Advocacy', desc: "Activer les collaborateurs comme ambassadeurs." },
+      { icon: '📣', name: 'Employee Advocacy', desc: "Activer les collaborateurs pour qu'ils parlent de l'entreprise." },
     ],
     tools: [
       'Canvas EVP (Employee Value Proposition)',
@@ -142,7 +142,7 @@ export const formations: Formation[] = [
     image: '/illustrations/formations/posture-professionnelle.png',
     title: 'Posture professionnelle',
     shortDescription: "Avant même que vous parliez, votre posture a déjà dit quelque chose. On travaille la voix, le regard et la façon dont vous occupez l'espace.",
-    intro: "Avant même d'ouvrir la bouche, vous avez déjà dit quelque chose. Cette formation travaille sur ce que vous dégagez : le corps, la voix, le regard. Pas pour jouer un rôle, mais pour être pleinement à votre place.",
+    intro: "Avant même d'ouvrir la bouche, vous avez déjà dit quelque chose. Cette formation travaille sur ce que vous dégagez : le corps, la voix, le regard. Pour vous aider à occuper votre place sans jouer un rôle.",
     forWhom: [
       "Managers nouvellement nommés qui veulent asseoir leur légitimité sans forcer",
       "Cadres en transition vers des postes à forte exposition",
@@ -152,7 +152,7 @@ export const formations: Formation[] = [
       "Voir ce que vous dégagez naturellement et l'effet que ça produit chez les autres",
       "Ajuster voix, regard et posture selon les situations à enjeux",
       "Garder la maîtrise quand la pression monte",
-      "Être vous-même, pas une version corrigée de quelqu'un d'autre",
+      "Rester vous-même au lieu de jouer une version corrigée de quelqu'un d'autre",
     ],
     phases: [
       {
@@ -170,13 +170,13 @@ export const formations: Formation[] = [
       {
         step: 'Phase 3',
         title: 'Mise en situation réelle',
-        desc: "Simulations à enjeux : prise de parole, réunion difficile, négociation.",
+        desc: "Simulations sur des situations à enjeux comme une prise de parole, une réunion difficile ou une négociation.",
         duration: '0,5 jour',
       },
     ],
     workshops: [
       { icon: '🎬', name: 'Vidéo-feedback', desc: "Auto-observation guidée et débriefing pair-à-pair." },
-      { icon: '🎤', name: 'Pitch 90 secondes', desc: "Construire un message percutant et le délivrer avec impact." },
+      { icon: '🎤', name: 'Pitch 90 secondes', desc: "Construire un message clair et le délivrer en 90 secondes." },
       { icon: '🧘', name: 'Ancrage & respiration', desc: "Techniques pour gérer le trac et garder la maîtrise." },
     ],
     tools: [
@@ -208,7 +208,7 @@ export const formations: Formation[] = [
     intro: "Les RPS ne débarquent pas du jour au lendemain. Les signaux étaient là avant. Cette formation apprend aux managers à les lire et à agir tôt, avant l'arrêt maladie ou le départ. Cadre INRS, méthode terrain.",
     forWhom: [
       "Managers de proximité avec des équipes sous pression",
-      "DRH et référents QVT qui cherchent un outil concret, pas un guide de 200 pages",
+      "DRH et référents QVT qui veulent un outil utilisable au quotidien plutôt qu'un guide de 200 pages",
       "Membres de CSE/CHSCT en charge de la prévention",
     ],
     outcomes: [
@@ -227,13 +227,13 @@ export const formations: Formation[] = [
       {
         step: 'Phase 2',
         title: 'Détection et écoute',
-        desc: "Cas pratiques : repérer les signaux, conduire un entretien, mobiliser les ressources internes.",
+        desc: "Cas pratiques pour repérer les signaux, conduire un entretien et mobiliser les ressources internes.",
         duration: '1 jour',
       },
       {
         step: 'Phase 3',
         title: 'Plan de prévention',
-        desc: "Construction d'un plan d'action sur-mesure : indicateurs, gouvernance, communication.",
+        desc: "Construction d'un plan d'action adapté à votre contexte avec indicateurs, gouvernance et communication.",
         duration: '0,5 jour',
       },
     ],
@@ -268,23 +268,23 @@ export const formations: Formation[] = [
     image: '/illustrations/formations/strategie-entreprise.png',
     title: "Stratégie d'entreprise",
     shortDescription: "Construire une stratégie qui tient au-delà du papier. Savoir où aller, pourquoi, et comment embarquer les équipes sans en perdre la moitié en route.",
-    intro: "La plupart des stratégies sont bonnes sur le papier. Là où ça coince, c'est à l'exécution. Cette formation donne aux dirigeants et managers les outils pour construire une stratégie que les équipes comprennent, qui se pilote vraiment et qui résiste au terrain.",
+    intro: "La plupart des stratégies sont bonnes sur le papier. Là où ça coince, c'est à l'exécution. Cette formation donne aux dirigeants et managers les outils pour construire une stratégie que les équipes comprennent et qui résiste au terrain.",
     forWhom: [
       "Dirigeants et CODIR en phase de structuration ou de pivot",
       "Managers en charge d'un BU ou d'un projet transverse",
       "Comités de direction qui préparent leur séminaire stratégique",
     ],
     outcomes: [
-      "Cadrer votre vision à 3 ans de façon claire et partageable",
+      "Construire une vision à 3 ans claire et que vous pouvez partager avec vos équipes",
       "Utiliser les bons frameworks sans vous noyer dedans (OKR, BCG, Blue Ocean...)",
       "Aligner votre CODIR et vos managers sur un cap commun",
-      "Mettre en place un pilotage qui tient dans la durée, pas juste jusqu'au prochain séminaire",
+      "Mettre en place un pilotage qui tient dans la durée, au-delà du prochain séminaire",
     ],
     phases: [
       {
         step: 'Phase 1',
         title: 'Diagnostic stratégique',
-        desc: "Analyse externe (marché, concurrence) et interne (forces, ressources). Identification des leviers.",
+        desc: "Analyse externe (marché, concurrence) et interne (forces, ressources). Identification des points d'appui.",
         duration: '1 jour',
       },
       {
@@ -296,7 +296,7 @@ export const formations: Formation[] = [
       {
         step: 'Phase 3',
         title: "Plan d'exécution & pilotage",
-        desc: "OKR, roadmap, rituels de revue. Outillage des managers pour faire vivre la stratégie au quotidien.",
+        desc: "OKR, roadmap, rituels de revue. Outillage des managers pour piloter la stratégie au quotidien.",
         duration: '1 jour',
       },
     ],
@@ -332,14 +332,14 @@ export const formations: Formation[] = [
     image: '/illustrations/formations/soft-skills.png',
     title: 'Soft Skills',
     shortDescription: "Écouter, communiquer, gérer un désaccord sans casser la relation. Ces compétences sont souvent sous-estimées, jusqu'au moment où elles deviennent décisives.",
-    intro: "Ce sont les compétences absentes des fiches de poste mais présentes dans chaque décision de recrutement. L'écoute, la communication, la gestion des conflits. Cette formation les rend concrètes et praticables dès le lendemain.",
+    intro: "Ce sont les compétences absentes des fiches de poste mais présentes dans chaque décision de recrutement. L'écoute, la communication, la gestion des conflits. Cette formation les rend praticables dès le lendemain.",
     forWhom: [
       "Managers transversaux ou matriciels qui gèrent sans autorité hiérarchique",
       "Équipes commerciales et relation client sous pression",
       "Chefs de projet dans des environnements complexes",
     ],
     outcomes: [
-      "Écouter vraiment, sans préparer sa réponse pendant que l'autre parle encore",
+      "Écouter pour de vrai, sans préparer sa réponse pendant que l'autre parle encore",
       "Formuler un désaccord ou une demande sans déclencher une guerre froide",
       "Désamorcer un conflit avant qu'il parasite tout le reste",
       "Donner un feedback qui fait avancer au lieu de braquer",
@@ -395,7 +395,7 @@ export const formations: Formation[] = [
     image: '/illustrations/formations/spine-up.png',
     title: "Spine'Up, leadership managérial",
     shortDescription: "Un parcours pour les managers qui veulent trouver leur posture sans devenir quelqu'un d'autre. Étalé sur trois mois, parce qu'on n'apprend pas à se tenir en deux jours.",
-    intro: "Spine'Up est un parcours de développement managérial que j'ai construit à partir de ce que je vois en entreprise : des managers compétents qui ne savent pas comment occuper leur place. Pas un problème de compétences. Un problème de posture. Ce programme travaille exactement là-dessus.",
+    intro: "Spine'Up est un parcours que j'ai construit à partir de ce que je vois en entreprise : beaucoup de managers compétents qui ne savent pas comment occuper leur place. Cette difficulté n'est pas une question de compétences techniques mais de posture managériale, et c'est là-dessus que ce programme travaille.",
     forWhom: [
       "Managers en prise de poste qui veulent partir du bon pied",
       "Talents identifiés en plan de succession qui préparent leur prochaine étape",
@@ -405,7 +405,7 @@ export const formations: Formation[] = [
       "Comprendre votre style naturel de management avec le profil DISC",
       "Construire votre présence managériale sans copier quelqu'un d'autre",
       "Avoir un récit professionnel clair pour vos entretiens et vos ambitions",
-      "Repartir avec un plan de développement sur 18 mois, actionnable",
+      "Repartir avec un plan de développement sur 18 mois, prêt à appliquer",
     ],
     phases: [
       {
@@ -437,7 +437,7 @@ export const formations: Formation[] = [
       { icon: '🧭', name: 'Cartographie DISC', desc: "Diagnostic personnel approfondi en 35 questions." },
       { icon: '🎭', name: '5 postures', desc: "Travail des 5 rôles managériaux en mise en situation." },
       { icon: '📖', name: 'Storytelling pro', desc: "Construction d'un récit de carrière en 3 actes." },
-      { icon: '🛤️', name: 'Roadmap 18 mois', desc: "Plan d'action concret avec jalons trimestriels." },
+      { icon: '🛤️', name: 'Roadmap 18 mois', desc: "Plan d'action avec jalons trimestriels." },
     ],
     tools: [
       "Test DISC + 15 sous-profils (méthode propriétaire)",
