@@ -1,5 +1,5 @@
 # État du projet — clementboule.fr & ORBIT
-Dernière mise à jour : 27 avril 2026 — 11:30 (close 2026-04-27T11:30+02:00)
+Dernière mise à jour : 27 avril 2026 — 14:55 (close 2026-04-27T14:55+02:00)
 
 ## Site clementboule.fr — état actuel (main)
 
@@ -142,6 +142,53 @@ Aucune modif sur dépendances npm, sous-traitants RGPD, scripts tiers,
 headers HTTP, configuration GitHub/Vercel ou fichiers de conformité.
 Cf `memory/security.md` v4 pour le détail.
 
+## Session 2026-04-27 PM — signature email harmonisée DA-C
+
+Création et déploiement d'une signature email pro pour harmoniser
+HubSpot et Gmail avec la DA-C du site.
+
+### Itérations design (5 rounds dans le chat)
+- 3 variantes initiales (A portrait + barre sarcelle, B monogramme cb,
+  C card sauge brutaliste) → A retenue.
+- 3 variantes A plus légères (A1 minimaliste, A2 aéré, A3 editorial).
+- 3 variantes A boutons chauds (terracotta, cardinal, rose pastel) →
+  terracotta retenu.
+- 3 variantes A boutons discrets (lien texte, outline fin terracotta,
+  pill sable) → outline fin terracotta retenu.
+- Texte du sous-titre arrêté : « J'accompagne ceux qui pilotent des
+  équipes, des apprentis aux dirigeants. » (option narrative, pas de
+  triptyque, cohérent avec le quiz audiences du site).
+
+### Photo de signature
+- Clément a uploadé une photo carrée 1200x1200 dans le repo via
+  GitHub web : `public/Design sans titre.png`.
+- À renommer en `clement-portrait.png` à la prochaine occasion (URL
+  encodée en %20 fonctionne mais c'est moche).
+- Tentatives data-URI inline rejetées par HubSpot, hack
+  background-image mal calibré dans Gmail. Solution finale = vraie
+  image carrée hostée + `<img border-radius:50%>`. Compatible
+  Gmail / HubSpot / Outlook / Apple Mail.
+
+### Configuration finale
+- HTML signature 150x150 photo ronde + barre sarcelle 4px + nom Anton
+  fallback Helvetica 900 24px caps + sous-titre + email/site sarcelle
+  deep + bouton Réserver outline terracotta + LinkedIn/Malt sauge.
+- Déployée dans HubSpot (modal Préférences > E-mail > Gérer les
+  signatures) et Gmail (Paramètres > Général > Signature « Pro »).
+- URL Calendly officielle : https://calendly.com/boule-clement/30min
+  (extraite de `lib/cta-config.ts`).
+
+### Bug à corriger plus tard
+`app/formations/[slug]/page.tsx:413` pointe encore vers l'ancien lien
+`https://calendly.com/clementboule` qui n'existe pas. À remplacer par
+`https://calendly.com/boule-clement/30min` lors d'une session contenu.
+
+### Score sécurité (re-check)
+Inchangé : **A−** (23/31 contrôles OK, 8 jaunes, 0 rouge). Cette
+session n'a touché ni stack, ni services RGPD, ni scripts tiers,
+ni headers HTTP, ni configuration GitHub/Vercel. Aucun re-scoring
+nécessaire.
+
 ## Backlog priorise
 
 > Items extraits de l'ancien `docs/03-BACKLOG.md` et `docs/plan-site.md`,
@@ -164,6 +211,7 @@ Cf `memory/security.md` v4 pour le détail.
 | BL-06 | Landing page dediee Spine'Up (formation signature) | A faire |
 | BL-07 | Sitemap.xml + robots.txt (JSON-LD complet deja livre) | A faire |
 | BL-08 | Verifier le contenu EN des pages (apres purge IA Lots 1-5, version FR a jour, EN a verifier en passe complete) | A faire |
+| BL-12 | Renommer `public/Design sans titre.png` en `clement-portrait.png` + mettre à jour signatures HubSpot/Gmail + bug calendly slug | A faire |
 
 ### Priorite basse / nice-to-have
 
@@ -190,6 +238,7 @@ Cf `memory/security.md` v4 pour le détail.
 - Bug carousel formations corrige (Formations.tsx en grille)
 - Purge langage IA complete site (8 commits, ~85 reecritures, voir derniers commits)
 - Cleanup ressources non utilisees (29 logos orphelins, 6 composants dead code, -890 KB)
+- Signature email harmonisee DA-C deployee sur HubSpot et Gmail (photo ronde 150x150, bouton Reserver outline terracotta, sous-titre narratif)
 
 ## Note protocole
 Repo `ClementBoule/clementboule-site` est PUBLIC. Aucune donnée privée de Clément (adresse, SIRET, téléphone, secrets) ne doit être stockée dans le repo. Ces infos sont à redemander en début de session quand on en a besoin (notamment pour les mentions légales).
