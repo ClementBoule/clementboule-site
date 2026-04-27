@@ -20,7 +20,7 @@ const EXPERIENCES = [
     role: 'Formateur indépendant',
     company: 'Freelance',
     period: '2022 – présent',
-    desc: "Conception et animation de formations sur-mesure en leadership, RH et soft skills. En entreprises et collectivités, en France et à l'étranger.",
+    desc: "Je conçois et anime des formations en leadership, RH et soft skills, construites avec chaque client. En entreprises et en collectivités, en France et à l'étranger.",
     logo: '/logos/exp-photo.jpg',
     color: 'sarcelle',
     rot: '-rotate-[0.4deg]',
@@ -53,7 +53,7 @@ const EDUCATION = [
   { degree: 'Master 1 PGE International Business', school: 'Rennes School of Business', year: '2017', logo: '/logos/edu-rennes-sb.jpg' },
 ]
 
-const VALEURS = ['Fidélité factuelle', 'Sur-mesure', 'Bilingue FR/EN', 'Impact durable', 'Direct et exigeant']
+const VALEURS = ['Fidélité factuelle', 'Adapté à votre contexte', 'Bilingue FR/EN', 'Pour la durée', 'Direct et exigeant']
 
 export default function APropos() {
   return (
@@ -76,10 +76,10 @@ export default function APropos() {
                 made with care, not with templates
               </span>
               <p className="text-base md:text-lg text-cb-encre-soft leading-relaxed text-pretty mb-4 border-l-4 border-cb-cardinal pl-5">
-                Je suis Clément Boulé, 32 ans, basé à Paris. J&apos;accompagne managers, équipes et dirigeants depuis dix ans, d&apos;abord comme coach sportif, aujourd&apos;hui comme formateur. En français comme en anglais.
+                Je suis Clément Boulé, 32 ans, basé à Paris. J&apos;accompagne managers et dirigeants depuis huit ans, d&apos;abord comme coach sportif puis comme formateur. En français comme en anglais.
               </p>
               <p className="text-base text-cb-encre-soft leading-relaxed text-pretty mb-8">
-                Pas de catalogue tout fait. Je construis chaque programme à partir de votre quotidien, avec un objectif simple : que ça change vraiment quelque chose après la formation, pas juste pendant.
+                Je n&apos;ai pas de catalogue tout fait à dérouler. Je construis chaque programme à partir de votre quotidien, pour que la formation ait un effet qui dure dans le temps, au-delà des jours d&apos;intervention.
               </p>
               <div className="flex flex-wrap gap-3">
                 <a
@@ -140,7 +140,7 @@ export default function APropos() {
                 ↓ Expérience
               </span>
               <h2 className="font-anton text-4xl md:text-5xl uppercase leading-[0.95] text-cb-encre mb-8">
-                Le <span className="inline-block bg-cb-terracotta text-cb-sable px-2 -rotate-1 rounded-sm">parcours</span>.
+                Mon <span className="inline-block bg-cb-terracotta text-cb-sable px-2 -rotate-1 rounded-sm">parcours</span>
               </h2>
               <div className="space-y-5">
                 {EXPERIENCES.map((exp) => (
@@ -171,7 +171,7 @@ export default function APropos() {
                 ↓ Formation
               </span>
               <h2 className="font-anton text-4xl md:text-5xl uppercase leading-[0.95] text-cb-encre mb-8">
-                Les <span className="inline-block bg-cb-sauge text-cb-sable px-2 -rotate-1 rounded-sm">diplômes</span>.
+                Mes <span className="inline-block bg-cb-sauge text-cb-sable px-2 -rotate-1 rounded-sm">diplômes</span>
               </h2>
               <div className="space-y-3">
                 {EDUCATION.map((edu, i) => (

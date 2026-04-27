@@ -76,7 +76,7 @@ export default function Contact() {
                 ↓ Contact
               </span>
               <h1 className="font-anton text-5xl md:text-7xl lg:text-8xl uppercase leading-[0.92] text-cb-encre">
-                Parlons de votre <span className="inline-block bg-cb-sarcelle text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">projet</span>.
+                Votre <span className="inline-block bg-cb-sarcelle text-cb-sable px-3 py-0.5 -rotate-1 rounded-sm">projet</span>, je vous écoute.
               </h1>
             </div>
             <div className="text-base font-medium border-l-4 border-cb-cardinal pl-5 max-w-md text-cb-encre-soft">

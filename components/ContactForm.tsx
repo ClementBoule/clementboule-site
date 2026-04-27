@@ -214,7 +214,7 @@ export default function ContactForm() {
         <textarea
           required
           rows={prefilled ? 7 : 5}
-          placeholder="Dites-moi votre situation, ce qui coince, ce que vous voulez obtenir."
+          placeholder="Dites-moi votre situation et ce que vous voulez obtenir."
           value={fields.message}
           onChange={set('message')}
           className={inputClass + ' resize-none'}
