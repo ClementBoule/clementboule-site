@@ -258,3 +258,17 @@ Repo `ClementBoule/clementboule-site` est PUBLIC. Aucune donnée privée de Clé
 
 ## Note technique sur le push
 Push direct git via PAT GitHub temporaire = 10x plus rapide que push fichier-par-fichier via Chrome MCP. Pour les chantiers à forte volumétrie (>10 fichiers), privilégier cette méthode. Ne JAMAIS stocker le token, toujours le révoquer après usage.
+
+
+---
+
+## Vercel quota free — leçon 29/04/2026
+
+> Le plan Hobby a un cap de **100 deploys/jour** (erreur `api-deployments-free-per-day`). Pousser des fichiers un par un sur `main` = un deploy par commit. Pour les batches d'images (LinkedIn LP-XXX, illustrations formations…) : **grouper les uploads** soit via tree commit (multiple fichiers en un seul commit), soit en désactivant temporairement les Production Deploys, soit upload en local + push unique.
+
+### État pending au close du 29/04/2026
+
+- Commits sur `main` non déployés (quota grillé) : `9e0153b` (Hero swap) / `622e832` (Daan→Groupe Alternance) / `210463e` (SEO position 8) / `327d1b4` (touch).
+- Files ajoutés : `/public/IMG_9024.jpg` (hero photo, 1.5 Mo) et `/public/logos/client-groupealternance.png` (88 Ko).
+- Deploy Hook créé : `https://api.vercel.com/v1/integrations/deploy/prj_sDRQhzbRXc86kGBRjakw2ri9dx6Q/aJ7lq18HPY` (à fire après reset 24h ou laisser le push auto pull au reset).
+
