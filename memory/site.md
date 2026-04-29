@@ -205,6 +205,7 @@ appliqué dans memory/security.md (24/31 OK · score A-).
 | BL-04 | Audit accessibilite WCAG 2.1 AA (contrastes, clavier, ARIA) | A faire |
 | BL-05 | README.md du repo GitHub (actuellement absent) | A faire |
 | BL-46 | Merger `feat/next-15-upgrade` (Next 14→15 + React 18→19, ferme 5 CVE Dependabot) | Preview testé OK, en attente validation pages internes |
+| BL-47 | Lancer le rythme LinkedIn 2 posts/sem (mar+jeu 8h30) selon `memory/linkedin-playbook.md`. Première session batch à programmer. | Doctrine livrée le 29/04, première salve à produire |
 
 ### Priorite moyenne
 
@@ -250,6 +251,7 @@ appliqué dans memory/security.md (24/31 OK · score A-).
 - Activation Dependabot alerts + malware alerts + security updates sur le repo (durcissement)
 - Branche `feat/next-15-upgrade` créée + preview Vercel testée OK (en attente merge)
 - ORBIT CRM créé puis démantelé proprement (cf CLAUDE.md session 2026-04-29 pour le pourquoi)
+- LinkedIn playbook + pipeline créés (`memory/linkedin-playbook.md`, `memory/linkedin-pipeline.md`) : doctrine éditoriale 5 archétypes, cadence 2/sem, workflow batch, programmation native LinkedIn, tracker pipeline. Hérite de `memory/copywriting.md` pour les règles anti-IA.
 
 ## Note protocole
 Repo `ClementBoule/clementboule-site` est PUBLIC. Aucune donnée privée de Clément (adresse, SIRET, téléphone, secrets) ne doit être stockée dans le repo. Ces infos sont à redemander en début de session quand on en a besoin (notamment pour les mentions légales).

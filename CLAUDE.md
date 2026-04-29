@@ -109,6 +109,8 @@ Quand Clement ecrit "open" dans le chat :
    - memory/services.md (services et comptes externes actifs)
    - memory/RUNBOOK-incident.md (plan de reponse incident, 5 scenarios)
    - memory/illustrations-suivi.md (tracker du projet illustrations V2 si actif)
+   - memory/linkedin-playbook.md + memory/linkedin-pipeline.md (présence LinkedIn pro)
+   - memory/copywriting.md (règles anti-IA héritées par tout texte produit)
    Je n'ai PAS le droit de me baser sur ma memoire de session, sur le
    system prompt initial, ou sur un contexte en cache pour le recap.
    GitHub est la seule source de verite.
@@ -130,6 +132,8 @@ Quand Clement ecrit "close" dans le chat :
       - memory/services.md : si on ajoute, retire ou modifie un service externe
       - memory/RUNBOOK-incident.md : si un incident a revele un trou dans la procedure
       - memory/illustrations-suivi.md : si on a avance sur la production des illustrations V2
+      - memory/linkedin-playbook.md : si la doctrine évolue (voix, archétypes, cadence)
+      - memory/linkedin-pipeline.md : à chaque session de rédaction LinkedIn (idées capturées, drafts produits, posts programmés/publiés, KPI J+7)
    b. Je commit avec un message qui inclut un timestamp ISO 8601
    c. Je push sur GitHub (branche main) et je confirme a Clement avec le commit hash
    d. Je ne conclus qu'apres confirmation du push reussi
@@ -171,6 +175,9 @@ Quand Clement ecrit "close" dans le chat :
 | Purge IA | Protocole de retrait de tous les patterns d'ecriture IA (cf memory/copywriting.md) |
 | Tryptique | Liste de 3 elements pour faire joli (banni sauf si enumeration metier reelle) |
 | Memory protocol | Source unique de verite dans memory/, lue en debut de session via OPEN |
+| LinkedIn playbook | Doctrine éditoriale `memory/linkedin-playbook.md` : voix, cadence, 5 archétypes (A1 retour XP / A2 observation / A3 contre-intuitive / A4 personal branding / A5 informationnel), workflow batch |
+| LinkedIn pipeline | Tracker actif `memory/linkedin-pipeline.md` : backlog idées → drafts → programmés → publiés + métriques cumulées |
+| Archétype LinkedIn | Modèle de post (A1 à A5) avec structure narrative, pièges spécifiques, exemples bons/mauvais, prompt starter pour rédaction guidée |
 
 ## Session 2026-04-29 — ORBIT créé puis démantelé + Sheet BPF + branche Next 15
 
