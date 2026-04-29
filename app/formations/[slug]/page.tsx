@@ -410,7 +410,7 @@ export default async function FormationDetailPage({
               Discuter de votre besoin →
             </Link>
             <a
-              href="https://calendly.com/clementboule"
+              href="https://calendly.com/boule-clement/30min"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-cb-encre text-cb-sable font-anton text-base md:text-lg uppercase tracking-wider border-[2.5px] border-cb-encre px-7 py-3.5 rounded-sm hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all duration-200"
