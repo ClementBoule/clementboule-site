@@ -12,7 +12,7 @@ const CLIENTS: { name: string; logo: string | null; scale?: number; rot: string;
   { name: 'IHEDREA',    logo: '/logos/client-ihedrea.png',               rot: '-rotate-[0.4deg]', shadowColor: 'var(--cb-sarcelle-deep)' },
   { name: 'Apprentis',  logo: '/logos/client-apprentis.jpg',             rot: 'rotate-[0.3deg]',  shadowColor: 'var(--cb-terracotta)' },
   { name: 'Sauvegarde', logo: '/logos/client-sauvegarde.png',            rot: '-rotate-[0.6deg]', shadowColor: 'var(--cb-sauge-deep)' },
-  { name: 'Daan',       logo: '/logos/client-daan.png',                  rot: 'rotate-[0.5deg]',  shadowColor: 'var(--cb-sarcelle)' },
+  { name: 'Groupe Alternance', logo: '/logos/client-groupealternance.png', rot: 'rotate-[0.5deg]', shadowColor: 'var(--cb-sarcelle)' },
 ]
 
 // ─── Card logo ───────────────────────────────────────────────────────────────
