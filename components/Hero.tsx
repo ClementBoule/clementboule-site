@@ -1,4 +1,5 @@
 'use client'
+// rebuild trigger 2026-04-29-2113
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { useLang } from './LanguageContext'
