@@ -1,6 +1,6 @@
 # Services & comptes externes — clementboule.fr
 
-> Mise à jour : 27 avril 2026
+> Mise à jour : 29 avril 2026
 
 ## Services actifs
 
@@ -22,6 +22,7 @@
 | **Resend** | Le formulaire de contact est passé en mode `mailto` (audit sécurité phase 6, commit `156ed62`). Plus de clé API à maintenir. |
 | **Formspree** | Idem, remplacé par `mailto` |
 | **Cookiebot** | Retiré (politique zéro-cookie respectée, abonnement inutile) |
+| **ORBIT CRM (Vercel + GCP + Gemini)** | Stack créée le 29/04/2026 puis démantelée le même jour. Bloqueur : Service Account Google ne peut plus uploader sur Drive perso (storage quota = 0 depuis 2024+). OAuth utilisateur trop lourd vs valeur réelle. Toutes ressources supprimées : projet Vercel `orbit-crm`, repo GitHub `orbit-crm` + `orbit-dashboard`, sous-domaine `orbit.clementboule.fr`, Service Account GCP, clé Gemini API, PATs GitHub + Calendly. |
 | **Google Analytics** | Non configuré. Cloudflare Web Analytics fait le job en cookieless |
 
 ## Abonnements temporaires (illustrations V2)

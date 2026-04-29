@@ -108,6 +108,7 @@
 | 2026-04-26 v2 | + 2FA GitHub/Vercel + Dependabot + self-host fonts + EXIF strippé + runbook incident | 22/31 OK · score A− |
 | 2026-04-26 v3 | Runbook commit + protocoles OPEN/CLOSE intègrent security.md | 23/31 OK · score A− · 0 rouge |
 | 2026-04-27 v4 | Consolidation memory/ + cleanup ressources non utilisées + purge langage IA. Aucune modif sécurité opérationnelle. | 23/31 OK · score A− · 0 rouge |
+| 2026-04-29 v5 | Dependabot alerts/malware/security updates activés sur repo. ORBIT créé puis démantelé proprement. Branche `feat/next-15-upgrade` en stand-by (ferme 5 CVE Next.js Image Optimizer/HTTP smuggling/deserialization). | 24/31 OK · score A− · 0 rouge · 5 CVE non bloquantes |
 
 ## Glossaire des statuts
 

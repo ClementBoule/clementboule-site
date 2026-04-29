@@ -185,9 +185,10 @@ HubSpot et Gmail avec la DA-C du site.
 
 ### Score sécurité (re-check)
 Inchangé : **A−** (23/31 contrôles OK, 8 jaunes, 0 rouge). Cette
-session n'a touché ni stack, ni services RGPD, ni scripts tiers,
-ni headers HTTP, ni configuration GitHub/Vercel. Aucun re-scoring
-nécessaire.
+Session 2026-04-29 a touché : Dependabot alerts activé sur le repo
+(durcissement), branche `feat/next-15-upgrade` pushée et preview testée
+mais NON mergée. Stack du site en main inchangée. Re-scoring sécurité
+appliqué dans memory/security.md (24/31 OK · score A-).
 
 ## Backlog priorise
 
@@ -203,6 +204,7 @@ nécessaire.
 | BL-03 | Audit Lighthouse Core Web Vitals + corrections bloquantes | A faire |
 | BL-04 | Audit accessibilite WCAG 2.1 AA (contrastes, clavier, ARIA) | A faire |
 | BL-05 | README.md du repo GitHub (actuellement absent) | A faire |
+| BL-46 | Merger `feat/next-15-upgrade` (Next 14→15 + React 18→19, ferme 5 CVE Dependabot) | Preview testé OK, en attente validation pages internes |
 
 ### Priorite moyenne
 
@@ -239,6 +241,15 @@ nécessaire.
 - Purge langage IA complete site (8 commits, ~85 reecritures, voir derniers commits)
 - Cleanup ressources non utilisees (29 logos orphelins, 6 composants dead code, -890 KB)
 - Signature email harmonisee DA-C deployee sur HubSpot et Gmail (photo ronde 150x150, bouton Reserver outline terracotta, sous-titre narratif)
+
+### Items livres recemment (29 avril 2026)
+
+- Audit stratégique 360° LinkedIn / Malt / site + benchmark 15 profils Malt + 20 missions
+- Profils Malt + LinkedIn alignés positionnement "business schools FR/EN, stratégie & soft skills" (S1 plan 90j livré)
+- Sheet BPF (hors repo) : validation colonnes D et F + Apps Script AutoDate.gs (taper `.` colonne A → date du jour)
+- Activation Dependabot alerts + malware alerts + security updates sur le repo (durcissement)
+- Branche `feat/next-15-upgrade` créée + preview Vercel testée OK (en attente merge)
+- ORBIT CRM créé puis démantelé proprement (cf CLAUDE.md session 2026-04-29 pour le pourquoi)
 
 ## Note protocole
 Repo `ClementBoule/clementboule-site` est PUBLIC. Aucune donnée privée de Clément (adresse, SIRET, téléphone, secrets) ne doit être stockée dans le repo. Ces infos sont à redemander en début de session quand on en a besoin (notamment pour les mentions légales).

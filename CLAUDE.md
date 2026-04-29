@@ -171,3 +171,47 @@ Quand Clement ecrit "close" dans le chat :
 | Purge IA | Protocole de retrait de tous les patterns d'ecriture IA (cf memory/copywriting.md) |
 | Tryptique | Liste de 3 elements pour faire joli (banni sauf si enumeration metier reelle) |
 | Memory protocol | Source unique de verite dans memory/, lue en debut de session via OPEN |
+
+## Session 2026-04-29 — ORBIT créé puis démantelé + Sheet BPF + branche Next 15
+
+### Décisions structurantes
+
+1. **ORBIT v1.0 → v1.4 créé puis intégralement démantelé** (1 journée).
+   Stack tentée : Next 15 sur Vercel Hobby + GitHub privé `ClementBoule/orbit-crm` + sous-domaine `orbit.clementboule.fr` (CNAME OVH) + Service Account GCP + clé Gemini API + Google Drive/Sheets API.
+   Modules livrés : Auth token magique, dashboard 360° (KPI Calendly + Dependabot), Pipeline kanban, Prospection ciblée, Contacts, Saisie hebdo + tendances 26 sem., Drop zone OCR Gemini.
+   Bloqueur final : **les Service Accounts Google ne peuvent plus uploader sur Drive perso depuis 2024-2025** (storage quota = 0). Solutions officielles = Shared Drives (Workspace payant) ou OAuth utilisateur (refacto lourd).
+   **Décision** : la complexité d'OAuth + maintenance dépassait la valeur réelle d'ORBIT pour un freelance solo. Tout démantelé proprement (Vercel, GitHub, DNS, GCP SA, clé Gemini, PATs GitHub + Calendly).
+   Leçon retenue : pour Drive perso (Gmail), le Service Account ne suffit plus. Si besoin futur d'automatiser Drive, prévoir OAuth flow ou rester en outils Google natifs (Apps Script, Gemini in Drive).
+
+2. **Améliorations Sheet BPF** (hors repo, partagé Drive Clément) :
+   - Onglet Présence : validation données colonne D (École : EDA RH, EMA, IHEDREA, ISCOM) sur D2:D890
+   - Onglet Présence : validation données colonne F (Statut : Apprentis, Initiaux) sur F2:F890
+   - Apps Script `AutoDate.gs` (trigger onEdit simple) : taper `.` ou `/` ou espace dans colonne A → date du jour Europe/Paris au format dd/MM/yyyy (sans composante horaire)
+   - Tous les triggers utilisent `Utilities.formatDate` avec timezone explicite Europe/Paris pour éviter les décalages UTC
+
+3. **Audit stratégique 360° + benchmark Malt/LinkedIn** poussé en début de session :
+   - Profils Malt + LinkedIn alignés positionnement "business schools FR/EN, stratégie & soft skills"
+   - Tag Malt retiré : "IA et RH". Ajouté : "Stratégie d'entreprise"
+   - Headline Malt : "Formateur Stratégie / Soft Skills / Business Schools FR-EN"
+   - Titre LinkedIn : "Je forme les futurs managers en stratégie et soft skills, en français et en anglais"
+
+4. **Dependabot alerts activé** sur le repo `clementboule-site` (durcissement sécurité)
+   - Dependency graph + Dependabot alerts + Dependabot malware alerts + Dependabot security updates + Grouped security updates : tous ON
+   - Dependabot version updates : OFF (éviter le bruit hebdo de PRs non sécu)
+   - 5 CVE Next.js identifiées (Image Optimizer DoS, HTTP smuggling, deserialization, self-hosted, disk cache) → patchables avec upgrade Next 14 → 15
+
+5. **Branche `feat/next-15-upgrade` créée et pushée, en stand-by** sur clementboule-site
+   - npm install next@15 react@19 + overrides postcss/glob → 0 vulnerabilities en local
+   - Preview Vercel testé OK (homepage rendue correctement, polices Anton/Permanent Marker/Space Grotesk OK)
+   - **Pas mergé en main** : Clément préfère valider d'autres pages avant bascule prod (cas-clients, formations/[slug], contact, mentions). Action non urgente.
+
+### Tâches en suspens (non bloquantes)
+
+- **BL-46** : merger `feat/next-15-upgrade` sur main (clos 5 CVE Dependabot). Preview OK, action 30 sec quand validé.
+- **BL-12** (déjà existant) : renommer `Design sans titre.png` → `clement-portrait.png`
+
+### Glossaire — ajouts
+
+- **AutoDate.gs** : Apps Script lié au sheet BPF, déclencheur simple `onEdit` qui remplace `.` `/` ou espace dans Présence!A par la date du jour Europe/Paris.
+- **Service Account Google (mort 2024+)** : sans Workspace payant, le SA ne peut plus uploader sur Drive perso. Limite à connaître si on veut automatiser Drive.
+
