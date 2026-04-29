@@ -202,7 +202,7 @@ const jsonLd = {
         { '@type': 'ListItem', position: 5, name: 'IHEDREA' },
         { '@type': 'ListItem', position: 6, name: "Apprentis d\'Auteuil" },
         { '@type': 'ListItem', position: 7, name: 'Sauvegarde' },
-        { '@type': 'ListItem', position: 8, name: 'Daan' },
+        { '@type': 'ListItem', position: 8, name: 'Groupe Alternance' },
       ],
     },
 
