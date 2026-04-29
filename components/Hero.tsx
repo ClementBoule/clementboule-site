@@ -159,10 +159,10 @@ export default function Hero() {
                 </span>
               </span>
               <Image
-                src="/clement-illustration.png"
-                alt="Clément Boulé, illustration portrait"
+                src="/IMG_9024.jpg"
+                alt="Clément Boulé, formateur consultant"
                 width={520}
-                height={520}
+                height={600}
                 className="w-full h-auto block relative z-[1]"
                 priority
               />
