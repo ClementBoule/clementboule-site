@@ -77,3 +77,67 @@ hand-painted watercolor pastel illustration, [SCENE], sage green and dusty terra
 
 À générer après validation du batch 1.
 
+
+
+---
+
+## Batch 2 v5 — Leonardo Lucid Realism, grain narratif workplace (29 avril 2026)
+
+> Pivot complet vs Batch 1. MJ a atteint son quota mensuel (200 imgs/mois), bascule sur **Leonardo AI Lucid Realism**. Direction artistique radicalement différente : abandon de l'aquarelle, esthétique photo argentique grain doux, scènes narratives à charge émotionnelle.
+
+### Direction artistique
+
+```
+a 35mm analog film photograph on Kodak Portra 800, soft visible film grain, scanned negative texture, restrained muted palette of {PALETTE}, {SCÈNE}, shallow depth of field, soft bokeh, observational camera angle, no faces visible, contemplative composition, no text, no watermark, no logos
+```
+
+### Règles de composition
+
+- **Caméra observatrice** : le sujet est filmé / photographié, jamais posé
+- **Pas de visage** : par-dessus l'épaule, de dos, mains seules, silhouette lointaine, reflet
+- **Charge narrative** : chaque image raconte un moment, pas un motif décoratif
+- **Pas de cliché stock-photo** : pas de "diversity check", pas de poses fabriquées
+- **Bokeh / faible profondeur de champ** : contribue au flou onirique et au grain perçu
+
+### Palettes rotatives (8)
+
+| Clé | Description |
+|---|---|
+| da-c | sage green, dusty terracotta, soft teal, cream, muted rose |
+| cool | soft indigo, slate blue, dusty lavender, off-white, pale silver |
+| warm-earth | ochre, burnt sienna, mustard yellow, ivory, warm beige |
+| forest | deep moss green, olive, mushroom brown, cream, hints of rust |
+| coastal | pale azure, dove gray, soft coral, sand beige, seafoam |
+| twilight | dusty plum, burgundy, blush pink, parchment, deep indigo |
+| sunset | peach, soft orange, dusty lavender, cream, pale gold |
+| mono | monochrome black and white, deep shadow contrast |
+
+### LP créés en session
+
+| ID | Thème | Palette | Statut |
+|----|-------|---------|--------|
+| LP-059 | form-overlapping-circles (test Lucid Origin → 4 imgs) | da-c | pushé (à reconsidérer, modèle Lucid Origin différent) |
+| LP-060 | form-rising-arc (Lucid Origin) | mono | pushé (2 imgs) |
+| LP-061 | form-stacked-rectangles (Lucid Origin) | warm-earth | pushé (2 imgs) |
+| LP-062 | chair-tipped-empty-room | twilight | pushé (2 imgs, premier validé grain) |
+| LP-063 | office-fluorescent-night | cool | pushé (2 imgs, RPS / surcharge) |
+| LP-064 | meeting-room-after | twilight | pushé (2 imgs, fatigue collective) |
+
+**Total bank GitHub fin session : 198 imgs** (192 aquarelles MJ batch 1 + 6 nouveaux Leonardo grain).
+
+### Tests générés non pushés (à valider J+1)
+
+- Test G : ordi par-dessus l'épaule, mains clavier (cool, travail concentré)
+- Test H : agent d'entretien fond couloir (twilight, invisibles du soin)
+- Test I : mains pétrissant pâte (warm-earth, geste métier)
+
+### À faire J+1
+
+1. Valider GHI visuellement
+2. Si OK → pipeline ~50 prompts workplace observationnels (cuisine, ménage, ordi, atelier, soin, formation, transport, terrain, bureau, créatif)
+3. Tokens Leonardo restants ≈ 8 100 → marge confortable (~250 prompts × 2 imgs possible)
+4. À éviter : post-it / corkboard (rejeté en session), enveloppe-décision (rejeté)
+
+### Tokens consommés en session
+
+8 420 → 8 100 ≈ 320 tokens pour ~10 générations test.
