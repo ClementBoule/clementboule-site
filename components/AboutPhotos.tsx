@@ -10,7 +10,7 @@ export default function AboutPhotos() {
   const TRANSITION = `transform 0.55s ${SPRING}, box-shadow 0.35s ease-out, filter 0.4s ease`
 
   return (
-    <div className="flex justify-center md:justify-end">
+    <div className="flex justify-center md:justify-end md:pr-8 lg:pr-12 xl:pr-16">
       <div className="relative w-full max-w-md h-[26rem] md:h-[30rem]">
         {/* Coach card — back-left, fanned counter-clockwise */}
         <div
