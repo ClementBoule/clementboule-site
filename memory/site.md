@@ -356,3 +356,106 @@ clementboule.fr
 - Triple angle différenciant : équipes pédagogiques + apprentis + dirigeants (vu de 3 côtés)
 - Ancrage économique : actionnaire en direct de 3 boîtes en transition (Daan Tech, Mosa Meat, My Food). À utiliser parcimonieusement (1 post sur 8-10).
 - Posture : praticien terrain qui voit ce que les autres ne voient plus, qui renomme ce que les autres décrivent mal, qui pousse à l'action en rendant le coût de l'inaction tangible.
+
+---
+
+## Session 30 avril 2026 (PM) — extension
+
+**Heure** : ~13h–17h Paris
+**État Vercel** : ~13 deploys, tous Ready (sauf 1 ERROR rebuild auto). Quota 100/jour large.
+
+### Livrables session
+
+#### 1) LinkedIn assets — bannière + avatar (Cowork → Documents/linkedin-assets/)
+
+**Bannière LinkedIn 1584×396** (claim site repris)
+- Construite en code Pillow, palette DA-C exacte (sable #FBF4DD, encre #2A2A2A, terracotta #E85D2F, sarcelle-deep #0F7B75, rose #FBC8D8, cardinal #C8102E)
+- Fonts : Anton-400 + SpaceGrotesk-700 (récupérées via @fontsource/anton + @fontsource/space-grotesk + @fontsource/permanent-marker, converties woff→ttf via fontTools)
+- Layout : eyebrow sarcelle-deep "BILINGUE · PARIS · 8 ANS" top-left + badge rose tilted -2° "made with care, not with templates" en Permanent Marker top-right + claim 2 lignes Anton 118px "FORMATIONS QUI / [MARCHENT] VRAIMENT." (MARCHENT en box terracotta) + URL clementboule.fr underline terracotta bottom-right
+- Pad_l = 480px pour respecter zone avatar LinkedIn (jusqu'à 400px diamètre côté gauche du banner)
+- **Fichier final** : `Documents/linkedin-assets/banner-A-typo.png` (55 KB, 1584×396)
+
+**Avatar 800×800** (V2 retenue)
+- Crop carré de clement-portrait-square.jpg + anneau terracotta 14px épaisseur
+- LinkedIn applique son propre crop circulaire de toute façon, l'anneau n'est visible qu'en preview agrandie
+- **Fichier final** : `Documents/linkedin-assets/avatar-V2-ring.png` (567 KB, 800×800)
+
+**Anti-pattern à retenir** : ne PAS utiliser le tool `mcp__b3e8125a__generate-design` (Canva IA) pour des designs alignés DA — ça sort du Canva-IA générique pas du tout cohérent avec une DA établie. Préférer :
+- Composer en code (Pillow / next/og / HTML+Puppeteer) avec palette extraite live du site
+- Récupérer les fonts exactes via npm @fontsource/* puis convert woff→ttf
+- Le sandbox bloque fonts.gstatic.com et raw.githubusercontent.com mais pas npmjs.org → toujours passer par npm pour les fonts open source
+
+#### 2) Bug Investments — produits pas au premier plan
+
+**Cause** : les 3 cards (article) ont `position:relative` + `transform: rotate()` ce qui crée un stacking context fermé. L'image produit avec `absolute -bottom-5 -right-5 mix-blend-mode:multiply` débordait visuellement mais le bord du card SUIVANT (border sauge-deep) la recouvrait.
+
+**Fix** :
+1. `.map(inv => ...)` → `.map((inv, i) => ...)` + passer `index={i}` à InvestmentCard
+2. Type `& { lang: 'fr' | 'en'; index?: number }` ajouté (sinon TS error)
+3. `style={{ ..., zIndex: hovered ? 40 : 30 - index * 10 }}` — zigzag décroissant 30/20/10 pour que la card 1 (avec produit qui déborde sur card 2) soit au-dessus
+
+**Cascade de commits** :
+- `edfc8d9` 1er fix → ERROR build (Type error: Property 'index' does not exist)
+- `82344c3` add `index?: number` au type → READY mais corrompu UTF-8 (caractères é/à/· devenus Â?Â©)
+- `01a2e3d` revert au commit propre `27e93b5` puis ré-applique avec TextEncoder/TextDecoder UTF-8 → READY clean
+
+**Anti-pattern à retenir** : pour le round-trip GitHub Contents API en JS browser, NE PAS utiliser `atob()` puis `btoa(unescape(encodeURIComponent()))` — ça double-corrompt l'UTF-8. Toujours :
+```js
+// Décodage
+const bytes = Uint8Array.from(atob(j.content.replace(/\n/g,'')), c => c.charCodeAt(0));
+const content = new TextDecoder('utf-8').decode(bytes);
+// Encodage
+const out = new TextEncoder().encode(content);
+let bin = ''; for (let i=0; i<out.length; i++) bin += String.fromCharCode(out[i]);
+const encoded = btoa(bin);
+```
+
+#### 3) Section À propos — 2 photos cards-en-main hover swap
+
+**Photo coach commitée** : `public/clement-coach.jpg` (478 KB, 1405×1529, drag-drop GitHub upload UI par Clément, renommée via git tree API atomique)
+
+**Composant** : `components/AboutPhotos.tsx` (client component avec useState)
+- Layout : 2 cards w-56 h-72 (mobile) → md:w-64 md:h-[22rem] absolute right-0 bottom-0, transformOrigin bottom-right
+- Default : costume devant (z-30, rotate +3°, lift -14px, scale 1.03), coach derrière (z-10, rotate -13°, translate -6px gauche)
+- Hover swap : onMouseEnter sur l'une → setTop swap z-indices + rotations + ombres + filter brightness/saturate
+- Spring easing : `cubic-bezier(0.34, 1.3, 0.64, 1)` 550ms transform + 350ms shadow + 400ms filter
+- Ombres réalistes : couleur DA-C (terracotta pour coach, sarcelle pour costume) en step + soft blur shadow noir 18-22px
+- Désaturation card non-active : `filter: brightness(0.88) saturate(0.80)` vs active `brightness(1.02) saturate(1.06)`
+- Overlay gradient diagonal sur la card en arrière : linear-gradient 135deg rgba(42,42,42,0.22) → transparent à 55%
+- Badges Permanent Marker rose réactifs : scale 0.94 + rotation 2° (inactive) ↔ scale 1.06 + rotation -3° (active)
+- A11y : tabIndex={0} + onFocus + focus-visible:ring + aria-label
+
+**Page modifiée** : `app/a-propos/page.tsx`
+- Retiré ", 32 ans" de la phrase finale du paragraphe d'intro
+- Remplacé bloc photo unique (lines 100-108 originales : `{/* Portrait frame creme */}` + div relative w-72 h-72 boxShadow sarcelle + `<img src="/clement.jpg">`) par `<AboutPhotos />`
+
+**Décalage horizontal** (commit `0cd02b1`) : ajout `md:pr-8 lg:pr-12 xl:pr-16` au wrapper flex pour que les cards ne touchent plus le bord droit du viewport (32-64px de marge selon breakpoint).
+
+**Stack commits** :
+- `c335891` création (atomic commit via git tree API : nouveau component + page modifiée + rename CHRIS-HASIBEDER_*.jpg → clement-coach.jpg + delete original)
+- `be1815c` polish animations (spring + lift + désaturation + overlay diagonal + badges réactifs)
+- `0cd02b1` pad-right responsive
+
+### Plan d'action J+1
+
+1. **LinkedIn post** — toujours en pause (texte prêt dans memory/site.md précédent). Hier on attendait le rebuild OG image pour avoir une carte cliquable. À ce stade c'est en place, peut être publié quand tu veux.
+2. **Coller le « À propos » LinkedIn** manuellement (texte dans memory/site.md précédent).
+3. **Voir si le hover swap satisfait visuellement** sur ta vraie souris — sinon itérer.
+
+### Anti-patterns récurrents (à ajouter au registre)
+
+1. **Canva MCP `generate-design`** = IA générique, pas DA-aware. Ne pas l'utiliser pour des assets alignés sur une DA établie.
+2. **GitHub Contents API + UTF-8** : toujours TextDecoder/TextEncoder, JAMAIS `atob()` direct + `btoa(unescape(encodeURIComponent()))`.
+3. **Stacking context CSS** : un parent avec `transform` (rotate, scale, translate) crée un nouveau stacking context. Un enfant en `position:absolute z-index:N` reste dans le scope du stacking context du parent — il ne peut pas dépasser un sibling parent placé après dans le DOM.
+4. **LinkedIn banner pad_l** : zone gauche jusqu'à x=440 doit être libre de contenu critique (la photo de profil peut atteindre 400px de diamètre).
+5. **Cards/photos absolute right-0** : sur des conteneurs alignés `justify-end` à droite de leur grille, ajouter du `pr-` responsive sinon les cards sortent du viewport ou collent au bord.
+
+### État du repo (commits clés sur main, ordre antéchronologique)
+
+- `0cd02b1` fix(about): pad-right responsive
+- `be1815c` feat(about): polish 2-photos animation
+- `c335891` feat(about): 2-photos cards-en-main hover swap + retire âge + rename clement-coach.jpg
+- `01a2e3d` fix(investments): restore UTF-8 + zIndex zigzag
+- `82344c3` fix(investments): type props with optional index?: number
+- `27e93b5` fix(investments): remove loading=lazy on product overlays (référence "version propre" pour reverts UTF-8)
+
