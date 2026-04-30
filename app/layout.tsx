@@ -30,11 +30,11 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://www.clementboule.fr'),
 
   title: {
-    default: 'Clément Boulé | Formateur Consultant Coach – Paris, Bilingue',
+    default: 'Clément Boulé · Formateur entreprise & école · Paris · FR-EN',
     template: '%s | Clément Boulé',
   },
   description:
-    "Clément Boulé, formateur consultant coach à Paris. Bilingue FR/EN, 8 ans d'expérience, +1 800 personnes formées en entreprise et en école.",
+    "Formateur en entreprise depuis 8 ans, FR-EN, Paris. Management, soft skills, RH, stratégie. Programmes construits avec vous, jamais sortis d’une bibliothèque.",
 
   keywords: [
     // FR – core
@@ -78,7 +78,7 @@ export const metadata: Metadata = {
     alternateLocale: 'en_GB',
     url: 'https://www.clementboule.fr',
     siteName: 'Clément Boulé',
-    title: 'Clément Boulé | Formateur Consultant Coach – Paris, Bilingue',
+    title: 'Clément Boulé · Formateur entreprise & école · Paris · FR-EN',
     description:
       "Clément Boulé, formateur consultant coach à Paris. Bilingue FR/EN, 8 ans d'expérience, +1 800 personnes formées en entreprise et en école.",
   },
@@ -86,9 +86,9 @@ export const metadata: Metadata = {
   /* ── Twitter / X Card ── */
   twitter: {
     card: 'summary_large_image',
-    title: 'Clément Boulé | Formateur Consultant Coach – Paris',
+    title: 'Clément Boulé · Formateur entreprise · Paris · FR-EN',
     description:
-      "Formateur consultant coach à Paris, bilingue FR/EN. 8 ans, +1 800 personnes formées.",
+      "Formateur en entreprise, FR-EN, Paris. 8 ans, programmes construits avec vous.",
     creator: '@clementboule',
   },
 
