@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import FinalCTA from '@/components/FinalCTA'
+import AboutPhotos from '@/components/AboutPhotos'
 
 export const metadata: Metadata = {
   title: 'À propos',
@@ -76,7 +77,7 @@ export default function APropos() {
                 made with care, not with templates
               </span>
               <p className="text-base md:text-lg text-cb-encre-soft leading-relaxed text-pretty mb-4 border-l-4 border-cb-cardinal pl-5">
-                Je suis Clément Boulé, 32 ans, basé à Paris. J&apos;accompagne managers et dirigeants depuis huit ans, d&apos;abord comme coach sportif puis comme formateur. En français comme en anglais.
+                Je suis Clément Boulé, basé à Paris. J&apos;accompagne managers et dirigeants depuis huit ans, d&apos;abord comme coach sportif puis comme formateur. En français comme en anglais.
               </p>
               <p className="text-base text-cb-encre-soft leading-relaxed text-pretty mb-8">
                 Je n&apos;ai pas de catalogue tout fait à dérouler. Je construis chaque programme à partir de votre quotidien, pour que la formation ait un effet qui dure dans le temps, au-delà des jours d&apos;intervention.
@@ -98,15 +99,8 @@ export default function APropos() {
                 </a>
               </div>
             </div>
-            {/* Portrait frame creme */}
-            <div className="flex justify-center md:justify-end">
-              <div
-                className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-cb-creme border-[2.5px] border-cb-sauge-deep rounded-sm overflow-hidden -rotate-[1deg]"
-                style={{ boxShadow: '10px 10px 0 var(--cb-sarcelle)' }}
-              >
-                <img src="/clement.jpg" alt="Clément Boulé, formateur consultant coach Paris" className="w-full h-full object-cover" />
-              </div>
-            </div>
+              {/* Portrait frame creme — 2 cartes en main, hover swap */}
+              <AboutPhotos />
           </div>
         </div>
       </section>
