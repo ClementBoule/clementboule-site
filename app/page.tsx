@@ -3,6 +3,7 @@ import Hero from '@/components/Hero'
 import MatchQuiz from '@/components/MatchQuiz'
 import Proof from '@/components/Proof'
 import TopClients from '@/components/TopClients'
+import Investments from '@/components/Investments'
 import Formations from '@/components/Formations'
 import Process from '@/components/Process'
 import HomeFAQ from '@/components/HomeFAQ'
@@ -24,6 +25,7 @@ export default function Home() {
       <MatchQuiz />
       <Proof />
       <TopClients />
+      <Investments />
       <Formations />
       <Process />
       {/* <Testimonials /> */}
