@@ -18,7 +18,7 @@ function InvestmentCard({
       href={url}
       target="_blank"
       rel="noopener noreferrer nofollow"
-      className={`relative bg-white border-[2.5px] border-cb-sauge-deep rounded flex flex-col items-center justify-start pt-6 pb-10 px-4 h-56 sm:h-64 transition-all duration-200 ${rot} hover:rotate-0 hover:translate-x-[-3px] hover:translate-y-[-3px] cursor-pointer min-w-0 overflow-hidden`}
+      className={`relative bg-white border-[2.5px] border-cb-sauge-deep rounded flex flex-col items-center justify-start pt-6 pb-10 px-4 h-56 sm:h-64 transition-all duration-200 ${rot} hover:rotate-0 hover:translate-x-[-3px] hover:translate-y-[-3px] cursor-pointer min-w-0`}
       style={{ boxShadow: hovered ? `10px 10px 0 ${shadowColor}` : `5px 5px 0 ${shadowColor}` }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -36,7 +36,7 @@ function InvestmentCard({
       <img
         src={product}
         alt={lang === 'fr' ? productAlt : productAltEn}
-        className={`absolute bottom-3 right-3 max-h-16 sm:max-h-20 max-w-[40%] object-contain pointer-events-none ${tilt} transition-transform duration-200`}
+        className={`absolute -bottom-5 -right-5 sm:-bottom-7 sm:-right-7 max-h-20 sm:max-h-28 max-w-[55%] object-contain pointer-events-none ${tilt} transition-transform duration-200 drop-shadow-md`}
         style={{ mixBlendMode: 'multiply' }}
         loading="lazy"
       />
