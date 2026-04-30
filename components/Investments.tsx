@@ -4,8 +4,8 @@ import { useState } from 'react'
 import { useLang } from './LanguageContext'
 
 const INVESTMENTS: { name: string; logo: string; url: string; tagline: string; taglineEn: string; rot: string; shadowColor: string }[] = [
-  { name: 'Daan Tech',  logo: '/logos/inv-daan-tech.png', url: 'https://www.daan.tech/',  tagline: 'Hardware FR — lave-vaisselle Bob',  taglineEn: 'French hardware — Bob dishwasher',     rot: '-rotate-[0.5deg]', shadowColor: 'var(--cb-sarcelle)' },
-  { name: 'Mosa Meat',  logo: '/logos/inv-mosa-meat.png', url: 'https://mosameat.com/',   tagline: 'Viande cultivée — Pays-Bas',         taglineEn: 'Cultivated meat — Netherlands',         rot: 'rotate-[0.4deg]',  shadowColor: 'var(--cb-terracotta)' },
+  { name: 'Daan Tech',  logo: '/logos/inv-daan-tech.png', url: 'https://www.daan.tech/',  tagline: 'Hardware FR · lave-vaisselle Bob',  taglineEn: 'French hardware · Bob dishwasher',     rot: '-rotate-[0.5deg]', shadowColor: 'var(--cb-sarcelle)' },
+  { name: 'Mosa Meat',  logo: '/logos/inv-mosa-meat.png', url: 'https://mosameat.com/',   tagline: 'Viande cultivée · Pays-Bas',         taglineEn: 'Cultivated meat · Netherlands',         rot: 'rotate-[0.4deg]',  shadowColor: 'var(--cb-terracotta)' },
   { name: 'My Food',    logo: '/logos/inv-my-food.png',   url: 'https://www.myfood.eu/',  tagline: 'Agriculture urbaine connectée',      taglineEn: 'Connected urban farming',                rot: '-rotate-[0.3deg]', shadowColor: 'var(--cb-sauge-deep)' },
 ]
 
@@ -22,7 +22,7 @@ function InvestmentCard({
       style={{ boxShadow: hovered ? `10px 10px 0 ${shadowColor}` : `5px 5px 0 ${shadowColor}` }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      aria-label={`${name} — ${lang === 'fr' ? tagline : taglineEn}`}
+      aria-label={`${name} · ${lang === 'fr' ? tagline : taglineEn}`}
     >
       <img
         src={logo}
