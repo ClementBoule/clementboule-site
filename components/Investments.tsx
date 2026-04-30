@@ -3,14 +3,14 @@
 import { useState } from 'react'
 import { useLang } from './LanguageContext'
 
-const INVESTMENTS: { name: string; logo: string; url: string; tagline: string; taglineEn: string; rot: string; shadowColor: string }[] = [
-  { name: 'Daan Tech',  logo: '/logos/inv-daan-tech.png', url: 'https://www.daan.tech/',  tagline: 'Hardware FR · lave-vaisselle Bob',  taglineEn: 'French hardware · Bob dishwasher',     rot: '-rotate-[0.5deg]', shadowColor: 'var(--cb-sarcelle)' },
-  { name: 'Mosa Meat',  logo: '/logos/inv-mosa-meat.png', url: 'https://mosameat.com/',   tagline: 'Viande cultivée · Pays-Bas',         taglineEn: 'Cultivated meat · Netherlands',         rot: 'rotate-[0.4deg]',  shadowColor: 'var(--cb-terracotta)' },
-  { name: 'My Food',    logo: '/logos/inv-my-food.png',   url: 'https://www.myfood.eu/',  tagline: 'Agriculture urbaine connectée',      taglineEn: 'Connected urban farming',                rot: '-rotate-[0.3deg]', shadowColor: 'var(--cb-sauge-deep)' },
+const INVESTMENTS: { name: string; logo: string; product: string; productAlt: string; productAltEn: string; url: string; tagline: string; taglineEn: string; rot: string; shadowColor: string; tilt: string }[] = [
+  { name: 'Daan Tech',  logo: '/logos/inv-daan-tech.png', product: '/logos/prod-daan-bob.png',     productAlt: 'Bob, lave-vaisselle compact',  productAltEn: 'Bob, compact dishwasher',     url: 'https://www.daan.tech/',  tagline: 'Hardware FR · lave-vaisselle Bob',  taglineEn: 'French hardware · Bob dishwasher',     rot: '-rotate-[0.5deg]', shadowColor: 'var(--cb-sarcelle)',   tilt: 'rotate-[8deg]' },
+  { name: 'Mosa Meat',  logo: '/logos/inv-mosa-meat.png', product: '/logos/prod-mosa-burger.png',  productAlt: 'Burger en viande cultivée',    productAltEn: 'Cultivated meat burger',      url: 'https://mosameat.com/',   tagline: 'Viande cultivée · Pays-Bas',         taglineEn: 'Cultivated meat · Netherlands',         rot: 'rotate-[0.4deg]',  shadowColor: 'var(--cb-terracotta)', tilt: '-rotate-[6deg]' },
+  { name: 'My Food',    logo: '/logos/inv-my-food.png',   product: '/logos/prod-myfood-serre.png', productAlt: 'Serre connectée My Food',      productAltEn: 'My Food connected greenhouse', url: 'https://www.myfood.eu/',  tagline: 'Agriculture urbaine connectée',      taglineEn: 'Connected urban farming',                rot: '-rotate-[0.3deg]', shadowColor: 'var(--cb-sauge-deep)', tilt: 'rotate-[10deg]' },
 ]
 
 function InvestmentCard({
-  name, logo, url, tagline, taglineEn, rot, shadowColor, lang,
+  name, logo, product, productAlt, productAltEn, url, tagline, taglineEn, rot, shadowColor, tilt, lang,
 }: typeof INVESTMENTS[number] & { lang: 'fr' | 'en' }) {
   const [hovered, setHovered] = useState(false)
   return (
@@ -18,7 +18,7 @@ function InvestmentCard({
       href={url}
       target="_blank"
       rel="noopener noreferrer nofollow"
-      className={`relative bg-white border-[2.5px] border-cb-sauge-deep rounded flex flex-col items-center justify-center h-44 sm:h-52 p-4 transition-all duration-200 ${rot} hover:rotate-0 hover:translate-x-[-3px] hover:translate-y-[-3px] cursor-pointer min-w-0 overflow-hidden`}
+      className={`relative bg-white border-[2.5px] border-cb-sauge-deep rounded flex flex-col items-center justify-start pt-6 pb-10 px-4 h-56 sm:h-64 transition-all duration-200 ${rot} hover:rotate-0 hover:translate-x-[-3px] hover:translate-y-[-3px] cursor-pointer min-w-0 overflow-hidden`}
       style={{ boxShadow: hovered ? `10px 10px 0 ${shadowColor}` : `5px 5px 0 ${shadowColor}` }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -32,6 +32,13 @@ function InvestmentCard({
       <span className="text-xs sm:text-sm font-semibold text-cb-encre text-center leading-tight">
         {lang === 'fr' ? tagline : taglineEn}
       </span>
+
+      <img
+        src={product}
+        alt={lang === 'fr' ? productAlt : productAltEn}
+        className={`absolute bottom-3 right-3 max-h-16 sm:max-h-20 max-w-[40%] object-contain pointer-events-none ${tilt} transition-transform duration-200`}
+        loading="lazy"
+      />
     </a>
   )
 }
