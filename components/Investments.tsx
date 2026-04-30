@@ -38,8 +38,7 @@ function InvestmentCard({
         alt={lang === 'fr' ? productAlt : productAltEn}
         className={`absolute -bottom-5 -right-5 sm:-bottom-7 sm:-right-7 max-h-20 sm:max-h-28 max-w-[55%] object-contain pointer-events-none ${tilt} transition-transform duration-200 drop-shadow-md`}
         style={{ mixBlendMode: 'multiply' }}
-        loading="lazy"
-      />
+        />
     </a>
   )
 }
