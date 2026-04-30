@@ -272,3 +272,87 @@ Push direct git via PAT GitHub temporaire = 10x plus rapide que push fichier-par
 - Files ajoutés : `/public/IMG_9024.jpg` (hero photo, 1.5 Mo) et `/public/logos/client-groupealternance.png` (88 Ko).
 - Deploy Hook créé : `https://api.vercel.com/v1/integrations/deploy/prj_sDRQhzbRXc86kGBRjakw2ri9dx6Q/aJ7lq18HPY` (à fire après reset 24h ou laisser le push auto pull au reset).
 
+
+
+---
+
+## Session 30 avril 2026 — close
+
+### État final du site live (commit `14e9764`)
+- Hero photo navy blazer (IMG_9024.jpg) + tagline FORMATIONS QUI MARCHENT VRAIMENT
+- TopClients : 8 logos (EMA, Albert, ISCOM, EDA RH, IHEDREA, Apprentis, Sauvegarde, Groupe Alternance) — Daan Tech retiré, remplacé par Groupe Alternance
+- Section Investments live : 3 cards (Daan Tech / Mosa Meat / My Food) avec logos + taglines + lien external. Section "Skin in the game · Aussi actionnaire en direct"
+- Metadata OG/Twitter réécrites (purge "Formateur Consultant Coach" → "Formateur entreprise & école"). Description sans empilement SEO.
+
+### Travail commité mais en attente de build (quota Vercel grillé)
+- `7f8426b` — overlay produit "à cheval" sur les cards Investments (Bob/burger/serre en bottom-right tilté + mix-blend-mode multiply pour fond blanc invisible)
+- `4b362fe` — Next.js 14.2.35 → ^15.1.0 (closes 5 CVE résiduelles, route /formations/[slug] déjà compatible async params)
+- `7d6c…` — OG image dynamique via app/opengraph-image.tsx (next/og ImageResponse 1200×630, palette site, FORMATIONS QUI MARCHENT VRAIMENT typo + signature URL)
+
+### Quota Vercel — leçon
+- Plan Hobby = 100 deploys/jour. Atteint 2 jours de suite. Reset minuit UTC.
+- Cause : trop de commits unitaires (renames de fichiers individuels, fixes itératifs).
+- **Protocole batch acquis** : grouper plusieurs modifications en 1 seul commit. Limite drastique du nombre de pushs/jour.
+- Deploy Hook URL (à fire après reset si besoin) : `https://api.vercel.com/v1/integrations/deploy/prj_sDRQhzbRXc86kGBRjakw2ri9dx6Q/aJ7lq18HPY`
+
+### Bio LinkedIn — fait
+- Headline poussé via auto sur LinkedIn : "Formateur en entreprise · Management, soft skills, stratégie · FR-EN · Petit actionnaire de Daan Tech, Mosa Meat, My Food"
+- Section "À propos" : version finale fournie en chat (texte sec, sans em-dash, sans formules LLM, avec coordonnées réelles : hello@clementboule.com / calendly.com/boule-clement/30min / clementboule.fr / malt.fr/profile/clementboule). À coller manuellement par Clément.
+
+### Corpus voix LinkedIn V5 — fait
+- `memory/linkedin-voice-corpus.md` consolidé en V5
+- Baseline : 5 posts récents Clément analysés (entretien ré-embauche / RH protègent / Back to reality / France usée / iceberg flux contractuel)
+- 19 auteurs externes documentés : Luginbuhl, Vannesson, Pezé, Galita, Christophe André, Pierre-Yves Gomez, Dejours, Pascal Chabot, de Gaulejac, Hamant, Mona Chollet, Mathilde Ramadier, Yves Clot, Norbert Alter, François Dupuy, Danièle Linhart, Marie-Anne Dujarier, Daniel Cohen, Cynthia Fleury
+- Boîte à outils stylistique mappée par archétype A1-A5 + leviers rhétoriques
+
+### Anti-patterns explicites (à respecter strictement en rédaction)
+- **em-dashes "—" et "–" INTERDITS** — utiliser middot `·`, virgule, ou point selon le rythme
+- "Voici les N leçons que j'ai apprises" → interdit
+- Triplet narratif fabriqué ("ceux qui voient X / ceux qui vivent Y / ceux qui rencontrent Z") → interdit
+- "Mon terrain :" / "Ce qui me distingue :" → interdit
+- Citations pseudo-Einstein → interdit
+- Humblebrag déguisé en authenticité → interdit
+- Listes à puces sans raison de structure → interdit
+
+### À faire J+1 (1 mai 2026)
+1. Vérifier que les 3 commits en attente ont buildé après reset quota Vercel
+2. Re-run [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) sur clementboule.fr pour que LinkedIn pick up la nouvelle OG image
+3. Coller le texte du post LinkedIn dans Buffer ou directement, programmer mardi/jeudi 8h30
+4. Une fois publié → 3 points sur le post → Épingler sur le profil
+5. Coller manuellement la nouvelle "À propos" sur LinkedIn (ajout section présentation)
+
+### Texte du premier post LinkedIn (prêt)
+
+```
+Mon site est en ligne : clementboule.fr
+
+8 ans à former. Jamais pris le temps d'en faire une page propre. Maintenant c'est fait.
+
+Sur le site :
+→ Les formats (entreprise, école, accompagnement individuel)
+→ Les sujets (management, soft skills, RH, stratégie)
+→ Les références (EMA, IHEDREA, ISCOM, Apprentis d'Auteuil, Albert, Groupe Alternance, EDA RH…)
+→ Le test DISC gratuit pour qui veut se positionner
+→ Email, Calendly, formulaire qui ouvre votre boîte mail (pas de CRM)
+
+Pas de tunnel marketing. Pas de chatbot. Pas de « demandez votre démo ».
+
+Allez voir.
+
+clementboule.fr
+
+#Formation #FormationEntreprise
+```
+
+### Banque illustrations LinkedIn
+- 244 imgs sur GitHub /public/illustrations/linkedin/
+- LP-001 → LP-058 : aquarelles MJ batch 1 (192 imgs, 4 variantes par thème, palette DA-C cohérente)
+- LP-059 → LP-064 : 6 imgs Leonardo Lucid Realism / Origin (mix résultats partiels, à reconsidérer)
+- LP-065 → LP-076 : 48 imgs MJ Draft batch 3 (prompts narratifs workplace, slugs génériques mj-draft-001 à 012, à renommer après tri)
+- Métadonnées partielles dans `metadata.json` (LP-001 → LP-030 seulement). À étendre quand on attaque les vrais posts pour permettre la sélection rapide.
+
+### Stratégie éditoriale LinkedIn — pivot validé en session
+- Positionnement cible : **formateur en entreprise** (pas prof). Construire l'image avant que le métier soit pleinement bascule.
+- Triple angle différenciant : équipes pédagogiques + apprentis + dirigeants (vu de 3 côtés)
+- Ancrage économique : actionnaire en direct de 3 boîtes en transition (Daan Tech, Mosa Meat, My Food). À utiliser parcimonieusement (1 post sur 8-10).
+- Posture : praticien terrain qui voit ce que les autres ne voient plus, qui renomme ce que les autres décrivent mal, qui pousse à l'action en rendant le coût de l'inaction tangible.
