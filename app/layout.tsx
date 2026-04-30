@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     siteName: 'Clément Boulé',
     title: 'Clément Boulé · Formateur entreprise & école · Paris · FR-EN',
     description:
-      "Clément Boulé, formateur consultant coach à Paris. Bilingue FR/EN, 8 ans d'expérience, +1 800 personnes formées en entreprise et en école.",
+      "Formateur en entreprise depuis 8 ans, FR-EN, Paris. Management, soft skills, RH, stratégie. Programmes construits avec vous, jamais sortis d’une bibliothèque.",
   },
 
   /* ── Twitter / X Card ── */
@@ -135,7 +135,7 @@ const jsonLd = {
       '@id': 'https://www.clementboule.fr/#person',
       name: 'Clément Boulé',
       alternateName: 'Clement Boule',
-      jobTitle: 'Formateur Consultant Coach en entreprise',
+      jobTitle: 'Formateur entreprise & école en entreprise',
       description:
         "Clément Boulé est formateur consultant coach à Paris. Il accompagne managers et dirigeants depuis 8 ans, en français comme en anglais, en entreprise et en business school.",
       url: 'https://www.clementboule.fr',
@@ -153,7 +153,7 @@ const jsonLd = {
       knowsLanguage: ['fr', 'en'],
       hasOccupation: {
         '@type': 'Occupation',
-        name: 'Formateur Consultant Coach',
+        name: 'Formateur entreprise & école',
         occupationLocation: { '@type': 'City', name: 'Paris' },
         skills: [
           'Coaching professionnel',
