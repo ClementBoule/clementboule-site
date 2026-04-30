@@ -4,9 +4,9 @@ import { useState } from 'react'
 import { useLang } from './LanguageContext'
 
 const INVESTMENTS: { name: string; logo: string; product: string; productAlt: string; productAltEn: string; url: string; tagline: string; taglineEn: string; rot: string; shadowColor: string; tilt: string }[] = [
-  { name: 'Daan Tech',  logo: '/logos/inv-daan-tech.png', product: '/logos/prod-daan-bob.jpg',     productAlt: 'Bob, lave-vaisselle compact',  productAltEn: 'Bob, compact dishwasher',     url: 'https://www.daan.tech/',  tagline: 'Hardware FR ÃÂ· lave-vaisselle Bob',  taglineEn: 'French hardware ÃÂ· Bob dishwasher',     rot: '-rotate-[0.5deg]', shadowColor: 'var(--cb-sarcelle)',   tilt: 'rotate-[8deg]' },
-  { name: 'Mosa Meat',  logo: '/logos/inv-mosa-meat.png', product: '/logos/prod-mosa-meat.jpg',  productAlt: 'Burger en viande cultivÃÂ©e',    productAltEn: 'Cultivated meat burger',      url: 'https://mosameat.com/',   tagline: 'Viande cultivÃÂ©e ÃÂ· Pays-Bas',         taglineEn: 'Cultivated meat ÃÂ· Netherlands',         rot: 'rotate-[0.4deg]',  shadowColor: 'var(--cb-terracotta)', tilt: '-rotate-[6deg]' },
-  { name: 'My Food',    logo: '/logos/inv-my-food.png',   product: '/logos/prod-myfood-serre.jpg', productAlt: 'Serre connectÃÂ©e My Food',      productAltEn: 'My Food connected greenhouse', url: 'https://www.myfood.eu/',  tagline: 'Agriculture urbaine connectÃÂ©e',      taglineEn: 'Connected urban farming',                rot: '-rotate-[0.3deg]', shadowColor: 'var(--cb-sauge-deep)', tilt: 'rotate-[10deg]' },
+  { name: 'Daan Tech',  logo: '/logos/inv-daan-tech.png', product: '/logos/prod-daan-bob.jpg',     productAlt: 'Bob, lave-vaisselle compact',  productAltEn: 'Bob, compact dishwasher',     url: 'https://www.daan.tech/',  tagline: 'Hardware FR · lave-vaisselle Bob',  taglineEn: 'French hardware · Bob dishwasher',     rot: '-rotate-[0.5deg]', shadowColor: 'var(--cb-sarcelle)',   tilt: 'rotate-[8deg]' },
+  { name: 'Mosa Meat',  logo: '/logos/inv-mosa-meat.png', product: '/logos/prod-mosa-meat.jpg',  productAlt: 'Burger en viande cultivée',    productAltEn: 'Cultivated meat burger',      url: 'https://mosameat.com/',   tagline: 'Viande cultivée · Pays-Bas',         taglineEn: 'Cultivated meat · Netherlands',         rot: 'rotate-[0.4deg]',  shadowColor: 'var(--cb-terracotta)', tilt: '-rotate-[6deg]' },
+  { name: 'My Food',    logo: '/logos/inv-my-food.png',   product: '/logos/prod-myfood-serre.jpg', productAlt: 'Serre connectée My Food',      productAltEn: 'My Food connected greenhouse', url: 'https://www.myfood.eu/',  tagline: 'Agriculture urbaine connectée',      taglineEn: 'Connected urban farming',                rot: '-rotate-[0.3deg]', shadowColor: 'var(--cb-sauge-deep)', tilt: 'rotate-[10deg]' },
 ]
 
 function InvestmentCard({
@@ -22,7 +22,7 @@ function InvestmentCard({
       style={{ boxShadow: hovered ? `10px 10px 0 ${shadowColor}` : `5px 5px 0 ${shadowColor}`, zIndex: hovered ? 40 : 30 - (index ?? 0) * 10 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      aria-label={`${name} ÃÂ· ${lang === 'fr' ? tagline : taglineEn}`}
+      aria-label={`${name} · ${lang === 'fr' ? tagline : taglineEn}`}
     >
       <img
         src={logo}
@@ -61,7 +61,7 @@ export default function Investments() {
           </h2>
           <p className="text-base md:text-lg max-w-2xl font-medium leading-relaxed text-pretty">
             {lang === 'fr' ? (
-              <>Petit actionnaire, en direct, de trois sociÃÂ©tÃÂ©s qui m'ont convaincu sur leur transition. Hardware franÃÂ§ais, viande cultivÃÂ©e, agriculture urbaine.{' '}<strong className="bg-cb-rose px-1.5 rounded-sm font-semibold">De quoi rester proche des arbitrages rÃÂ©els que les dirigeants me racontent en mission.</strong></>
+              <>Petit actionnaire, en direct, de trois sociétés qui m'ont convaincu sur leur transition. Hardware français, viande cultivée, agriculture urbaine.{' '}<strong className="bg-cb-rose px-1.5 rounded-sm font-semibold">De quoi rester proche des arbitrages réels que les dirigeants me racontent en mission.</strong></>
             ) : (
               <>A direct minority shareholder in three companies whose transition convinced me. French hardware, cultivated meat, connected urban farming.{' '}<strong className="bg-cb-rose px-1.5 rounded-sm font-semibold">It keeps me close to the real trade-offs leaders share with me on assignments.</strong></>
             )}
