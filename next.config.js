@@ -18,7 +18,7 @@ const ContentSecurityPolicy = [
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "img-src 'self' data: https:",
   "font-src 'self' https://fonts.gstatic.com",
-  "connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com",
+  "connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com https://api.web3forms.com",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",
