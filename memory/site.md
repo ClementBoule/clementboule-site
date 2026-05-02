@@ -459,3 +459,96 @@ const encoded = btoa(bin);
 - `82344c3` fix(investments): type props with optional index?: number
 - `27e93b5` fix(investments): remove loading=lazy on product overlays (référence "version propre" pour reverts UTF-8)
 
+
+---
+
+## Session 1er mai 2026 — Web3Forms + Gmail pro
+
+**Heure** : ~14h–17h Paris
+**Vercel** : 6 commits, tous Ready (pas d'erreur). Quota 100/jour large.
+
+### Livrable principal : passer de mailto: à Web3Forms POST direct
+
+**Pourquoi** : 30-50% des visiteurs abandonnent au moment où le `mailto:` ouvre Outlook/Gmail/Mail. Avec Web3Forms, le form submit envoie directement le mail depuis le site, le visiteur clique "Envoyer", c'est terminé.
+
+**Service retenu** : Web3Forms — 250 soumissions/mois gratuit, RGPD UE (Allemagne), 0 backend, anti-spam intégré (honeypot + détection auto).
+
+**Clé Web3Forms** : `de99b562-153c-4b39-bce0-81309fdf1635` — destinataire = `boule.clement@gmail.com`. La clé est publique côté client, c'est OK (anti-spam Web3Forms).
+
+**Commits clés** :
+- `cf9369d` feat(contact): replace mailto by Web3Forms POST in ContactForm.tsx — état submitting/error, sub-message updated
+- `004fce8` fix(csp): whitelist `https://api.web3forms.com` dans `connect-src` (sinon le navigateur bloquait silencieusement le fetch — debugged via Chrome DevTools console)
+- `8eb3f85` feat(disc): replace mailto by Web3Forms POST in DiscContactSection.tsx
+- `7451d64` fix(contact): update copy "votre client email s'ouvrira" → "le message m'arrive directement, je réponds sous 24-48h"
+- `59b58e2` fix(disc): bundle DISC context (profil + scores) into message field — sinon mail body vide car Web3Forms n'affiche que les champs standards (`name`, `email`, `subject`, `message`) dans son template par défaut. Les custom fields étaient ignorés.
+
+### Anti-pattern à retenir : Web3Forms champs standards
+
+Le template par défaut Web3Forms n'affiche correctement QUE :
+- `name` (sender display name)
+- `email` (sender email)
+- `subject` (email subject)
+- `message` (email body)
+
+Si tu envoies des champs custom (`nom`, `entreprise`, `format_souhaite`, `profil_disc`...), ils peuvent être ignorés ou mal formatés. Solution : **concat tout le contexte dans le champ `message`** comme un texte multi-lignes structuré. Standard fields seulement.
+
+Exemple format pour le DISC :
+```
+Profil DISC : D / I (Promoteur)
+Scores : D=24  I=18  S=8  C=12
+
+Message du visiteur :
+[texte libre du visiteur ou "(pas de message libre)"]
+```
+
+### Anti-pattern à retenir : CSP `connect-src` impacte les fetch
+
+La directive `connect-src 'self' https://cloudflareinsights.com` bloque silencieusement TOUS les fetch sortants vers d'autres domaines. Le navigateur retourne `TypeError: Failed to fetch` sans message d'erreur explicite côté UI (sauf à ouvrir la console). À chaque fois qu'on intègre une API tierce (Web3Forms, Resend, Brevo, Google reCAPTCHA, Stripe, Plausible, etc.), il faut whitelister son domaine dans la CSP de `next.config.js`.
+
+### Setup Gmail pro pour boule.clement@gmail.com
+
+**1. Libellé "hello" + filtre auto** (Gmail Settings → Filtres)
+- Critère : `to:hello@clementboule.com`
+- Action : Apply label "hello"
+- Appliqué rétroactivement aux 22 conversations existantes
+- → tous les futurs mails envoyés à `hello@` arrivent sur Gmail avec le libellé visible dans la sidebar
+
+**2. Send-As `hello@clementboule.com` configuré** (Gmail Settings → Comptes → Envoyer en tant que)
+- Nom affiché : `Clément Boulé`
+- SMTP serveur : `ssl0.ovh.net`
+- Port : `465` (SSL)
+- Username : `hello@clementboule.com`
+- Password : password de la boîte mail OVH (= même que webmail OVH, pas le password de l'espace client OVH)
+- Validation : code envoyé à hello@, confirmé en saisie ou via lien
+- Statut : `vérifié`, peut être mis par défaut
+
+**Résultat** : depuis Gmail, dans Nouveau message, menu déroulant `De :` permet de choisir entre `boule.clement@gmail.com` et `Clément Boulé <hello@clementboule.com>`. La signature DA-C marche sur les deux (déjà configurée).
+
+**Pré-requis OVH non vérifié** : forward `hello@clementboule.com → boule.clement@gmail.com` doit être actif dans l'espace client OVH pour que les mails reçus à hello@ atterrissent automatiquement sur Gmail. Si non actif, les mails restent sur le webmail OVH. À configurer côté Clément si pas déjà fait.
+
+### Anti-patterns récurrents (mis à jour)
+
+1. **Canva MCP `generate-design`** = IA générique, pas DA-aware. À éviter pour assets DA-aligned.
+2. **GitHub Contents API + UTF-8** : toujours TextDecoder/TextEncoder, jamais `atob`/`btoa(unescape(encodeURIComponent))`.
+3. **Stacking context CSS** : un parent avec `transform` crée un nouveau scope.
+4. **LinkedIn banner pad_l** : zone gauche jusqu'à x=440 doit être libre.
+5. **Cards/photos absolute right-0** : ajouter `pr-` responsive sinon collage au bord viewport.
+6. **NEW — Web3Forms champs standards** : concat tout dans `message`, n'utiliser que `name`/`email`/`subject`/`message`.
+7. **NEW — CSP `connect-src`** : whitelister explicitement chaque API tierce, sinon fetch bloqué silencieusement.
+
+### État du repo (commits clés sur main, ordre antéchronologique)
+
+- `59b58e2` fix(disc): bundle DISC context into message field
+- `7451d64` fix(contact): update copy direct submission
+- `8eb3f85` feat(disc): Web3Forms POST in DiscContactSection
+- `004fce8` fix(csp): whitelist api.web3forms.com
+- `cf9369d` feat(contact): Web3Forms POST in ContactForm
+- (avant) `0d08843a` docs(memory): close 30/04 PM
+
+### J+1 — actions ouvertes
+
+1. **Vérifier que le DISC mail body est complet** (commit 59b58e2 build done — re-tester le test DISC après hard refresh)
+2. **Vérifier le forward OVH `hello@ → Gmail`** est actif (sinon configurer dans espace client OVH email)
+3. **Publier le post LinkedIn** (texte prêt depuis 30/04, OG image cliquable opérationnelle)
+4. **Coller le « À propos » LinkedIn** manuellement (texte dans memory précédent)
+
