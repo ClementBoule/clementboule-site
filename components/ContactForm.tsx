@@ -24,6 +24,8 @@ export default function ContactForm() {
   })
   const [sent, setSent] = useState(false)
   const [prefilled, setPrefilled] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const searchParams = useSearchParams()
 
   useEffect(() => {
@@ -44,25 +46,40 @@ export default function ContactForm() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => setFields((prev) => ({ ...prev, [k]: e.target.value }))
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const subject = encodeURIComponent(
-      `[clementboule.fr] ${fields.type || 'Contact'}, ${fields.nom}`
-    )
-    const body = encodeURIComponent(
-      [
-        `Nom : ${fields.nom}`,
-        `Email : ${fields.email}`,
-        fields.entreprise ? `Entreprise : ${fields.entreprise}` : '',
-        `Type de demande : ${fields.type || 'Non précisé'}`,
-        '',
-        fields.message,
-      ]
-        .filter(Boolean)
-        .join('\n')
-    )
-    window.location.href = `mailto:hello@clementboule.com?subject=${subject}&body=${body}`
-    setSent(true)
+    if (submitting) return
+    setError(null)
+    setSubmitting(true)
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: 'de99b562-153c-4b39-bce0-81309fdf1635',
+          from_name: 'clementboule.fr — Formulaire de contact',
+          subject: `[clementboule.fr] ${fields.nom || 'Nouveau message'}${fields.entreprise ? ` · ${fields.entreprise}` : ''}`,
+          replyto: fields.email,
+          nom: fields.nom,
+          email: fields.email,
+          entreprise: fields.entreprise || '—',
+          format_souhaite: fields.type || '—',
+          message: fields.message,
+          botcheck: false,
+        }),
+      })
+      const data = await res.json()
+      if (data.success) {
+        setSent(true)
+        setFields({ nom: '', email: '', entreprise: '', type: '', message: '' })
+      } else {
+        setError(data.message || "Erreur lors de l'envoi. Réessayez ou écrivez à boule.clement@gmail.com")
+      }
+    } catch (err) {
+      setError("Connexion indisponible. Réessayez ou écrivez à boule.clement@gmail.com")
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   // Inputs DA-C : bordure 2.5px sauge-deep, bg creme, focus ring sarcelle
@@ -85,7 +102,7 @@ export default function ContactForm() {
             Votre message est <span className="inline-block bg-cb-sarcelle text-cb-sable px-2 -rotate-1 rounded-sm">parti</span>.
           </h3>
           <p className="text-sm text-cb-encre-soft leading-relaxed text-pretty">
-            Pensez à cliquer sur Envoyer dans votre boîte mail. Je vous réponds 24 à 48 heures.
+            Reçu directement dans ma boîte. Je réponds sous 24-48h.
           </p>
         </div>
         <div className="w-full max-w-sm pt-4 border-t-2 border-cb-sauge">
@@ -221,18 +238,25 @@ export default function ContactForm() {
         />
       </div>
 
+      {error && (
+        <p className="text-sm text-cb-cardinal bg-cb-rose/40 border-2 border-cb-cardinal px-4 py-3 rounded-sm font-medium" role="alert">
+          {error}
+        </p>
+      )}
+
       <button
         type="submit"
+        disabled={submitting}
         className="inline-flex w-full items-center justify-center gap-2 bg-cb-sarcelle text-cb-sable font-anton text-base uppercase tracking-wider border-[2.5px] border-cb-encre px-6 py-4 rounded-sm hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all duration-200"
         style={{ boxShadow: '5px 5px 0 var(--cb-encre)' }}
         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = '8px 8px 0 var(--cb-encre)' }}
         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = '5px 5px 0 var(--cb-encre)' }}
       >
-        M’envoyer le message →
+        {submitting ? 'Envoi en cours…' : 'M’envoyer le message →'}
       </button>
 
       <p className="text-xs text-cb-encre-soft/80 text-center font-medium">
-        À l’envoi, votre boîte mail s’ouvre avec le message prêt. Rien n’est stocké ici.
+        Envoi direct depuis le site. Réponse sous 24-48h sur l’adresse que vous indiquez.
       </p>
     </form>
   )
