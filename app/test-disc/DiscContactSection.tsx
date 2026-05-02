@@ -46,6 +46,15 @@ export default function DiscContactSection({
     e.preventDefault()
     if (status === 'sending') return
     setStatus('sending')
+    // Compose a complete message body with DISC context + user message
+    const profil = `${dominant}${secondary ? ' / ' + secondary : ''}${subProfile ? ' (' + subProfile + ')' : ''}`
+    const fullMessage = [
+      `Profil DISC : ${profil}`,
+      scores ? `Scores : D=${scores.D ?? '—'}  I=${scores.I ?? '—'}  S=${scores.S ?? '—'}  C=${scores.C ?? '—'}` : '',
+      '',
+      `Message du visiteur :`,
+      message ? message : '(pas de message libre — souhaite simplement le débrief de son profil)',
+    ].filter(Boolean).join('\n')
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -53,13 +62,12 @@ export default function DiscContactSection({
         body: JSON.stringify({
           access_key: 'de99b562-153c-4b39-bce0-81309fdf1635',
           from_name: 'clementboule.fr — Test DISC',
-          subject: `[DISC] ${dominant}${secondary ? '/' + secondary : ''} — ${name || 'Débrief profil'}`,
+          subject: `[DISC] ${profil} — ${name || 'Débrief profil'}`,
           replyto: email,
-          nom: name,
+          name: name || 'Visiteur DISC',
           email: email,
-          profil_disc: `${dominant}${secondary ? ' / ' + secondary : ''}${subProfile ? ' (' + subProfile + ')' : ''}`,
-          message: message,
-          botcheck: false,
+          message: fullMessage,
+          botcheck: '',
         }),
       })
       const data = await res.json()
