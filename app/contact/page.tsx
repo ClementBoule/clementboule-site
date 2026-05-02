@@ -148,7 +148,7 @@ export default function Contact() {
                 Envoyer un message
               </h2>
               <p className="text-sm text-cb-encre-soft mb-6">
-                Remplissez le formulaire, votre client email s&apos;ouvrira avec tout pré-rempli.
+                                Remplissez le formulaire ci-dessous. Le message m’arrive directement, je réponds sous 24-48h sur l’adresse que vous indiquez.
               </p>
               <Suspense fallback={<div className="h-[420px] animate-pulse bg-cb-sable rounded-sm border-2 border-cb-sauge" />}>
                 <ContactForm />
