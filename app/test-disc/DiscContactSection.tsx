@@ -42,26 +42,33 @@ export default function DiscContactSection({
     .join(', ')
   const defaultMessage = `Bonjour Clément,\n\nJe viens de faire le test DISC sur votre site. Mon profil dominant est ${profile.name}${sp ? ` (sous-profil : ${sp.name})` : ''} (${scoresSummary}).\n\nJ'aimerais en savoir plus sur comment appliquer ces résultats dans mon contexte professionnel.\n\nCordialement,`
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (status === 'sending') return
     setStatus('sending')
     try {
-      const subjectLine = `[DISC ${profile.letter}${sp ? ` · ${sp.name}` : ''}] Nouveau profil à accompagner`
-      const fullBody = [
-        `Nom : ${name}`,
-        `Email : ${email}`,
-        '',
-        `Profil dominant : ${profile.name}${sp ? ` (sous-profil : ${sp.name})` : ''}`,
-        `Scores : ${scoresSummary}`,
-        '',
-        '— Message —',
-        message || defaultMessage,
-      ].join('\n')
-      const subject = encodeURIComponent(subjectLine)
-      const body = encodeURIComponent(fullBody)
-      window.location.href = `mailto:hello@clementboule.com?subject=${subject}&body=${body}`
-      setStatus('success')
-    } catch {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: 'de99b562-153c-4b39-bce0-81309fdf1635',
+          from_name: 'clementboule.fr — Test DISC',
+          subject: `[DISC] ${dominant}${secondary ? '/' + secondary : ''} — ${name || 'Débrief profil'}`,
+          replyto: email,
+          nom: name,
+          email: email,
+          profil_disc: `${dominant}${secondary ? ' / ' + secondary : ''}${subProfile ? ' (' + subProfile + ')' : ''}`,
+          message: message,
+          botcheck: false,
+        }),
+      })
+      const data = await res.json()
+      if (data.success) {
+        setStatus('success')
+      } else {
+        setStatus('error')
+      }
+    } catch (err) {
       setStatus('error')
     }
   }
